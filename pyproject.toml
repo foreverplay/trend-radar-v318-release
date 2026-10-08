@@ -1,0 +1,28 @@
+[project]
+name = "trend-radar-v318"
+version = "3.1.8"
+description = "A-share Trend Confirmation Radar V3.1.8 (observation only)"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "pandas>=2.0,<3",
+  "numpy>=1.24,<3",
+  "pyarrow>=14.0",
+  "akshare>=1.14",
+  "requests>=2.31",
+  "python-dateutil>=2.8",
+  "pytz>=2023.3",
+  "tqdm>=4.66",
+  "beautifulsoup4>=4.12",
+  "lxml>=4.9",
+  "fastapi>=0.110",
+  "uvicorn[standard]>=0.27",
+  "pydantic>=2.0",
+]
+
+[project.optional-dependencies]
+dev = []
+
+[tool.setuptools.packages.find]
+where = ["backend"]
+include = ["trend_breakout*"]

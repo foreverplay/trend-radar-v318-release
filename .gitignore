@@ -1,0 +1,14 @@
+.venv/
+.venv-smoke/
+__pycache__/
+*.pyc
+frontend/node_modules/
+*.egg-info/
+.env
+backend/trend_breakout/v3/v31/hist_cache/*
+!backend/trend_breakout/v3/v31/hist_cache/README.md
+backend/trend_breakout/v3/v31/snap_cache/*
+!backend/trend_breakout/v3/v31/snap_cache/README.md
+backend/trend_breakout/cache/continuity_history/*
+backend/trend_breakout/candidates*.json
+backend/trend_breakout/all_results*.json

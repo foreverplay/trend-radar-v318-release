@@ -1,0 +1,139 @@
+{
+  "probed_at": "2026-09-21 09:49:41+0800",
+  "max_requests_budget": 20,
+  "requests_used": 9,
+  "sample_n": 30,
+  "trials": [
+    {
+      "name": "sina_batch_30",
+      "kind": "sina",
+      "url_host": "hq.sinajs.cn",
+      "ok": true,
+      "status": 200,
+      "latency_ms": 1362.2,
+      "n_quotes": 30,
+      "error": null,
+      "backoff_s": 0
+    },
+    {
+      "name": "tencent_batch_30",
+      "kind": "tencent",
+      "url_host": "qt.gtimg.cn",
+      "ok": true,
+      "status": 200,
+      "latency_ms": 650.7,
+      "n_quotes": 30,
+      "error": null,
+      "backoff_s": 0
+    },
+    {
+      "name": "sina_inter_chunk_0.2",
+      "sleep_s": 0.2,
+      "ok": true,
+      "latencies_ms": [
+        220.1,
+        221.9
+      ],
+      "n_total": 8,
+      "errors": []
+    },
+    {
+      "name": "sina_inter_chunk_0.1",
+      "sleep_s": 0.1,
+      "ok": true,
+      "latencies_ms": [
+        222.9,
+        220.7
+      ],
+      "n_total": 8,
+      "errors": []
+    },
+    {
+      "name": "sina_inter_chunk_0.05",
+      "sleep_s": 0.05,
+      "ok": true,
+      "latencies_ms": [
+        220.9,
+        221.8
+      ],
+      "n_total": 8,
+      "errors": []
+    },
+    {
+      "name": "sina_confirm_after_short",
+      "kind": "sina",
+      "url_host": "hq.sinajs.cn",
+      "ok": true,
+      "status": 200,
+      "latency_ms": 221.8,
+      "n_quotes": 30,
+      "error": null,
+      "backoff_s": 0
+    }
+  ],
+  "sina_batch_30": {
+    "ok": true,
+    "latency_ms": 1362.2,
+    "n_quotes": 30,
+    "status": 200
+  },
+  "tencent_batch_30": {
+    "ok": true,
+    "latency_ms": 650.7,
+    "n_quotes": 30,
+    "status": 200
+  },
+  "inter_chunk_ladder": [
+    {
+      "sleep_s": 0.2,
+      "ok": true,
+      "latencies_ms": [
+        220.1,
+        221.9
+      ],
+      "n_total": 8,
+      "errors": []
+    },
+    {
+      "sleep_s": 0.1,
+      "ok": true,
+      "latencies_ms": [
+        222.9,
+        220.7
+      ],
+      "n_total": 8,
+      "errors": []
+    },
+    {
+      "sleep_s": 0.05,
+      "ok": true,
+      "latencies_ms": [
+        220.9,
+        221.8
+      ],
+      "n_total": 8,
+      "errors": []
+    }
+  ],
+  "shortest_ok_inter_chunk_s": 0.05,
+  "recommended": {
+    "min_inter_chunk_s": 0.05,
+    "min_post_query_sleep_s": 180,
+    "post_query_jitter_s": [
+      0,
+      120
+    ],
+    "post_query_clamp_s": [
+      150,
+      600
+    ],
+    "chunk_size": 80,
+    "sources_order": [
+      "sina",
+      "tencent",
+      "eastmoney"
+    ],
+    "prefer_single_sina_batch": true,
+    "notes": "Gentle probe only. Prefer one Sina HQ list= for whole pool (≤80). Fall back to Tencent only if Sina insufficient. Session loop: wait AFTER each query completes, base~180s + jitter 0–120s."
+  }
+}
