@@ -220,7 +220,8 @@ def run_v317_layer(
             if verbose:
                 print(f"  v317 {i}/{len(tasks)} {out['code6']} ok={out.get('ok')} {out.get('elapsed_sec')}s", flush=True)
         return res
-    ctx = mp.get_context("fork")
+    # macOS 上父进程读过 parquet 后已有 pyarrow 线程，fork 出去的子进程会在 curl 初始化时崩溃。
+    ctx = mp.get_context("spawn" if sys.platform == "darwin" else "fork")
     with ctx.Pool(workers, initializer=_w_init) as pool:
         for i, out in enumerate(pool.imap_unordered(_w_eval, tasks), 1):
             res[out["code6"]] = out

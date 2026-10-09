@@ -18,6 +18,11 @@ from typing import Any, Dict, Iterable, List, Optional
 
 from .regime_map import market_score_from_meta, pair_from_market_meta
 
+try:
+    from paths import ROOT as _PKG_ROOT
+except ImportError:  # packaged / flat layout fallback
+    from trend_breakout.paths import ROOT as _PKG_ROOT
+
 ROOT = _PKG_ROOT
 HISTORY = ROOT / "history"
 ARCHIVE_JSONL = HISTORY / "market_regime_daily.jsonl"

@@ -24,15 +24,33 @@ import requests
 warnings.filterwarnings("ignore")
 
 try:
+    from paths import ROOT as _PKG_ROOT, LOCAL_DAILY as _PKG_LOCAL_DAILY, CACHE_DIR as _PKG_CACHE
+except ImportError:  # packaged / flat layout fallback
+    try:
+        from trend_breakout.paths import (
+            ROOT as _PKG_ROOT,
+            LOCAL_DAILY as _PKG_LOCAL_DAILY,
+            CACHE_DIR as _PKG_CACHE,
+        )
+    except ImportError:
+        import os as __os
+
+        _PKG_ROOT = Path(__os.environ.get("TREND_BREAKOUT_ROOT", str(Path(__file__).resolve().parent)))
+        _k = Path(__os.environ.get("ASHARE_KLINE_ROOT", str(_PKG_ROOT.parent.parent / "data" / "sample" / "kline")))
+        _PKG_LOCAL_DAILY = _k / "raw" / "daily"
+        _PKG_CACHE = _PKG_ROOT / "cache"
+
+try:
     import akshare as ak
 except Exception:  # pragma: no cover
     ak = None
 
 OUT = _PKG_ROOT
-CACHE = OUT / "cache"
+CACHE = _PKG_CACHE
 CACHE.mkdir(parents=True, exist_ok=True)
 TURNOVER_CACHE = CACHE / "turnover_daily.json"
 LOCAL_DAILY = _PKG_LOCAL_DAILY
+INDEX_DAILY = LOCAL_DAILY.parent / "index"
 TZ = ZoneInfo("Asia/Shanghai")
 
 DEFAULT_TIMEOUT = 15
@@ -879,6 +897,147 @@ def fetch_industry(code6: str) -> Dict[str, Any]:
     return _ok("未知", "fallback_unknown", errors + ["行业信息不足"])
 
 
+def _code_full_local(code6: str) -> str:
+    c6 = str(code6).zfill(6)
+    if c6.startswith(("4", "8", "92", "83", "87", "43")):
+        return "bj" + c6
+    return ("sh" if c6.startswith(("5", "6", "9")) else "sz") + c6
+
+
+def load_local_ohlcv(path: Path, t_date: str) -> Optional[pd.DataFrame]:
+    """Read one parquet and drop bars after t_date. Never fetches."""
+    if not path.is_file():
+        return None
+    df = pd.read_parquet(path)
+    if df is None or not len(df) or "date" not in df.columns or "close" not in df.columns:
+        return None
+    df = df.copy()
+    df["date"] = pd.to_datetime(df["date"])
+    df = df[df["date"] <= pd.Timestamp(t_date)].sort_values("date")
+    if not len(df):
+        return None
+    return df.reset_index(drop=True)
+
+
+def load_local_stock_hist(symbol: str, t_date: str) -> Optional[pd.DataFrame]:
+    raw = str(symbol)
+    code6 = raw[2:] if raw.startswith(("sh", "sz", "bj")) else raw.zfill(6)
+    return load_local_ohlcv(LOCAL_DAILY / f"{code6}.parquet", t_date)
+
+
+def load_local_index_hist(symbol: str, t_date: str) -> Optional[pd.DataFrame]:
+    name = str(symbol).lower()
+    if name.isdigit():
+        name = _code_full_local(name)
+    return load_local_ohlcv(INDEX_DAILY / f"{name}.parquet", t_date)
+
+
+def spot_from_local_daily(t_date: str) -> pd.DataFrame:
+    """Rebuild the T-day spot table from local daily bars. Bars after T are ignored."""
+    names: Dict[str, str] = {}
+    name_file = LOCAL_DAILY.parent.parent / "meta" / "names.csv"
+    if name_file.is_file():
+        try:
+            nd = pd.read_csv(name_file, dtype=str)
+            if {"code", "name"}.issubset(nd.columns):
+                names = dict(zip(nd["code"].str.zfill(6), nd["name"].fillna("")))
+        except Exception:
+            names = {}
+    rows: List[dict] = []
+    if not LOCAL_DAILY.is_dir():
+        return pd.DataFrame(columns=SPOT_SCHEMA)
+    for fp in sorted(LOCAL_DAILY.glob("*.parquet")):
+        code6 = fp.stem
+        if not code6.isdigit() or len(code6) != 6:
+            continue
+        try:
+            df = load_local_ohlcv(fp, t_date)
+        except Exception:
+            continue
+        if df is None or len(df) < 2:
+            continue
+        if df["date"].iloc[-1].strftime("%Y-%m-%d") != t_date:
+            continue
+        last = df.iloc[-1]
+        prev = df.iloc[-2]
+        close = float(last["close"])
+        prev_close = float(prev["close"])
+        if not np.isfinite(close) or close <= 0 or not np.isfinite(prev_close) or prev_close <= 0:
+            continue
+        amount = float(last["amount"]) if "amount" in df.columns and pd.notna(last.get("amount")) else np.nan
+        volume = float(last["volume"]) if "volume" in df.columns and pd.notna(last.get("volume")) else np.nan
+        rows.append(
+            {
+                "代码": _code_full_local(code6),
+                "名称": names.get(code6) or code6,
+                "最新价": close,
+                "涨跌幅": (close / prev_close - 1.0) * 100.0,
+                "成交量": volume,
+                "成交额": amount,
+                "最高": float(last["high"]) if "high" in df.columns and pd.notna(last.get("high")) else close,
+                "最低": float(last["low"]) if "low" in df.columns and pd.notna(last.get("low")) else close,
+                "今开": float(last["open"]) if "open" in df.columns and pd.notna(last.get("open")) else close,
+                "昨收": prev_close,
+            }
+        )
+    if not rows:
+        return pd.DataFrame(columns=SPOT_SCHEMA)
+    return pd.DataFrame(rows)
+
+
+def turnover_from_local(t_date: str, spot: Optional[pd.DataFrame]) -> Dict[str, Any]:
+    """Turnover as-of T from index amount files, else the provided local spot sum."""
+    errors: List[str] = []
+    frames = []
+    for code in ("sh000001", "sz399001"):
+        hist = load_local_index_hist(code, t_date)
+        if hist is None or "amount" not in hist.columns:
+            errors.append(f"{code} amount missing")
+            continue
+        part = hist[["date", "amount"]].copy()
+        part["amount"] = pd.to_numeric(part["amount"], errors="coerce")
+        frames.append(part.dropna())
+    if len(frames) == 2:
+        merged = frames[0].merge(frames[1], on="date", suffixes=("_sh", "_sz"))
+        merged["amt"] = (merged["amount_sh"] + merged["amount_sz"]) / 1e8
+        merged = merged[merged["date"] <= pd.Timestamp(t_date)].sort_values("date")
+        if len(merged):
+            amts = merged["amt"].astype(float).tolist()
+            amt_t = float(amts[-1])
+            ma5 = float(np.mean(amts[-5:]))
+            ma20 = float(np.mean(amts[-20:]))
+            return _ok(
+                {
+                    "amt_yi": amt_t,
+                    "ma5": ma5,
+                    "ma20": ma20,
+                    "vs_ma5": amt_t / ma5 if ma5 else None,
+                    "vs_ma20": amt_t / ma20 if ma20 else None,
+                    "hist_len": len(amts),
+                    "unit": "亿元",
+                },
+                "local_index_amount",
+                errors,
+            )
+    amt = _spot_sum_amt_yi(spot)
+    if amt is None:
+        return _fail(errors + ["local turnover unavailable"])
+    return _ok(
+        {
+            "amt_yi": float(amt),
+            "ma5": float(amt),
+            "ma20": float(amt),
+            "vs_ma5": 1.0,
+            "vs_ma20": 1.0,
+            "hist_len": 1,
+            "gap_flags": ["strict turnover MA unavailable; vs MA pinned at 1"],
+            "unit": "亿元",
+        },
+        "local_spot_sum",
+        errors,
+    )
+
+
 __all__ = [
     "detect_t_date",
     "fetch_turnover_t",
@@ -890,6 +1049,10 @@ __all__ = [
     "fetch_sina_index_spot",
     "fetch_industry",
     "append_t_bar_from_spot",
+    "load_local_stock_hist",
+    "load_local_index_hist",
+    "spot_from_local_daily",
+    "turnover_from_local",
     "OUT",
     "CACHE",
 ]

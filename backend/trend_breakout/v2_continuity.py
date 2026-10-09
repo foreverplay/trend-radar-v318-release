@@ -19,6 +19,17 @@ from typing import Any, Dict, List, Optional, Tuple
 import numpy as np
 import pandas as pd
 
+try:
+    from paths import ROOT as _PKG_ROOT, CONTINUITY_CACHE as _PKG_CONT_CACHE
+except ImportError:
+    try:
+        from trend_breakout.paths import ROOT as _PKG_ROOT, CONTINUITY_CACHE as _PKG_CONT_CACHE
+    except ImportError:
+        import os as __os
+
+        _PKG_ROOT = Path(__os.environ.get("TREND_BREAKOUT_ROOT", str(Path(__file__).resolve().parent)))
+        _PKG_CONT_CACHE = _PKG_ROOT / "cache" / "continuity_history"
+
 CACHE_DIR = _PKG_CONT_CACHE
 OUT = _PKG_ROOT
 TYPE_CN = {

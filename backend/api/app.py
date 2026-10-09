@@ -10,6 +10,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 from boards_loader import find_sample_root, list_board_dates, load_by_date, load_latest
+import quote_service
 
 app = FastAPI(
     title="趋势分析雷达 V3.1.8 API",
@@ -72,6 +73,37 @@ def boards_date(date: str) -> Dict[str, Any]:
         return load_by_date(date, SAMPLE)
     except FileNotFoundError as e:
         raise HTTPException(status_code=404, detail=str(e)) from e
+
+
+def _quote_call(fn, code: str, **kwargs):
+    try:
+        return fn(code, **kwargs)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e)) from e
+    except Exception as e:
+        raise HTTPException(status_code=502, detail=f"行情源暂不可用: {type(e).__name__}") from e
+
+
+@app.get("/api/quotes/{code}/trends")
+def quote_trends(code: str, date: Optional[str] = None) -> Dict[str, Any]:
+    return _quote_call(quote_service.get_trends, code, trade_date=date)
+
+
+@app.get("/api/quotes/{code}/klines")
+def quote_klines(code: str, period: str = "day", as_of: Optional[str] = None) -> Dict[str, Any]:
+    if period not in ("day", "month"):
+        raise HTTPException(status_code=400, detail="period 仅支持 day 或 month")
+    return _quote_call(quote_service.get_klines, code, period=period, as_of=as_of)
+
+
+@app.get("/api/quotes/{code}/flow")
+def quote_flow(code: str, date: Optional[str] = None) -> Dict[str, Any]:
+    return _quote_call(quote_service.get_flow, code, trade_date=date)
+
+
+@app.get("/api/quotes/{code}/rise-reason")
+def quote_rise_reason(code: str, name: str = "", date: Optional[str] = None) -> Dict[str, Any]:
+    return _quote_call(quote_service.get_rise_reason, code, name=name, trade_date=date)
 
 
 @app.post("/api/run/publish")

@@ -103,6 +103,18 @@ cd frontend && npm run dev
 
 前端会优先请求 API；失败时自动回退到 `frontend/public/sample/boards_v318_20261008.json`。
 
+页面右上角可切换 `data/sample/boards_v318_YYYYMMDD.json` 中已有的历史日期。悬停或点击股票名称会打开详情：所选日期的分时、日/月 K（含成交量与 MACD）、趋势分数和证据说明。异动原因与资金流仅在对应日期能取到时显示。
+
+严格回算最近 10 个交易日。配置了 `MARKET_DB_PATH` 时，从共享行情库的前复权表导出，不再单独下载：
+
+```bash
+python backend/scripts/backfill_boards_v318.py --days 10 --source market-db
+```
+
+没有共享库时仍可 `--source tencent` 下载到 `data/kline_market/`。回算只使用截至该日的本地行情。股票清单是库里当时的当前清单；基本面以及无法按日还原的异动/资金字段不参与历史评分。成交额优先用共享库里的真实成交额，缺失时按收盘价×成交量估算。覆盖不足或最新日期不到该交易日时，脚本会停止，不写出榜单。
+
+悬停行情在设置 `MARKET_HUB_URL`（默认 `http://127.0.0.1:8790`）后优先走共享行情后台，后台不可用时回退直连。`./run_dev.sh` 会在 8790 未监听且配置了 `MARKET_HUB_DIR` 时一并启动后台。
+
 离线 smoke（不启服务）：
 
 ```bash

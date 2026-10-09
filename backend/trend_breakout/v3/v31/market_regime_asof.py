@@ -15,6 +15,11 @@ from typing import Any, Dict, Optional, Tuple
 
 import pandas as pd
 
+try:
+    from paths import ROOT as _PKG_ROOT
+except ImportError:  # packaged / flat layout fallback
+    from trend_breakout.paths import ROOT as _PKG_ROOT
+
 ROOT = _PKG_ROOT
 HISTORY = ROOT / "history"
 ARCHIVE_JSONL = HISTORY / "market_regime_daily.jsonl"

@@ -7,10 +7,11 @@ cd "$ROOT"
 
 API_PID=""
 FRONT_PID=""
+HUB_PID=""
 
 cleanup() {
   local p
-  for p in "$API_PID" "$FRONT_PID"; do
+  for p in "$API_PID" "$FRONT_PID" "$HUB_PID"; do
     if [[ -n "$p" ]] && kill -0 "$p" 2>/dev/null; then
       kill "$p" 2>/dev/null || true
     fi
@@ -42,6 +43,29 @@ fi
 echo "[run_dev] 后端 API: http://127.0.0.1:${API_PORT:-8765}/api/health"
 echo "[run_dev] 前端页面: http://127.0.0.1:5173"
 echo "[run_dev] 按 Ctrl+C 停止前后端"
+
+env_get() {
+  local key="$1"
+  [[ -f "$ROOT/.env" ]] || return 0
+  sed -n "s/^${key}=//p" "$ROOT/.env" | tail -1
+}
+
+MARKET_HUB_URL="${MARKET_HUB_URL:-$(env_get MARKET_HUB_URL)}"
+MARKET_HUB_DIR="${MARKET_HUB_DIR:-$(env_get MARKET_HUB_DIR)}"
+MARKET_DB_PATH="${MARKET_DB_PATH:-$(env_get MARKET_DB_PATH)}"
+export MARKET_HUB_URL MARKET_DB_PATH
+
+if [[ -n "${MARKET_HUB_URL}" && -n "${MARKET_HUB_DIR}" ]]; then
+  HUB_ABS="$(cd "$ROOT" && cd "$MARKET_HUB_DIR" && pwd)"
+  HUB_PORT="${HUB_PORT:-8790}"
+  if ! lsof -nP -iTCP:"$HUB_PORT" -sTCP:LISTEN >/dev/null 2>&1; then
+    echo "[run_dev] 行情后台: ${MARKET_HUB_URL}"
+    (cd "$HUB_ABS" && ./run_hub.sh) &
+    HUB_PID=$!
+  else
+    echo "[run_dev] 行情后台已在 ${HUB_PORT} 监听"
+  fi
+fi
 
 bash "$ROOT/backend/scripts/run_api.sh" &
 API_PID=$!

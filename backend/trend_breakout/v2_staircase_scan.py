@@ -53,6 +53,18 @@ from v2_recommend import (
 
 warnings.filterwarnings("ignore")
 
+try:
+    from paths import ROOT as _PKG_ROOT, LOCAL_DAILY as _PKG_LOCAL_DAILY
+except ImportError:  # packaged / flat layout fallback
+    try:
+        from trend_breakout.paths import ROOT as _PKG_ROOT, LOCAL_DAILY as _PKG_LOCAL_DAILY
+    except ImportError:
+        import os as __os
+
+        _PKG_ROOT = Path(__os.environ.get("TREND_BREAKOUT_ROOT", str(Path(__file__).resolve().parent)))
+        _k = Path(__os.environ.get("ASHARE_KLINE_ROOT", str(_PKG_ROOT.parent.parent / "data" / "sample" / "kline")))
+        _PKG_LOCAL_DAILY = _k / "raw" / "daily"
+
 OUT = _PKG_ROOT
 TZ = ZoneInfo("Asia/Shanghai")
 PY = "python"
@@ -70,9 +82,30 @@ def _is_st_or_new(name: str) -> bool:
     return ("ST" in n) or ("退" in n) or n.startswith(("N", "C"))
 
 
-def compute_market_meta(t_date: str, spot: Optional[pd.DataFrame]) -> Dict[str, Any]:
+def compute_market_meta(
+    t_date: str, spot: Optional[pd.DataFrame], strict_asof: bool = False
+) -> Dict[str, Any]:
     data_gaps: List[str] = []
-    br = ds.fetch_breadth_zt_dt(t_date, spot=spot)
+    if strict_asof:
+        data_gaps.append("strict_asof: live spot/legu/fund disabled")
+        if spot is None or not len(spot):
+            br = {"ok": False}
+        else:
+            pct = pd.to_numeric(spot["涨跌幅"], errors="coerce")
+            zt_n0, dt_n0 = ds._count_limit_from_spot(spot)
+            br = {
+                "ok": True,
+                "value": {
+                    "up": float((pct > 0).sum()),
+                    "down": float((pct < 0).sum()),
+                    "zt": float(zt_n0),
+                    "dt": float(dt_n0),
+                    "real_zt": float(zt_n0),
+                    "real_dt": float(dt_n0),
+                },
+            }
+    else:
+        br = ds.fetch_breadth_zt_dt(t_date, spot=spot)
     if br["ok"]:
         bv = br["value"]
         up_n = float(bv["up"])
@@ -90,8 +123,8 @@ def compute_market_meta(t_date: str, spot: Optional[pd.DataFrame]) -> Dict[str, 
         "中证1000": "sh000852",
         "创业板指": "sz399006",
     }
-    idx_res = ds.fetch_sina_index_spot(list(idx_map.values()))
-    idx_spot = idx_res["value"] if idx_res["ok"] else None
+    idx_res = {"ok": False} if strict_asof else ds.fetch_sina_index_spot(list(idx_map.values()))
+    idx_spot = idx_res["value"] if idx_res.get("ok") else None
     index_info: Dict[str, Any] = {}
     for name, code in idx_map.items():
         info: Dict[str, Any] = {"code": code, "name": name}
@@ -101,14 +134,23 @@ def compute_market_meta(t_date: str, spot: Optional[pd.DataFrame]) -> Dict[str, 
                 info["close_T"] = float(m.iloc[0]["最新价"])
                 info["pct_T"] = float(m.iloc[0]["涨跌幅"])
                 info["preclose"] = float(m.iloc[0]["昨收"])
-        ih = ds.fetch_index_hist(code)
-        hist = ih["value"] if ih["ok"] else None
+        if strict_asof:
+            hist = ds.load_local_index_hist(code, t_date)
+            if hist is None:
+                data_gaps.append(f"strict index missing {code}")
+        else:
+            ih = ds.fetch_index_hist(code)
+            hist = ih["value"] if ih["ok"] else None
         if hist is not None and len(hist):
             hist = hist.copy()
             hist["date"] = pd.to_datetime(hist["date"])
             hist = hist.sort_values("date").reset_index(drop=True)
             last_d = hist["date"].iloc[-1].strftime("%Y-%m-%d")
-            if last_d < t_date and "close_T" in info:
+            if strict_asof and last_d != t_date:
+                data_gaps.append(f"strict index stale {code} last={last_d}")
+                index_info[name] = info
+                continue
+            if (not strict_asof) and last_d < t_date and "close_T" in info:
                 hist = pd.concat(
                     [
                         hist,
@@ -139,10 +181,15 @@ def compute_market_meta(t_date: str, spot: Optional[pd.DataFrame]) -> Dict[str, 
                 info["ret60"] = float(hist["close"].iloc[-1] / hist["close"].iloc[-61] - 1)
         index_info[name] = info
 
-    to = ds.fetch_turnover_t(t_date, spot=spot)
-    two_market = float(to["value"]["amt_yi"]) if to["ok"] else None
-    hist_series = (to.get("value") or {}).get("hist_series") if to["ok"] else None
-    ma = ds.fetch_turnover_ma(t_date, amt_t=two_market, hist_series=hist_series)
+    if strict_asof:
+        local_to = ds.turnover_from_local(t_date, spot)
+        to = local_to
+        ma = local_to
+    else:
+        to = ds.fetch_turnover_t(t_date, spot=spot)
+        two_market = float(to["value"]["amt_yi"]) if to["ok"] else None
+        hist_series = (to.get("value") or {}).get("hist_series") if to["ok"] else None
+        ma = ds.fetch_turnover_ma(t_date, amt_t=two_market, hist_series=hist_series)
     if ma["ok"]:
         mv = ma["value"]
         amt_T = float(mv["amt_yi"])
@@ -151,7 +198,7 @@ def compute_market_meta(t_date: str, spot: Optional[pd.DataFrame]) -> Dict[str, 
         vs5 = float(mv["vs_ma5"] or 1)
         vs20 = float(mv["vs_ma20"] or 1)
     else:
-        amt_T = two_market or 0.0
+        amt_T = float((to.get("value") or {}).get("amt_yi") or 0) if to.get("ok") else 0.0
         ma5 = ma20 = amt_T or 1.0
         vs5 = vs20 = 1.0
         data_gaps.append("turnover MA failed")
@@ -559,7 +606,17 @@ def ensure_hist_to_t(symbol: str, t_date: str, start: str = "20250101") -> Tuple
     return df, src + "_stale", errors
 
 
-def fetch_one(full: str, t_date: str, spot_row) -> Tuple[str, Optional[pd.DataFrame], Optional[str], str]:
+def fetch_one(
+    full: str, t_date: str, spot_row, strict_asof: bool = False
+) -> Tuple[str, Optional[pd.DataFrame], Optional[str], str]:
+    if strict_asof:
+        df = ds.load_local_stock_hist(full, t_date)
+        if df is None or not len(df):
+            return full, None, "strict local hist missing", "local_parquet"
+        last = df["date"].iloc[-1].strftime("%Y-%m-%d")
+        if last != t_date:
+            return full, None, f"strict last={last}!={t_date}", "local_parquet"
+        return full, df.reset_index(drop=True), None, "local_parquet"
     df, src, errs = ensure_hist_to_t(full, t_date)
     if df is None:
         return full, None, "; ".join(errs[:2]), ""
@@ -577,6 +634,7 @@ def enrich_results_v21(
     results: List[Dict[str, Any]],
     hists: Dict[str, pd.DataFrame],
     t_date: str,
+    strict_asof: bool = False,
 ) -> Dict[str, Any]:
     """Attach Fund/Sector/Risk + Continuity + V2.3 monthly/sector-trend/recommend + classify.
 
@@ -594,7 +652,8 @@ def enrich_results_v21(
     sector_trend_eng.bind_fundamental(fund_eng)
     rec_eng = RecommendationEngine()
     try:
-        fund_eng.load()
+        if not strict_asof:
+            fund_eng.load()
         sec_eng.load()
         sector_trend_eng.load()
     except Exception as e:
@@ -628,6 +687,8 @@ def enrich_results_v21(
         hist = hists.get(full)
         # fundamental
         try:
+            if strict_asof:
+                raise RuntimeError("strict_asof_fund_not_historical")
             fr = fund_eng.evaluate(code6)
             fund_d = fr.to_dict()
         except Exception as e:
@@ -691,7 +752,7 @@ def enrich_results_v21(
                 fund=fund_d,
                 sector=sec_d,
                 phase=rec.get("phase"),
-                persist=True,
+                persist=not strict_asof,
             )
             cont_d = cr.to_dict()
         except Exception as e:
@@ -1281,15 +1342,26 @@ def run(
     max_prefilter: int = 250,
     workers: int = 4,
     force_codes: Optional[List[str]] = None,
+    strict_asof: bool = False,
 ) -> Dict[str, Any]:
-    print(f"=== V2.3 staircase+resonance scan T={t_date} ===")
+    print(f"=== V2.3 staircase+resonance scan T={t_date} strict={strict_asof} ===")
     gaps: List[str] = []
 
-    sp = ds.fetch_spot_universe()
-    spot = sp["value"] if sp["ok"] else None
-    if sp["ok"]:
+    if strict_asof:
+        spot = ds.spot_from_local_daily(t_date)
+        if spot is None or not len(spot):
+            raise SystemExit(f"strict-asof: no local daily bars on {t_date}")
+        print(f"spot source=local_parquet rows={len(spot)}")
+        gaps.append("strict_asof local parquet universe")
+        sp = {"ok": True}
+    else:
+        sp = ds.fetch_spot_universe()
+        spot = sp["value"] if sp["ok"] else None
+    if (not strict_asof) and sp["ok"]:
         print(f"spot source={sp['source']} rows={len(spot)}")
         spot.to_pickle(OUT / "spot_sina.pkl")
+    elif strict_asof:
+        pass
     else:
         # try cached
         pkl = OUT / "spot_sina.pkl"
@@ -1300,7 +1372,7 @@ def run(
         else:
             raise SystemExit("spot failed and no cache")
 
-    meta = compute_market_meta(t_date, spot)
+    meta = compute_market_meta(t_date, spot, strict_asof=strict_asof)
     gaps.extend(meta.get("data_gaps") or [])
     regime_v2 = meta["regime_v2"]
     print("REGIME_V2", regime_v2, "legacy", meta["regime"], "MS", meta["market_score"])
@@ -1341,7 +1413,7 @@ def run(
         for r in rows:
             full = str(r.代码)
             spot_row = spot_by.get(full, r)
-            futs[ex.submit(fetch_one, full, t_date, spot_row)] = full
+            futs[ex.submit(fetch_one, full, t_date, spot_row, strict_asof)] = full
         done = 0
         for fut in as_completed(futs):
             full, df, err, src = fut.result()
@@ -1432,7 +1504,7 @@ def run(
 
     # ---- V2.1 enrichment + V2.2 Continuity ----
     print("enriching V2.1 fund/sector/risk + V2.2 continuity + V2.3 monthly/sector/recommend...")
-    v21_stats = enrich_results_v21(results, hists, t_date)
+    v21_stats = enrich_results_v21(results, hists, t_date, strict_asof=strict_asof)
     print("v21/v22/v23 coverage", v21_stats)
 
     # filter structured (OH kept for reporting — drop=False, grade=OH)
@@ -1570,6 +1642,7 @@ def run(
     payload = {
         "t_date": t_date,
         "model": "V2.3_multi_period_resonance",
+        "asof_mode": "strict_local" if strict_asof else "live",
         "regime": meta["regime"],
         "regime_v2": regime_v2,
         "market_score": meta["market_score"],
@@ -1688,14 +1761,15 @@ def run(
         f"regime={regime_v2} phases={phase_counts}"
     )
 
-    # near pool
-    try:
-        from build_near_pool import build_pool
+    if not strict_asof:
+        # near pool
+        try:
+            from build_near_pool import build_pool
 
-        build_pool(patch_report=True)
-    except Exception as e:
-        print("near_pool skip:", type(e).__name__, e)
-        gaps.append(f"near_pool: {type(e).__name__}: {e}")
+            build_pool(patch_report=True)
+        except Exception as e:
+            print("near_pool skip:", type(e).__name__, e)
+            gaps.append(f"near_pool: {type(e).__name__}: {e}")
 
     return payload
 
@@ -1705,6 +1779,11 @@ def main():
     ap.add_argument("--t-date", default=None, help="YYYY-MM-DD; default detect_t_date")
     ap.add_argument("--max-prefilter", type=int, default=250, help="spot prefilter size (default 250)")
     ap.add_argument("--workers", type=int, default=4)
+    ap.add_argument(
+        "--strict-asof",
+        action="store_true",
+        help="rebuild universe from local parquet truncated at T; no live spot or future bars",
+    )
     ap.add_argument(
         "--force-codes",
         default=None,
@@ -1724,7 +1803,13 @@ def main():
         print(f"auto T_DATE={t_date} via {td['source']}")
     force_file = Path(args.force_file) if args.force_file else None
     fc = load_force_codes(cli_codes=args.force_codes, force_file=force_file)
-    run(t_date, max_prefilter=args.max_prefilter, workers=args.workers, force_codes=fc)
+    run(
+        t_date,
+        max_prefilter=args.max_prefilter,
+        workers=args.workers,
+        force_codes=fc,
+        strict_asof=bool(args.strict_asof),
+    )
 
 
 if __name__ == "__main__":

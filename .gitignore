@@ -12,3 +12,9 @@ backend/trend_breakout/v3/v31/snap_cache/*
 backend/trend_breakout/cache/continuity_history/*
 backend/trend_breakout/candidates*.json
 backend/trend_breakout/all_results*.json
+backend/trend_breakout/prefilter_v2.pkl
+backend/trend_breakout/history/
+backend/trend_breakout/report*.md
+backend/trend_breakout/push_close_v318_*.md
+data/cache/quotes.sqlite3
+data/kline_market/
