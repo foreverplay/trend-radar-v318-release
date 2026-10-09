@@ -15,7 +15,11 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true,
-    "noEmitOnError": false
+    "noEmitOnError": false,
+    /* market-data-hub/web 的共用图表代码没有自己的 node_modules，ECharts 类型从本项目解析 */
+    "paths": {
+      "echarts": ["./node_modules/echarts/index.d.ts"]
+    }
   },
   "include": ["src"]
 }

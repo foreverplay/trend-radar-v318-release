@@ -4,6 +4,7 @@ import { fetchFlow, fetchKlines, fetchRiseReason, fetchTrends } from "../api";
 import type { BoardRow, FlowPayload, KlineBar, ReasonPayload } from "../types";
 import { zhCell } from "../zhLabels";
 import { IntradayChart, KlineChart } from "./QuoteCharts";
+import { MA_DEFAULT, MA_LINES, parseMaPeriods, toggleMaPeriod } from "../../../../market-data-hub/web/quoteCharts.ts";
 
 type Box = { left: number; top: number; width: number };
 
@@ -50,6 +51,7 @@ export default function StockHoverCard({
   const code = row.code || "";
   const [box, setBox] = useState<Box>(() => place(anchor));
   const [period, setPeriod] = useState<"day" | "month">("day");
+  const [maOn, setMaOn] = useState(MA_DEFAULT);
   const [trend, setTrend] = useState<Awaited<ReturnType<typeof fetchTrends>> | null>(null);
   const [bars, setBars] = useState<KlineBar[]>([]);
   const [flow, setFlow] = useState<FlowPayload | null>(null);
@@ -116,11 +118,30 @@ export default function StockHoverCard({
           <div className="kicker-row">
             <p className="kicker">{period === "day" ? "日K" : "月K"}</p>
             <div>
+              {period === "day" ? (
+                <span className="ma-tabs">
+                  {MA_LINES.map((item) => {
+                    const on = parseMaPeriods(maOn).includes(item.period);
+                    return (
+                      <button
+                        key={item.period}
+                        type="button"
+                        className={on ? "ma-on" : ""}
+                        style={on ? { color: item.color } : undefined}
+                        onClick={() => setMaOn((current) => toggleMaPeriod(current, item.period))}
+                      >
+                        <i style={{ background: item.color, opacity: on ? 1 : 0.35 }} />
+                        MA{item.period}
+                      </button>
+                    );
+                  })}
+                </span>
+              ) : null}
               <button type="button" className={period === "day" ? "on" : ""} onClick={() => setPeriod("day")}>日K</button>
               <button type="button" className={period === "month" ? "on" : ""} onClick={() => setPeriod("month")}>月K</button>
             </div>
           </div>
-          {loading && !bars.length ? <p className="chart-empty">正在读取K线…</p> : <KlineChart bars={bars} period={period} />}
+          {loading && !bars.length ? <p className="chart-empty">正在读取K线…</p> : <KlineChart bars={bars} period={period} maKey={period === "day" ? maOn : ""} />}
         </section>
       </div>
       <div className="score-list">

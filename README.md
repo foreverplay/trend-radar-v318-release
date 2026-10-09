@@ -103,7 +103,7 @@ cd frontend && npm run dev
 
 前端会优先请求 API；失败时自动回退到 `frontend/public/sample/boards_v318_20261008.json`。
 
-页面右上角可切换 `data/sample/boards_v318_YYYYMMDD.json` 中已有的历史日期。悬停或点击股票名称会打开详情：所选日期的分时、日/月 K（含成交量与 MACD）、趋势分数和证据说明。异动原因与资金流仅在对应日期能取到时显示。
+页面右上角可切换 `data/sample/boards_v318_YYYYMMDD.json` 中已有的历史日期。悬停或点击股票名称会打开详情：所选日期的分时、日/月 K（含成交量与 MACD；日 K 默认叠加 MA5/10/20/60，可单独开关）、趋势分数和证据说明。分时 / K 线的指标和图表配置放在同级 `market-data-hub/web`，与 longtou-web 共用。异动原因与资金流仅在对应日期能取到时显示。
 
 严格回算最近 10 个交易日。配置了 `MARKET_DB_PATH` 时，从共享行情库的前复权表导出，不再单独下载：
 

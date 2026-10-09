@@ -83,6 +83,9 @@ tr:hover td { background: rgba(59, 130, 246, 0.08); }
   border-radius: 6px; padding: 0.2rem 0.45rem; cursor: pointer;
 }
 .kicker-row button.on { background: var(--accent); border-color: var(--accent); }
+.ma-tabs { display: inline-flex; gap: 0.2rem; margin-right: 0.5rem; }
+.kicker-row .ma-tabs button { background: transparent; color: var(--muted); font-size: 0.75rem; padding: 0.15rem 0.35rem; }
+.ma-tabs i { display: inline-block; width: 10px; height: 2px; margin-right: 3px; border-radius: 1px; vertical-align: middle; }
 .hover-charts { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-top: 0.5rem; }
 .quote-chart { height: 230px; }
 .score-list { display: grid; gap: 0.35rem; margin: 0.7rem 0; }
