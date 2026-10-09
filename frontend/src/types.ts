@@ -61,6 +61,7 @@ export type KlineBar = {
   high: number;
   low: number;
   volume: number;
+  amount?: number;
   change_pct?: number;
 };
 

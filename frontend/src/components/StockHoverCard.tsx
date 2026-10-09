@@ -3,8 +3,9 @@ import { createPortal } from "react-dom";
 import { fetchFlow, fetchKlines, fetchRiseReason, fetchTrends } from "../api";
 import type { BoardRow, FlowPayload, KlineBar, ReasonPayload } from "../types";
 import { zhCell } from "../zhLabels";
-import { IntradayChart, KlineChart } from "./QuoteCharts";
+import { BarDetailPanel, IntradayChart, KlineChart } from "./QuoteCharts";
 import { MA_DEFAULT, MA_LINES, parseMaPeriods, toggleMaPeriod } from "../../../../market-data-hub/web/quoteCharts.ts";
+import { klineBarDetail, type BarDetailItem } from "../../../../market-data-hub/web/barDetail.ts";
 
 type Box = { left: number; top: number; width: number };
 
@@ -57,6 +58,9 @@ export default function StockHoverCard({
   const [flow, setFlow] = useState<FlowPayload | null>(null);
   const [reason, setReason] = useState<ReasonPayload | null>(null);
   const [loading, setLoading] = useState(true);
+  const [picked, setPicked] = useState("");
+  const [pickedFlow, setPickedFlow] = useState<FlowPayload | null>(null);
+  const [pickedReason, setPickedReason] = useState<ReasonPayload | null>(null);
   const cardRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -76,6 +80,7 @@ export default function StockHoverCard({
     setLoading(true);
     setTrend(null);
     setBars([]);
+    setPicked("");
     Promise.allSettled([
       fetchTrends(code, asOf, ctrl.signal),
       fetchKlines(code, period, asOf, ctrl.signal),
@@ -91,6 +96,44 @@ export default function StockHoverCard({
     });
     return () => ctrl.abort();
   }, [code, asOf, period, row.name]);
+
+  useEffect(() => {
+    setPickedFlow(null);
+    setPickedReason(null);
+    if (!picked || period !== "day") return;
+    const ctrl = new AbortController();
+    Promise.allSettled([
+      fetchFlow(code, picked, ctrl.signal),
+      fetchRiseReason(code, row.name || "", picked, ctrl.signal),
+    ]).then((items) => {
+      if (ctrl.signal.aborted) return;
+      setPickedFlow(items[0].status === "fulfilled" ? items[0].value : { available: false, note: "资金流读取失败" });
+      setPickedReason(items[1].status === "fulfilled" ? items[1].value : { available: false, note: "异动原因读取失败" });
+    });
+    return () => ctrl.abort();
+  }, [code, picked, period, row.name]);
+
+  const pickedIndex = picked ? bars.findIndex((bar) => bar.time === picked) : -1;
+  const detail = pickedIndex >= 0 ? klineBarDetail(bars, pickedIndex, period) : null;
+  const extra: BarDetailItem[] = [];
+  if (detail && period === "day") {
+    if (!pickedFlow) {
+      extra.push({ label: "资金流", value: "正在读取…" });
+    } else if (pickedFlow.available) {
+      const net = Number(pickedFlow.mainNetPct || 0);
+      extra.push(
+        { label: "大单占比", value: `${Number(pickedFlow.largeSharePct || 0).toFixed(1)}%` },
+        { label: "主力净流入", value: `${net > 0 ? "+" : ""}${net.toFixed(2)}%`, tone: net > 0 ? "up" : net < 0 ? "down" : undefined },
+      );
+    } else {
+      extra.push({ label: "资金流", value: pickedFlow.note || "该日资金流无法还原" });
+    }
+    extra.push({
+      label: "异动原因",
+      value: !pickedReason ? "正在读取…" : (pickedReason.available && pickedReason.reason) || pickedReason.note || "暂无公开异动说明",
+      wide: true,
+    });
+  }
 
   return createPortal(
     <aside
@@ -118,32 +161,37 @@ export default function StockHoverCard({
           <div className="kicker-row">
             <p className="kicker">{period === "day" ? "日K" : "月K"}</p>
             <div>
-              {period === "day" ? (
-                <span className="ma-tabs">
-                  {MA_LINES.map((item) => {
-                    const on = parseMaPeriods(maOn).includes(item.period);
-                    return (
-                      <button
-                        key={item.period}
-                        type="button"
-                        className={on ? "ma-on" : ""}
-                        style={on ? { color: item.color } : undefined}
-                        onClick={() => setMaOn((current) => toggleMaPeriod(current, item.period))}
-                      >
-                        <i style={{ background: item.color, opacity: on ? 1 : 0.35 }} />
-                        MA{item.period}
-                      </button>
-                    );
-                  })}
-                </span>
-              ) : null}
+              <span className="ma-tabs">
+                {MA_LINES.map((item) => {
+                  const on = parseMaPeriods(maOn).includes(item.period);
+                  return (
+                    <button
+                      key={item.period}
+                      type="button"
+                      className={on ? "ma-on" : ""}
+                      style={on ? { color: item.color } : undefined}
+                      onClick={() => setMaOn((current) => toggleMaPeriod(current, item.period))}
+                    >
+                      <i style={{ background: item.color, opacity: on ? 1 : 0.35 }} />
+                      MA{item.period}
+                    </button>
+                  );
+                })}
+              </span>
               <button type="button" className={period === "day" ? "on" : ""} onClick={() => setPeriod("day")}>日K</button>
               <button type="button" className={period === "month" ? "on" : ""} onClick={() => setPeriod("month")}>月K</button>
             </div>
           </div>
-          {loading && !bars.length ? <p className="chart-empty">正在读取K线…</p> : <KlineChart bars={bars} period={period} maKey={period === "day" ? maOn : ""} />}
+          {loading && !bars.length ? <p className="chart-empty">正在读取K线…</p> : <KlineChart bars={bars} period={period} maKey={maOn} selectedTime={picked} onPick={setPicked} />}
+          {!detail && bars.length ? <p className="chart-hint">点击任一根K线查看该{period === "day" ? "日" : "月"}详情</p> : null}
         </section>
       </div>
+      {detail ? (
+        <BarDetailPanel
+          detail={extra.length ? { ...detail, sections: [...detail.sections, { name: "资金与异动", items: extra }] } : detail}
+          onClose={() => setPicked("")}
+        />
+      ) : null}
       <div className="score-list">
         {[
           ["技术分", row.tech],
