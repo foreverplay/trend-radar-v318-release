@@ -46,6 +46,7 @@ const PATH: Record<string, string> = {
 const EXIT: Record<string, string> = {
   HOLD: "持有观察",
   WATCH: "重点观察",
+  PROTECT: "保护观察",
   SELL: "卖出",
   REDUCE: "减仓",
   REDUCE_RISK: "降风险",

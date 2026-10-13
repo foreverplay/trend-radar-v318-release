@@ -338,10 +338,68 @@ def counts_v318(rows: Sequence[Dict[str, Any]]) -> Dict[str, Any]:
     }
 
 
+# 推送表：中文列名 + 枚举中文（对齐前端四榜）
 HEADERS = [
-    "股票", "阶段", "TrendGrade", "成熟度", "EntryStatus", "路径", "趋势涨幅%", "波段涨幅%",
-    "Struct", "Tech", "Cont", "Sector", "消耗", "风险", "保护价", "破坏价", "ExitSignal",
+    "股票", "阶段", "趋势等级", "成熟度", "入场状态", "路径", "趋势涨幅%",
+    "技术分", "延续分", "板块分", "保护价", "破坏价", "退出信号",
 ]
+
+STAGE_CN = {
+    "ACCUMULATION": "蓄势",
+    "PLATFORM": "平台",
+    "FIRST_BREAKOUT": "首次突破",
+    "HEALTHY_PULLBACK": "健康回撤",
+    "PLATFORM_HOLD": "平台整理",
+    "SECOND_BREAKOUT": "二次突破",
+    "MAIN_RISE": "主升",
+    "MAIN_RISE_ACCEL": "主升加速",
+    "ACCELERATION": "加速段",
+    "OVERHEATED": "过热",
+    "TREND_FAILURE": "趋势破坏",
+    "OBSERVE": "观察",
+    "NONE": "—",
+}
+MATURITY_CN = {
+    "EARLY": "早期",
+    "BUILDING": "构建中",
+    "ADVANCED": "中后期",
+    "MATURE": "成熟",
+}
+ENTRY_CN = {
+    "PRIME": "主窗口",
+    "CONFIRMED": "已确认",
+    "FOLLOW": "跟随",
+    "EXTENDED": "延伸过热",
+    "NO_ENTRY": "无入场",
+}
+PATH_CN = {
+    "RAPID": "快速主升",
+    "RAPID_MAIN_RISE": "快速主升",
+    "structure_classic": "经典结构",
+    "structure_a": "结构路径",
+    "b": "常规路径",
+    "B": "常规路径",
+}
+EXIT_CN = {
+    "HOLD": "持有观察",
+    "WATCH": "重点观察",
+    "PROTECT": "保护观察",
+    "REDUCE": "减仓",
+    "REDUCE_RISK": "降风险",
+    "SELL": "卖出",
+}
+
+
+def _cn(map_: Dict[str, str], raw: Any, default: str = "—") -> str:
+    if raw is None or raw == "" or raw == "—":
+        return default
+    s = E(raw, "") if not isinstance(raw, str) else raw
+    if not s:
+        return default
+    if s in map_:
+        return map_[s]
+    u = s.upper()
+    return map_.get(u, s)
 
 
 def _fs(x: Any, digits: int = 1) -> str:
@@ -362,25 +420,21 @@ def table(rows: Sequence[Dict[str, Any]]) -> str:
     for d in rows:
         r: TrendBotResult = d["r"]
         stock = f"{(r.name or '').strip()}({r.code})" if r.name else r.code
-        path = "RAPID" if d.get("rapid_main_rise") else (d.get("grade_path") or "—")
+        path_raw = "RAPID" if d.get("rapid_main_rise") else (d.get("grade_path") or "—")
         lines.append("| " + " | ".join([
             stock,
-            E(r.lifecycle, "NONE"),
-            d["grade_v318"],
-            d.get("maturity") or "—",
-            d.get("entry_window") or "—",
-            path,
+            _cn(STAGE_CN, r.lifecycle),
+            d.get("grade_v318") or "—",
+            _cn(MATURITY_CN, d.get("maturity")),
+            _cn(ENTRY_CN, d.get("entry_window")),
+            _cn(PATH_CN, path_raw),
             _pct(d.get("trend_return")),
-            _pct(d.get("wave_return")),
-            _fs(d.get("structure_score") if d.get("structure_score") is not None else d.get("trend_structure_score")),
             _fs(r.tech_score),
             _fs(r.continuity_score),
             _fs(r.sector_score),
-            _fs(r.consumption_score),
-            E(r.risk_level, "WATCH"),
             _fs(r.protection_price, 2),
             _fs(r.break_price, 2),
-            E(r.exit_signal, "HOLD"),
+            _cn(EXIT_CN, r.exit_signal, "持有观察"),
         ]) + " |")
     return "\n".join(lines)
 

@@ -138,27 +138,38 @@
       "protection_price": 35.53,
       "peak_close": 41.8,
       "broken_streak": 0,
+      "warning_price": 31.777,
+      "break_trend_price": 30.3009,
+      "structure_support": 31.777,
+      "exit_signal": "PROTECT",
+      "consumption_score": 48.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
+      "protection_price": 35.53,
+      "peak_close": 41.8,
+      "broken_streak": 0,
       "warning_price": 30.19,
       "break_trend_price": 29.0257,
       "structure_support": 30.19,
       "exit_signal": "WATCH",
       "consumption_score": 100.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 32.3,
-      "peak_close": 38.0,
-      "broken_streak": 0,
-      "warning_price": 28.61,
-      "break_trend_price": 27.5589,
-      "structure_support": 28.61,
-      "exit_signal": "WATCH",
-      "consumption_score": 100.0,
-      "t_date": "2026-09-24"
     }
   },
   "603236": {
     "last": {
+      "protection_price": 68.068,
+      "peak_close": 76.15,
+      "broken_streak": 0,
+      "warning_price": 68.068,
+      "break_trend_price": 66.3419,
+      "structure_support": 68.068,
+      "exit_signal": "PROTECT",
+      "consumption_score": 6.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 66.85,
       "peak_close": 76.15,
       "broken_streak": 0,
@@ -168,21 +179,21 @@
       "exit_signal": "HOLD",
       "consumption_score": 28.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 66.85,
-      "peak_close": 76.15,
-      "broken_streak": 0,
-      "warning_price": 66.85,
-      "break_trend_price": 65.2807,
-      "structure_support": 66.85,
-      "exit_signal": "HOLD",
-      "consumption_score": 24.0,
-      "t_date": "2026-09-24"
     }
   },
   "001326": {
     "last": {
+      "protection_price": 93.6275,
+      "peak_close": 110.15,
+      "broken_streak": 0,
+      "warning_price": 88.944,
+      "break_trend_price": 85.1969,
+      "structure_support": 88.944,
+      "exit_signal": "PROTECT",
+      "consumption_score": 20.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 93.6275,
       "peak_close": 110.15,
       "broken_streak": 0,
@@ -192,17 +203,6 @@
       "exit_signal": "HOLD",
       "consumption_score": 66.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 93.6275,
-      "peak_close": 110.15,
-      "broken_streak": 0,
-      "warning_price": 81.443,
-      "break_trend_price": 78.3512,
-      "structure_support": 81.443,
-      "exit_signal": "WATCH",
-      "consumption_score": 96.0,
-      "t_date": "2026-09-24"
     }
   },
   "300592": {
@@ -413,6 +413,17 @@
   },
   "600356": {
     "last": {
+      "protection_price": 10.21,
+      "peak_close": 11.06,
+      "broken_streak": 0,
+      "warning_price": 10.21,
+      "break_trend_price": 9.85,
+      "structure_support": 10.21,
+      "exit_signal": "HOLD",
+      "consumption_score": 13.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 9.656,
       "peak_close": 11.06,
       "broken_streak": 0,
@@ -422,17 +433,6 @@
       "exit_signal": "HOLD",
       "consumption_score": 38.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 9.361,
-      "peak_close": 10.93,
-      "broken_streak": 0,
-      "warning_price": 9.361,
-      "break_trend_price": 9.1128,
-      "structure_support": 9.361,
-      "exit_signal": "WATCH",
-      "consumption_score": 36.0,
-      "t_date": "2026-09-22"
     }
   },
   "002062": {
@@ -540,27 +540,38 @@
       "protection_price": 24.14,
       "peak_close": 28.4,
       "broken_streak": 0,
+      "warning_price": 20.96,
+      "break_trend_price": 19.8596,
+      "structure_support": 20.96,
+      "exit_signal": "PROTECT",
+      "consumption_score": 28.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
+      "protection_price": 24.14,
+      "peak_close": 28.4,
+      "broken_streak": 0,
       "warning_price": 18.758,
       "break_trend_price": 18.0251,
       "structure_support": 18.758,
       "exit_signal": "WATCH",
       "consumption_score": 75.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 24.14,
-      "peak_close": 28.4,
-      "broken_streak": 0,
-      "warning_price": 18.104,
-      "break_trend_price": 17.4519,
-      "structure_support": 18.104,
-      "exit_signal": "WATCH",
-      "consumption_score": 100.0,
-      "t_date": "2026-09-24"
     }
   },
   "601579": {
     "last": {
+      "protection_price": 35.564,
+      "peak_close": 41.84,
+      "broken_streak": 0,
+      "warning_price": 31.351,
+      "break_trend_price": 29.6589,
+      "structure_support": 31.351,
+      "exit_signal": "HOLD",
+      "consumption_score": 60.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 35.564,
       "peak_close": 41.84,
       "broken_streak": 0,
@@ -570,17 +581,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 80.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 32.334,
-      "peak_close": 38.04,
-      "broken_streak": 0,
-      "warning_price": 26.731,
-      "break_trend_price": 25.3428,
-      "structure_support": 26.731,
-      "exit_signal": "WATCH",
-      "consumption_score": 75.0,
-      "t_date": "2026-09-24"
     }
   },
   "002025": {
@@ -661,6 +661,17 @@
   },
   "002927": {
     "last": {
+      "protection_price": 18.611,
+      "peak_close": 19.05,
+      "broken_streak": 0,
+      "warning_price": 18.611,
+      "break_trend_price": 18.0385,
+      "structure_support": 18.611,
+      "exit_signal": "PROTECT",
+      "consumption_score": 10.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 17.052,
       "peak_close": 19.05,
       "broken_streak": 0,
@@ -670,8 +681,7 @@
       "exit_signal": "HOLD",
       "consumption_score": 24.0,
       "t_date": "2026-09-17"
-    },
-    "prev": {}
+    }
   },
   "300903": {
     "last": {
@@ -740,23 +750,23 @@
       "protection_price": 15.436,
       "peak_close": 18.16,
       "broken_streak": 0,
+      "warning_price": 15.37,
+      "break_trend_price": 14.4304,
+      "structure_support": 15.37,
+      "exit_signal": "PROTECT",
+      "consumption_score": 19.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
+      "protection_price": 15.436,
+      "peak_close": 18.16,
+      "broken_streak": 0,
       "warning_price": 14.693,
       "break_trend_price": 13.7644,
       "structure_support": 14.693,
       "exit_signal": "HOLD",
       "consumption_score": 37.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 15.436,
-      "peak_close": 18.16,
-      "broken_streak": 0,
-      "warning_price": 14.318,
-      "break_trend_price": 13.4312,
-      "structure_support": 14.318,
-      "exit_signal": "PROTECT",
-      "consumption_score": 37.0,
-      "t_date": "2026-09-24"
     }
   },
   "002510": {
@@ -799,6 +809,17 @@
   },
   "301081": {
     "last": {
+      "protection_price": 17.03,
+      "peak_close": 18.88,
+      "broken_streak": 0,
+      "warning_price": 17.03,
+      "break_trend_price": 16.4064,
+      "structure_support": 17.03,
+      "exit_signal": "WATCH",
+      "consumption_score": 26.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 16.471,
       "peak_close": 17.73,
       "broken_streak": 0,
@@ -808,17 +829,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 19.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 16.3,
-      "peak_close": 17.73,
-      "broken_streak": 0,
-      "warning_price": 16.3,
-      "break_trend_price": 15.8396,
-      "structure_support": 16.3,
-      "exit_signal": "PROTECT",
-      "consumption_score": 9.0,
-      "t_date": "2026-09-24"
     }
   },
   "300196": {
@@ -971,6 +981,17 @@
   },
   "300473": {
     "last": {
+      "protection_price": 34.8,
+      "peak_close": 36.43,
+      "broken_streak": 0,
+      "warning_price": 34.8,
+      "break_trend_price": 33.7664,
+      "structure_support": 34.8,
+      "exit_signal": "PROTECT",
+      "consumption_score": 31.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 30.9655,
       "peak_close": 36.43,
       "broken_streak": 0,
@@ -980,17 +1001,6 @@
       "exit_signal": "HOLD",
       "consumption_score": 43.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 30.9655,
-      "peak_close": 36.43,
-      "broken_streak": 0,
-      "warning_price": 29.558,
-      "break_trend_price": 28.6548,
-      "structure_support": 29.558,
-      "exit_signal": "HOLD",
-      "consumption_score": 60.0,
-      "t_date": "2026-09-24"
     }
   },
   "600516": {
@@ -1061,6 +1071,17 @@
   },
   "002913": {
     "last": {
+      "protection_price": 82.15,
+      "peak_close": 90.86,
+      "broken_streak": 0,
+      "warning_price": 82.15,
+      "break_trend_price": 78.8536,
+      "structure_support": 82.15,
+      "exit_signal": "HOLD",
+      "consumption_score": 26.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 77.231,
       "peak_close": 90.86,
       "broken_streak": 0,
@@ -1070,17 +1091,6 @@
       "exit_signal": "HOLD",
       "consumption_score": 46.0,
       "t_date": "2026-09-24"
-    },
-    "prev": {
-      "protection_price": 77.231,
-      "peak_close": 90.86,
-      "broken_streak": 0,
-      "warning_price": 72.49,
-      "break_trend_price": 69.7421,
-      "structure_support": 72.49,
-      "exit_signal": "WATCH",
-      "consumption_score": 75.0,
-      "t_date": "2026-09-23"
     }
   },
   "300553": {
@@ -1415,6 +1425,17 @@
   },
   "002531": {
     "last": {
+      "protection_price": 7.348,
+      "peak_close": 8.17,
+      "broken_streak": 0,
+      "warning_price": 7.348,
+      "break_trend_price": 7.0109,
+      "structure_support": 7.348,
+      "exit_signal": "HOLD",
+      "consumption_score": 18.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 6.9445,
       "peak_close": 8.17,
       "broken_streak": 0,
@@ -1424,17 +1445,6 @@
       "exit_signal": "HOLD",
       "consumption_score": 21.0,
       "t_date": "2026-09-23"
-    },
-    "prev": {
-      "protection_price": 6.9445,
-      "peak_close": 8.17,
-      "broken_streak": 0,
-      "warning_price": 6.597,
-      "break_trend_price": 6.3827,
-      "structure_support": 6.597,
-      "exit_signal": "HOLD",
-      "consumption_score": 63.0,
-      "t_date": "2026-09-17"
     }
   },
   "300938": {
@@ -1621,6 +1631,17 @@
   },
   "002487": {
     "last": {
+      "protection_price": 38.722,
+      "peak_close": 44.6,
+      "broken_streak": 0,
+      "warning_price": 38.722,
+      "break_trend_price": 36.9074,
+      "structure_support": 38.722,
+      "exit_signal": "HOLD",
+      "consumption_score": 31.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 35.348,
       "peak_close": 41.122,
       "broken_streak": 0,
@@ -1630,8 +1651,7 @@
       "exit_signal": "HOLD",
       "consumption_score": 35.0,
       "t_date": "2026-09-17"
-    },
-    "prev": {}
+    }
   },
   "301132": {
     "last": {
@@ -1700,23 +1720,23 @@
       "protection_price": 51.17,
       "peak_close": 60.2,
       "broken_streak": 0,
+      "warning_price": 45.0,
+      "break_trend_price": 42.4211,
+      "structure_support": 45.0,
+      "exit_signal": "PROTECT",
+      "consumption_score": 40.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
+      "protection_price": 51.17,
+      "peak_close": 60.2,
+      "broken_streak": 0,
       "warning_price": 39.086,
       "break_trend_price": 37.1246,
       "structure_support": 39.086,
       "exit_signal": "WATCH",
       "consumption_score": 75.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 51.17,
-      "peak_close": 60.2,
-      "broken_streak": 0,
-      "warning_price": 37.743,
-      "break_trend_price": 35.9562,
-      "structure_support": 37.743,
-      "exit_signal": "WATCH",
-      "consumption_score": 85.0,
-      "t_date": "2026-09-24"
     }
   },
   "000993": {
@@ -1817,6 +1837,17 @@
   },
   "688137": {
     "last": {
+      "protection_price": 131.172,
+      "peak_close": 154.32,
+      "broken_streak": 0,
+      "warning_price": 118.84,
+      "break_trend_price": 109.9961,
+      "structure_support": 118.84,
+      "exit_signal": "WATCH",
+      "consumption_score": 75.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 108.868,
       "peak_close": 128.08,
       "broken_streak": 0,
@@ -1826,17 +1857,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 80.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 106.4625,
-      "peak_close": 125.25,
-      "broken_streak": 0,
-      "warning_price": 83.962,
-      "break_trend_price": 78.0463,
-      "structure_support": 83.962,
-      "exit_signal": "WATCH",
-      "consumption_score": 75.0,
-      "t_date": "2026-09-24"
     }
   },
   "600792": {
@@ -1940,23 +1960,23 @@
       "protection_price": 2.771,
       "peak_close": 3.26,
       "broken_streak": 0,
+      "warning_price": 2.764,
+      "break_trend_price": 2.5961,
+      "structure_support": 2.764,
+      "exit_signal": "HOLD",
+      "consumption_score": 28.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
+      "protection_price": 2.771,
+      "peak_close": 3.26,
+      "broken_streak": 0,
       "warning_price": 2.611,
       "break_trend_price": 2.4771,
       "structure_support": 2.611,
       "exit_signal": "HOLD",
       "consumption_score": 60.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 2.771,
-      "peak_close": 3.26,
-      "broken_streak": 0,
-      "warning_price": 2.565,
-      "break_trend_price": 2.4421,
-      "structure_support": 2.565,
-      "exit_signal": "WATCH",
-      "consumption_score": 65.0,
-      "t_date": "2026-09-24"
     }
   },
   "603042": {
@@ -2095,6 +2115,17 @@
   },
   "002172": {
     "last": {
+      "protection_price": 5.152,
+      "peak_close": 5.81,
+      "broken_streak": 0,
+      "warning_price": 5.152,
+      "break_trend_price": 4.9156,
+      "structure_support": 5.152,
+      "exit_signal": "WATCH",
+      "consumption_score": 32.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 4.9385,
       "peak_close": 5.81,
       "broken_streak": 0,
@@ -2104,17 +2135,6 @@
       "exit_signal": "HOLD",
       "consumption_score": 22.0,
       "t_date": "2026-09-24"
-    },
-    "prev": {
-      "protection_price": 4.9385,
-      "peak_close": 5.81,
-      "broken_streak": 0,
-      "warning_price": 4.793,
-      "break_trend_price": 4.5566,
-      "structure_support": 4.793,
-      "exit_signal": "WATCH",
-      "consumption_score": 44.0,
-      "t_date": "2026-09-21"
     }
   },
   "000798": {
@@ -2257,6 +2277,17 @@
   },
   "003006": {
     "last": {
+      "protection_price": 21.59,
+      "peak_close": 22.64,
+      "broken_streak": 0,
+      "warning_price": 21.59,
+      "break_trend_price": 20.9332,
+      "structure_support": 21.59,
+      "exit_signal": "HOLD",
+      "consumption_score": 48.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 19.244,
       "peak_close": 22.64,
       "broken_streak": 0,
@@ -2266,17 +2297,6 @@
       "exit_signal": "HOLD",
       "consumption_score": 60.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 19.244,
-      "peak_close": 22.64,
-      "broken_streak": 0,
-      "warning_price": 18.18,
-      "break_trend_price": 17.5957,
-      "structure_support": 18.18,
-      "exit_signal": "WATCH",
-      "consumption_score": 75.0,
-      "t_date": "2026-09-24"
     }
   },
   "688498": {
@@ -2394,23 +2414,23 @@
       "protection_price": 24.412,
       "peak_close": 28.72,
       "broken_streak": 0,
+      "warning_price": 21.036,
+      "break_trend_price": 19.8114,
+      "structure_support": 21.036,
+      "exit_signal": "PROTECT",
+      "consumption_score": 18.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
+      "protection_price": 24.412,
+      "peak_close": 28.72,
+      "broken_streak": 0,
       "warning_price": 19.408,
       "break_trend_price": 18.4844,
       "structure_support": 19.408,
       "exit_signal": "WATCH",
       "consumption_score": 75.0,
       "t_date": "2026-09-24"
-    },
-    "prev": {
-      "protection_price": 24.412,
-      "peak_close": 28.72,
-      "broken_streak": 0,
-      "warning_price": 18.773,
-      "break_trend_price": 17.9291,
-      "structure_support": 18.773,
-      "exit_signal": "WATCH",
-      "consumption_score": 100.0,
-      "t_date": "2026-09-23"
     }
   },
   "600228": {
@@ -2439,6 +2459,17 @@
   },
   "601218": {
     "last": {
+      "protection_price": 5.244,
+      "peak_close": 6.05,
+      "broken_streak": 0,
+      "warning_price": 5.244,
+      "break_trend_price": 4.9922,
+      "structure_support": 5.244,
+      "exit_signal": "HOLD",
+      "consumption_score": 20.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 5.1425,
       "peak_close": 6.05,
       "broken_streak": 0,
@@ -2448,17 +2479,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 48.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 4.89,
-      "peak_close": 5.74,
-      "broken_streak": 0,
-      "warning_price": 4.89,
-      "break_trend_price": 4.7132,
-      "structure_support": 4.89,
-      "exit_signal": "HOLD",
-      "consumption_score": 31.0,
-      "t_date": "2026-09-24"
     }
   },
   "603375": {
@@ -2887,6 +2907,17 @@
   },
   "000731": {
     "last": {
+      "protection_price": 7.833,
+      "peak_close": 8.28,
+      "broken_streak": 0,
+      "warning_price": 7.833,
+      "break_trend_price": 7.6716,
+      "structure_support": 7.833,
+      "exit_signal": "PROTECT",
+      "consumption_score": 3.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 7.65,
       "peak_close": 8.28,
       "broken_streak": 0,
@@ -2896,17 +2927,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 16.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 7.573,
-      "peak_close": 8.28,
-      "broken_streak": 0,
-      "warning_price": 7.573,
-      "break_trend_price": 7.3944,
-      "structure_support": 7.573,
-      "exit_signal": "HOLD",
-      "consumption_score": 11.0,
-      "t_date": "2026-09-24"
     }
   },
   "002011": {
@@ -2935,6 +2955,17 @@
   },
   "603997": {
     "last": {
+      "protection_price": 12.804,
+      "peak_close": 13.74,
+      "broken_streak": 0,
+      "warning_price": 12.804,
+      "break_trend_price": 12.5169,
+      "structure_support": 12.804,
+      "exit_signal": "HOLD",
+      "consumption_score": 11.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 11.844,
       "peak_close": 13.74,
       "broken_streak": 0,
@@ -2944,17 +2975,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 39.0,
       "t_date": "2026-09-21"
-    },
-    "prev": {
-      "protection_price": 11.677,
-      "peak_close": 12.35,
-      "broken_streak": 0,
-      "warning_price": 11.677,
-      "break_trend_price": 11.4613,
-      "structure_support": 11.677,
-      "exit_signal": "HOLD",
-      "consumption_score": 13.0,
-      "t_date": "2026-09-17"
     }
   },
   "300575": {
@@ -3073,6 +3093,17 @@
   },
   "002811": {
     "last": {
+      "protection_price": 15.36,
+      "peak_close": 17.155,
+      "broken_streak": 0,
+      "warning_price": 15.36,
+      "break_trend_price": 14.9582,
+      "structure_support": 15.36,
+      "exit_signal": "HOLD",
+      "consumption_score": 13.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 14.854,
       "peak_close": 17.155,
       "broken_streak": 0,
@@ -3082,17 +3113,6 @@
       "exit_signal": "HOLD",
       "consumption_score": 21.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 14.713,
-      "peak_close": 17.155,
-      "broken_streak": 0,
-      "warning_price": 14.713,
-      "break_trend_price": 14.3498,
-      "structure_support": 14.713,
-      "exit_signal": "HOLD",
-      "consumption_score": 24.0,
-      "t_date": "2026-09-24"
     }
   },
   "603150": {
@@ -3124,27 +3144,38 @@
       "protection_price": 9.436,
       "peak_close": 9.59,
       "broken_streak": 0,
+      "warning_price": 9.329,
+      "break_trend_price": 9.0411,
+      "structure_support": 9.329,
+      "exit_signal": "PROTECT",
+      "consumption_score": 6.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
+      "protection_price": 9.436,
+      "peak_close": 9.59,
+      "broken_streak": 0,
       "warning_price": 9.436,
       "break_trend_price": 9.1339,
       "structure_support": 9.436,
       "exit_signal": "PROTECT",
       "consumption_score": 9.0,
       "t_date": "2026-09-24"
-    },
-    "prev": {
-      "protection_price": 9.139,
-      "peak_close": 9.59,
-      "broken_streak": 0,
-      "warning_price": 9.139,
-      "break_trend_price": 8.7969,
-      "structure_support": 9.139,
-      "exit_signal": "HOLD",
-      "consumption_score": 18.0,
-      "t_date": "2026-09-17"
     }
   },
   "688078": {
     "last": {
+      "protection_price": 28.683,
+      "peak_close": 31.33,
+      "broken_streak": 0,
+      "warning_price": 28.683,
+      "break_trend_price": 27.9734,
+      "structure_support": 28.683,
+      "exit_signal": "PROTECT",
+      "consumption_score": 6.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 27.788,
       "peak_close": 31.33,
       "broken_streak": 0,
@@ -3154,21 +3185,21 @@
       "exit_signal": "HOLD",
       "consumption_score": 21.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 27.466,
-      "peak_close": 31.33,
-      "broken_streak": 0,
-      "warning_price": 27.466,
-      "break_trend_price": 26.7253,
-      "structure_support": 27.466,
-      "exit_signal": "HOLD",
-      "consumption_score": 19.0,
-      "t_date": "2026-09-24"
     }
   },
   "603001": {
     "last": {
+      "protection_price": 10.302,
+      "peak_close": 12.12,
+      "broken_streak": 0,
+      "warning_price": 10.239,
+      "break_trend_price": 9.9111,
+      "structure_support": 10.239,
+      "exit_signal": "HOLD",
+      "consumption_score": 28.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 10.302,
       "peak_close": 12.12,
       "broken_streak": 0,
@@ -3178,17 +3209,6 @@
       "exit_signal": "HOLD",
       "consumption_score": 43.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 10.302,
-      "peak_close": 12.12,
-      "broken_streak": 0,
-      "warning_price": 9.617,
-      "break_trend_price": 9.3481,
-      "structure_support": 9.617,
-      "exit_signal": "HOLD",
-      "consumption_score": 53.0,
-      "t_date": "2026-09-24"
     }
   },
   "301107": {
@@ -3207,6 +3227,17 @@
   },
   "600256": {
     "last": {
+      "protection_price": 6.916,
+      "peak_close": 7.17,
+      "broken_streak": 0,
+      "warning_price": 6.916,
+      "break_trend_price": 6.7924,
+      "structure_support": 6.916,
+      "exit_signal": "HOLD",
+      "consumption_score": 8.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 6.778,
       "peak_close": 7.07,
       "broken_streak": 0,
@@ -3216,17 +3247,6 @@
       "exit_signal": "HOLD",
       "consumption_score": 9.0,
       "t_date": "2026-09-21"
-    },
-    "prev": {
-      "protection_price": 6.708,
-      "peak_close": 6.85,
-      "broken_streak": 0,
-      "warning_price": 6.708,
-      "break_trend_price": 6.5605,
-      "structure_support": 6.708,
-      "exit_signal": "HOLD",
-      "consumption_score": 6.0,
-      "t_date": "2026-09-17"
     }
   },
   "300757": {
@@ -3379,6 +3399,17 @@
   },
   "600593": {
     "last": {
+      "protection_price": 44.203,
+      "peak_close": 49.79,
+      "broken_streak": 0,
+      "warning_price": 44.203,
+      "break_trend_price": 42.6162,
+      "structure_support": 44.203,
+      "exit_signal": "HOLD",
+      "consumption_score": 18.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 42.3215,
       "peak_close": 49.79,
       "broken_streak": 0,
@@ -3388,17 +3419,6 @@
       "exit_signal": "HOLD",
       "consumption_score": 43.0,
       "t_date": "2026-09-23"
-    },
-    "prev": {
-      "protection_price": 41.391,
-      "peak_close": 48.57,
-      "broken_streak": 0,
-      "warning_price": 41.391,
-      "break_trend_price": 40.3996,
-      "structure_support": 41.391,
-      "exit_signal": "WATCH",
-      "consumption_score": 46.0,
-      "t_date": "2026-09-21"
     }
   },
   "300243": {
@@ -3427,6 +3447,17 @@
   },
   "603266": {
     "last": {
+      "protection_price": 18.2325,
+      "peak_close": 21.45,
+      "broken_streak": 0,
+      "warning_price": 18.06,
+      "break_trend_price": 17.4989,
+      "structure_support": 18.06,
+      "exit_signal": "WATCH",
+      "consumption_score": 54.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 16.494,
       "peak_close": 18.22,
       "broken_streak": 0,
@@ -3436,21 +3467,21 @@
       "exit_signal": "WATCH",
       "consumption_score": 26.0,
       "t_date": "2026-09-22"
-    },
-    "prev": {
-      "protection_price": 16.215,
-      "peak_close": 17.88,
-      "broken_streak": 0,
-      "warning_price": 16.215,
-      "break_trend_price": 15.8336,
-      "structure_support": 16.215,
-      "exit_signal": "HOLD",
-      "consumption_score": 21.0,
-      "t_date": "2026-09-17"
     }
   },
   "300207": {
     "last": {
+      "protection_price": 19.38,
+      "peak_close": 21.54,
+      "broken_streak": 0,
+      "warning_price": 19.38,
+      "break_trend_price": 18.7171,
+      "structure_support": 19.38,
+      "exit_signal": "HOLD",
+      "consumption_score": 26.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 18.483,
       "peak_close": 21.38,
       "broken_streak": 0,
@@ -3460,17 +3491,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 41.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 18.31,
-      "peak_close": 20.23,
-      "broken_streak": 0,
-      "warning_price": 18.31,
-      "break_trend_price": 17.8093,
-      "structure_support": 18.31,
-      "exit_signal": "HOLD",
-      "consumption_score": 28.0,
-      "t_date": "2026-09-24"
     }
   },
   "688296": {
@@ -3805,6 +3825,17 @@
   },
   "688026": {
     "last": {
+      "protection_price": 23.658,
+      "peak_close": 27.78,
+      "broken_streak": 0,
+      "warning_price": 23.658,
+      "break_trend_price": 22.5912,
+      "structure_support": 23.658,
+      "exit_signal": "HOLD",
+      "consumption_score": 38.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 23.613,
       "peak_close": 27.78,
       "broken_streak": 0,
@@ -3814,17 +3845,6 @@
       "exit_signal": "HOLD",
       "consumption_score": 44.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 23.613,
-      "peak_close": 27.78,
-      "broken_streak": 0,
-      "warning_price": 21.616,
-      "break_trend_price": 20.8471,
-      "structure_support": 21.616,
-      "exit_signal": "HOLD",
-      "consumption_score": 49.0,
-      "t_date": "2026-09-24"
     }
   },
   "301016": {
@@ -3853,6 +3873,17 @@
   },
   "603083": {
     "last": {
+      "protection_price": 213.315,
+      "peak_close": 227.98,
+      "broken_streak": 0,
+      "warning_price": 213.315,
+      "break_trend_price": 206.9786,
+      "structure_support": 213.315,
+      "exit_signal": "PROTECT",
+      "consumption_score": 6.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 209.52,
       "peak_close": 227.98,
       "broken_streak": 0,
@@ -3862,17 +3893,6 @@
       "exit_signal": "HOLD",
       "consumption_score": 9.0,
       "t_date": "2026-09-23"
-    },
-    "prev": {
-      "protection_price": 208.149,
-      "peak_close": 227.98,
-      "broken_streak": 0,
-      "warning_price": 208.149,
-      "break_trend_price": 200.7594,
-      "structure_support": 208.149,
-      "exit_signal": "HOLD",
-      "consumption_score": 16.0,
-      "t_date": "2026-09-22"
     }
   },
   "301075": {
@@ -3894,23 +3914,23 @@
       "protection_price": 30.804,
       "peak_close": 36.24,
       "broken_streak": 0,
+      "warning_price": 30.776,
+      "break_trend_price": 29.6667,
+      "structure_support": 30.776,
+      "exit_signal": "PROTECT",
+      "consumption_score": 9.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
+      "protection_price": 30.804,
+      "peak_close": 36.24,
+      "broken_streak": 0,
       "warning_price": 30.341,
       "break_trend_price": 29.2049,
       "structure_support": 30.341,
       "exit_signal": "HOLD",
       "consumption_score": 31.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 30.804,
-      "peak_close": 36.24,
-      "broken_streak": 0,
-      "warning_price": 29.809,
-      "break_trend_price": 28.6269,
-      "structure_support": 29.809,
-      "exit_signal": "HOLD",
-      "consumption_score": 56.0,
-      "t_date": "2026-09-24"
     }
   },
   "603221": {
@@ -3963,6 +3983,17 @@
   },
   "300413": {
     "last": {
+      "protection_price": 18.991,
+      "peak_close": 19.33,
+      "broken_streak": 0,
+      "warning_price": 18.991,
+      "break_trend_price": 18.4203,
+      "structure_support": 18.991,
+      "exit_signal": "PROTECT",
+      "consumption_score": 9.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 18.708,
       "peak_close": 19.33,
       "broken_streak": 0,
@@ -3972,17 +4003,6 @@
       "exit_signal": "PROTECT",
       "consumption_score": 17.0,
       "t_date": "2026-09-24"
-    },
-    "prev": {
-      "protection_price": 18.468,
-      "peak_close": 19.33,
-      "broken_streak": 0,
-      "warning_price": 18.468,
-      "break_trend_price": 17.7637,
-      "structure_support": 18.468,
-      "exit_signal": "WATCH",
-      "consumption_score": 31.0,
-      "t_date": "2026-09-23"
     }
   },
   "688686": {
@@ -4059,6 +4079,17 @@
   },
   "300559": {
     "last": {
+      "protection_price": 12.532,
+      "peak_close": 12.73,
+      "broken_streak": 0,
+      "warning_price": 12.532,
+      "break_trend_price": 12.2959,
+      "structure_support": 12.532,
+      "exit_signal": "PROTECT",
+      "consumption_score": 3.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 11.567,
       "peak_close": 12.73,
       "broken_streak": 0,
@@ -4068,8 +4099,7 @@
       "exit_signal": "HOLD",
       "consumption_score": 24.0,
       "t_date": "2026-09-17"
-    },
-    "prev": {}
+    }
   },
   "000628": {
     "last": {
@@ -4369,6 +4399,17 @@
   },
   "300647": {
     "last": {
+      "protection_price": 8.49,
+      "peak_close": 9.56,
+      "broken_streak": 0,
+      "warning_price": 8.49,
+      "break_trend_price": 8.1689,
+      "structure_support": 8.49,
+      "exit_signal": "HOLD",
+      "consumption_score": 19.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 8.184,
       "peak_close": 9.56,
       "broken_streak": 0,
@@ -4378,17 +4419,6 @@
       "exit_signal": "HOLD",
       "consumption_score": 39.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 8.126,
-      "peak_close": 9.56,
-      "broken_streak": 0,
-      "warning_price": 8.083,
-      "break_trend_price": 7.7998,
-      "structure_support": 8.083,
-      "exit_signal": "WATCH",
-      "consumption_score": 64.0,
-      "t_date": "2026-09-24"
     }
   },
   "002396": {
@@ -4420,23 +4450,23 @@
       "protection_price": 6.188,
       "peak_close": 7.28,
       "broken_streak": 0,
+      "warning_price": 6.013,
+      "break_trend_price": 5.6573,
+      "structure_support": 6.013,
+      "exit_signal": "HOLD",
+      "consumption_score": 38.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
+      "protection_price": 6.188,
+      "peak_close": 7.28,
+      "broken_streak": 0,
       "warning_price": 5.566,
       "break_trend_price": 5.2978,
       "structure_support": 5.566,
       "exit_signal": "WATCH",
       "consumption_score": 85.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 5.627,
-      "peak_close": 6.62,
-      "broken_streak": 0,
-      "warning_price": 5.442,
-      "break_trend_price": 5.1756,
-      "structure_support": 5.442,
-      "exit_signal": "WATCH",
-      "consumption_score": 48.0,
-      "t_date": "2026-09-24"
     }
   },
   "600172": {
@@ -4530,23 +4560,23 @@
       "protection_price": 27.7355,
       "peak_close": 32.63,
       "broken_streak": 0,
+      "warning_price": 25.591,
+      "break_trend_price": 24.3856,
+      "structure_support": 25.591,
+      "exit_signal": "PROTECT",
+      "consumption_score": 26.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
+      "protection_price": 27.7355,
+      "peak_close": 32.63,
+      "broken_streak": 0,
       "warning_price": 23.792,
       "break_trend_price": 22.7788,
       "structure_support": 23.792,
       "exit_signal": "WATCH",
       "consumption_score": 75.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 27.7355,
-      "peak_close": 32.63,
-      "broken_streak": 0,
-      "warning_price": 23.22,
-      "break_trend_price": 22.2029,
-      "structure_support": 23.22,
-      "exit_signal": "WATCH",
-      "consumption_score": 80.0,
-      "t_date": "2026-09-24"
     }
   },
   "300189": {
@@ -4579,6 +4609,17 @@
   },
   "301108": {
     "last": {
+      "protection_price": 48.29,
+      "peak_close": 52.55,
+      "broken_streak": 0,
+      "warning_price": 48.29,
+      "break_trend_price": 46.4975,
+      "structure_support": 48.29,
+      "exit_signal": "HOLD",
+      "consumption_score": 38.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 44.6675,
       "peak_close": 52.55,
       "broken_streak": 0,
@@ -4588,17 +4629,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 61.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 43.9535,
-      "peak_close": 51.71,
-      "broken_streak": 0,
-      "warning_price": 42.642,
-      "break_trend_price": 41.382,
-      "structure_support": 42.642,
-      "exit_signal": "HOLD",
-      "consumption_score": 54.0,
-      "t_date": "2026-09-24"
     }
   },
   "603051": {
@@ -4617,6 +4647,17 @@
   },
   "603980": {
     "last": {
+      "protection_price": 8.346,
+      "peak_close": 8.95,
+      "broken_streak": 0,
+      "warning_price": 8.346,
+      "break_trend_price": 8.0981,
+      "structure_support": 8.346,
+      "exit_signal": "WATCH",
+      "consumption_score": 14.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 8.015,
       "peak_close": 8.95,
       "broken_streak": 0,
@@ -4626,17 +4667,6 @@
       "exit_signal": "PROTECT",
       "consumption_score": 9.0,
       "t_date": "2026-09-24"
-    },
-    "prev": {
-      "protection_price": 7.855,
-      "peak_close": 8.95,
-      "broken_streak": 0,
-      "warning_price": 7.855,
-      "break_trend_price": 7.5714,
-      "structure_support": 7.855,
-      "exit_signal": "WATCH",
-      "consumption_score": 52.0,
-      "t_date": "2026-09-22"
     }
   },
   "605198": {
@@ -4782,27 +4812,38 @@
       "protection_price": 15.6995,
       "peak_close": 18.47,
       "broken_streak": 0,
+      "warning_price": 12.772,
+      "break_trend_price": 12.0338,
+      "structure_support": 12.772,
+      "exit_signal": "PROTECT",
+      "consumption_score": 25.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
+      "protection_price": 15.6995,
+      "peak_close": 18.47,
+      "broken_streak": 0,
       "warning_price": 11.902,
       "break_trend_price": 11.2999,
       "structure_support": 11.902,
       "exit_signal": "WATCH",
       "consumption_score": 75.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 15.6995,
-      "peak_close": 18.47,
-      "broken_streak": 0,
-      "warning_price": 11.526,
-      "break_trend_price": 10.9717,
-      "structure_support": 11.526,
-      "exit_signal": "WATCH",
-      "consumption_score": 100.0,
-      "t_date": "2026-09-24"
     }
   },
   "300300": {
     "last": {
+      "protection_price": 9.55,
+      "peak_close": 11.08,
+      "broken_streak": 0,
+      "warning_price": 9.55,
+      "break_trend_price": 9.0921,
+      "structure_support": 9.55,
+      "exit_signal": "HOLD",
+      "consumption_score": 41.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 9.418,
       "peak_close": 11.08,
       "broken_streak": 0,
@@ -4812,17 +4853,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 55.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 9.1885,
-      "peak_close": 10.81,
-      "broken_streak": 0,
-      "warning_price": 8.806,
-      "break_trend_price": 8.3956,
-      "structure_support": 8.806,
-      "exit_signal": "WATCH",
-      "consumption_score": 39.0,
-      "t_date": "2026-09-24"
     }
   },
   "688090": {
@@ -4893,6 +4923,17 @@
   },
   "603867": {
     "last": {
+      "protection_price": 31.793,
+      "peak_close": 36.07,
+      "broken_streak": 0,
+      "warning_price": 31.793,
+      "break_trend_price": 31.0066,
+      "structure_support": 31.793,
+      "exit_signal": "HOLD",
+      "consumption_score": 13.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 30.6595,
       "peak_close": 36.07,
       "broken_streak": 0,
@@ -4902,17 +4943,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 54.0,
       "t_date": "2026-09-23"
-    },
-    "prev": {
-      "protection_price": 29.726,
-      "peak_close": 32.5,
-      "broken_streak": 0,
-      "warning_price": 29.726,
-      "break_trend_price": 29.0592,
-      "structure_support": 29.726,
-      "exit_signal": "HOLD",
-      "consumption_score": 26.0,
-      "t_date": "2026-09-18"
     }
   },
   "688112": {
@@ -5007,6 +5037,17 @@
   },
   "300981": {
     "last": {
+      "protection_price": 19.856,
+      "peak_close": 23.36,
+      "broken_streak": 0,
+      "warning_price": 17.323,
+      "break_trend_price": 16.4951,
+      "structure_support": 17.323,
+      "exit_signal": "WATCH",
+      "consumption_score": 65.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 16.467,
       "peak_close": 18.57,
       "broken_streak": 0,
@@ -5016,17 +5057,6 @@
       "exit_signal": "HOLD",
       "consumption_score": 33.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 15.729,
-      "peak_close": 18.15,
-      "broken_streak": 0,
-      "warning_price": 15.729,
-      "break_trend_price": 15.2904,
-      "structure_support": 15.729,
-      "exit_signal": "HOLD",
-      "consumption_score": 29.0,
-      "t_date": "2026-09-18"
     }
   },
   "300739": {
@@ -5207,6 +5237,17 @@
   },
   "301041": {
     "last": {
+      "protection_price": 34.522,
+      "peak_close": 38.13,
+      "broken_streak": 0,
+      "warning_price": 34.522,
+      "break_trend_price": 33.2334,
+      "structure_support": 34.522,
+      "exit_signal": "HOLD",
+      "consumption_score": 23.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 32.73,
       "peak_close": 38.13,
       "broken_streak": 0,
@@ -5216,17 +5257,6 @@
       "exit_signal": "HOLD",
       "consumption_score": 43.0,
       "t_date": "2026-09-24"
-    },
-    "prev": {
-      "protection_price": 32.4105,
-      "peak_close": 38.13,
-      "broken_streak": 0,
-      "warning_price": 32.038,
-      "break_trend_price": 31.0648,
-      "structure_support": 32.038,
-      "exit_signal": "HOLD",
-      "consumption_score": 60.0,
-      "t_date": "2026-09-23"
     }
   },
   "603177": {
@@ -5269,6 +5299,17 @@
   },
   "688613": {
     "last": {
+      "protection_price": 17.702,
+      "peak_close": 20.4,
+      "broken_streak": 0,
+      "warning_price": 17.702,
+      "break_trend_price": 17.0045,
+      "structure_support": 17.702,
+      "exit_signal": "PROTECT",
+      "consumption_score": 16.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 17.34,
       "peak_close": 20.4,
       "broken_streak": 0,
@@ -5278,17 +5319,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 66.0,
       "t_date": "2026-09-22"
-    },
-    "prev": {
-      "protection_price": 15.823,
-      "peak_close": 18.02,
-      "broken_streak": 0,
-      "warning_price": 15.823,
-      "break_trend_price": 15.3712,
-      "structure_support": 15.823,
-      "exit_signal": "HOLD",
-      "consumption_score": 36.0,
-      "t_date": "2026-09-18"
     }
   },
   "300767": {
@@ -5307,6 +5337,17 @@
   },
   "600059": {
     "last": {
+      "protection_price": 10.79,
+      "peak_close": 11.73,
+      "broken_streak": 0,
+      "warning_price": 10.79,
+      "break_trend_price": 10.3286,
+      "structure_support": 10.79,
+      "exit_signal": "HOLD",
+      "consumption_score": 38.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 9.9705,
       "peak_close": 11.73,
       "broken_streak": 0,
@@ -5316,17 +5357,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 60.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 9.758,
-      "peak_close": 11.48,
-      "broken_streak": 0,
-      "warning_price": 9.388,
-      "break_trend_price": 9.028,
-      "structure_support": 9.388,
-      "exit_signal": "HOLD",
-      "consumption_score": 43.0,
-      "t_date": "2026-09-24"
     }
   },
   "000532": {
@@ -5483,6 +5513,17 @@
   },
   "002912": {
     "last": {
+      "protection_price": 24.216,
+      "peak_close": 26.47,
+      "broken_streak": 0,
+      "warning_price": 24.216,
+      "break_trend_price": 23.0946,
+      "structure_support": 24.216,
+      "exit_signal": "HOLD",
+      "consumption_score": 21.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 23.05,
       "peak_close": 26.47,
       "broken_streak": 0,
@@ -5492,17 +5533,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 43.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 23.05,
-      "peak_close": 26.38,
-      "broken_streak": 0,
-      "warning_price": 23.05,
-      "break_trend_price": 22.1554,
-      "structure_support": 23.05,
-      "exit_signal": "HOLD",
-      "consumption_score": 28.0,
-      "t_date": "2026-09-24"
     }
   },
   "000978": {
@@ -5603,6 +5633,17 @@
   },
   "600606": {
     "last": {
+      "protection_price": 1.4,
+      "peak_close": 1.6,
+      "broken_streak": 0,
+      "warning_price": 1.4,
+      "break_trend_price": 1.3482,
+      "structure_support": 1.4,
+      "exit_signal": "HOLD",
+      "consumption_score": 16.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 1.36,
       "peak_close": 1.6,
       "broken_streak": 0,
@@ -5612,17 +5653,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 46.0,
       "t_date": "2026-09-21"
-    },
-    "prev": {
-      "protection_price": 1.31,
-      "peak_close": 1.45,
-      "broken_streak": 0,
-      "warning_price": 1.31,
-      "break_trend_price": 1.2836,
-      "structure_support": 1.31,
-      "exit_signal": "HOLD",
-      "consumption_score": 24.0,
-      "t_date": "2026-09-18"
     }
   },
   "002902": {
@@ -5693,6 +5723,17 @@
   },
   "688244": {
     "last": {
+      "protection_price": 16.848,
+      "peak_close": 19.8,
+      "broken_streak": 0,
+      "warning_price": 16.848,
+      "break_trend_price": 15.7566,
+      "structure_support": 16.848,
+      "exit_signal": "HOLD",
+      "consumption_score": 48.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 16.83,
       "peak_close": 19.8,
       "broken_streak": 0,
@@ -5702,17 +5743,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 58.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 15.325,
-      "peak_close": 17.41,
-      "broken_streak": 0,
-      "warning_price": 15.325,
-      "break_trend_price": 14.7236,
-      "structure_support": 15.325,
-      "exit_signal": "WATCH",
-      "consumption_score": 36.0,
-      "t_date": "2026-09-22"
     }
   },
   "601155": {
@@ -5963,6 +5993,17 @@
   },
   "688265": {
     "last": {
+      "protection_price": 52.0,
+      "peak_close": 57.46,
+      "broken_streak": 0,
+      "warning_price": 52.0,
+      "break_trend_price": 49.5107,
+      "structure_support": 52.0,
+      "exit_signal": "HOLD",
+      "consumption_score": 60.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 46.4185,
       "peak_close": 54.61,
       "broken_streak": 0,
@@ -5972,17 +6013,6 @@
       "exit_signal": "HOLD",
       "consumption_score": 65.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 44.2,
-      "peak_close": 52.0,
-      "broken_streak": 0,
-      "warning_price": 41.082,
-      "break_trend_price": 39.5666,
-      "structure_support": 41.082,
-      "exit_signal": "WATCH",
-      "consumption_score": 66.0,
-      "t_date": "2026-09-22"
     }
   },
   "300964": {
@@ -6025,6 +6055,17 @@
   },
   "301230": {
     "last": {
+      "protection_price": 33.938,
+      "peak_close": 38.82,
+      "broken_streak": 0,
+      "warning_price": 33.938,
+      "break_trend_price": 32.5266,
+      "structure_support": 33.938,
+      "exit_signal": "PROTECT",
+      "consumption_score": 12.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 32.997,
       "peak_close": 38.82,
       "broken_streak": 0,
@@ -6034,17 +6075,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 48.0,
       "t_date": "2026-09-21"
-    },
-    "prev": {
-      "protection_price": 31.159,
-      "peak_close": 35.21,
-      "broken_streak": 0,
-      "warning_price": 31.159,
-      "break_trend_price": 30.194,
-      "structure_support": 31.159,
-      "exit_signal": "HOLD",
-      "consumption_score": 29.0,
-      "t_date": "2026-09-18"
     }
   },
   "002371": {
@@ -6139,6 +6169,17 @@
   },
   "000002": {
     "last": {
+      "protection_price": 3.65,
+      "peak_close": 3.93,
+      "broken_streak": 0,
+      "warning_price": 3.65,
+      "break_trend_price": 3.5164,
+      "structure_support": 3.65,
+      "exit_signal": "HOLD",
+      "consumption_score": 48.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 3.332,
       "peak_close": 3.92,
       "broken_streak": 0,
@@ -6148,17 +6189,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 53.0,
       "t_date": "2026-09-23"
-    },
-    "prev": {
-      "protection_price": 3.2385,
-      "peak_close": 3.81,
-      "broken_streak": 0,
-      "warning_price": 3.197,
-      "break_trend_price": 3.1288,
-      "structure_support": 3.197,
-      "exit_signal": "WATCH",
-      "consumption_score": 39.0,
-      "t_date": "2026-09-22"
     }
   },
   "688635": {
@@ -6177,6 +6207,17 @@
   },
   "000739": {
     "last": {
+      "protection_price": 23.887,
+      "peak_close": 26.675,
+      "broken_streak": 0,
+      "warning_price": 23.887,
+      "break_trend_price": 23.1577,
+      "structure_support": 23.887,
+      "exit_signal": "HOLD",
+      "consumption_score": 16.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 22.892,
       "peak_close": 26.675,
       "broken_streak": 0,
@@ -6186,17 +6227,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 36.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 22.429,
-      "peak_close": 25.185,
-      "broken_streak": 0,
-      "warning_price": 22.429,
-      "break_trend_price": 21.9379,
-      "structure_support": 22.429,
-      "exit_signal": "HOLD",
-      "consumption_score": 24.0,
-      "t_date": "2026-09-23"
     }
   },
   "300909": {
@@ -6215,6 +6245,17 @@
   },
   "002246": {
     "last": {
+      "protection_price": 23.952,
+      "peak_close": 27.33,
+      "broken_streak": 0,
+      "warning_price": 23.952,
+      "break_trend_price": 23.2124,
+      "structure_support": 23.952,
+      "exit_signal": "HOLD",
+      "consumption_score": 16.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 23.2305,
       "peak_close": 27.33,
       "broken_streak": 0,
@@ -6224,17 +6265,6 @@
       "exit_signal": "HOLD",
       "consumption_score": 23.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 23.2305,
-      "peak_close": 27.33,
-      "broken_streak": 0,
-      "warning_price": 22.936,
-      "break_trend_price": 22.2939,
-      "structure_support": 22.936,
-      "exit_signal": "HOLD",
-      "consumption_score": 31.0,
-      "t_date": "2026-09-24"
     }
   },
   "688139": {
@@ -6270,23 +6300,23 @@
       "protection_price": 17.2975,
       "peak_close": 20.35,
       "broken_streak": 0,
+      "warning_price": 15.071,
+      "break_trend_price": 14.1971,
+      "structure_support": 15.071,
+      "exit_signal": "WATCH",
+      "consumption_score": 70.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
+      "protection_price": 17.2975,
+      "peak_close": 20.35,
+      "broken_streak": 0,
       "warning_price": 13.014,
       "break_trend_price": 12.5761,
       "structure_support": 13.014,
       "exit_signal": "WATCH",
       "consumption_score": 100.0,
       "t_date": "2026-09-24"
-    },
-    "prev": {
-      "protection_price": 15.725,
-      "peak_close": 18.5,
-      "broken_streak": 0,
-      "warning_price": 12.558,
-      "break_trend_price": 12.1766,
-      "structure_support": 12.558,
-      "exit_signal": "WATCH",
-      "consumption_score": 93.0,
-      "t_date": "2026-09-23"
     }
   },
   "300708": {
@@ -6371,6 +6401,17 @@
   },
   "300787": {
     "last": {
+      "protection_price": 10.756,
+      "peak_close": 11.61,
+      "broken_streak": 0,
+      "warning_price": 10.756,
+      "break_trend_price": 10.4574,
+      "structure_support": 10.756,
+      "exit_signal": "PROTECT",
+      "consumption_score": 9.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 10.163,
       "peak_close": 11.61,
       "broken_streak": 0,
@@ -6380,8 +6421,7 @@
       "exit_signal": "HOLD",
       "consumption_score": 29.0,
       "t_date": "2026-09-21"
-    },
-    "prev": {}
+    }
   },
   "301008": {
     "last": {
@@ -6461,6 +6501,17 @@
   },
   "688225": {
     "last": {
+      "protection_price": 14.48,
+      "peak_close": 15.64,
+      "broken_streak": 0,
+      "warning_price": 14.48,
+      "break_trend_price": 14.0046,
+      "structure_support": 14.48,
+      "exit_signal": "PROTECT",
+      "consumption_score": 12.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 13.448,
       "peak_close": 15.64,
       "broken_streak": 0,
@@ -6470,17 +6521,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 44.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 12.931,
-      "peak_close": 14.48,
-      "broken_streak": 0,
-      "warning_price": 12.931,
-      "break_trend_price": 12.5196,
-      "structure_support": 12.931,
-      "exit_signal": "HOLD",
-      "consumption_score": 36.0,
-      "t_date": "2026-09-21"
     }
   },
   "603920": {
@@ -6637,6 +6677,17 @@
   },
   "300369": {
     "last": {
+      "protection_price": 8.561,
+      "peak_close": 9.9,
+      "broken_streak": 0,
+      "warning_price": 8.561,
+      "break_trend_price": 8.1835,
+      "structure_support": 8.561,
+      "exit_signal": "HOLD",
+      "consumption_score": 23.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 8.415,
       "peak_close": 9.9,
       "broken_streak": 0,
@@ -6646,17 +6697,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 28.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 8.415,
-      "peak_close": 9.9,
-      "broken_streak": 0,
-      "warning_price": 8.191,
-      "break_trend_price": 7.876,
-      "structure_support": 8.191,
-      "exit_signal": "HOLD",
-      "consumption_score": 23.0,
-      "t_date": "2026-09-24"
     }
   },
   "300960": {
@@ -6685,6 +6725,17 @@
   },
   "603978": {
     "last": {
+      "protection_price": 23.445,
+      "peak_close": 26.2,
+      "broken_streak": 0,
+      "warning_price": 23.445,
+      "break_trend_price": 22.7029,
+      "structure_support": 23.445,
+      "exit_signal": "HOLD",
+      "consumption_score": 22.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 22.27,
       "peak_close": 26.2,
       "broken_streak": 0,
@@ -6694,17 +6745,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 64.0,
       "t_date": "2026-09-22"
-    },
-    "prev": {
-      "protection_price": 21.128,
-      "peak_close": 24.68,
-      "broken_streak": 0,
-      "warning_price": 21.128,
-      "break_trend_price": 20.4266,
-      "structure_support": 21.128,
-      "exit_signal": "HOLD",
-      "consumption_score": 50.0,
-      "t_date": "2026-09-21"
     }
   },
   "300518": {
@@ -6747,6 +6787,17 @@
   },
   "002623": {
     "last": {
+      "protection_price": 17.42,
+      "peak_close": 19.83,
+      "broken_streak": 0,
+      "warning_price": 17.42,
+      "break_trend_price": 16.8768,
+      "structure_support": 17.42,
+      "exit_signal": "PROTECT",
+      "consumption_score": 9.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 16.8555,
       "peak_close": 19.83,
       "broken_streak": 0,
@@ -6756,8 +6807,7 @@
       "exit_signal": "HOLD",
       "consumption_score": 61.0,
       "t_date": "2026-09-21"
-    },
-    "prev": {}
+    }
   },
   "603319": {
     "last": {
@@ -7068,23 +7118,23 @@
       "protection_price": 111.0185,
       "peak_close": 130.61,
       "broken_streak": 0,
+      "warning_price": 99.753,
+      "break_trend_price": 94.1144,
+      "structure_support": 99.753,
+      "exit_signal": "PROTECT",
+      "consumption_score": 28.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
+      "protection_price": 111.0185,
+      "peak_close": 130.61,
+      "broken_streak": 0,
       "warning_price": 91.573,
       "break_trend_price": 87.4119,
       "structure_support": 91.573,
       "exit_signal": "WATCH",
       "consumption_score": 85.0,
       "t_date": "2026-09-23"
-    },
-    "prev": {
-      "protection_price": 95.5315,
-      "peak_close": 112.39,
-      "broken_streak": 0,
-      "warning_price": 89.374,
-      "break_trend_price": 85.8801,
-      "structure_support": 89.374,
-      "exit_signal": "WATCH",
-      "consumption_score": 64.0,
-      "t_date": "2026-09-22"
     }
   },
   "002585": {
@@ -7151,6 +7201,17 @@
   },
   "002349": {
     "last": {
+      "protection_price": 8.414,
+      "peak_close": 9.18,
+      "broken_streak": 0,
+      "warning_price": 8.414,
+      "break_trend_price": 8.159,
+      "structure_support": 8.414,
+      "exit_signal": "WATCH",
+      "consumption_score": 29.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 8.262,
       "peak_close": 8.71,
       "broken_streak": 0,
@@ -7160,17 +7221,6 @@
       "exit_signal": "HOLD",
       "consumption_score": 14.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 7.997,
-      "peak_close": 8.71,
-      "broken_streak": 0,
-      "warning_price": 7.997,
-      "break_trend_price": 7.6949,
-      "structure_support": 7.997,
-      "exit_signal": "HOLD",
-      "consumption_score": 24.0,
-      "t_date": "2026-09-21"
     }
   },
   "603601": {
@@ -7477,6 +7527,17 @@
   },
   "300642": {
     "last": {
+      "protection_price": 18.525,
+      "peak_close": 20.59,
+      "broken_streak": 0,
+      "warning_price": 18.525,
+      "break_trend_price": 17.7304,
+      "structure_support": 18.525,
+      "exit_signal": "HOLD",
+      "consumption_score": 14.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 18.292,
       "peak_close": 20.59,
       "broken_streak": 0,
@@ -7486,17 +7547,6 @@
       "exit_signal": "HOLD",
       "consumption_score": 26.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 18.215,
-      "peak_close": 20.59,
-      "broken_streak": 0,
-      "warning_price": 18.215,
-      "break_trend_price": 17.4221,
-      "structure_support": 18.215,
-      "exit_signal": "HOLD",
-      "consumption_score": 29.0,
-      "t_date": "2026-09-24"
     }
   },
   "300426": {
@@ -7553,6 +7603,17 @@
   },
   "688123": {
     "last": {
+      "protection_price": 146.192,
+      "peak_close": 171.2,
+      "broken_streak": 0,
+      "warning_price": 146.192,
+      "break_trend_price": 140.8777,
+      "structure_support": 146.192,
+      "exit_signal": "PROTECT",
+      "consumption_score": 12.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 145.52,
       "peak_close": 171.2,
       "broken_streak": 0,
@@ -7562,17 +7623,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 49.0,
       "t_date": "2026-09-22"
-    },
-    "prev": {
-      "protection_price": 136.003,
-      "peak_close": 156.0,
-      "broken_streak": 0,
-      "warning_price": 136.003,
-      "break_trend_price": 131.7369,
-      "structure_support": 136.003,
-      "exit_signal": "HOLD",
-      "consumption_score": 27.0,
-      "t_date": "2026-09-21"
     }
   },
   "600641": {
@@ -7615,6 +7665,17 @@
   },
   "603507": {
     "last": {
+      "protection_price": 24.697,
+      "peak_close": 26.48,
+      "broken_streak": 0,
+      "warning_price": 24.697,
+      "break_trend_price": 23.9856,
+      "structure_support": 24.697,
+      "exit_signal": "HOLD",
+      "consumption_score": 18.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 23.145,
       "peak_close": 26.48,
       "broken_streak": 0,
@@ -7624,8 +7685,7 @@
       "exit_signal": "HOLD",
       "consumption_score": 37.0,
       "t_date": "2026-09-21"
-    },
-    "prev": {}
+    }
   },
   "688755": {
     "last": {
@@ -7739,6 +7799,17 @@
   },
   "600657": {
     "last": {
+      "protection_price": 3.137,
+      "peak_close": 3.26,
+      "broken_streak": 0,
+      "warning_price": 3.137,
+      "break_trend_price": 3.0302,
+      "structure_support": 3.137,
+      "exit_signal": "HOLD",
+      "consumption_score": 14.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 2.959,
       "peak_close": 3.15,
       "broken_streak": 0,
@@ -7748,8 +7819,7 @@
       "exit_signal": "HOLD",
       "consumption_score": 26.0,
       "t_date": "2026-09-21"
-    },
-    "prev": {}
+    }
   },
   "002589": {
     "last": {
@@ -7980,23 +8050,23 @@
       "protection_price": 21.5135,
       "peak_close": 25.31,
       "broken_streak": 0,
+      "warning_price": 20.188,
+      "break_trend_price": 19.2498,
+      "structure_support": 20.188,
+      "exit_signal": "PROTECT",
+      "consumption_score": 23.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
+      "protection_price": 21.5135,
+      "peak_close": 25.31,
+      "broken_streak": 0,
       "warning_price": 18.783,
       "break_trend_price": 18.1044,
       "structure_support": 18.783,
       "exit_signal": "WATCH",
       "consumption_score": 75.0,
       "t_date": "2026-09-24"
-    },
-    "prev": {
-      "protection_price": 19.5075,
-      "peak_close": 22.95,
-      "broken_streak": 0,
-      "warning_price": 18.37,
-      "break_trend_price": 17.8,
-      "structure_support": 18.37,
-      "exit_signal": "WATCH",
-      "consumption_score": 48.0,
-      "t_date": "2026-09-23"
     }
   },
   "600426": {
@@ -8143,6 +8213,17 @@
   },
   "002303": {
     "last": {
+      "protection_price": 5.893,
+      "peak_close": 6.9,
+      "broken_streak": 0,
+      "warning_price": 5.893,
+      "break_trend_price": 5.6609,
+      "structure_support": 5.893,
+      "exit_signal": "HOLD",
+      "consumption_score": 16.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 5.865,
       "peak_close": 6.9,
       "broken_streak": 0,
@@ -8152,21 +8233,21 @@
       "exit_signal": "HOLD",
       "consumption_score": 23.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 5.865,
-      "peak_close": 6.9,
-      "broken_streak": 0,
-      "warning_price": 5.484,
-      "break_trend_price": 5.3079,
-      "structure_support": 5.484,
-      "exit_signal": "HOLD",
-      "consumption_score": 61.0,
-      "t_date": "2026-09-22"
     }
   },
   "301234": {
     "last": {
+      "protection_price": 124.865,
+      "peak_close": 146.9,
+      "broken_streak": 0,
+      "warning_price": 118.496,
+      "break_trend_price": 113.1792,
+      "structure_support": 118.496,
+      "exit_signal": "WATCH",
+      "consumption_score": 60.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 118.779,
       "peak_close": 139.74,
       "broken_streak": 0,
@@ -8176,17 +8257,6 @@
       "exit_signal": "HOLD",
       "consumption_score": 48.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 118.779,
-      "peak_close": 139.74,
-      "broken_streak": 0,
-      "warning_price": 107.489,
-      "break_trend_price": 103.8079,
-      "structure_support": 107.489,
-      "exit_signal": "WATCH",
-      "consumption_score": 79.0,
-      "t_date": "2026-09-22"
     }
   },
   "300862": {
@@ -8330,23 +8400,23 @@
       "protection_price": 6.443,
       "peak_close": 7.58,
       "broken_streak": 0,
+      "warning_price": 5.933,
+      "break_trend_price": 5.6841,
+      "structure_support": 5.933,
+      "exit_signal": "PROTECT",
+      "consumption_score": 21.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
+      "protection_price": 6.443,
+      "peak_close": 7.58,
+      "broken_streak": 0,
       "warning_price": 5.612,
       "break_trend_price": 5.4595,
       "structure_support": 5.612,
       "exit_signal": "WATCH",
       "consumption_score": 83.0,
       "t_date": "2026-09-23"
-    },
-    "prev": {
-      "protection_price": 5.8565,
-      "peak_close": 6.89,
-      "broken_streak": 0,
-      "warning_price": 5.505,
-      "break_trend_price": 5.3696,
-      "structure_support": 5.505,
-      "exit_signal": "HOLD",
-      "consumption_score": 59.0,
-      "t_date": "2026-09-22"
     }
   },
   "600237": {
@@ -8427,6 +8497,17 @@
   },
   "688073": {
     "last": {
+      "protection_price": 67.21,
+      "peak_close": 76.1,
+      "broken_streak": 0,
+      "warning_price": 67.21,
+      "break_trend_price": 64.3461,
+      "structure_support": 67.21,
+      "exit_signal": "PROTECT",
+      "consumption_score": 13.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 64.685,
       "peak_close": 76.1,
       "broken_streak": 0,
@@ -8436,8 +8517,7 @@
       "exit_signal": "HOLD",
       "consumption_score": 56.0,
       "t_date": "2026-09-22"
-    },
-    "prev": {}
+    }
   },
   "000509": {
     "last": {
@@ -8615,6 +8695,17 @@
   },
   "001201": {
     "last": {
+      "protection_price": 14.592,
+      "peak_close": 16.3,
+      "broken_streak": 0,
+      "warning_price": 14.592,
+      "break_trend_price": 14.0741,
+      "structure_support": 14.592,
+      "exit_signal": "PROTECT",
+      "consumption_score": 18.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 13.981,
       "peak_close": 16.3,
       "broken_streak": 0,
@@ -8624,21 +8715,21 @@
       "exit_signal": "HOLD",
       "consumption_score": 36.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 13.855,
-      "peak_close": 16.3,
-      "broken_streak": 0,
-      "warning_price": 13.71,
-      "break_trend_price": 13.2979,
-      "structure_support": 13.71,
-      "exit_signal": "HOLD",
-      "consumption_score": 36.0,
-      "t_date": "2026-09-23"
     }
   },
   "301311": {
     "last": {
+      "protection_price": 15.555,
+      "peak_close": 18.3,
+      "broken_streak": 0,
+      "warning_price": 15.133,
+      "break_trend_price": 14.5155,
+      "structure_support": 15.133,
+      "exit_signal": "HOLD",
+      "consumption_score": 30.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 15.555,
       "peak_close": 18.3,
       "broken_streak": 0,
@@ -8648,17 +8739,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 63.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 15.283,
-      "peak_close": 17.98,
-      "broken_streak": 0,
-      "warning_price": 14.124,
-      "break_trend_price": 13.7165,
-      "structure_support": 14.124,
-      "exit_signal": "WATCH",
-      "consumption_score": 48.0,
-      "t_date": "2026-09-24"
     }
   },
   "300291": {
@@ -8677,6 +8757,17 @@
   },
   "603657": {
     "last": {
+      "protection_price": 35.58,
+      "peak_close": 37.3,
+      "broken_streak": 0,
+      "warning_price": 35.58,
+      "break_trend_price": 34.2482,
+      "structure_support": 35.58,
+      "exit_signal": "PROTECT",
+      "consumption_score": 27.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 31.705,
       "peak_close": 37.3,
       "broken_streak": 0,
@@ -8686,8 +8777,7 @@
       "exit_signal": "WATCH",
       "consumption_score": 100.0,
       "t_date": "2026-09-22"
-    },
-    "prev": {}
+    }
   },
   "002957": {
     "last": {
@@ -8747,6 +8837,17 @@
   },
   "300685": {
     "last": {
+      "protection_price": 19.93,
+      "peak_close": 21.01,
+      "broken_streak": 0,
+      "warning_price": 19.93,
+      "break_trend_price": 19.5129,
+      "structure_support": 19.93,
+      "exit_signal": "PROTECT",
+      "consumption_score": 23.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 17.8585,
       "peak_close": 21.01,
       "broken_streak": 0,
@@ -8756,21 +8857,21 @@
       "exit_signal": "WATCH",
       "consumption_score": 46.0,
       "t_date": "2026-09-23"
-    },
-    "prev": {
-      "protection_price": 17.497,
-      "peak_close": 19.93,
-      "broken_streak": 0,
-      "warning_price": 17.497,
-      "break_trend_price": 17.2334,
-      "structure_support": 17.497,
-      "exit_signal": "HOLD",
-      "consumption_score": 34.0,
-      "t_date": "2026-09-22"
     }
   },
   "002074": {
     "last": {
+      "protection_price": 26.931,
+      "peak_close": 31.59,
+      "broken_streak": 0,
+      "warning_price": 26.931,
+      "break_trend_price": 26.2792,
+      "structure_support": 26.931,
+      "exit_signal": "WATCH",
+      "consumption_score": 53.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 26.289,
       "peak_close": 27.73,
       "broken_streak": 0,
@@ -8780,8 +8881,7 @@
       "exit_signal": "HOLD",
       "consumption_score": 15.0,
       "t_date": "2026-09-22"
-    },
-    "prev": {}
+    }
   },
   "002827": {
     "last": {
@@ -8860,27 +8960,38 @@
       "protection_price": 41.2335,
       "peak_close": 48.51,
       "broken_streak": 0,
+      "warning_price": 40.825,
+      "break_trend_price": 39.4314,
+      "structure_support": 40.825,
+      "exit_signal": "HOLD",
+      "consumption_score": 18.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
+      "protection_price": 41.2335,
+      "peak_close": 48.51,
+      "broken_streak": 0,
       "warning_price": 39.687,
       "break_trend_price": 38.6277,
       "structure_support": 39.687,
       "exit_signal": "WATCH",
       "consumption_score": 53.0,
       "t_date": "2026-09-24"
-    },
-    "prev": {
-      "protection_price": 40.9445,
-      "peak_close": 48.17,
-      "broken_streak": 0,
-      "warning_price": 38.611,
-      "break_trend_price": 37.686,
-      "structure_support": 38.611,
-      "exit_signal": "HOLD",
-      "consumption_score": 46.0,
-      "t_date": "2026-09-22"
     }
   },
   "688175": {
     "last": {
+      "protection_price": 24.8455,
+      "peak_close": 29.23,
+      "broken_streak": 0,
+      "warning_price": 21.934,
+      "break_trend_price": 20.8083,
+      "structure_support": 21.934,
+      "exit_signal": "WATCH",
+      "consumption_score": 75.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 22.7715,
       "peak_close": 26.79,
       "broken_streak": 0,
@@ -8890,17 +9001,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 76.0,
       "t_date": "2026-09-23"
-    },
-    "prev": {
-      "protection_price": 19.754,
-      "peak_close": 23.24,
-      "broken_streak": 0,
-      "warning_price": 18.943,
-      "break_trend_price": 18.4112,
-      "structure_support": 18.943,
-      "exit_signal": "HOLD",
-      "consumption_score": 49.0,
-      "t_date": "2026-09-22"
     }
   },
   "603986": {
@@ -8943,6 +9043,17 @@
   },
   "688018": {
     "last": {
+      "protection_price": 112.072,
+      "peak_close": 123.6,
+      "broken_streak": 0,
+      "warning_price": 112.072,
+      "break_trend_price": 109.4999,
+      "structure_support": 112.072,
+      "exit_signal": "HOLD",
+      "consumption_score": 18.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 112.048,
       "peak_close": 123.6,
       "broken_streak": 0,
@@ -8952,8 +9063,7 @@
       "exit_signal": "HOLD",
       "consumption_score": 24.0,
       "t_date": "2026-09-22"
-    },
-    "prev": {}
+    }
   },
   "688615": {
     "last": {
@@ -9064,14 +9174,24 @@
       "protection_price": 4.413,
       "peak_close": 4.28,
       "broken_streak": 0,
+      "warning_price": 4.15,
+      "break_trend_price": 4.0321,
+      "structure_support": 4.15,
+      "exit_signal": "REDUCE_RISK",
+      "consumption_score": 16.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
+      "protection_price": 4.413,
+      "peak_close": 4.28,
+      "broken_streak": 0,
       "warning_price": 4.413,
       "break_trend_price": 4.2398,
       "structure_support": 4.413,
       "exit_signal": "PROTECT",
       "consumption_score": 14.0,
       "t_date": "2026-09-22"
-    },
-    "prev": {}
+    }
   },
   "688301": {
     "last": {
@@ -9131,6 +9251,17 @@
   },
   "603893": {
     "last": {
+      "protection_price": 196.206,
+      "peak_close": 223.01,
+      "broken_streak": 0,
+      "warning_price": 196.206,
+      "break_trend_price": 191.5242,
+      "structure_support": 196.206,
+      "exit_signal": "PROTECT",
+      "consumption_score": 6.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 190.74,
       "peak_close": 223.01,
       "broken_streak": 0,
@@ -9140,17 +9271,6 @@
       "exit_signal": "HOLD",
       "consumption_score": 47.0,
       "t_date": "2026-09-23"
-    },
-    "prev": {
-      "protection_price": 188.398,
-      "peak_close": 217.8,
-      "broken_streak": 0,
-      "warning_price": 188.398,
-      "break_trend_price": 184.5287,
-      "structure_support": 188.398,
-      "exit_signal": "HOLD",
-      "consumption_score": 47.0,
-      "t_date": "2026-09-22"
     }
   },
   "688195": {
@@ -9169,6 +9289,17 @@
   },
   "000560": {
     "last": {
+      "protection_price": 3.234,
+      "peak_close": 3.71,
+      "broken_streak": 0,
+      "warning_price": 3.234,
+      "break_trend_price": 3.0754,
+      "structure_support": 3.234,
+      "exit_signal": "HOLD",
+      "consumption_score": 31.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 3.1535,
       "peak_close": 3.71,
       "broken_streak": 0,
@@ -9178,21 +9309,21 @@
       "exit_signal": "WATCH",
       "consumption_score": 56.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 2.9835,
-      "peak_close": 3.51,
-      "broken_streak": 0,
-      "warning_price": 2.921,
-      "break_trend_price": 2.7864,
-      "structure_support": 2.921,
-      "exit_signal": "HOLD",
-      "consumption_score": 49.0,
-      "t_date": "2026-09-22"
     }
   },
   "001317": {
     "last": {
+      "protection_price": 59.36,
+      "peak_close": 65.96,
+      "broken_streak": 0,
+      "warning_price": 59.36,
+      "break_trend_price": 56.9104,
+      "structure_support": 59.36,
+      "exit_signal": "HOLD",
+      "consumption_score": 38.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 56.066,
       "peak_close": 65.96,
       "broken_streak": 0,
@@ -9202,8 +9333,7 @@
       "exit_signal": "HOLD",
       "consumption_score": 61.0,
       "t_date": "2026-09-22"
-    },
-    "prev": {}
+    }
   },
   "300676": {
     "last": {
@@ -9246,6 +9376,17 @@
   "688213": {
     "last": {
       "protection_price": 94.175,
+      "peak_close": 97.35,
+      "broken_streak": 0,
+      "warning_price": 93.51,
+      "break_trend_price": 91.6207,
+      "structure_support": 93.51,
+      "exit_signal": "HOLD",
+      "consumption_score": 6.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
+      "protection_price": 94.175,
       "peak_close": 96.94,
       "broken_streak": 0,
       "warning_price": 94.175,
@@ -9254,8 +9395,7 @@
       "exit_signal": "HOLD",
       "consumption_score": 6.0,
       "t_date": "2026-09-22"
-    },
-    "prev": {}
+    }
   },
   "603328": {
     "last": {
@@ -9297,6 +9437,17 @@
   },
   "688238": {
     "last": {
+      "protection_price": 7.84,
+      "peak_close": 8.68,
+      "broken_streak": 0,
+      "warning_price": 7.84,
+      "break_trend_price": 7.5464,
+      "structure_support": 7.84,
+      "exit_signal": "PROTECT",
+      "consumption_score": 28.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 7.378,
       "peak_close": 8.68,
       "broken_streak": 0,
@@ -9306,17 +9457,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 76.0,
       "t_date": "2026-09-23"
-    },
-    "prev": {
-      "protection_price": 6.93,
-      "peak_close": 7.84,
-      "broken_streak": 0,
-      "warning_price": 6.93,
-      "break_trend_price": 6.7518,
-      "structure_support": 6.93,
-      "exit_signal": "HOLD",
-      "consumption_score": 39.0,
-      "t_date": "2026-09-22"
     }
   },
   "688486": {
@@ -9404,23 +9544,23 @@
       "protection_price": 23.4515,
       "peak_close": 27.59,
       "broken_streak": 0,
+      "warning_price": 22.816,
+      "break_trend_price": 21.8342,
+      "structure_support": 22.816,
+      "exit_signal": "HOLD",
+      "consumption_score": 28.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
+      "protection_price": 23.4515,
+      "peak_close": 27.59,
+      "broken_streak": 0,
       "warning_price": 21.252,
       "break_trend_price": 20.5338,
       "structure_support": 21.252,
       "exit_signal": "WATCH",
       "consumption_score": 76.0,
       "t_date": "2026-09-23"
-    },
-    "prev": {
-      "protection_price": 22.66,
-      "peak_close": 26.45,
-      "broken_streak": 0,
-      "warning_price": 22.66,
-      "break_trend_price": 21.9907,
-      "structure_support": 22.66,
-      "exit_signal": "HOLD",
-      "consumption_score": 61.0,
-      "t_date": "2026-09-22"
     }
   },
   "002384": {
@@ -9529,6 +9669,17 @@
   },
   "301047": {
     "last": {
+      "protection_price": 136.22,
+      "peak_close": 150.0,
+      "broken_streak": 0,
+      "warning_price": 136.22,
+      "break_trend_price": 129.1104,
+      "structure_support": 136.22,
+      "exit_signal": "WATCH",
+      "consumption_score": 70.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 127.5,
       "peak_close": 150.0,
       "broken_streak": 0,
@@ -9538,17 +9689,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 83.0,
       "t_date": "2026-09-23"
-    },
-    "prev": {
-      "protection_price": 115.787,
-      "peak_close": 136.22,
-      "broken_streak": 0,
-      "warning_price": 112.61,
-      "break_trend_price": 108.1029,
-      "structure_support": 112.61,
-      "exit_signal": "WATCH",
-      "consumption_score": 76.0,
-      "t_date": "2026-09-22"
     }
   },
   "600876": {
@@ -9580,23 +9720,23 @@
       "protection_price": 7.225,
       "peak_close": 8.5,
       "broken_streak": 0,
+      "warning_price": 6.592,
+      "break_trend_price": 6.3131,
+      "structure_support": 6.592,
+      "exit_signal": "HOLD",
+      "consumption_score": 60.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
+      "protection_price": 7.225,
+      "peak_close": 8.5,
+      "broken_streak": 0,
       "warning_price": 6.116,
       "break_trend_price": 5.9171,
       "structure_support": 6.116,
       "exit_signal": "WATCH",
       "consumption_score": 90.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 7.0805,
-      "peak_close": 8.33,
-      "broken_streak": 0,
-      "warning_price": 5.984,
-      "break_trend_price": 5.8315,
-      "structure_support": 5.984,
-      "exit_signal": "WATCH",
-      "consumption_score": 76.0,
-      "t_date": "2026-09-24"
     }
   },
   "300523": {
@@ -9713,6 +9853,17 @@
   },
   "300363": {
     "last": {
+      "protection_price": 22.43,
+      "peak_close": 25.25,
+      "broken_streak": 0,
+      "warning_price": 22.43,
+      "break_trend_price": 21.8086,
+      "structure_support": 22.43,
+      "exit_signal": "HOLD",
+      "consumption_score": 9.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 21.4625,
       "peak_close": 25.25,
       "broken_streak": 0,
@@ -9722,11 +9873,21 @@
       "exit_signal": "HOLD",
       "consumption_score": 50.0,
       "t_date": "2026-09-23"
-    },
-    "prev": {}
+    }
   },
   "600503": {
     "last": {
+      "protection_price": 2.499,
+      "peak_close": 2.94,
+      "broken_streak": 0,
+      "warning_price": 2.355,
+      "break_trend_price": 2.2604,
+      "structure_support": 2.355,
+      "exit_signal": "PROTECT",
+      "consumption_score": 13.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 2.499,
       "peak_close": 2.94,
       "broken_streak": 0,
@@ -9736,8 +9897,7 @@
       "exit_signal": "WATCH",
       "consumption_score": 76.0,
       "t_date": "2026-09-23"
-    },
-    "prev": {}
+    }
   },
   "601208": {
     "last": {
@@ -10013,6 +10173,17 @@
   },
   "001288": {
     "last": {
+      "protection_price": 30.841,
+      "peak_close": 34.84,
+      "broken_streak": 0,
+      "warning_price": 30.841,
+      "break_trend_price": 29.9389,
+      "structure_support": 30.841,
+      "exit_signal": "PROTECT",
+      "consumption_score": 10.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 30.303,
       "peak_close": 34.84,
       "broken_streak": 0,
@@ -10022,17 +10193,6 @@
       "exit_signal": "HOLD",
       "consumption_score": 19.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 30.046,
-      "peak_close": 34.84,
-      "broken_streak": 0,
-      "warning_price": 30.046,
-      "break_trend_price": 29.2724,
-      "structure_support": 30.046,
-      "exit_signal": "WATCH",
-      "consumption_score": 39.0,
-      "t_date": "2026-09-24"
     }
   },
   "301031": {
@@ -10328,23 +10488,23 @@
       "protection_price": 18.428,
       "peak_close": 21.68,
       "broken_streak": 0,
+      "warning_price": 16.78,
+      "break_trend_price": 16.1075,
+      "structure_support": 16.78,
+      "exit_signal": "PROTECT",
+      "consumption_score": 21.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
+      "protection_price": 18.428,
+      "peak_close": 21.68,
+      "broken_streak": 0,
       "warning_price": 15.713,
       "break_trend_price": 15.2316,
       "structure_support": 15.713,
       "exit_signal": "WATCH",
       "consumption_score": 90.0,
       "t_date": "2026-09-24"
-    },
-    "prev": {
-      "protection_price": 17.816,
-      "peak_close": 20.96,
-      "broken_streak": 0,
-      "warning_price": 15.39,
-      "break_trend_price": 14.9486,
-      "structure_support": 15.39,
-      "exit_signal": "WATCH",
-      "consumption_score": 83.0,
-      "t_date": "2026-09-23"
     }
   },
   "688628": {
@@ -10366,23 +10526,23 @@
       "protection_price": 11.6705,
       "peak_close": 13.73,
       "broken_streak": 0,
+      "warning_price": 10.182,
+      "break_trend_price": 9.5988,
+      "structure_support": 10.182,
+      "exit_signal": "PROTECT",
+      "consumption_score": 42.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
+      "protection_price": 11.6705,
+      "peak_close": 13.73,
+      "broken_streak": 0,
       "warning_price": 9.506,
       "break_trend_price": 9.0896,
       "structure_support": 9.506,
       "exit_signal": "HOLD",
       "consumption_score": 65.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 11.6705,
-      "peak_close": 13.73,
-      "broken_streak": 0,
-      "warning_price": 9.308,
-      "break_trend_price": 8.9173,
-      "structure_support": 9.308,
-      "exit_signal": "WATCH",
-      "consumption_score": 93.0,
-      "t_date": "2026-09-24"
     }
   },
   "600743": {
@@ -10415,6 +10575,17 @@
   },
   "688656": {
     "last": {
+      "protection_price": 121.177,
+      "peak_close": 141.04,
+      "broken_streak": 0,
+      "warning_price": 121.177,
+      "break_trend_price": 116.7934,
+      "structure_support": 121.177,
+      "exit_signal": "PROTECT",
+      "consumption_score": 12.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 119.884,
       "peak_close": 141.04,
       "broken_streak": 0,
@@ -10424,17 +10595,6 @@
       "exit_signal": "HOLD",
       "consumption_score": 39.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 119.884,
-      "peak_close": 141.04,
-      "broken_streak": 0,
-      "warning_price": 111.934,
-      "break_trend_price": 107.6758,
-      "structure_support": 111.934,
-      "exit_signal": "HOLD",
-      "consumption_score": 44.0,
-      "t_date": "2026-09-23"
     }
   },
   "300977": {
@@ -10467,6 +10627,17 @@
   },
   "001228": {
     "last": {
+      "protection_price": 33.804,
+      "peak_close": 37.35,
+      "broken_streak": 0,
+      "warning_price": 33.804,
+      "break_trend_price": 32.9454,
+      "structure_support": 33.804,
+      "exit_signal": "HOLD",
+      "consumption_score": 28.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 32.45,
       "peak_close": 37.35,
       "broken_streak": 0,
@@ -10476,17 +10647,6 @@
       "exit_signal": "HOLD",
       "consumption_score": 31.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 31.78,
-      "peak_close": 37.35,
-      "broken_streak": 0,
-      "warning_price": 31.78,
-      "break_trend_price": 31.0914,
-      "structure_support": 31.78,
-      "exit_signal": "HOLD",
-      "consumption_score": 61.0,
-      "t_date": "2026-09-23"
     }
   },
   "300613": {
@@ -10508,23 +10668,23 @@
       "protection_price": 14.943,
       "peak_close": 17.58,
       "broken_streak": 0,
+      "warning_price": 14.729,
+      "break_trend_price": 14.1851,
+      "structure_support": 14.729,
+      "exit_signal": "HOLD",
+      "consumption_score": 16.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
+      "protection_price": 14.943,
+      "peak_close": 17.58,
+      "broken_streak": 0,
       "warning_price": 14.065,
       "break_trend_price": 13.6382,
       "structure_support": 14.065,
       "exit_signal": "WATCH",
       "consumption_score": 71.0,
       "t_date": "2026-09-24"
-    },
-    "prev": {
-      "protection_price": 14.722,
-      "peak_close": 17.32,
-      "broken_streak": 0,
-      "warning_price": 13.907,
-      "break_trend_price": 13.5038,
-      "structure_support": 13.907,
-      "exit_signal": "HOLD",
-      "consumption_score": 46.0,
-      "t_date": "2026-09-23"
     }
   },
   "601133": {
@@ -10623,6 +10783,17 @@
   },
   "688499": {
     "last": {
+      "protection_price": 39.321,
+      "peak_close": 46.26,
+      "broken_streak": 0,
+      "warning_price": 36.254,
+      "break_trend_price": 34.8415,
+      "structure_support": 36.254,
+      "exit_signal": "WATCH",
+      "consumption_score": 75.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 34.06,
       "peak_close": 38.43,
       "broken_streak": 0,
@@ -10632,8 +10803,7 @@
       "exit_signal": "HOLD",
       "consumption_score": 23.0,
       "t_date": "2026-09-23"
-    },
-    "prev": {}
+    }
   },
   "300259": {
     "last": {
@@ -10891,6 +11061,17 @@
   },
   "688573": {
     "last": {
+      "protection_price": 16.187,
+      "peak_close": 18.94,
+      "broken_streak": 0,
+      "warning_price": 16.187,
+      "break_trend_price": 15.6284,
+      "structure_support": 16.187,
+      "exit_signal": "WATCH",
+      "consumption_score": 48.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 15.994,
       "peak_close": 17.15,
       "broken_streak": 0,
@@ -10900,11 +11081,21 @@
       "exit_signal": "PROTECT",
       "consumption_score": 13.0,
       "t_date": "2026-09-23"
-    },
-    "prev": {}
+    }
   },
   "300489": {
     "last": {
+      "protection_price": 249.01,
+      "peak_close": 271.15,
+      "broken_streak": 0,
+      "warning_price": 249.01,
+      "break_trend_price": 237.3693,
+      "structure_support": 249.01,
+      "exit_signal": "HOLD",
+      "consumption_score": 26.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 230.4775,
       "peak_close": 271.15,
       "broken_streak": 0,
@@ -10914,17 +11105,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 59.0,
       "t_date": "2026-09-24"
-    },
-    "prev": {
-      "protection_price": 226.233,
-      "peak_close": 264.02,
-      "broken_streak": 0,
-      "warning_price": 226.233,
-      "break_trend_price": 217.3176,
-      "structure_support": 226.233,
-      "exit_signal": "HOLD",
-      "consumption_score": 50.0,
-      "t_date": "2026-09-23"
     }
   },
   "600790": {
@@ -11201,6 +11381,17 @@
   },
   "601988": {
     "last": {
+      "protection_price": 6.598,
+      "peak_close": 6.84,
+      "broken_streak": 0,
+      "warning_price": 6.598,
+      "break_trend_price": 6.5287,
+      "structure_support": 6.598,
+      "exit_signal": "WATCH",
+      "consumption_score": 18.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 6.566,
       "peak_close": 6.63,
       "broken_streak": 0,
@@ -11210,21 +11401,21 @@
       "exit_signal": "PROTECT",
       "consumption_score": 5.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 6.545,
-      "peak_close": 6.62,
-      "broken_streak": 0,
-      "warning_price": 6.545,
-      "break_trend_price": 6.4729,
-      "structure_support": 6.545,
-      "exit_signal": "PROTECT",
-      "consumption_score": 0.0,
-      "t_date": "2026-09-24"
     }
   },
   "603373": {
     "last": {
+      "protection_price": 44.795,
+      "peak_close": 52.7,
+      "broken_streak": 0,
+      "warning_price": 44.282,
+      "break_trend_price": 42.6631,
+      "structure_support": 44.282,
+      "exit_signal": "HOLD",
+      "consumption_score": 33.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 44.795,
       "peak_close": 52.7,
       "broken_streak": 0,
@@ -11234,17 +11425,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 71.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 43.18,
-      "peak_close": 50.8,
-      "broken_streak": 0,
-      "warning_price": 41.966,
-      "break_trend_price": 40.9664,
-      "structure_support": 41.966,
-      "exit_signal": "HOLD",
-      "consumption_score": 49.0,
-      "t_date": "2026-09-24"
     }
   },
   "300599": {
@@ -11315,6 +11495,17 @@
   },
   "603955": {
     "last": {
+      "protection_price": 23.398,
+      "peak_close": 25.74,
+      "broken_streak": 0,
+      "warning_price": 23.398,
+      "break_trend_price": 22.8444,
+      "structure_support": 23.398,
+      "exit_signal": "HOLD",
+      "consumption_score": 9.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 22.594,
       "peak_close": 25.74,
       "broken_streak": 0,
@@ -11324,21 +11515,21 @@
       "exit_signal": "HOLD",
       "consumption_score": 16.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 22.401,
-      "peak_close": 25.74,
-      "broken_streak": 0,
-      "warning_price": 22.401,
-      "break_trend_price": 21.8696,
-      "structure_support": 22.401,
-      "exit_signal": "HOLD",
-      "consumption_score": 24.0,
-      "t_date": "2026-09-24"
     }
   },
   "301226": {
     "last": {
+      "protection_price": 32.904,
+      "peak_close": 36.89,
+      "broken_streak": 0,
+      "warning_price": 32.904,
+      "break_trend_price": 31.9636,
+      "structure_support": 32.904,
+      "exit_signal": "HOLD",
+      "consumption_score": 26.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 31.629,
       "peak_close": 36.89,
       "broken_streak": 0,
@@ -11348,17 +11539,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 41.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 31.209,
-      "peak_close": 35.39,
-      "broken_streak": 0,
-      "warning_price": 31.209,
-      "break_trend_price": 30.3829,
-      "structure_support": 31.209,
-      "exit_signal": "HOLD",
-      "consumption_score": 24.0,
-      "t_date": "2026-09-24"
     }
   },
   "603105": {
@@ -11471,6 +11651,17 @@
   },
   "000498": {
     "last": {
+      "protection_price": 5.389,
+      "peak_close": 6.34,
+      "broken_streak": 0,
+      "warning_price": 5.253,
+      "break_trend_price": 5.1505,
+      "structure_support": 5.253,
+      "exit_signal": "WATCH",
+      "consumption_score": 46.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 5.048,
       "peak_close": 5.76,
       "broken_streak": 0,
@@ -11480,17 +11671,6 @@
       "exit_signal": "HOLD",
       "consumption_score": 41.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 5.008,
-      "peak_close": 5.65,
-      "broken_streak": 0,
-      "warning_price": 5.008,
-      "break_trend_price": 4.9523,
-      "structure_support": 5.008,
-      "exit_signal": "HOLD",
-      "consumption_score": 41.0,
-      "t_date": "2026-09-24"
     }
   },
   "000700": {
@@ -11509,6 +11689,17 @@
   },
   "603067": {
     "last": {
+      "protection_price": 37.539,
+      "peak_close": 40.89,
+      "broken_streak": 0,
+      "warning_price": 37.539,
+      "break_trend_price": 36.4254,
+      "structure_support": 37.539,
+      "exit_signal": "HOLD",
+      "consumption_score": 12.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 36.322,
       "peak_close": 40.89,
       "broken_streak": 0,
@@ -11518,8 +11709,7 @@
       "exit_signal": "HOLD",
       "consumption_score": 27.0,
       "t_date": "2026-09-24"
-    },
-    "prev": {}
+    }
   },
   "301339": {
     "last": {
@@ -11537,6 +11727,17 @@
   },
   "688049": {
     "last": {
+      "protection_price": 42.36,
+      "peak_close": 47.1,
+      "broken_streak": 0,
+      "warning_price": 42.36,
+      "break_trend_price": 41.3043,
+      "structure_support": 42.36,
+      "exit_signal": "PROTECT",
+      "consumption_score": 13.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 42.044,
       "peak_close": 47.1,
       "broken_streak": 0,
@@ -11546,8 +11747,7 @@
       "exit_signal": "HOLD",
       "consumption_score": 44.0,
       "t_date": "2026-09-24"
-    },
-    "prev": {}
+    }
   },
   "605488": {
     "last": {
@@ -11565,6 +11765,17 @@
   },
   "603686": {
     "last": {
+      "protection_price": 14.171,
+      "peak_close": 14.82,
+      "broken_streak": 0,
+      "warning_price": 14.171,
+      "break_trend_price": 13.6953,
+      "structure_support": 14.171,
+      "exit_signal": "HOLD",
+      "consumption_score": 6.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 13.84,
       "peak_close": 14.82,
       "broken_streak": 0,
@@ -11574,8 +11785,7 @@
       "exit_signal": "HOLD",
       "consumption_score": 23.0,
       "t_date": "2026-09-24"
-    },
-    "prev": {}
+    }
   },
   "603396": {
     "last": {
@@ -11701,6 +11911,17 @@
   },
   "603092": {
     "last": {
+      "protection_price": 44.384,
+      "peak_close": 49.04,
+      "broken_streak": 0,
+      "warning_price": 44.384,
+      "break_trend_price": 43.1901,
+      "structure_support": 44.384,
+      "exit_signal": "HOLD",
+      "consumption_score": 21.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 43.206,
       "peak_close": 48.34,
       "broken_streak": 0,
@@ -11710,17 +11931,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 29.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 42.903,
-      "peak_close": 45.85,
-      "broken_streak": 0,
-      "warning_price": 42.903,
-      "break_trend_price": 42.1398,
-      "structure_support": 42.903,
-      "exit_signal": "HOLD",
-      "consumption_score": 13.0,
-      "t_date": "2026-09-24"
     }
   },
   "002990": {
@@ -11739,6 +11949,17 @@
   },
   "002836": {
     "last": {
+      "protection_price": 10.947,
+      "peak_close": 12.27,
+      "broken_streak": 0,
+      "warning_price": 10.947,
+      "break_trend_price": 10.4438,
+      "structure_support": 10.947,
+      "exit_signal": "HOLD",
+      "consumption_score": 13.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 10.504,
       "peak_close": 12.27,
       "broken_streak": 0,
@@ -11748,8 +11969,7 @@
       "exit_signal": "HOLD",
       "consumption_score": 41.0,
       "t_date": "2026-09-24"
-    },
-    "prev": {}
+    }
   },
   "603122": {
     "last": {
@@ -11809,6 +12029,17 @@
   },
   "600207": {
     "last": {
+      "protection_price": 4.929,
+      "peak_close": 5.6,
+      "broken_streak": 0,
+      "warning_price": 4.929,
+      "break_trend_price": 4.7369,
+      "structure_support": 4.929,
+      "exit_signal": "HOLD",
+      "consumption_score": 31.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 4.748,
       "peak_close": 5.46,
       "broken_streak": 0,
@@ -11818,17 +12049,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 36.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 4.699,
-      "peak_close": 5.16,
-      "broken_streak": 0,
-      "warning_price": 4.699,
-      "break_trend_price": 4.5704,
-      "structure_support": 4.699,
-      "exit_signal": "HOLD",
-      "consumption_score": 28.0,
-      "t_date": "2026-09-24"
     }
   },
   "688625": {
@@ -12105,6 +12325,17 @@
   },
   "300850": {
     "last": {
+      "protection_price": 28.958,
+      "peak_close": 30.75,
+      "broken_streak": 0,
+      "warning_price": 28.958,
+      "break_trend_price": 28.0391,
+      "structure_support": 28.958,
+      "exit_signal": "HOLD",
+      "consumption_score": 15.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 28.205,
       "peak_close": 30.22,
       "broken_streak": 0,
@@ -12114,21 +12345,21 @@
       "exit_signal": "WATCH",
       "consumption_score": 21.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 27.925,
-      "peak_close": 29.25,
-      "broken_streak": 0,
-      "warning_price": 27.925,
-      "break_trend_price": 27.2886,
-      "structure_support": 27.925,
-      "exit_signal": "HOLD",
-      "consumption_score": 6.0,
-      "t_date": "2026-09-24"
     }
   },
   "600036": {
     "last": {
+      "protection_price": 41.092,
+      "peak_close": 41.94,
+      "broken_streak": 0,
+      "warning_price": 41.092,
+      "break_trend_price": 40.7677,
+      "structure_support": 41.092,
+      "exit_signal": "WATCH",
+      "consumption_score": 10.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 40.966,
       "peak_close": 40.69,
       "broken_streak": 0,
@@ -12138,21 +12369,21 @@
       "exit_signal": "PROTECT",
       "consumption_score": 0.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 40.902,
-      "peak_close": 40.69,
-      "broken_streak": 0,
-      "warning_price": 40.902,
-      "break_trend_price": 40.5777,
-      "structure_support": 40.902,
-      "exit_signal": "PROTECT",
-      "consumption_score": 0.0,
-      "t_date": "2026-09-24"
     }
   },
   "601288": {
     "last": {
+      "protection_price": 6.903,
+      "peak_close": 7.06,
+      "broken_streak": 0,
+      "warning_price": 6.903,
+      "break_trend_price": 6.8409,
+      "structure_support": 6.903,
+      "exit_signal": "WATCH",
+      "consumption_score": 10.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 6.9,
       "peak_close": 6.87,
       "broken_streak": 0,
@@ -12162,17 +12393,6 @@
       "exit_signal": "PROTECT",
       "consumption_score": 0.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 6.897,
-      "peak_close": 6.87,
-      "broken_streak": 0,
-      "warning_price": 6.897,
-      "break_trend_price": 6.8277,
-      "structure_support": 6.897,
-      "exit_signal": "PROTECT",
-      "consumption_score": 0.0,
-      "t_date": "2026-09-24"
     }
   },
   "300710": {
@@ -12205,6 +12425,17 @@
   },
   "601918": {
     "last": {
+      "protection_price": 10.76,
+      "peak_close": 11.75,
+      "broken_streak": 0,
+      "warning_price": 10.76,
+      "break_trend_price": 10.5671,
+      "structure_support": 10.76,
+      "exit_signal": "WATCH",
+      "consumption_score": 21.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 10.618,
       "peak_close": 11.45,
       "broken_streak": 0,
@@ -12214,17 +12445,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 13.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 10.59,
-      "peak_close": 11.15,
-      "broken_streak": 0,
-      "warning_price": 10.59,
-      "break_trend_price": 10.4082,
-      "structure_support": 10.59,
-      "exit_signal": "HOLD",
-      "consumption_score": 8.0,
-      "t_date": "2026-09-24"
     }
   },
   "603716": {
@@ -12285,6 +12505,17 @@
   },
   "300904": {
     "last": {
+      "protection_price": 44.105,
+      "peak_close": 49.18,
+      "broken_streak": 0,
+      "warning_price": 44.105,
+      "break_trend_price": 42.2271,
+      "structure_support": 44.105,
+      "exit_signal": "WATCH",
+      "consumption_score": 31.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 42.239,
       "peak_close": 47.0,
       "broken_streak": 0,
@@ -12294,8 +12525,7 @@
       "exit_signal": "HOLD",
       "consumption_score": 26.0,
       "t_date": "2026-09-24"
-    },
-    "prev": {}
+    }
   },
   "002741": {
     "last": {
@@ -12355,6 +12585,17 @@
   },
   "603073": {
     "last": {
+      "protection_price": 17.762,
+      "peak_close": 20.67,
+      "broken_streak": 0,
+      "warning_price": 17.762,
+      "break_trend_price": 17.0731,
+      "structure_support": 17.762,
+      "exit_signal": "HOLD",
+      "consumption_score": 53.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 16.976,
       "peak_close": 19.72,
       "broken_streak": 0,
@@ -12364,17 +12605,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 63.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 16.828,
-      "peak_close": 18.88,
-      "broken_streak": 0,
-      "warning_price": 16.828,
-      "break_trend_price": 16.4723,
-      "structure_support": 16.828,
-      "exit_signal": "HOLD",
-      "consumption_score": 44.0,
-      "t_date": "2026-09-24"
     }
   },
   "600661": {
@@ -12393,6 +12623,17 @@
   },
   "601857": {
     "last": {
+      "protection_price": 10.968,
+      "peak_close": 11.75,
+      "broken_streak": 0,
+      "warning_price": 10.968,
+      "break_trend_price": 10.8216,
+      "structure_support": 10.968,
+      "exit_signal": "WATCH",
+      "consumption_score": 15.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 10.899,
       "peak_close": 11.19,
       "broken_streak": 0,
@@ -12402,17 +12643,6 @@
       "exit_signal": "WATCH",
       "consumption_score": 5.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {
-      "protection_price": 10.887,
-      "peak_close": 10.95,
-      "broken_streak": 0,
-      "warning_price": 10.887,
-      "break_trend_price": 10.7431,
-      "structure_support": 10.887,
-      "exit_signal": "PROTECT",
-      "consumption_score": 0.0,
-      "t_date": "2026-09-24"
     }
   },
   "600941": {
@@ -12521,6 +12751,17 @@
   },
   "002029": {
     "last": {
+      "protection_price": 8.781,
+      "peak_close": 9.54,
+      "broken_streak": 0,
+      "warning_price": 8.781,
+      "break_trend_price": 8.5178,
+      "structure_support": 8.781,
+      "exit_signal": "WATCH",
+      "consumption_score": 25.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 8.774,
       "peak_close": 9.26,
       "broken_streak": 0,
@@ -12530,11 +12771,21 @@
       "exit_signal": "PROTECT",
       "consumption_score": 8.0,
       "t_date": "2026-09-24"
-    },
-    "prev": {}
+    }
   },
   "600674": {
     "last": {
+      "protection_price": 16.129,
+      "peak_close": 17.15,
+      "broken_streak": 0,
+      "warning_price": 16.129,
+      "break_trend_price": 15.9761,
+      "structure_support": 16.129,
+      "exit_signal": "HOLD",
+      "consumption_score": 15.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 15.926,
       "peak_close": 16.56,
       "broken_streak": 0,
@@ -12544,8 +12795,7 @@
       "exit_signal": "HOLD",
       "consumption_score": 18.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {}
+    }
   },
   "300311": {
     "last": {
@@ -12563,6 +12813,17 @@
   },
   "002242": {
     "last": {
+      "protection_price": 12.58,
+      "peak_close": 14.8,
+      "broken_streak": 0,
+      "warning_price": 10.039,
+      "break_trend_price": 9.6658,
+      "structure_support": 10.039,
+      "exit_signal": "WATCH",
+      "consumption_score": 93.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 9.29,
       "peak_close": 10.33,
       "broken_streak": 0,
@@ -12572,11 +12833,21 @@
       "exit_signal": "HOLD",
       "consumption_score": 26.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {}
+    }
   },
   "600887": {
     "last": {
+      "protection_price": 26.793,
+      "peak_close": 27.7,
+      "broken_streak": 0,
+      "warning_price": 26.793,
+      "break_trend_price": 26.5873,
+      "structure_support": 26.793,
+      "exit_signal": "WATCH",
+      "consumption_score": 18.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 26.622,
       "peak_close": 27.03,
       "broken_streak": 0,
@@ -12586,8 +12857,7 @@
       "exit_signal": "PROTECT",
       "consumption_score": 0.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {}
+    }
   },
   "002296": {
     "last": {
@@ -12619,6 +12889,17 @@
   },
   "601328": {
     "last": {
+      "protection_price": 7.544,
+      "peak_close": 7.88,
+      "broken_streak": 0,
+      "warning_price": 7.544,
+      "break_trend_price": 7.4769,
+      "structure_support": 7.544,
+      "exit_signal": "WATCH",
+      "consumption_score": 18.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 7.458,
       "peak_close": 7.59,
       "broken_streak": 0,
@@ -12628,8 +12909,7 @@
       "exit_signal": "PROTECT",
       "consumption_score": 5.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {}
+    }
   },
   "300171": {
     "last": {
@@ -12689,6 +12969,17 @@
   },
   "605366": {
     "last": {
+      "protection_price": 9.01,
+      "peak_close": 10.6,
+      "broken_streak": 0,
+      "warning_price": 8.854,
+      "break_trend_price": 8.5229,
+      "structure_support": 8.854,
+      "exit_signal": "HOLD",
+      "consumption_score": 43.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 8.619,
       "peak_close": 10.14,
       "broken_streak": 0,
@@ -12698,11 +12989,21 @@
       "exit_signal": "HOLD",
       "consumption_score": 61.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {}
+    }
   },
   "300569": {
     "last": {
+      "protection_price": 5.044,
+      "peak_close": 5.5,
+      "broken_streak": 0,
+      "warning_price": 5.044,
+      "break_trend_price": 4.9133,
+      "structure_support": 5.044,
+      "exit_signal": "HOLD",
+      "consumption_score": 15.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 4.928,
       "peak_close": 5.5,
       "broken_streak": 0,
@@ -12712,8 +13013,7 @@
       "exit_signal": "HOLD",
       "consumption_score": 26.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {}
+    }
   },
   "300833": {
     "last": {
@@ -12899,6 +13199,17 @@
   },
   "301210": {
     "last": {
+      "protection_price": 28.98,
+      "peak_close": 29.39,
+      "broken_streak": 0,
+      "warning_price": 28.98,
+      "break_trend_price": 28.1582,
+      "structure_support": 28.98,
+      "exit_signal": "PROTECT",
+      "consumption_score": 9.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 27.355,
       "peak_close": 29.3,
       "broken_streak": 0,
@@ -12908,8 +13219,7 @@
       "exit_signal": "HOLD",
       "consumption_score": 28.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {}
+    }
   },
   "000513": {
     "last": {
@@ -12955,6 +13265,17 @@
   },
   "600825": {
     "last": {
+      "protection_price": 10.6505,
+      "peak_close": 12.53,
+      "broken_streak": 0,
+      "warning_price": 6.775,
+      "break_trend_price": 6.48,
+      "structure_support": 6.775,
+      "exit_signal": "WATCH",
+      "consumption_score": 100.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 7.2675,
       "peak_close": 8.55,
       "broken_streak": 0,
@@ -12964,8 +13285,7 @@
       "exit_signal": "WATCH",
       "consumption_score": 86.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {}
+    }
   },
   "603949": {
     "last": {
@@ -13039,6 +13359,17 @@
   },
   "688561": {
     "last": {
+      "protection_price": 28.396,
+      "peak_close": 29.77,
+      "broken_streak": 0,
+      "warning_price": 28.396,
+      "break_trend_price": 27.5031,
+      "structure_support": 28.396,
+      "exit_signal": "PROTECT",
+      "consumption_score": 9.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 28.018,
       "peak_close": 29.77,
       "broken_streak": 0,
@@ -13048,11 +13379,21 @@
       "exit_signal": "HOLD",
       "consumption_score": 11.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {}
+    }
   },
   "688292": {
     "last": {
+      "protection_price": 20.159,
+      "peak_close": 21.89,
+      "broken_streak": 0,
+      "warning_price": 20.159,
+      "break_trend_price": 19.3833,
+      "structure_support": 20.159,
+      "exit_signal": "PROTECT",
+      "consumption_score": 16.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 19.561,
       "peak_close": 21.89,
       "broken_streak": 0,
@@ -13062,8 +13403,7 @@
       "exit_signal": "HOLD",
       "consumption_score": 38.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {}
+    }
   },
   "603120": {
     "last": {
@@ -13095,6 +13435,17 @@
   },
   "301190": {
     "last": {
+      "protection_price": 35.768,
+      "peak_close": 42.08,
+      "broken_streak": 0,
+      "warning_price": 22.83,
+      "break_trend_price": 21.5425,
+      "structure_support": 22.83,
+      "exit_signal": "WATCH",
+      "consumption_score": 93.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 21.2075,
       "peak_close": 24.95,
       "broken_streak": 0,
@@ -13104,11 +13455,21 @@
       "exit_signal": "HOLD",
       "consumption_score": 49.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {}
+    }
   },
   "000011": {
     "last": {
+      "protection_price": 10.0725,
+      "peak_close": 11.85,
+      "broken_streak": 0,
+      "warning_price": 9.628,
+      "break_trend_price": 9.2105,
+      "structure_support": 9.628,
+      "exit_signal": "WATCH",
+      "consumption_score": 60.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 9.075,
       "peak_close": 10.12,
       "broken_streak": 0,
@@ -13118,8 +13479,7 @@
       "exit_signal": "HOLD",
       "consumption_score": 22.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {}
+    }
   },
   "600483": {
     "last": {
@@ -13137,6 +13497,17 @@
   },
   "002480": {
     "last": {
+      "protection_price": 5.37,
+      "peak_close": 5.93,
+      "broken_streak": 0,
+      "warning_price": 5.37,
+      "break_trend_price": 5.2654,
+      "structure_support": 5.37,
+      "exit_signal": "WATCH",
+      "consumption_score": 19.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 5.34,
       "peak_close": 5.65,
       "broken_streak": 0,
@@ -13146,8 +13517,7 @@
       "exit_signal": "PROTECT",
       "consumption_score": 5.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {}
+    }
   },
   "002493": {
     "last": {
@@ -13221,6 +13591,17 @@
   },
   "000503": {
     "last": {
+      "protection_price": 7.091,
+      "peak_close": 8.17,
+      "broken_streak": 0,
+      "warning_price": 7.091,
+      "break_trend_price": 6.9281,
+      "structure_support": 7.091,
+      "exit_signal": "WATCH",
+      "consumption_score": 36.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 6.947,
       "peak_close": 7.44,
       "broken_streak": 0,
@@ -13230,11 +13611,21 @@
       "exit_signal": "HOLD",
       "consumption_score": 8.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {}
+    }
   },
   "000678": {
     "last": {
+      "protection_price": 9.962,
+      "peak_close": 11.72,
+      "broken_streak": 0,
+      "warning_price": 9.755,
+      "break_trend_price": 9.3775,
+      "structure_support": 9.755,
+      "exit_signal": "WATCH",
+      "consumption_score": 43.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 9.165,
       "peak_close": 10.65,
       "broken_streak": 0,
@@ -13244,11 +13635,21 @@
       "exit_signal": "HOLD",
       "consumption_score": 34.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {}
+    }
   },
   "688608": {
     "last": {
+      "protection_price": 102.175,
+      "peak_close": 110.54,
+      "broken_streak": 0,
+      "warning_price": 102.175,
+      "break_trend_price": 99.4496,
+      "structure_support": 102.175,
+      "exit_signal": "HOLD",
+      "consumption_score": 13.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 101.268,
       "peak_close": 110.54,
       "broken_streak": 0,
@@ -13258,8 +13659,7 @@
       "exit_signal": "HOLD",
       "consumption_score": 20.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {}
+    }
   },
   "688152": {
     "last": {
@@ -13291,6 +13691,17 @@
   },
   "600789": {
     "last": {
+      "protection_price": 7.71,
+      "peak_close": 8.22,
+      "broken_streak": 0,
+      "warning_price": 7.71,
+      "break_trend_price": 7.5746,
+      "structure_support": 7.71,
+      "exit_signal": "WATCH",
+      "consumption_score": 18.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 7.664,
       "peak_close": 7.73,
       "broken_streak": 0,
@@ -13300,8 +13711,7 @@
       "exit_signal": "PROTECT",
       "consumption_score": 0.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {}
+    }
   },
   "600178": {
     "last": {
@@ -13361,6 +13771,17 @@
   },
   "001330": {
     "last": {
+      "protection_price": 5.894,
+      "peak_close": 6.36,
+      "broken_streak": 0,
+      "warning_price": 5.894,
+      "break_trend_price": 5.6833,
+      "structure_support": 5.894,
+      "exit_signal": "HOLD",
+      "consumption_score": 16.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 5.767,
       "peak_close": 6.36,
       "broken_streak": 0,
@@ -13370,8 +13791,7 @@
       "exit_signal": "HOLD",
       "consumption_score": 32.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {}
+    }
   },
   "603727": {
     "last": {
@@ -13389,6 +13809,17 @@
   },
   "002617": {
     "last": {
+      "protection_price": 6.715,
+      "peak_close": 7.24,
+      "broken_streak": 0,
+      "warning_price": 6.715,
+      "break_trend_price": 6.5496,
+      "structure_support": 6.715,
+      "exit_signal": "WATCH",
+      "consumption_score": 26.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 6.555,
       "peak_close": 6.75,
       "broken_streak": 0,
@@ -13398,8 +13829,7 @@
       "exit_signal": "HOLD",
       "consumption_score": 10.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {}
+    }
   },
   "300675": {
     "last": {
@@ -13473,6 +13903,17 @@
   },
   "000690": {
     "last": {
+      "protection_price": 5.221,
+      "peak_close": 5.67,
+      "broken_streak": 0,
+      "warning_price": 5.221,
+      "break_trend_price": 5.1353,
+      "structure_support": 5.221,
+      "exit_signal": "WATCH",
+      "consumption_score": 21.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 5.127,
       "peak_close": 5.2,
       "broken_streak": 0,
@@ -13482,11 +13923,21 @@
       "exit_signal": "PROTECT",
       "consumption_score": 8.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {}
+    }
   },
   "601919": {
     "last": {
+      "protection_price": 16.377,
+      "peak_close": 16.76,
+      "broken_streak": 0,
+      "warning_price": 16.33,
+      "break_trend_price": 16.1511,
+      "structure_support": 16.33,
+      "exit_signal": "WATCH",
+      "consumption_score": 10.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
       "protection_price": 16.377,
       "peak_close": 16.46,
       "broken_streak": 0,
@@ -13496,8 +13947,7 @@
       "exit_signal": "PROTECT",
       "consumption_score": 0.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {}
+    }
   },
   "601985": {
     "last": {
@@ -13544,6 +13994,17 @@
   "601898": {
     "last": {
       "protection_price": 14.619,
+      "peak_close": 14.42,
+      "broken_streak": 0,
+      "warning_price": 14.353,
+      "break_trend_price": 14.1555,
+      "structure_support": 14.353,
+      "exit_signal": "PROTECT",
+      "consumption_score": 5.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {
+      "protection_price": 14.619,
       "peak_close": 14.18,
       "broken_streak": 1,
       "warning_price": 14.619,
@@ -13552,8 +14013,7 @@
       "exit_signal": "SELL",
       "consumption_score": 5.0,
       "t_date": "2026-09-28"
-    },
-    "prev": {}
+    }
   },
   "002100": {
     "last": {
@@ -13566,6 +14026,1476 @@
       "exit_signal": "PROTECT",
       "consumption_score": 3.0,
       "t_date": "2026-09-28"
+    },
+    "prev": {}
+  },
+  "603669": {
+    "last": {
+      "protection_price": 5.9,
+      "peak_close": 6.78,
+      "broken_streak": 0,
+      "warning_price": 5.9,
+      "break_trend_price": 5.7225,
+      "structure_support": 5.9,
+      "exit_signal": "HOLD",
+      "consumption_score": 42.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "605399": {
+    "last": {
+      "protection_price": 11.558,
+      "peak_close": 13.06,
+      "broken_streak": 0,
+      "warning_price": 11.558,
+      "break_trend_price": 11.3259,
+      "structure_support": 11.558,
+      "exit_signal": "HOLD",
+      "consumption_score": 24.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "002728": {
+    "last": {
+      "protection_price": 9.542,
+      "peak_close": 10.09,
+      "broken_streak": 0,
+      "warning_price": 9.542,
+      "break_trend_price": 9.3516,
+      "structure_support": 9.542,
+      "exit_signal": "HOLD",
+      "consumption_score": 29.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "603818": {
+    "last": {
+      "protection_price": 3.839,
+      "peak_close": 4.2,
+      "broken_streak": 0,
+      "warning_price": 3.839,
+      "break_trend_price": 3.7386,
+      "structure_support": 3.839,
+      "exit_signal": "HOLD",
+      "consumption_score": 8.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "300530": {
+    "last": {
+      "protection_price": 24.565,
+      "peak_close": 28.9,
+      "broken_streak": 0,
+      "warning_price": 20.586,
+      "break_trend_price": 19.8767,
+      "structure_support": 20.586,
+      "exit_signal": "HOLD",
+      "consumption_score": 68.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "600408": {
+    "last": {
+      "protection_price": 3.213,
+      "peak_close": 3.78,
+      "broken_streak": 0,
+      "warning_price": 3.155,
+      "break_trend_price": 3.0693,
+      "structure_support": 3.155,
+      "exit_signal": "HOLD",
+      "consumption_score": 53.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "300522": {
+    "last": {
+      "protection_price": 14.671,
+      "peak_close": 16.82,
+      "broken_streak": 0,
+      "warning_price": 14.671,
+      "break_trend_price": 14.0778,
+      "structure_support": 14.671,
+      "exit_signal": "HOLD",
+      "consumption_score": 36.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "001336": {
+    "last": {
+      "protection_price": 19.312,
+      "peak_close": 22.72,
+      "broken_streak": 0,
+      "warning_price": 19.015,
+      "break_trend_price": 18.5496,
+      "structure_support": 19.015,
+      "exit_signal": "HOLD",
+      "consumption_score": 48.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "301118": {
+    "last": {
+      "protection_price": 23.446,
+      "peak_close": 25.85,
+      "broken_streak": 0,
+      "warning_price": 23.446,
+      "break_trend_price": 22.9124,
+      "structure_support": 23.446,
+      "exit_signal": "HOLD",
+      "consumption_score": 29.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "603630": {
+    "last": {
+      "protection_price": 14.335,
+      "peak_close": 16.38,
+      "broken_streak": 0,
+      "warning_price": 14.335,
+      "break_trend_price": 13.9864,
+      "structure_support": 14.335,
+      "exit_signal": "HOLD",
+      "consumption_score": 38.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "605136": {
+    "last": {
+      "protection_price": 8.614,
+      "peak_close": 9.44,
+      "broken_streak": 0,
+      "warning_price": 8.614,
+      "break_trend_price": 8.4176,
+      "structure_support": 8.614,
+      "exit_signal": "HOLD",
+      "consumption_score": 15.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "301355": {
+    "last": {
+      "protection_price": 11.614,
+      "peak_close": 11.77,
+      "broken_streak": 0,
+      "warning_price": 11.614,
+      "break_trend_price": 11.3761,
+      "structure_support": 11.614,
+      "exit_signal": "PROTECT",
+      "consumption_score": 6.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "002413": {
+    "last": {
+      "protection_price": 8.387,
+      "peak_close": 8.58,
+      "broken_streak": 0,
+      "warning_price": 8.387,
+      "break_trend_price": 8.1806,
+      "structure_support": 8.387,
+      "exit_signal": "HOLD",
+      "consumption_score": 13.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "001300": {
+    "last": {
+      "protection_price": 12.631,
+      "peak_close": 14.86,
+      "broken_streak": 0,
+      "warning_price": 12.317,
+      "break_trend_price": 11.9977,
+      "structure_support": 12.317,
+      "exit_signal": "HOLD",
+      "consumption_score": 41.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "600521": {
+    "last": {
+      "protection_price": 16.086,
+      "peak_close": 17.05,
+      "broken_streak": 0,
+      "warning_price": 16.086,
+      "break_trend_price": 15.8289,
+      "structure_support": 16.086,
+      "exit_signal": "HOLD",
+      "consumption_score": 23.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "688099": {
+    "last": {
+      "protection_price": 89.674,
+      "peak_close": 98.36,
+      "broken_streak": 0,
+      "warning_price": 89.674,
+      "break_trend_price": 87.5679,
+      "structure_support": 89.674,
+      "exit_signal": "HOLD",
+      "consumption_score": 20.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "300805": {
+    "last": {
+      "protection_price": 8.479,
+      "peak_close": 8.77,
+      "broken_streak": 0,
+      "warning_price": 8.479,
+      "break_trend_price": 8.3108,
+      "structure_support": 8.479,
+      "exit_signal": "HOLD",
+      "consumption_score": 6.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "605566": {
+    "last": {
+      "protection_price": 29.45,
+      "peak_close": 33.39,
+      "broken_streak": 0,
+      "warning_price": 29.45,
+      "break_trend_price": 28.5711,
+      "structure_support": 29.45,
+      "exit_signal": "HOLD",
+      "consumption_score": 33.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "688199": {
+    "last": {
+      "protection_price": 24.47,
+      "peak_close": 26.57,
+      "broken_streak": 0,
+      "warning_price": 24.47,
+      "break_trend_price": 23.9793,
+      "structure_support": 24.47,
+      "exit_signal": "HOLD",
+      "consumption_score": 16.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "300133": {
+    "last": {
+      "protection_price": 7.436,
+      "peak_close": 7.72,
+      "broken_streak": 0,
+      "warning_price": 7.436,
+      "break_trend_price": 7.3131,
+      "structure_support": 7.436,
+      "exit_signal": "HOLD",
+      "consumption_score": 6.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "002058": {
+    "last": {
+      "protection_price": 20.774,
+      "peak_close": 24.44,
+      "broken_streak": 0,
+      "warning_price": 17.627,
+      "break_trend_price": 17.0277,
+      "structure_support": 17.627,
+      "exit_signal": "WATCH",
+      "consumption_score": 75.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "600977": {
+    "last": {
+      "protection_price": 13.04,
+      "peak_close": 13.64,
+      "broken_streak": 0,
+      "warning_price": 13.04,
+      "break_trend_price": 12.8307,
+      "structure_support": 13.04,
+      "exit_signal": "HOLD",
+      "consumption_score": 14.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "600233": {
+    "last": {
+      "protection_price": 17.6,
+      "peak_close": 18.39,
+      "broken_streak": 0,
+      "warning_price": 17.6,
+      "break_trend_price": 17.2839,
+      "structure_support": 17.6,
+      "exit_signal": "HOLD",
+      "consumption_score": 3.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "605378": {
+    "last": {
+      "protection_price": 15.776,
+      "peak_close": 18.56,
+      "broken_streak": 0,
+      "warning_price": 15.018,
+      "break_trend_price": 14.5312,
+      "structure_support": 15.018,
+      "exit_signal": "HOLD",
+      "consumption_score": 48.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "600812": {
+    "last": {
+      "protection_price": 5.1255,
+      "peak_close": 6.03,
+      "broken_streak": 0,
+      "warning_price": 4.931,
+      "break_trend_price": 4.8006,
+      "structure_support": 4.931,
+      "exit_signal": "HOLD",
+      "consumption_score": 56.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "600400": {
+    "last": {
+      "protection_price": 3.288,
+      "peak_close": 3.67,
+      "broken_streak": 0,
+      "warning_price": 3.288,
+      "break_trend_price": 3.1876,
+      "structure_support": 3.288,
+      "exit_signal": "HOLD",
+      "consumption_score": 27.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "605303": {
+    "last": {
+      "protection_price": 26.945,
+      "peak_close": 31.7,
+      "broken_streak": 0,
+      "warning_price": 24.92,
+      "break_trend_price": 24.0314,
+      "structure_support": 24.92,
+      "exit_signal": "WATCH",
+      "consumption_score": 75.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "600241": {
+    "last": {
+      "protection_price": 9.996,
+      "peak_close": 11.76,
+      "broken_streak": 0,
+      "warning_price": 7.961,
+      "break_trend_price": 7.7174,
+      "structure_support": 7.961,
+      "exit_signal": "WATCH",
+      "consumption_score": 93.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "002866": {
+    "last": {
+      "protection_price": 16.3115,
+      "peak_close": 19.19,
+      "broken_streak": 0,
+      "warning_price": 15.008,
+      "break_trend_price": 14.5948,
+      "structure_support": 15.008,
+      "exit_signal": "HOLD",
+      "consumption_score": 68.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "688399": {
+    "last": {
+      "protection_price": 26.371,
+      "peak_close": 29.26,
+      "broken_streak": 0,
+      "warning_price": 26.371,
+      "break_trend_price": 25.6181,
+      "structure_support": 26.371,
+      "exit_signal": "HOLD",
+      "consumption_score": 23.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "002692": {
+    "last": {
+      "protection_price": 4.362,
+      "peak_close": 4.76,
+      "broken_streak": 0,
+      "warning_price": 4.362,
+      "break_trend_price": 4.2788,
+      "structure_support": 4.362,
+      "exit_signal": "HOLD",
+      "consumption_score": 16.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "300340": {
+    "last": {
+      "protection_price": 9.435,
+      "peak_close": 11.1,
+      "broken_streak": 0,
+      "warning_price": 8.877,
+      "break_trend_price": 8.6191,
+      "structure_support": 8.877,
+      "exit_signal": "HOLD",
+      "consumption_score": 63.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "300182": {
+    "last": {
+      "protection_price": 5.091,
+      "peak_close": 5.12,
+      "broken_streak": 0,
+      "warning_price": 5.091,
+      "break_trend_price": 4.9999,
+      "structure_support": 5.091,
+      "exit_signal": "PROTECT",
+      "consumption_score": 3.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "600843": {
+    "last": {
+      "protection_price": 7.298,
+      "peak_close": 8.18,
+      "broken_streak": 0,
+      "warning_price": 7.298,
+      "break_trend_price": 7.1073,
+      "structure_support": 7.298,
+      "exit_signal": "HOLD",
+      "consumption_score": 33.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "603200": {
+    "last": {
+      "protection_price": 45.526,
+      "peak_close": 53.56,
+      "broken_streak": 0,
+      "warning_price": 40.749,
+      "break_trend_price": 39.4133,
+      "structure_support": 40.749,
+      "exit_signal": "HOLD",
+      "consumption_score": 68.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "002923": {
+    "last": {
+      "protection_price": 11.052,
+      "peak_close": 12.02,
+      "broken_streak": 0,
+      "warning_price": 11.052,
+      "break_trend_price": 10.8174,
+      "structure_support": 11.052,
+      "exit_signal": "HOLD",
+      "consumption_score": 18.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "600770": {
+    "last": {
+      "protection_price": 5.88,
+      "peak_close": 5.97,
+      "broken_streak": 0,
+      "warning_price": 5.88,
+      "break_trend_price": 5.6796,
+      "structure_support": 5.88,
+      "exit_signal": "PROTECT",
+      "consumption_score": 12.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "002565": {
+    "last": {
+      "protection_price": 8.762,
+      "peak_close": 9.76,
+      "broken_streak": 0,
+      "warning_price": 8.762,
+      "break_trend_price": 8.4695,
+      "structure_support": 8.762,
+      "exit_signal": "HOLD",
+      "consumption_score": 36.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "600746": {
+    "last": {
+      "protection_price": 7.088,
+      "peak_close": 7.37,
+      "broken_streak": 0,
+      "warning_price": 7.088,
+      "break_trend_price": 6.943,
+      "structure_support": 7.088,
+      "exit_signal": "HOLD",
+      "consumption_score": 16.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "601216": {
+    "last": {
+      "protection_price": 4.67,
+      "peak_close": 4.85,
+      "broken_streak": 0,
+      "warning_price": 4.67,
+      "break_trend_price": 4.6154,
+      "structure_support": 4.67,
+      "exit_signal": "HOLD",
+      "consumption_score": 10.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "603303": {
+    "last": {
+      "protection_price": 26.867,
+      "peak_close": 27.16,
+      "broken_streak": 0,
+      "warning_price": 26.867,
+      "break_trend_price": 26.2631,
+      "structure_support": 26.867,
+      "exit_signal": "PROTECT",
+      "consumption_score": 3.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "000597": {
+    "last": {
+      "protection_price": 4.765,
+      "peak_close": 4.94,
+      "broken_streak": 0,
+      "warning_price": 4.765,
+      "break_trend_price": 4.6939,
+      "structure_support": 4.765,
+      "exit_signal": "HOLD",
+      "consumption_score": 13.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "600884": {
+    "last": {
+      "protection_price": 11.438,
+      "peak_close": 12.02,
+      "broken_streak": 0,
+      "warning_price": 11.438,
+      "break_trend_price": 11.2505,
+      "structure_support": 11.438,
+      "exit_signal": "HOLD",
+      "consumption_score": 13.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "603313": {
+    "last": {
+      "protection_price": 6.605,
+      "peak_close": 6.43,
+      "broken_streak": 0,
+      "warning_price": 6.605,
+      "break_trend_price": 6.4679,
+      "structure_support": 6.605,
+      "exit_signal": "PROTECT",
+      "consumption_score": 8.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "600566": {
+    "last": {
+      "protection_price": 25.335,
+      "peak_close": 26.71,
+      "broken_streak": 0,
+      "warning_price": 25.335,
+      "break_trend_price": 25.0321,
+      "structure_support": 25.335,
+      "exit_signal": "HOLD",
+      "consumption_score": 23.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "605507": {
+    "last": {
+      "protection_price": 17.35,
+      "peak_close": 17.57,
+      "broken_streak": 0,
+      "warning_price": 17.35,
+      "break_trend_price": 16.9386,
+      "structure_support": 17.35,
+      "exit_signal": "PROTECT",
+      "consumption_score": 13.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "603906": {
+    "last": {
+      "protection_price": 18.853,
+      "peak_close": 22.18,
+      "broken_streak": 0,
+      "warning_price": 18.64,
+      "break_trend_price": 18.2189,
+      "structure_support": 18.64,
+      "exit_signal": "HOLD",
+      "consumption_score": 41.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "002129": {
+    "last": {
+      "protection_price": 9.09,
+      "peak_close": 9.47,
+      "broken_streak": 0,
+      "warning_price": 9.09,
+      "break_trend_price": 8.9396,
+      "structure_support": 9.09,
+      "exit_signal": "HOLD",
+      "consumption_score": 16.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "600052": {
+    "last": {
+      "protection_price": 3.807,
+      "peak_close": 4.14,
+      "broken_streak": 0,
+      "warning_price": 3.807,
+      "break_trend_price": 3.7266,
+      "structure_support": 3.807,
+      "exit_signal": "HOLD",
+      "consumption_score": 26.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "688023": {
+    "last": {
+      "protection_price": 44.737,
+      "peak_close": 45.5,
+      "broken_streak": 0,
+      "warning_price": 44.737,
+      "break_trend_price": 43.3591,
+      "structure_support": 44.737,
+      "exit_signal": "PROTECT",
+      "consumption_score": 12.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "002693": {
+    "last": {
+      "protection_price": 8.96,
+      "peak_close": 9.65,
+      "broken_streak": 0,
+      "warning_price": 8.96,
+      "break_trend_price": 8.7636,
+      "structure_support": 8.96,
+      "exit_signal": "HOLD",
+      "consumption_score": 15.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "301087": {
+    "last": {
+      "protection_price": 52.645,
+      "peak_close": 56.53,
+      "broken_streak": 0,
+      "warning_price": 52.645,
+      "break_trend_price": 51.5589,
+      "structure_support": 52.645,
+      "exit_signal": "HOLD",
+      "consumption_score": 16.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "688267": {
+    "last": {
+      "protection_price": 20.808,
+      "peak_close": 20.86,
+      "broken_streak": 0,
+      "warning_price": 20.808,
+      "break_trend_price": 20.4048,
+      "structure_support": 20.808,
+      "exit_signal": "PROTECT",
+      "consumption_score": 6.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "601965": {
+    "last": {
+      "protection_price": 13.472,
+      "peak_close": 14.39,
+      "broken_streak": 0,
+      "warning_price": 13.472,
+      "break_trend_price": 13.2838,
+      "structure_support": 13.472,
+      "exit_signal": "HOLD",
+      "consumption_score": 15.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "601519": {
+    "last": {
+      "protection_price": 8.531,
+      "peak_close": 8.56,
+      "broken_streak": 0,
+      "warning_price": 8.531,
+      "break_trend_price": 8.3171,
+      "structure_support": 8.531,
+      "exit_signal": "PROTECT",
+      "consumption_score": 6.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "002212": {
+    "last": {
+      "protection_price": 7.028,
+      "peak_close": 7.07,
+      "broken_streak": 0,
+      "warning_price": 7.028,
+      "break_trend_price": 6.7812,
+      "structure_support": 7.028,
+      "exit_signal": "PROTECT",
+      "consumption_score": 6.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "600988": {
+    "last": {
+      "protection_price": 42.57,
+      "peak_close": 40.03,
+      "broken_streak": 1,
+      "warning_price": 42.57,
+      "break_trend_price": 41.6004,
+      "structure_support": 42.57,
+      "exit_signal": "SELL",
+      "consumption_score": 3.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "600616": {
+    "last": {
+      "protection_price": 4.878,
+      "peak_close": 5.07,
+      "broken_streak": 0,
+      "warning_price": 4.878,
+      "break_trend_price": 4.6926,
+      "structure_support": 4.878,
+      "exit_signal": "HOLD",
+      "consumption_score": 16.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "600900": {
+    "last": {
+      "protection_price": 28.361,
+      "peak_close": 29.25,
+      "broken_streak": 0,
+      "warning_price": 28.361,
+      "break_trend_price": 28.1946,
+      "structure_support": 28.361,
+      "exit_signal": "HOLD",
+      "consumption_score": 10.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "688620": {
+    "last": {
+      "protection_price": 16.248,
+      "peak_close": 15.18,
+      "broken_streak": 0,
+      "warning_price": 16.248,
+      "break_trend_price": 15.7437,
+      "structure_support": 16.248,
+      "exit_signal": "PROTECT",
+      "consumption_score": 6.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "605177": {
+    "last": {
+      "protection_price": 24.369,
+      "peak_close": 26.29,
+      "broken_streak": 0,
+      "warning_price": 24.369,
+      "break_trend_price": 23.4683,
+      "structure_support": 24.369,
+      "exit_signal": "HOLD",
+      "consumption_score": 16.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "600886": {
+    "last": {
+      "protection_price": 14.671,
+      "peak_close": 15.91,
+      "broken_streak": 0,
+      "warning_price": 14.671,
+      "break_trend_price": 14.5042,
+      "structure_support": 14.671,
+      "exit_signal": "HOLD",
+      "consumption_score": 18.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "002966": {
+    "last": {
+      "protection_price": 9.202,
+      "peak_close": 9.54,
+      "broken_streak": 0,
+      "warning_price": 9.202,
+      "break_trend_price": 9.1084,
+      "structure_support": 9.202,
+      "exit_signal": "HOLD",
+      "consumption_score": 13.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "001318": {
+    "last": {
+      "protection_price": 11.91,
+      "peak_close": 13.6,
+      "broken_streak": 0,
+      "warning_price": 11.91,
+      "break_trend_price": 11.6568,
+      "structure_support": 11.91,
+      "exit_signal": "HOLD",
+      "consumption_score": 26.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "300717": {
+    "last": {
+      "protection_price": 18.76,
+      "peak_close": 20.7,
+      "broken_streak": 0,
+      "warning_price": 18.76,
+      "break_trend_price": 18.2743,
+      "structure_support": 18.76,
+      "exit_signal": "HOLD",
+      "consumption_score": 26.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "603939": {
+    "last": {
+      "protection_price": 22.48,
+      "peak_close": 24.08,
+      "broken_streak": 0,
+      "warning_price": 22.48,
+      "break_trend_price": 22.2061,
+      "structure_support": 22.48,
+      "exit_signal": "HOLD",
+      "consumption_score": 23.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "002959": {
+    "last": {
+      "protection_price": 33.022,
+      "peak_close": 38.49,
+      "broken_streak": 0,
+      "warning_price": 33.022,
+      "break_trend_price": 32.2577,
+      "structure_support": 33.022,
+      "exit_signal": "HOLD",
+      "consumption_score": 36.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "600218": {
+    "last": {
+      "protection_price": 7.833,
+      "peak_close": 8.26,
+      "broken_streak": 0,
+      "warning_price": 7.833,
+      "break_trend_price": 7.7105,
+      "structure_support": 7.833,
+      "exit_signal": "HOLD",
+      "consumption_score": 15.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "002675": {
+    "last": {
+      "protection_price": 12.7,
+      "peak_close": 13.6,
+      "broken_streak": 0,
+      "warning_price": 12.7,
+      "break_trend_price": 12.5432,
+      "structure_support": 12.7,
+      "exit_signal": "HOLD",
+      "consumption_score": 5.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "002259": {
+    "last": {
+      "protection_price": 4.512,
+      "peak_close": 4.81,
+      "broken_streak": 0,
+      "warning_price": 4.512,
+      "break_trend_price": 4.3809,
+      "structure_support": 4.512,
+      "exit_signal": "HOLD",
+      "consumption_score": 23.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "600380": {
+    "last": {
+      "protection_price": 9.485,
+      "peak_close": 10.11,
+      "broken_streak": 0,
+      "warning_price": 9.485,
+      "break_trend_price": 9.3632,
+      "structure_support": 9.485,
+      "exit_signal": "HOLD",
+      "consumption_score": 8.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "300705": {
+    "last": {
+      "protection_price": 10.821,
+      "peak_close": 11.16,
+      "broken_streak": 0,
+      "warning_price": 10.821,
+      "break_trend_price": 10.6528,
+      "structure_support": 10.821,
+      "exit_signal": "HOLD",
+      "consumption_score": 6.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "688768": {
+    "last": {
+      "protection_price": 46.92,
+      "peak_close": 48.03,
+      "broken_streak": 0,
+      "warning_price": 46.92,
+      "break_trend_price": 45.5136,
+      "structure_support": 46.92,
+      "exit_signal": "HOLD",
+      "consumption_score": 23.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "600060": {
+    "last": {
+      "protection_price": 27.626,
+      "peak_close": 27.78,
+      "broken_streak": 0,
+      "warning_price": 27.626,
+      "break_trend_price": 27.2214,
+      "structure_support": 27.626,
+      "exit_signal": "PROTECT",
+      "consumption_score": 0.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "600488": {
+    "last": {
+      "protection_price": 5.953,
+      "peak_close": 6.28,
+      "broken_streak": 0,
+      "warning_price": 5.953,
+      "break_trend_price": 5.7459,
+      "structure_support": 5.953,
+      "exit_signal": "HOLD",
+      "consumption_score": 16.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "300111": {
+    "last": {
+      "protection_price": 3.055,
+      "peak_close": 3.5,
+      "broken_streak": 0,
+      "warning_price": 3.055,
+      "break_trend_price": 2.9736,
+      "structure_support": 3.055,
+      "exit_signal": "HOLD",
+      "consumption_score": 26.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "300142": {
+    "last": {
+      "protection_price": 13.485,
+      "peak_close": 14.15,
+      "broken_streak": 0,
+      "warning_price": 13.485,
+      "break_trend_price": 13.2004,
+      "structure_support": 13.485,
+      "exit_signal": "HOLD",
+      "consumption_score": 13.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "300888": {
+    "last": {
+      "protection_price": 29.197,
+      "peak_close": 30.75,
+      "broken_streak": 0,
+      "warning_price": 29.197,
+      "break_trend_price": 28.8738,
+      "structure_support": 29.197,
+      "exit_signal": "HOLD",
+      "consumption_score": 15.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "600011": {
+    "last": {
+      "protection_price": 6.925,
+      "peak_close": 7.34,
+      "broken_streak": 0,
+      "warning_price": 6.925,
+      "break_trend_price": 6.8596,
+      "structure_support": 6.925,
+      "exit_signal": "HOLD",
+      "consumption_score": 23.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "002907": {
+    "last": {
+      "protection_price": 14.239,
+      "peak_close": 14.85,
+      "broken_streak": 0,
+      "warning_price": 14.239,
+      "break_trend_price": 13.9294,
+      "structure_support": 14.239,
+      "exit_signal": "HOLD",
+      "consumption_score": 6.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "002846": {
+    "last": {
+      "protection_price": 11.398,
+      "peak_close": 12.25,
+      "broken_streak": 0,
+      "warning_price": 11.398,
+      "break_trend_price": 11.0566,
+      "structure_support": 11.398,
+      "exit_signal": "HOLD",
+      "consumption_score": 17.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "301265": {
+    "last": {
+      "protection_price": 21.095,
+      "peak_close": 22.1,
+      "broken_streak": 0,
+      "warning_price": 21.095,
+      "break_trend_price": 20.4146,
+      "structure_support": 21.095,
+      "exit_signal": "HOLD",
+      "consumption_score": 11.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "600351": {
+    "last": {
+      "protection_price": 6.759,
+      "peak_close": 6.98,
+      "broken_streak": 0,
+      "warning_price": 6.759,
+      "break_trend_price": 6.6619,
+      "structure_support": 6.759,
+      "exit_signal": "HOLD",
+      "consumption_score": 3.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "601598": {
+    "last": {
+      "protection_price": 6.564,
+      "peak_close": 6.93,
+      "broken_streak": 0,
+      "warning_price": 6.564,
+      "break_trend_price": 6.4815,
+      "structure_support": 6.564,
+      "exit_signal": "HOLD",
+      "consumption_score": 10.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "300012": {
+    "last": {
+      "protection_price": 14.511,
+      "peak_close": 14.5,
+      "broken_streak": 0,
+      "warning_price": 14.511,
+      "break_trend_price": 14.3021,
+      "structure_support": 14.511,
+      "exit_signal": "REDUCE_RISK",
+      "consumption_score": 10.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "600210": {
+    "last": {
+      "protection_price": 6.272,
+      "peak_close": 6.56,
+      "broken_streak": 0,
+      "warning_price": 6.272,
+      "break_trend_price": 6.2252,
+      "structure_support": 6.272,
+      "exit_signal": "HOLD",
+      "consumption_score": 10.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "002882": {
+    "last": {
+      "protection_price": 24.0635,
+      "peak_close": 28.31,
+      "broken_streak": 0,
+      "warning_price": 23.576,
+      "break_trend_price": 22.6889,
+      "structure_support": 23.576,
+      "exit_signal": "HOLD",
+      "consumption_score": 56.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "300890": {
+    "last": {
+      "protection_price": 26.542,
+      "peak_close": 30.35,
+      "broken_streak": 0,
+      "warning_price": 26.542,
+      "break_trend_price": 25.9313,
+      "structure_support": 26.542,
+      "exit_signal": "HOLD",
+      "consumption_score": 36.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "300450": {
+    "last": {
+      "protection_price": 32.6655,
+      "peak_close": 38.43,
+      "broken_streak": 0,
+      "warning_price": 32.36,
+      "break_trend_price": 31.5729,
+      "structure_support": 32.36,
+      "exit_signal": "HOLD",
+      "consumption_score": 48.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "600719": {
+    "last": {
+      "protection_price": 7.865,
+      "peak_close": 8.0,
+      "broken_streak": 0,
+      "warning_price": 7.865,
+      "break_trend_price": 7.6182,
+      "structure_support": 7.865,
+      "exit_signal": "PROTECT",
+      "consumption_score": 10.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "301152": {
+    "last": {
+      "protection_price": 22.015,
+      "peak_close": 25.9,
+      "broken_streak": 0,
+      "warning_price": 21.798,
+      "break_trend_price": 21.1851,
+      "structure_support": 21.798,
+      "exit_signal": "HOLD",
+      "consumption_score": 43.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "688680": {
+    "last": {
+      "protection_price": 35.015,
+      "peak_close": 37.38,
+      "broken_streak": 0,
+      "warning_price": 35.015,
+      "break_trend_price": 34.2057,
+      "structure_support": 35.015,
+      "exit_signal": "HOLD",
+      "consumption_score": 23.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "002702": {
+    "last": {
+      "protection_price": 5.702,
+      "peak_close": 6.51,
+      "broken_streak": 0,
+      "warning_price": 5.702,
+      "break_trend_price": 5.5559,
+      "structure_support": 5.702,
+      "exit_signal": "HOLD",
+      "consumption_score": 41.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "300457": {
+    "last": {
+      "protection_price": 21.197,
+      "peak_close": 22.78,
+      "broken_streak": 0,
+      "warning_price": 21.197,
+      "break_trend_price": 20.7752,
+      "structure_support": 21.197,
+      "exit_signal": "HOLD",
+      "consumption_score": 18.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "603345": {
+    "last": {
+      "protection_price": 75.996,
+      "peak_close": 80.42,
+      "broken_streak": 0,
+      "warning_price": 75.996,
+      "break_trend_price": 74.9039,
+      "structure_support": 75.996,
+      "exit_signal": "HOLD",
+      "consumption_score": 5.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "002043": {
+    "last": {
+      "protection_price": 11.482,
+      "peak_close": 12.09,
+      "broken_streak": 0,
+      "warning_price": 11.482,
+      "break_trend_price": 11.2259,
+      "structure_support": 11.482,
+      "exit_signal": "HOLD",
+      "consumption_score": 13.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "601001": {
+    "last": {
+      "protection_price": 17.206,
+      "peak_close": 17.86,
+      "broken_streak": 0,
+      "warning_price": 17.206,
+      "break_trend_price": 16.8646,
+      "structure_support": 17.206,
+      "exit_signal": "HOLD",
+      "consumption_score": 19.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "600350": {
+    "last": {
+      "protection_price": 10.136,
+      "peak_close": 10.65,
+      "broken_streak": 0,
+      "warning_price": 10.136,
+      "break_trend_price": 10.0303,
+      "structure_support": 10.136,
+      "exit_signal": "HOLD",
+      "consumption_score": 15.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "300409": {
+    "last": {
+      "protection_price": 17.128,
+      "peak_close": 18.22,
+      "broken_streak": 0,
+      "warning_price": 17.128,
+      "break_trend_price": 16.8148,
+      "structure_support": 17.128,
+      "exit_signal": "HOLD",
+      "consumption_score": 18.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "300619": {
+    "last": {
+      "protection_price": 26.353,
+      "peak_close": 29.96,
+      "broken_streak": 0,
+      "warning_price": 26.353,
+      "break_trend_price": 25.4616,
+      "structure_support": 26.353,
+      "exit_signal": "HOLD",
+      "consumption_score": 31.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "603529": {
+    "last": {
+      "protection_price": 21.476,
+      "peak_close": 23.5,
+      "broken_streak": 0,
+      "warning_price": 21.476,
+      "break_trend_price": 21.1731,
+      "structure_support": 21.476,
+      "exit_signal": "HOLD",
+      "consumption_score": 26.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "002869": {
+    "last": {
+      "protection_price": 16.609,
+      "peak_close": 19.54,
+      "broken_streak": 0,
+      "warning_price": 16.502,
+      "break_trend_price": 16.072,
+      "structure_support": 16.502,
+      "exit_signal": "HOLD",
+      "consumption_score": 48.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "002382": {
+    "last": {
+      "protection_price": 6.034,
+      "peak_close": 6.74,
+      "broken_streak": 0,
+      "warning_price": 6.034,
+      "break_trend_price": 5.9301,
+      "structure_support": 6.034,
+      "exit_signal": "HOLD",
+      "consumption_score": 37.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "688779": {
+    "last": {
+      "protection_price": 7.82,
+      "peak_close": 8.04,
+      "broken_streak": 0,
+      "warning_price": 7.82,
+      "break_trend_price": 7.6921,
+      "structure_support": 7.82,
+      "exit_signal": "PROTECT",
+      "consumption_score": 18.0,
+      "t_date": "2026-10-09"
+    },
+    "prev": {}
+  },
+  "000869": {
+    "last": {
+      "protection_price": 16.789,
+      "peak_close": 19.73,
+      "broken_streak": 0,
+      "warning_price": 16.789,
+      "break_trend_price": 16.4236,
+      "structure_support": 16.789,
+      "exit_signal": "HOLD",
+      "consumption_score": 46.0,
+      "t_date": "2026-10-09"
     },
     "prev": {}
   }

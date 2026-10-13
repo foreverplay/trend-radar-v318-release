@@ -347,7 +347,7 @@ def recent_trade_days(n: int) -> List[str]:
     return days
 
 
-def export_board(day: str, kline_root: Path) -> None:
+def export_board(day: str, kline_root: Path, *, asof_note: str = "", asof_mode: str = "") -> None:
     sys.path.insert(0, str(API))
     from boards_loader import parse_push_markdown
 
@@ -361,8 +361,8 @@ def export_board(day: str, kline_root: Path) -> None:
         meta = json.loads(meta_path.read_text(encoding="utf-8"))
         payload["regime"] = payload.get("regime") or meta.get("regime_v2") or meta.get("regime")
         payload["market_score"] = payload.get("market_score") if payload.get("market_score") is not None else meta.get("market_score")
-    payload["asof_mode"] = "strict_local"
-    payload["asof_note"] = (
+    payload["asof_mode"] = asof_mode or "strict_local"
+    payload["asof_note"] = asof_note or (
         "严格历史口径：价格与指标截断到该交易日；股票清单是下载时点可得的当前清单；"
         "基本面、异动原因和无法按日还原的资金字段不参与历史评分。个股成交额按收盘价×成交量估算。"
     )
@@ -373,7 +373,15 @@ def export_board(day: str, kline_root: Path) -> None:
     print(f"exported {dest.name}", flush=True)
 
 
-def run_day(day: str, kline_root: Path, max_prefilter: int, workers: int) -> None:
+def run_day(
+    day: str,
+    kline_root: Path,
+    max_prefilter: int,
+    workers: int,
+    *,
+    asof_note: str = "",
+    asof_mode: str = "",
+) -> None:
     env = os.environ.copy()
     env["ASHARE_KLINE_ROOT"] = str(kline_root)
     env["TREND_BREAKOUT_ROOT"] = str(TB)
@@ -402,7 +410,7 @@ def run_day(day: str, kline_root: Path, max_prefilter: int, workers: int) -> Non
         env=env,
         check=True,
     )
-    export_board(day, kline_root)
+    export_board(day, kline_root, asof_note=asof_note, asof_mode=asof_mode)
 
 
 def main() -> int:

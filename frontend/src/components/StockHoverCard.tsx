@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { fetchFlow, fetchKlines, fetchRiseReason, fetchTrends } from "../api";
 import type { BoardRow, FlowPayload, KlineBar, ReasonPayload } from "../types";
@@ -7,16 +7,25 @@ import { BarDetailPanel, IntradayChart, KlineChart } from "./QuoteCharts";
 import { MA_DEFAULT, MA_LINES, parseMaPeriods, toggleMaPeriod } from "../../../../market-data-hub/web/quoteCharts.ts";
 import { klineBarDetail, type BarDetailItem } from "../../../../market-data-hub/web/barDetail.ts";
 
-type Box = { left: number; top: number; width: number };
+type Box = { left: number; top: number; width: number; arrow: number; span: number };
 
-function place(anchor: HTMLElement): Box {
+function place(anchor: HTMLElement, cardHeight: number): Box {
+  // 卡片停在名称列右侧，箭头从卡片伸到这只代码的右端。
   const rect = anchor.getBoundingClientRect();
-  const width = Math.min(980, window.innerWidth - 16);
-  let left = Math.min(rect.left, window.innerWidth - width - 8);
-  left = Math.max(8, left);
-  let top = rect.bottom + 8;
-  if (top + 560 > window.innerHeight) top = Math.max(8, rect.top - 560);
-  return { left, top, width };
+  const margin = 8;
+  let nameRight = rect.right;
+  anchor.closest("table")?.querySelectorAll("button.code-tip").forEach((node) => {
+    nameRight = Math.max(nameRight, node.getBoundingClientRect().right);
+  });
+  const left = nameRight + 10;
+  const width = Math.min(760, Math.max(280, window.innerWidth - left - margin));
+  const height = Math.min(Math.max(cardHeight, 1), window.innerHeight - margin * 2);
+  const anchorMid = rect.top + rect.height / 2;
+  let top = anchorMid - height / 2;
+  top = Math.max(margin, Math.min(top, window.innerHeight - margin - height));
+  const arrow = Math.max(16, Math.min(anchorMid - top, height - 16));
+  const span = Math.max(10, left - rect.right);
+  return { left, top, width, arrow, span };
 }
 
 function scoreWidth(raw?: string): string {
@@ -50,7 +59,7 @@ export default function StockHoverCard({
   onPointerLeave: () => void;
 }) {
   const code = row.code || "";
-  const [box, setBox] = useState<Box>(() => place(anchor));
+  const [box, setBox] = useState<Box>(() => place(anchor, 0));
   const [period, setPeriod] = useState<"day" | "month">("day");
   const [maOn, setMaOn] = useState(MA_DEFAULT);
   const [trend, setTrend] = useState<Awaited<ReturnType<typeof fetchTrends>> | null>(null);
@@ -63,14 +72,27 @@ export default function StockHoverCard({
   const [pickedReason, setPickedReason] = useState<ReasonPayload | null>(null);
   const cardRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
-    const update = () => setBox(place(anchor));
+  useLayoutEffect(() => {
+    const update = () => {
+      const height = cardRef.current?.getBoundingClientRect().height ?? 0;
+      const next = place(anchor, height);
+      setBox((prev) => (
+        prev.left === next.left && prev.top === next.top && prev.width === next.width && prev.span === next.span && Math.abs(prev.arrow - next.arrow) < 0.5
+          ? prev
+          : next
+      ));
+    };
     update();
+    const observer = new ResizeObserver(update);
+    if (cardRef.current) observer.observe(cardRef.current);
     const scroller = anchor.closest(".table-wrap");
     window.addEventListener("resize", update);
+    window.addEventListener("scroll", update, true);
     scroller?.addEventListener("scroll", update);
     return () => {
+      observer.disconnect();
       window.removeEventListener("resize", update);
+      window.removeEventListener("scroll", update, true);
       scroller?.removeEventListener("scroll", update);
     };
   }, [anchor]);
@@ -139,12 +161,19 @@ export default function StockHoverCard({
     <aside
       ref={cardRef}
       className="hover-card"
-      style={{ left: box.left, top: box.top, width: box.width }}
+      style={{
+        left: box.left,
+        top: box.top,
+        width: box.width,
+        ["--arrow" as string]: `${box.arrow}px`,
+        ["--arrow-span" as string]: `${box.span}px`,
+      }}
       onMouseEnter={onPointerEnter}
       onMouseLeave={onPointerLeave}
       role="dialog"
       aria-label={`${row.name || code} 详情`}
     >
+      <div className="hover-card-body">
       <header className="hover-head">
         <div>
           <strong>{row.name || row.stock} {code}</strong>
@@ -155,7 +184,11 @@ export default function StockHoverCard({
       <div className="hover-charts">
         <section>
           <p className="kicker">日内分时</p>
-          {loading && !trend ? <p className="chart-empty">正在读取分时…</p> : <IntradayChart points={trend?.points || []} preClose={trend?.preClose || 0} />}
+          {loading && !trend ? (
+            <div className="quote-chart chart-loading"><p className="chart-empty">正在读取分时…</p></div>
+          ) : (
+            <IntradayChart points={trend?.points || []} preClose={trend?.preClose || 0} />
+          )}
         </section>
         <section>
           <div className="kicker-row">
@@ -182,7 +215,11 @@ export default function StockHoverCard({
               <button type="button" className={period === "month" ? "on" : ""} onClick={() => setPeriod("month")}>月K</button>
             </div>
           </div>
-          {loading && !bars.length ? <p className="chart-empty">正在读取K线…</p> : <KlineChart bars={bars} period={period} maKey={maOn} selectedTime={picked} onPick={setPicked} />}
+          {loading && !bars.length ? (
+            <div className="quote-chart chart-loading"><p className="chart-empty">正在读取K线…</p></div>
+          ) : (
+            <KlineChart bars={bars} period={period} maKey={maOn} selectedTime={picked} onPick={setPicked} />
+          )}
           {!detail && bars.length ? <p className="chart-hint">点击任一根K线查看该{period === "day" ? "日" : "月"}详情</p> : null}
         </section>
       </div>
@@ -214,6 +251,7 @@ export default function StockHoverCard({
           {flow.date ? ` · ${flow.date}` : ""}
         </p>
       ) : null}
+      </div>
     </aside>,
     document.body,
   );

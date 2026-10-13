@@ -1,65 +1,65 @@
 {
-  "t_date": "2026-09-29",
-  "regime": "R3",
-  "regime_v2": "NORMAL",
-  "market_score": 62.6,
-  "cap": 15,
+  "t_date": "2026-10-09",
+  "regime": "R0",
+  "regime_v2": "RISK_OFF",
+  "market_score": 0.0,
+  "cap": 0,
   "breadth": {
-    "up": 3148,
-    "down": 1760,
-    "zt": 57,
-    "dt": 14,
-    "up_share": 0.6414
+    "up": 1052,
+    "down": 4220,
+    "zt": 35,
+    "dt": 37,
+    "up_share": 0.1995
   },
   "turnover": {
-    "amt_yi": 22526.58,
-    "ma5": 22526.58,
-    "ma20": 22526.58,
+    "amt_yi": 11685.91,
+    "ma5": 11685.91,
+    "ma20": 11685.91,
     "vs_ma5": 1.0,
     "vs_ma20": 1.0,
-    "source": "local_spot_sum",
-    "ma_source": "local_spot_sum"
+    "source": "local_index_amount",
+    "ma_source": "local_index_amount"
   },
   "indices": {
     "上证指数": {
-      "pct": 0.17862653715587928,
-      "close": 3830.45,
-      "ma20": 3912.5219999999995,
+      "pct": -1.2117316823631263,
+      "close": 3765.71,
+      "ma20": 3890.3435,
       "above_ma20": false
     },
     "沪深300": {
-      "pct": 0.10251660999456291,
-      "close": 4345.21,
-      "ma20": 4506.471500000001,
+      "pct": -1.2674350622233432,
+      "close": 4255.65,
+      "ma20": 4467.05,
       "above_ma20": false
     },
     "中证1000": {
-      "pct": 0.4274646738422705,
-      "close": 7325.35,
-      "ma20": 7576.825000000002,
+      "pct": -2.386469017647763,
+      "close": 6968.22,
+      "ma20": 7503.344499999999,
       "above_ma20": false
     },
     "创业板指": {
-      "pct": 0.08726614901490848,
-      "close": 3142.56,
-      "ma20": 3317.2504999999996,
+      "pct": -2.612738996133901,
+      "close": 2957.32,
+      "ma20": 3272.8030000000003,
       "above_ma20": false
     }
   },
-  "hs300_ret20": -0.06051341703620905,
-  "hs300_ret60": -0.10260016522098303,
+  "hs300_ret20": -0.06522235743248894,
+  "hs300_ret60": -0.1272806691945345,
   "data_gaps": [
     "strict_asof local parquet universe",
     "strict_asof: live spot/legu/fund disabled",
-    "hist fetch failures: 1"
+    "hist fetch failures: 4"
   ],
   "market_conclusion": [
-    "四指数涨跌幅: 上证指数 +0.18%, 沪深300 +0.10%, 中证1000 +0.43%, 创业板指 +0.09%",
-    "涨跌家数 3148/1760 (上涨占比 64.1%)",
-    "涨停/跌停 57/14",
-    "两市成交额约 22527亿, vsMA5=1.00, vsMA20=1.00",
+    "四指数涨跌幅: 上证指数 -1.21%, 沪深300 -1.27%, 中证1000 -2.39%, 创业板指 -2.61%",
+    "涨跌家数 1052/4220 (上涨占比 20.0%)",
+    "涨停/跌停 35/37",
+    "两市成交额约 11686亿, vsMA5=1.00, vsMA20=1.00",
     "指数站上MA20家数 0/4",
-    "V2 MarketRegime=NORMAL (legacy R3)"
+    "V2 MarketRegime=RISK_OFF (legacy R0)"
   ],
   "model": "V2_staircase"
 }

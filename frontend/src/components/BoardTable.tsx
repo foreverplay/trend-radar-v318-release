@@ -1,6 +1,7 @@
-import { useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import type { BoardRow } from "../types";
 import { zhCell, zhColumnLabel } from "../zhLabels";
+import { RowMiniCharts } from "./MiniCharts";
 import StockHoverCard from "./StockHoverCard";
 
 const COL_KEYS: (keyof BoardRow)[] = [
@@ -126,16 +127,70 @@ export default function BoardTable({
 }) {
   const [open, setOpen] = useState<{ row: BoardRow; anchor: HTMLElement } | null>(null);
   const [sort, setSort] = useState<SortState>(DEFAULT_SORT);
+  const [liveRows, setLiveRows] = useState<Set<number>>(() => new Set());
   const openTimer = useRef<number>();
   const closeTimer = useRef<number>();
+  const chartNodes = useRef(new Map<number, HTMLTableRowElement>());
+  const wrapRef = useRef<HTMLDivElement>(null);
   const viewRows = sortRows(rows, sort);
+  const rowKey = viewRows.map((row, index) => `${index}:${row.code || row.stock || ""}`).join("|");
+
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+    const apply = () => el.style.setProperty("--board-view", `${el.clientWidth}px`);
+    apply();
+    const observer = new ResizeObserver(apply);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [rowKey]);
+
+  useEffect(() => {
+    const nodes = [...chartNodes.current.values()].filter((node) => node.isConnected);
+    if (!nodes.length) return;
+    const hits = new Map<Element, number>();
+    const count = rowKey ? rowKey.split("|").length : 0;
+    const publish = () => {
+      const seen = new Set<number>();
+      for (const index of hits.values()) seen.add(index);
+      let max = -1;
+      for (const index of seen) if (index > max) max = index;
+      if (max >= 0) {
+        for (let step = 1; step <= 3 && max + step < count; step += 1) seen.add(max + step);
+      }
+      setLiveRows((prev) => {
+        if (prev.size === seen.size && [...seen].every((index) => prev.has(index))) return prev;
+        return seen;
+      });
+    };
+    const observer = new IntersectionObserver((entries) => {
+      let changed = false;
+      for (const entry of entries) {
+        const index = Number((entry.target as HTMLElement).dataset.rowIndex);
+        if (!Number.isFinite(index)) continue;
+        if (entry.isIntersecting) {
+          if (hits.get(entry.target) !== index) {
+            hits.set(entry.target, index);
+            changed = true;
+          }
+        } else if (hits.delete(entry.target)) {
+          changed = true;
+        }
+      }
+      if (changed) publish();
+    }, { rootMargin: "160px" });
+    nodes.forEach((node) => observer.observe(node));
+    return () => {
+      observer.disconnect();
+    };
+  }, [rowKey]);
 
   function cancelClose() {
     window.clearTimeout(closeTimer.current);
   }
   function armClose() {
     window.clearTimeout(closeTimer.current);
-    closeTimer.current = window.setTimeout(() => setOpen(null), 280);
+    closeTimer.current = window.setTimeout(() => setOpen(null), 420);
   }
   function schedule(row: BoardRow, anchor: HTMLElement) {
     cancelClose();
@@ -147,7 +202,7 @@ export default function BoardTable({
     return <p className="empty">{emptyText}</p>;
   }
   return (
-    <div className="table-wrap">
+    <div className="table-wrap" ref={wrapRef} onMouseEnter={cancelClose} onMouseLeave={armClose}>
       <table>
         <thead>
           <tr>
@@ -177,8 +232,11 @@ export default function BoardTable({
           </tr>
         </thead>
         <tbody>
-          {viewRows.map((r, i) => (
-            <tr key={`${r.code || r.stock}-${i}`}>
+          {viewRows.map((r, i) => {
+            const opened = open?.row.code === r.code && open?.row.stock === r.stock;
+            return (
+            <Fragment key={`${r.code || r.stock}-${i}`}>
+            <tr className={opened ? "board-info row-open" : "board-info"}>
               {COL_KEYS.map((c) => (
                 <td
                   key={c}
@@ -189,16 +247,23 @@ export default function BoardTable({
                       type="button"
                       className="code-tip"
                       onMouseEnter={(e) => {
-                        if (window.matchMedia("(hover: hover)").matches) schedule(r, e.currentTarget);
+                        if (!window.matchMedia("(hover: hover)").matches) return;
+                        cancelClose();
+                        if (open) {
+                          window.clearTimeout(openTimer.current);
+                          setOpen({ row: r, anchor: e.currentTarget });
+                          return;
+                        }
+                        schedule(r, e.currentTarget);
                       }}
                       onMouseLeave={() => {
                         window.clearTimeout(openTimer.current);
-                        armClose();
                       }}
                       onFocus={(e) => schedule(r, e.currentTarget)}
                       onBlur={armClose}
                       onClick={(e) => {
                         window.clearTimeout(openTimer.current);
+                        cancelClose();
                         setOpen({ row: r, anchor: e.currentTarget });
                       }}
                     >
@@ -210,7 +275,21 @@ export default function BoardTable({
                 </td>
               ))}
             </tr>
-          ))}
+            <tr
+              className={opened ? "board-charts row-open" : "board-charts"}
+              data-row-index={i}
+              ref={(el) => {
+                if (el) chartNodes.current.set(i, el);
+                else chartNodes.current.delete(i);
+              }}
+            >
+              <td colSpan={COL_KEYS.length}>
+                <RowMiniCharts code={r.code || ""} asOf={asOf} live={liveRows.has(i)} />
+              </td>
+            </tr>
+            </Fragment>
+            );
+          })}
         </tbody>
       </table>
       {open ? (
