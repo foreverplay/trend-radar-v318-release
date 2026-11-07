@@ -158,15 +158,16 @@ VERIFIED_RULES = [
         notes="主板正常股票涨跌停10%"
     ),
     
-    # ST 涨跌停 5%
+    # ST 涨跌停 5%（所有市场，优先级高）
     TradingRule(
         start_date="1998-04-22",
         end_date=None,
+        market=None,  # 所有市场
         security_type=SecurityType.ST,
         limit_up_pct=5.0,
         limit_down_pct=5.0,
         source="沪深交易所ST涨跌幅限制",
-        notes="ST股票涨跌停5%"
+        notes="ST股票涨跌停5%（覆盖市场规则）"
     ),
     
     # 科创板 20%（2019-07-22上市）
@@ -277,6 +278,7 @@ class RulesProvider:
             security_type = SecurityType.NORMAL
         
         # 查找所有适用的规则（优先级：具体→通用）
+        # 按优先级排序：security_type具体 > market具体 > 通用
         applicable_rules = []
         
         for rule in self.rules:
@@ -284,7 +286,15 @@ class RulesProvider:
                 continue
             if not rule.matches(market, security_type):
                 continue
-            applicable_rules.append(rule)
+            
+            # 计算具体性得分（越高越具体）
+            specificity = 0
+            if rule.security_type is not None:
+                specificity += 2
+            if rule.market is not None:
+                specificity += 1
+            
+            applicable_rules.append((specificity, rule))
         
         if not applicable_rules:
             # 无适用规则 → Fail-closed
@@ -293,7 +303,10 @@ class RulesProvider:
                 f"type={security_type.value}。正式模式阻断，或配置诊断模式假设规则"
             )
         
-        # 合并规则（优先级：具体→通用）
+        # 按具体性降序排序（具体规则优先）
+        applicable_rules.sort(key=lambda x: x[0], reverse=True)
+        applicable_rules = [rule for _, rule in applicable_rules]
+        # 合并规则（从通用到具体覆盖）
         merged = TradingRule(
             start_date=trade_date,
             market=market,
