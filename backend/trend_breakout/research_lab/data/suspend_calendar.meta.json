@@ -1,0 +1,7 @@
+{
+  "fetch_time": "2026-11-07 15:07:43",
+  "date_range": "None to None",
+  "source": "akshare.stock_tfp_em (尝试)",
+  "limitation": "akshare 停牌接口可能不稳定或不完整",
+  "alternative": "从日线 volume=0 推断停牌，需结合交易所公告确认"
+}
