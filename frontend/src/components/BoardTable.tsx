@@ -3,6 +3,8 @@ import type { BoardRow } from "../types";
 import { zhCell, zhColumnLabel } from "../zhLabels";
 import { RowMiniCharts } from "./MiniCharts";
 import StockHoverCard from "./StockHoverCard";
+import StockIdentity from "./StockIdentity";
+import { normalizeStockCode } from "./CopyCodeButton";
 
 const COL_KEYS: (keyof BoardRow)[] = [
   "stock",
@@ -198,99 +200,102 @@ export default function BoardTable({
     openTimer.current = window.setTimeout(() => setOpen({ row, anchor }), 180);
   }
 
+  function sortHead() {
+    return (
+      <thead>
+        <tr>
+          {COL_KEYS.map((c) => {
+            const active = sort?.key === c;
+            return (
+              <th
+                key={c}
+                aria-sort={!active ? "none" : sort.dir === "asc" ? "ascending" : "descending"}
+              >
+                <button
+                  type="button"
+                  className={active ? "th-sort on" : "th-sort"}
+                  onClick={() => {
+                    setSort((prev) => cycleSort(prev, c));
+                    setOpen(null);
+                  }}
+                >
+                  {zhColumnLabel(c)}
+                  <span className="th-sort-mark" aria-hidden="true">
+                    {active ? (sort.dir === "desc" ? "↓" : "↑") : ""}
+                  </span>
+                </button>
+              </th>
+            );
+          })}
+        </tr>
+      </thead>
+    );
+  }
+
+  function dataRow(r: BoardRow, i: number) {
+    const opened = open?.row.code === r.code && open?.row.stock === r.stock;
+    return (
+      <Fragment key={`${r.code || r.stock}-${i}`}>
+        <tr className={opened ? "board-info row-open" : "board-info"}>
+          {COL_KEYS.map((c) => (
+            <td key={c} className={c === "trend_grade" ? gradeClass(r.trend_grade) : ""}>
+              {c === "stock" && normalizeStockCode(r.code) ? (
+                <StockIdentity
+                  label={cellText(r, c)}
+                  code={r.code}
+                  tipProps={{
+                    onMouseEnter: (e) => {
+                      if (!window.matchMedia("(hover: hover)").matches) return;
+                      cancelClose();
+                      if (open) {
+                        window.clearTimeout(openTimer.current);
+                        setOpen({ row: r, anchor: e.currentTarget });
+                        return;
+                      }
+                      schedule(r, e.currentTarget);
+                    },
+                    onMouseLeave: () => {
+                      window.clearTimeout(openTimer.current);
+                    },
+                    onFocus: (e) => schedule(r, e.currentTarget),
+                    onBlur: armClose,
+                    onClick: (e) => {
+                      window.clearTimeout(openTimer.current);
+                      cancelClose();
+                      setOpen({ row: r, anchor: e.currentTarget });
+                    },
+                  }}
+                />
+              ) : (
+                cellText(r, c)
+              )}
+            </td>
+          ))}
+        </tr>
+        <tr
+          className={opened ? "board-charts row-open" : "board-charts"}
+          data-row-index={i}
+          ref={(el) => {
+            if (el) chartNodes.current.set(i, el);
+            else chartNodes.current.delete(i);
+          }}
+        >
+          <td colSpan={COL_KEYS.length}>
+            <RowMiniCharts code={r.code || ""} asOf={asOf} live={liveRows.has(i)} />
+          </td>
+        </tr>
+      </Fragment>
+    );
+  }
+
   if (!rows.length) {
     return <p className="empty">{emptyText}</p>;
   }
   return (
     <div className="table-wrap" ref={wrapRef} onMouseEnter={cancelClose} onMouseLeave={armClose}>
       <table>
-        <thead>
-          <tr>
-            {COL_KEYS.map((c) => {
-              const active = sort?.key === c;
-              return (
-                <th
-                  key={c}
-                  aria-sort={!active ? "none" : sort.dir === "asc" ? "ascending" : "descending"}
-                >
-                  <button
-                    type="button"
-                    className={active ? "th-sort on" : "th-sort"}
-                    onClick={() => {
-                      setSort((prev) => cycleSort(prev, c));
-                      setOpen(null);
-                    }}
-                  >
-                    {zhColumnLabel(c)}
-                    <span className="th-sort-mark" aria-hidden="true">
-                      {active ? (sort.dir === "desc" ? "↓" : "↑") : ""}
-                    </span>
-                  </button>
-                </th>
-              );
-            })}
-          </tr>
-        </thead>
-        <tbody>
-          {viewRows.map((r, i) => {
-            const opened = open?.row.code === r.code && open?.row.stock === r.stock;
-            return (
-            <Fragment key={`${r.code || r.stock}-${i}`}>
-            <tr className={opened ? "board-info row-open" : "board-info"}>
-              {COL_KEYS.map((c) => (
-                <td
-                  key={c}
-                  className={c === "trend_grade" ? gradeClass(r.trend_grade) : ""}
-                >
-                  {c === "stock" && r.code ? (
-                    <button
-                      type="button"
-                      className="code-tip"
-                      onMouseEnter={(e) => {
-                        if (!window.matchMedia("(hover: hover)").matches) return;
-                        cancelClose();
-                        if (open) {
-                          window.clearTimeout(openTimer.current);
-                          setOpen({ row: r, anchor: e.currentTarget });
-                          return;
-                        }
-                        schedule(r, e.currentTarget);
-                      }}
-                      onMouseLeave={() => {
-                        window.clearTimeout(openTimer.current);
-                      }}
-                      onFocus={(e) => schedule(r, e.currentTarget)}
-                      onBlur={armClose}
-                      onClick={(e) => {
-                        window.clearTimeout(openTimer.current);
-                        cancelClose();
-                        setOpen({ row: r, anchor: e.currentTarget });
-                      }}
-                    >
-                      {cellText(r, c)}
-                    </button>
-                  ) : (
-                    cellText(r, c)
-                  )}
-                </td>
-              ))}
-            </tr>
-            <tr
-              className={opened ? "board-charts row-open" : "board-charts"}
-              data-row-index={i}
-              ref={(el) => {
-                if (el) chartNodes.current.set(i, el);
-                else chartNodes.current.delete(i);
-              }}
-            >
-              <td colSpan={COL_KEYS.length}>
-                <RowMiniCharts code={r.code || ""} asOf={asOf} live={liveRows.has(i)} />
-              </td>
-            </tr>
-            </Fragment>
-            );
-          })}
-        </tbody>
+        {sortHead()}
+        <tbody>{viewRows.map((r, i) => dataRow(r, i))}</tbody>
       </table>
       {open ? (
         <StockHoverCard

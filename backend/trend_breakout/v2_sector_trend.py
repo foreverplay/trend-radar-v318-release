@@ -125,20 +125,31 @@ class SectorTrendEngine:
         self.sec_eng.load()
 
     def _load_peer_ohlcv(self, code6: str, t_date: Optional[str]) -> Optional[pd.DataFrame]:
+        import os
+
         if code6 in self._close_cache:
             df = self._close_cache[code6]
         else:
-            p = LOCAL_DAILY / f"{code6}.parquet"
-            if not p.exists():
-                return None
-            try:
-                raw = pd.read_parquet(p, columns=["date", "open", "high", "low", "close", "volume", "amount"])
-                raw["date"] = pd.to_datetime(raw["date"])
-                raw = raw.sort_values("date")
-                self._close_cache[code6] = raw
-                df = raw
-            except Exception:
-                return None
+            raw = None
+            if os.environ.get("TREND_RANK_DB"):
+                import rank_db
+
+                if rank_db.db_path():
+                    raw = rank_db.load_stock(code6, None)
+                    if raw is None:
+                        return None
+            if raw is None:
+                p = LOCAL_DAILY / f"{code6}.parquet"
+                if not p.exists():
+                    return None
+                try:
+                    raw = pd.read_parquet(p, columns=["date", "open", "high", "low", "close", "volume", "amount"])
+                    raw["date"] = pd.to_datetime(raw["date"])
+                    raw = raw.sort_values("date")
+                except Exception:
+                    return None
+            self._close_cache[code6] = raw
+            df = raw
         if t_date:
             df = df[df["date"] <= pd.Timestamp(t_date)]
         if len(df) < 25:

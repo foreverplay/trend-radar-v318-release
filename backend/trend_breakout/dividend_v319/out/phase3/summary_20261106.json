@@ -1,0 +1,5448 @@
+{
+  "strategy": "DIVIDEND_TREND",
+  "phase": "3-5",
+  "version": "V3.1.9-phase3",
+  "as_of": "2026-11-06",
+  "generated_at": "2026-11-07T22:35:49.399103+08:00",
+  "timezone": "Asia/Shanghai",
+  "universe_mode": "proxy_no_hist_index_cons",
+  "universe_counts": {
+    "raw_union": 3087,
+    "active": 2909,
+    "excluded": 178,
+    "from_index": 0,
+    "from_autonomous": 2909,
+    "from_both": 0
+  },
+  "n_scored": 2909,
+  "n_quality_scored": 2909,
+  "n_sustainability_scored": 2909,
+  "summary": {
+    "quality": {
+      "n": 2909,
+      "mean": 78.0890993468546,
+      "std": 9.545765432380323,
+      "p10": 64.894,
+      "p25": 72.87,
+      "p50": 79.35,
+      "p75": 85.15,
+      "p90": 89.33600000000001,
+      "min": 37.3,
+      "max": 94.88
+    },
+    "sustainability": {
+      "n": 2909,
+      "mean": 69.8392231007219,
+      "std": 19.015819567599593,
+      "p10": 42.3,
+      "p25": 55.1,
+      "p50": 75.0,
+      "p75": 87.0,
+      "p90": 90.0,
+      "min": 12.5,
+      "max": 91.8
+    },
+    "risk_hint_counts": {
+      "WARNING": 1407,
+      "SAFE": 1164,
+      "WATCH": 331,
+      "HIGH": 7
+    },
+    "quality_data_status_counts": {
+      "VALID": 2908,
+      "DATA_INSUFFICIENT": 1
+    }
+  },
+  "config_weights": {
+    "quality_component_weights": {
+      "continuity": 0.25,
+      "stability_growth": 0.2,
+      "payout": 0.2,
+      "cash_ability": 0.25,
+      "record_quality": 0.1
+    },
+    "sustainability_component_weights": {
+      "ocf_over_ni": 0.2,
+      "fcf_over_div": 0.2,
+      "payout": 0.15,
+      "profit_continuity": 0.2,
+      "revenue_stability": 0.1,
+      "leverage": 0.15
+    },
+    "note": "待回测校准"
+  },
+  "top50": [
+    {
+      "symbol": "600563",
+      "name": "法拉电子",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 94.88,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 98.0,
+      "quality_payout": 88.66,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 11,
+      "cash_years": [
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2015": 1.0,
+        "2016": 1.1,
+        "2017": 1.2,
+        "2018": 1.3,
+        "2019": 1.3,
+        "2020": 1.3,
+        "2021": 1.6,
+        "2022": 1.8,
+        "2023": 2.0,
+        "2024": 2.0,
+        "2025": 2.3
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 90.0,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 72.0,
+        "leverage": 88.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约11年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约43.4%，支付比例相对合理",
+        "每股经营现金流覆盖分红约2.52倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位1.10，现金质量较好",
+        "FCF/现金分红中位1.45x，覆盖充足",
+        "支付率中位43.4%，可持续区间",
+        "近三年净利润未恶化",
+        "近5年净利润均为正",
+        "营收波动适中(CV=0.21)",
+        "资产负债率约30.9%"
+      ]
+    },
+    {
+      "symbol": "002558",
+      "name": "巨人网络",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 94.8,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 98.0,
+      "quality_payout": 88.24,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 10,
+      "cash_years": [
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2016": 0.2,
+        "2017": 0.2,
+        "2018": 0.17,
+        "2019": 0.13,
+        "2020": 0.16,
+        "2021": 0.16,
+        "2022": 0.16,
+        "2023": 0.21,
+        "2024": 0.28,
+        "2025": 0.34
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 87.8,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 50.0,
+        "leverage": 88.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约10年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约35.6%，支付比例相对合理",
+        "每股经营现金流覆盖分红约2.30倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位1.04，现金质量较好",
+        "FCF/现金分红中位2.68x，覆盖充足",
+        "支付率中位35.9%，可持续区间",
+        "近三年净利润未恶化",
+        "近5年净利润均为正",
+        "营收波动偏高(CV=0.36)",
+        "资产负债率约18.7%"
+      ]
+    },
+    {
+      "symbol": "300651",
+      "name": "金陵体育",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 94.79,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 98.0,
+      "quality_payout": 88.22,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 8,
+      "cash_years": [
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2018": 0.28,
+        "2019": 0.1,
+        "2020": 0.1,
+        "2021": 0.1,
+        "2022": 0.119999,
+        "2023": 0.15,
+        "2024": 0.149999,
+        "2025": 0.2
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 91.8,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 88.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约8年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约44.4%，支付比例相对合理",
+        "每股经营现金流覆盖分红约6.53倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位1.64，现金质量较好",
+        "FCF/现金分红中位3.01x，覆盖充足",
+        "支付率中位44.4%，可持续区间",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.14)",
+        "资产负债率约18.5%"
+      ]
+    },
+    {
+      "symbol": "688389",
+      "name": "普门科技",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 94.71,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 96.0,
+      "quality_payout": 89.8,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 7,
+      "cash_years": [
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2019": 0.12,
+        "2020": 0.178,
+        "2021": 0.178,
+        "2022": 0.237,
+        "2023": 0.281,
+        "2024": 0.282,
+        "2025": 0.282
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 73.2,
+      "sustainability_components": {
+        "ocf_over_ni": 75.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 82.0,
+        "revenue_stability": 90.0,
+        "leverage": 88.0
+      },
+      "risk_hint": "WARNING",
+      "unhealthy_flags": [
+        "profit_sharp_decline"
+      ],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约7年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约39.5%，支付比例相对合理",
+        "每股经营现金流覆盖分红约2.45倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位0.92",
+        "FCF/现金分红中位1.95x，覆盖充足",
+        "支付率中位36.5%，可持续区间",
+        "近三年净利润显著下滑",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.13)",
+        "资产负债率约24.9%",
+        "不健康分红特征→可持续分下调"
+      ]
+    },
+    {
+      "symbol": "001872",
+      "name": "招商港口",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 94.51,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 98.0,
+      "quality_payout": 89.78,
+      "quality_cash_ability": 95.0,
+      "quality_record": 82.0,
+      "continuous_cash_years": 11,
+      "cash_years": [
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2015": 0.41,
+        "2016": 0.496,
+        "2017": 1.319,
+        "2018": 0.114,
+        "2019": 0.46,
+        "2020": 0.38,
+        "2021": 0.43,
+        "2022": 0.45,
+        "2023": 0.58,
+        "2024": 0.74,
+        "2025": 0.799
+      },
+      "special_heuristic_years": [
+        "2017"
+      ],
+      "dividend_sustainability_score": 91.8,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 88.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约11年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约40.6%，支付比例相对合理",
+        "每股经营现金流覆盖分红约4.54倍(中位)",
+        "启发式异常高派息年份(不确定降权): 2017",
+        "经营现金流/净利润中位1.77，现金质量较好",
+        "FCF/现金分红中位3.21x，覆盖充足",
+        "支付率中位40.9%，可持续区间",
+        "近三年净利润未恶化",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.04)",
+        "资产负债率约36.0%"
+      ]
+    },
+    {
+      "symbol": "601766",
+      "name": "中国中车",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 94.44,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 98.0,
+      "quality_payout": 86.47,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 11,
+      "cash_years": [
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2015": 0.15,
+        "2016": 0.21,
+        "2017": 0.15,
+        "2018": 0.15,
+        "2019": 0.15,
+        "2020": 0.18,
+        "2021": 0.18,
+        "2022": 0.2,
+        "2023": 0.2,
+        "2024": 0.21,
+        "2025": 0.23
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 86.1,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 50.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约11年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约48.8%，支付比例相对合理",
+        "每股经营现金流覆盖分红约3.99倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位1.83，现金质量较好",
+        "FCF/现金分红中位2.25x，覆盖充足",
+        "支付率中位48.8%，可持续区间",
+        "近三年净利润未恶化",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.08)",
+        "资产负债率约60.8%"
+      ]
+    },
+    {
+      "symbol": "603298",
+      "name": "杭叉集团",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 94.42,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 96.0,
+      "quality_payout": 88.37,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 10,
+      "cash_years": [
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2016": 0.3,
+        "2017": 0.3,
+        "2018": 0.3,
+        "2019": 0.35,
+        "2020": 0.4,
+        "2021": 0.4,
+        "2022": 0.4,
+        "2023": 0.5,
+        "2024": 0.5,
+        "2025": 0.6
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 88.8,
+      "sustainability_components": {
+        "ocf_over_ni": 75.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 88.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约10年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约35.9%，支付比例相对合理",
+        "每股经营现金流覆盖分红约2.08倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位0.77",
+        "FCF/现金分红中位1.44x，覆盖充足",
+        "支付率中位35.9%，可持续区间",
+        "近三年净利润未恶化",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.08)",
+        "资产负债率约37.2%"
+      ]
+    },
+    {
+      "symbol": "601326",
+      "name": "秦港股份",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 94.41,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 98.0,
+      "quality_payout": 86.3,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 9,
+      "cash_years": [
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2017": 0.112,
+        "2018": 0.077,
+        "2019": 0.09,
+        "2020": 0.064,
+        "2021": 0.056,
+        "2022": 0.071,
+        "2023": 0.083,
+        "2024": 0.085,
+        "2025": 0.115
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 91.8,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 88.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约9年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约30.7%，支付比例相对合理",
+        "每股经营现金流覆盖分红约5.16倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位1.54，现金质量较好",
+        "FCF/现金分红中位2.83x，覆盖充足",
+        "支付率中位30.7%，可持续区间",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.02)",
+        "资产负债率约23.0%"
+      ]
+    },
+    {
+      "symbol": "002461",
+      "name": "珠江啤酒",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 94.38,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 96.0,
+      "quality_payout": 88.14,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 11,
+      "cash_years": [
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2015": 0.05,
+        "2016": 0.06,
+        "2017": 0.1,
+        "2018": 0.1,
+        "2019": 0.1,
+        "2020": 0.115,
+        "2021": 0.12,
+        "2022": 0.12,
+        "2023": 0.125,
+        "2024": 0.17,
+        "2025": 0.19
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 89.0,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 78.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 88.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约11年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约44.6%，支付比例相对合理",
+        "每股经营现金流覆盖分红约2.67倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位1.31，现金质量较好",
+        "FCF/现金分红中位1.01x",
+        "支付率中位46.4%，可持续区间",
+        "近三年净利润未恶化",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.09)",
+        "资产负债率约30.9%"
+      ]
+    },
+    {
+      "symbol": "002020",
+      "name": "京新药业",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 94.35,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 94.0,
+      "quality_payout": 90.0,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 11,
+      "cash_years": [
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2015": 0.15,
+        "2016": 0.100185,
+        "2017": 0.2,
+        "2018": 0.3,
+        "2019": 0.35,
+        "2020": 0.35,
+        "2021": 0.3,
+        "2022": 0.3,
+        "2023": 0.3,
+        "2024": 0.35,
+        "2025": 0.35
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 91.8,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 88.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约11年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约40.0%，支付比例相对合理",
+        "每股经营现金流覆盖分红约2.59倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位1.03，现金质量较好",
+        "FCF/现金分红中位1.58x，覆盖充足",
+        "支付率中位41.7%，可持续区间",
+        "近三年净利润未恶化",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.06)",
+        "资产负债率约27.7%"
+      ]
+    },
+    {
+      "symbol": "600036",
+      "name": "招商银行",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 94.35,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 96.0,
+      "quality_payout": 88.01,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 11,
+      "cash_years": [
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2015": 0.69,
+        "2016": 0.74,
+        "2017": 0.84,
+        "2018": 0.94,
+        "2019": 1.2,
+        "2020": 1.253,
+        "2021": 1.522,
+        "2022": 1.738,
+        "2023": 1.972,
+        "2024": 2.0,
+        "2025": 2.016
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 89.1,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 70.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约11年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约35.0%，支付比例相对合理",
+        "每股经营现金流覆盖分红约8.86倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位3.01，现金质量较好",
+        "FCF/现金分红中位7.86x，覆盖充足",
+        "支付率中位35.3%，可持续区间",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.01)",
+        "金融行业资产负债率90.2%按行业中性处理"
+      ],
+      "returns": {
+        "code": "600036",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.008266414737836403,
+            "dividend_cash_return": 0.04761454888993859,
+            "total_return": 0.05588096362777506,
+            "total_return_reinvest_appendix": 0.06278339746840467,
+            "cash_sum": 2.016,
+            "n_dividends": 2,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.3709055876685934,
+            "dividend_cash_return": 0.1922928709055877,
+            "total_return": 0.5631984585741809,
+            "total_return_reinvest_appendix": 0.5987629744334984,
+            "cash_sum": 5.988,
+            "n_dividends": 4,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": -0.16783625730994156,
+            "dividend_cash_return": 0.1802729044834308,
+            "total_return": 0.012436647173489135,
+            "total_return_reinvest_appendix": 0.06810515064477518,
+            "cash_sum": 9.248,
+            "n_dividends": 6,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      }
+    },
+    {
+      "symbol": "600050",
+      "name": "中国联通",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 94.3,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 98.0,
+      "quality_payout": 85.77,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 9,
+      "cash_years": [
+        "2015",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2015": 0.0572,
+        "2017": 0.0198,
+        "2018": 0.0533,
+        "2019": 0.0604,
+        "2020": 0.0669,
+        "2021": 0.0879,
+        "2022": 0.109,
+        "2023": 0.132,
+        "2024": 0.158,
+        "2025": 0.1635
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 89.4,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 72.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约9年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约50.6%，支付比例相对合理",
+        "每股经营现金流覆盖分红约24.85倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位10.11，现金质量较好",
+        "FCF/现金分红中位4.65x，覆盖充足",
+        "支付率中位54.1%，可持续区间",
+        "近三年净利润未恶化",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.07)",
+        "资产负债率约43.9%"
+      ],
+      "returns": {
+        "code": "600050",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": -0.1681901279707495,
+            "dividend_cash_return": 0.009561243144424131,
+            "total_return": -0.15862888482632542,
+            "total_return_reinvest_appendix": -0.15744848443812487,
+            "cash_sum": 0.0523,
+            "n_dividends": 1,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.015624999999999778,
+            "dividend_cash_return": 0.10122767857142856,
+            "total_return": 0.11685267857142834,
+            "total_return_reinvest_appendix": 0.11430097543986117,
+            "cash_sum": 0.4535,
+            "n_dividends": 6,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": 0.12903225806451601,
+            "dividend_cash_return": 0.1613895781637717,
+            "total_return": 0.29042183622828777,
+            "total_return_reinvest_appendix": 0.30426366458820997,
+            "cash_sum": 0.6504,
+            "n_dividends": 10,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      }
+    },
+    {
+      "symbol": "002286",
+      "name": "保龄宝",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 94.29,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 98.0,
+      "quality_payout": 85.71,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 11,
+      "cash_years": [
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2015": 0.06,
+        "2016": 0.08,
+        "2017": 0.09,
+        "2018": 0.03,
+        "2019": 0.03,
+        "2020": 0.06,
+        "2021": 0.06,
+        "2022": 0.08,
+        "2023": 0.08,
+        "2024": 0.095,
+        "2025": 0.12
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 91.8,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 88.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约11年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约29.3%，支付比例相对合理",
+        "每股经营现金流覆盖分红约7.08倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位2.24，现金质量较好",
+        "FCF/现金分红中位1.67x，覆盖充足",
+        "支付率中位31.7%，可持续区间",
+        "近三年净利润未恶化",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.05)",
+        "资产负债率约19.7%"
+      ]
+    },
+    {
+      "symbol": "601827",
+      "name": "三峰环境",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 94.27,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 96.0,
+      "quality_payout": 87.62,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 6,
+      "cash_years": [
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2020": 0.15,
+        "2021": 0.222,
+        "2022": 0.222,
+        "2023": 0.235,
+        "2024": 0.245,
+        "2025": 0.266
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 89.4,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 72.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约6年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约34.1%，支付比例相对合理",
+        "每股经营现金流覆盖分红约5.23倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位1.91，现金质量较好",
+        "FCF/现金分红中位3.65x，覆盖充足",
+        "支付率中位35.0%，可持续区间",
+        "近三年净利润未恶化",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.03)",
+        "资产负债率约48.9%"
+      ]
+    },
+    {
+      "symbol": "601965",
+      "name": "中国汽研",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 94.26,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 94.0,
+      "quality_payout": 89.53,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 11,
+      "cash_years": [
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2015": 0.1,
+        "2016": 0.15,
+        "2017": 0.2,
+        "2018": 0.25,
+        "2019": 0.25,
+        "2020": 0.3,
+        "2021": 0.3,
+        "2022": 0.3,
+        "2023": 0.33,
+        "2024": 0.34,
+        "2025": 0.34
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 84.4,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 55.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 88.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约11年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约38.8%，支付比例相对合理",
+        "每股经营现金流覆盖分红约2.65倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位1.06，现金质量较好",
+        "FCF覆盖分红偏紧(0.75x)",
+        "支付率中位37.4%，可持续区间",
+        "近三年净利润未恶化",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.15)",
+        "资产负债率约31.3%"
+      ]
+    },
+    {
+      "symbol": "601298",
+      "name": "青岛港",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 94.25,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 94.0,
+      "quality_payout": 89.51,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 8,
+      "cash_years": [
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2018": 0.3797,
+        "2019": 0.2003,
+        "2020": 0.2622,
+        "2021": 0.2564,
+        "2022": 0.2693,
+        "2023": 0.2927,
+        "2024": 0.3141,
+        "2025": 0.3454
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 91.8,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 88.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约8年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约38.8%，支付比例相对合理",
+        "每股经营现金流覆盖分红约2.53倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位1.05，现金质量较好",
+        "FCF/现金分红中位1.51x，覆盖充足",
+        "支付率中位38.8%，可持续区间",
+        "近三年净利润未恶化",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.05)",
+        "资产负债率约24.7%"
+      ]
+    },
+    {
+      "symbol": "688558",
+      "name": "国盛智科",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 94.25,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 96.0,
+      "quality_payout": 87.48,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 6,
+      "cash_years": [
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2020": 0.3,
+        "2021": 0.5,
+        "2022": 0.5,
+        "2023": 0.5,
+        "2024": 0.6,
+        "2025": 0.75
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 91.8,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 88.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约6年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约46.3%，支付比例相对合理",
+        "每股经营现金流覆盖分红约2.03倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位1.35，现金质量较好",
+        "FCF/现金分红中位2.51x，覆盖充足",
+        "支付率中位61.9%，可持续区间",
+        "近三年净利润未恶化",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.07)",
+        "资产负债率约26.4%"
+      ]
+    },
+    {
+      "symbol": "603198",
+      "name": "迎驾贡酒",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 94.22,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 98.0,
+      "quality_payout": 85.34,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 11,
+      "cash_years": [
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2015": 0.5,
+        "2016": 0.6,
+        "2017": 0.7,
+        "2018": 0.7,
+        "2019": 0.7,
+        "2020": 0.7,
+        "2021": 0.9,
+        "2022": 1.1,
+        "2023": 1.3,
+        "2024": 1.5,
+        "2025": 1.5
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 84.2,
+      "sustainability_components": {
+        "ocf_over_ni": 75.0,
+        "fcf_over_div": 78.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 72.0,
+        "leverage": 88.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约11年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约51.6%，支付比例相对合理",
+        "每股经营现金流覆盖分红约2.09倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位0.74",
+        "FCF/现金分红中位0.84x",
+        "支付率中位46.3%，可持续区间",
+        "近5年净利润均为正",
+        "营收波动适中(CV=0.16)",
+        "资产负债率约22.8%"
+      ]
+    },
+    {
+      "symbol": "601318",
+      "name": "中国平安",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 94.19,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 94.0,
+      "quality_payout": 89.22,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 11,
+      "cash_years": [
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2015": 0.53,
+        "2016": 0.75,
+        "2017": 1.5,
+        "2018": 1.72,
+        "2019": 2.05,
+        "2020": 2.2,
+        "2021": 2.38,
+        "2022": 2.42,
+        "2023": 2.43,
+        "2024": 2.55,
+        "2025": 2.7
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 89.1,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 70.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约11年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约38.1%，支付比例相对合理",
+        "每股经营现金流覆盖分红约8.48倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位4.21，现金质量较好",
+        "FCF/现金分红中位8.33x，覆盖充足",
+        "支付率中位35.6%，可持续区间",
+        "近三年净利润未恶化",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.11)",
+        "金融行业资产负债率89.8%按行业中性处理"
+      ]
+    },
+    {
+      "symbol": "000719",
+      "name": "中原传媒",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 94.16,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 94.0,
+      "quality_payout": 89.05,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 11,
+      "cash_years": [
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2015": 0.18,
+        "2016": 0.18,
+        "2017": 0.18,
+        "2018": 0.25,
+        "2019": 0.28,
+        "2020": 0.31,
+        "2021": 0.33,
+        "2022": 0.38,
+        "2023": 0.42,
+        "2024": 0.6,
+        "2025": 0.66
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 91.8,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 88.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约11年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约37.6%，支付比例相对合理",
+        "每股经营现金流覆盖分红约4.11倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位1.52，现金质量较好",
+        "FCF/现金分红中位2.37x，覆盖充足",
+        "支付率中位49.3%，可持续区间",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.03)",
+        "资产负债率约35.4%"
+      ]
+    },
+    {
+      "symbol": "603939",
+      "name": "益丰药房",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 94.13,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 94.0,
+      "quality_payout": 88.91,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 11,
+      "cash_years": [
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2015": 0.5,
+        "2016": 0.3,
+        "2017": 0.3,
+        "2018": 0.3,
+        "2019": 0.3,
+        "2020": 0.3,
+        "2021": 0.3,
+        "2022": 0.4,
+        "2023": 0.5,
+        "2024": 0.65,
+        "2025": 0.7
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 87.6,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 72.0,
+        "leverage": 72.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约11年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约42.7%，支付比例相对合理",
+        "每股经营现金流覆盖分红约9.15倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位2.76，现金质量较好",
+        "FCF/现金分红中位4.49x，覆盖充足",
+        "支付率中位50.7%，可持续区间",
+        "近三年净利润未恶化",
+        "近5年净利润均为正",
+        "营收波动适中(CV=0.16)",
+        "资产负债率约54.9%"
+      ]
+    },
+    {
+      "symbol": "688111",
+      "name": "金山办公",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 94.01,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 96.0,
+      "quality_payout": 86.3,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 7,
+      "cash_years": [
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2019": 0.3,
+        "2020": 0.6,
+        "2021": 0.7,
+        "2022": 0.72961,
+        "2023": 0.87957,
+        "2024": 0.89852,
+        "2025": 1.25
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 90.0,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 72.0,
+        "leverage": 88.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约7年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约30.8%，支付比例相对合理",
+        "每股经营现金流覆盖分红约5.07倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位1.36，现金质量较好",
+        "FCF/现金分红中位4.67x，覆盖充足",
+        "支付率中位30.8%，可持续区间",
+        "近三年净利润未恶化",
+        "近5年净利润均为正",
+        "营收波动适中(CV=0.20)",
+        "资产负债率约29.2%"
+      ]
+    },
+    {
+      "symbol": "000975",
+      "name": "山金国际",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 93.99,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 98.0,
+      "quality_payout": 84.19,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 9,
+      "cash_years": [
+        "2015",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2015": 0.2,
+        "2017": 0.2,
+        "2018": 0.2,
+        "2019": 0.2,
+        "2020": 0.25,
+        "2021": 0.25,
+        "2022": 0.28,
+        "2023": 0.28,
+        "2024": 0.365,
+        "2025": 0.480402
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 90.0,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 72.0,
+        "leverage": 88.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约9年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约54.5%，支付比例相对合理",
+        "每股经营现金流覆盖分红约2.94倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位1.57，现金质量较好",
+        "FCF/现金分红中位2.54x，覆盖充足",
+        "支付率中位46.6%，可持续区间",
+        "近三年净利润未恶化",
+        "近5年净利润均为正",
+        "营收波动适中(CV=0.31)",
+        "资产负债率约18.6%"
+      ]
+    },
+    {
+      "symbol": "688128",
+      "name": "中国电研",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 93.99,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 94.0,
+      "quality_payout": 88.22,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 7,
+      "cash_years": [
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2019": 0.3,
+        "2020": 0.3,
+        "2021": 0.35,
+        "2022": 0.4,
+        "2023": 0.45,
+        "2024": 0.5,
+        "2025": 0.55
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 89.4,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 72.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约7年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约44.4%，支付比例相对合理",
+        "每股经营现金流覆盖分红约2.61倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位1.13，现金质量较好",
+        "FCF/现金分红中位1.55x，覆盖充足",
+        "支付率中位43.5%，可持续区间",
+        "近三年净利润未恶化",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.12)",
+        "资产负债率约57.3%"
+      ]
+    },
+    {
+      "symbol": "600874",
+      "name": "创业环保",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 93.96,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 96.0,
+      "quality_payout": 86.07,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 8,
+      "cash_years": [
+        "2015",
+        "2016",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2015": 0.07,
+        "2016": 0.095,
+        "2018": 0.106,
+        "2019": 0.107,
+        "2020": 0.12,
+        "2021": 0.146,
+        "2022": 0.144,
+        "2023": 0.166,
+        "2024": 0.17,
+        "2025": 0.209
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 89.4,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 72.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约8年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约30.2%，支付比例相对合理",
+        "每股经营现金流覆盖分红约4.50倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位1.71，现金质量较好",
+        "FCF/现金分红中位2.59x，覆盖充足",
+        "支付率中位33.3%，可持续区间",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.03)",
+        "资产负债率约56.1%"
+      ]
+    },
+    {
+      "symbol": "688248",
+      "name": "南网科技",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 93.95,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 94.0,
+      "quality_payout": 88.0,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 5,
+      "cash_years": [
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2021": 0.085,
+        "2022": 0.125,
+        "2023": 0.175,
+        "2024": 0.27,
+        "2025": 0.312
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 90.0,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 72.0,
+        "leverage": 88.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约5年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约35.0%，支付比例相对合理",
+        "每股经营现金流覆盖分红约2.75倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位1.15，现金质量较好",
+        "FCF/现金分红中位2.03x，覆盖充足",
+        "支付率中位41.5%，可持续区间",
+        "近三年净利润未恶化",
+        "近5年净利润均为正",
+        "营收波动适中(CV=0.33)",
+        "资产负债率约35.5%"
+      ]
+    },
+    {
+      "symbol": "300248",
+      "name": "新开普",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 93.92,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 94.0,
+      "quality_payout": 87.83,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 11,
+      "cash_years": [
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2015": 0.05,
+        "2016": 0.055,
+        "2017": 0.061058,
+        "2018": 0.04,
+        "2019": 0.06,
+        "2020": 0.06,
+        "2021": 0.065,
+        "2022": 0.065,
+        "2023": 0.08,
+        "2024": 0.08,
+        "2025": 0.08
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 91.8,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 88.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约11年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约34.6%，支付比例相对合理",
+        "每股经营现金流覆盖分红约5.16倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位2.47，现金质量较好",
+        "FCF/现金分红中位1.22x，覆盖充足",
+        "支付率中位35.4%，可持续区间",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.04)",
+        "资产负债率约18.3%"
+      ]
+    },
+    {
+      "symbol": "600993",
+      "name": "马应龙",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 93.86,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 92.0,
+      "quality_payout": 89.53,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 11,
+      "cash_years": [
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2015": 0.2,
+        "2016": 0.2,
+        "2017": 0.23,
+        "2018": 0.15,
+        "2019": 0.26,
+        "2020": 0.3,
+        "2021": 0.35,
+        "2022": 0.35,
+        "2023": 0.4,
+        "2024": 0.62,
+        "2025": 0.7
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 91.8,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 88.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约11年(截至报告期年2025)",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约38.8%，支付比例相对合理",
+        "每股经营现金流覆盖分红约2.27倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位1.03，现金质量较好",
+        "FCF/现金分红中位1.60x，覆盖充足",
+        "支付率中位50.4%，可持续区间",
+        "近三年净利润未恶化",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.07)",
+        "资产负债率约17.0%"
+      ]
+    },
+    {
+      "symbol": "600380",
+      "name": "健康元",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 93.84,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 98.0,
+      "quality_payout": 83.47,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 11,
+      "cash_years": [
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2015": 0.1,
+        "2016": 0.16,
+        "2017": 0.18,
+        "2018": 0.16,
+        "2019": 0.16,
+        "2020": 0.15,
+        "2021": 0.15,
+        "2022": 0.18,
+        "2023": 0.18,
+        "2024": 0.2,
+        "2025": 0.22
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 91.8,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 88.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约11年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约23.7%，支付比例相对合理",
+        "每股经营现金流覆盖分红约9.70倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位2.72，现金质量较好",
+        "FCF/现金分红中位7.76x，覆盖充足",
+        "支付率中位27.0%，可持续区间",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.04)",
+        "资产负债率约31.2%"
+      ]
+    },
+    {
+      "symbol": "603102",
+      "name": "百合股份",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 93.82,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 96.0,
+      "quality_payout": 85.36,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 5,
+      "cash_years": [
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2021": 0.5,
+        "2022": 0.6,
+        "2023": 0.75,
+        "2024": 0.75,
+        "2025": 0.75
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 91.8,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 88.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约5年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约28.4%，支付比例相对合理",
+        "每股经营现金流覆盖分红约3.98倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位1.15，现金质量较好",
+        "FCF/现金分红中位2.03x，覆盖充足",
+        "支付率中位34.4%，可持续区间",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.12)",
+        "资产负债率约13.8%"
+      ]
+    },
+    {
+      "symbol": "300718",
+      "name": "长盛轴承",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 93.76,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 96.0,
+      "quality_payout": 85.06,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 9,
+      "cash_years": [
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2017": 0.37,
+        "2018": 0.35,
+        "2019": 0.22,
+        "2020": 0.5,
+        "2021": 0.35,
+        "2022": 0.35,
+        "2023": 0.403,
+        "2024": 0.403,
+        "2025": 0.428
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 91.8,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 88.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约9年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约52.3%，支付比例相对合理",
+        "每股经营现金流覆盖分红约2.05倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位1.13，现金质量较好",
+        "FCF/现金分红中位1.70x，覆盖充足",
+        "支付率中位50.4%，可持续区间",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.08)",
+        "资产负债率约13.4%"
+      ],
+      "returns": {
+        "code": "300718",
+        "as_of": "2026-11-06",
+        "data_status": "DATA_INSUFFICIENT",
+        "horizons": {},
+        "notes": [
+          "bfq_missing_skip_pr_tr_never_use_qfq_plus_cash"
+        ]
+      }
+    },
+    {
+      "symbol": "600987",
+      "name": "航民股份",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 93.74,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 94.0,
+      "quality_payout": 86.95,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 11,
+      "cash_years": [
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2015": 0.23,
+        "2016": 0.26,
+        "2017": 0.28,
+        "2018": 0.28,
+        "2019": 0.22,
+        "2020": 0.2,
+        "2021": 0.3,
+        "2022": 0.3,
+        "2023": 0.3,
+        "2024": 0.3,
+        "2025": 0.35
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 90.3,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 78.0
+      },
+      "risk_hint": "WATCH",
+      "unhealthy_flags": [
+        "leverage_rising"
+      ],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约11年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约47.6%，支付比例相对合理",
+        "每股经营现金流覆盖分红约2.80倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位1.43，现金质量较好",
+        "FCF/现金分红中位2.15x，覆盖充足",
+        "支付率中位46.2%，可持续区间",
+        "近三年净利润未恶化",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.08)",
+        "资产负债率约34.0%",
+        "资产负债率明显上升"
+      ]
+    },
+    {
+      "symbol": "600908",
+      "name": "无锡银行",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 93.73,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 98.0,
+      "quality_payout": 82.89,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 10,
+      "cash_years": [
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2016": 0.15,
+        "2017": 0.15,
+        "2018": 0.18,
+        "2019": 0.18,
+        "2020": 0.18,
+        "2021": 0.18,
+        "2022": 0.2,
+        "2023": 0.2,
+        "2024": 0.22,
+        "2025": 0.24
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 89.1,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 70.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约10年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约22.2%，支付比例相对合理",
+        "每股经营现金流覆盖分红约15.62倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位3.35，现金质量较好",
+        "FCF/现金分红中位14.62x，覆盖充足",
+        "支付率中位22.4%，可持续区间",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.04)",
+        "金融行业资产负债率91.8%按行业中性处理"
+      ]
+    },
+    {
+      "symbol": "300019",
+      "name": "硅宝科技",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 93.73,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 92.0,
+      "quality_payout": 88.92,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 7,
+      "cash_years": [
+        "2015",
+        "2016",
+        "2017",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2015": 0.15,
+        "2016": 0.1,
+        "2017": 0.1,
+        "2019": 0.15,
+        "2020": 0.2,
+        "2021": 0.3,
+        "2022": 0.3,
+        "2023": 0.3,
+        "2024": 0.3,
+        "2025": 0.3
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 88.5,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 72.0,
+        "leverage": 78.0
+      },
+      "risk_hint": "WATCH",
+      "unhealthy_flags": [
+        "leverage_rising"
+      ],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约7年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红/EPS中位约42.7%，支付比例相对合理",
+        "每股经营现金流覆盖分红约3.71倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位2.04，现金质量较好",
+        "FCF/现金分红中位2.68x，覆盖充足",
+        "支付率中位42.3%，可持续区间",
+        "近5年净利润均为正",
+        "营收波动适中(CV=0.15)",
+        "资产负债率约34.0%",
+        "资产负债率明显上升"
+      ]
+    },
+    {
+      "symbol": "601288",
+      "name": "农业银行",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 93.72,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 94.0,
+      "quality_payout": 86.83,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 11,
+      "cash_years": [
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2015": 0.1668,
+        "2016": 0.17,
+        "2017": 0.1783,
+        "2018": 0.1739,
+        "2019": 0.1819,
+        "2020": 0.1851,
+        "2021": 0.2068,
+        "2022": 0.2222,
+        "2023": 0.2309,
+        "2024": 0.2419,
+        "2025": 0.2495
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 89.1,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 70.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约11年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约32.1%，支付比例相对合理",
+        "每股经营现金流覆盖分红约17.01倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位6.78，现金质量较好",
+        "FCF/现金分红中位20.80x，覆盖充足",
+        "支付率中位32.1%，可持续区间",
+        "近三年净利润未恶化",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.02)",
+        "金融行业资产负债率93.4%按行业中性处理"
+      ],
+      "returns": {
+        "code": "601288",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": -0.08088235294117652,
+            "dividend_cash_return": 0.03057598039215686,
+            "total_return": -0.050306372549019596,
+            "total_return_reinvest_appendix": -0.04799122067366968,
+            "cash_sum": 0.2495,
+            "n_dividends": 2,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": 1.094972067039106,
+            "dividend_cash_return": 0.20175977653631286,
+            "total_return": 1.2967318435754192,
+            "total_return_reinvest_appendix": 1.3868462363576688,
+            "cash_sum": 0.7223,
+            "n_dividends": 5,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": 1.5684931506849318,
+            "dividend_cash_return": 0.3942808219178082,
+            "total_return": 1.9627739726027396,
+            "total_return_reinvest_appendix": 2.3511765994249663,
+            "cash_sum": 1.1513,
+            "n_dividends": 7,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      }
+    },
+    {
+      "symbol": "301158",
+      "name": "德石股份",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 93.71,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 92.0,
+      "quality_payout": 88.78,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 5,
+      "cash_years": [
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2021": 0.12,
+        "2022": 0.16,
+        "2023": 0.305443,
+        "2024": 0.31,
+        "2025": 0.34
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 88.5,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 72.0,
+        "leverage": 78.0
+      },
+      "risk_hint": "WATCH",
+      "unhealthy_flags": [
+        "leverage_rising"
+      ],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约5年(截至报告期年2025)",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约43.0%，支付比例相对合理",
+        "每股经营现金流覆盖分红约2.82倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位1.28，现金质量较好",
+        "FCF/现金分红中位2.66x，覆盖充足",
+        "支付率中位46.3%，可持续区间",
+        "近三年净利润未恶化",
+        "近5年净利润均为正",
+        "营收波动适中(CV=0.18)",
+        "资产负债率约27.2%",
+        "资产负债率明显上升"
+      ]
+    },
+    {
+      "symbol": "603909",
+      "name": "建发合诚",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 93.68,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 94.0,
+      "quality_payout": 86.65,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 6,
+      "cash_years": [
+        "2016",
+        "2017",
+        "2018",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2016": 0.116,
+        "2017": 0.125,
+        "2018": 0.135,
+        "2020": 0.066,
+        "2021": 0.042,
+        "2022": 0.06,
+        "2023": 0.08,
+        "2024": 0.12,
+        "2025": 0.15
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 75.1,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 28.0,
+        "leverage": 18.0
+      },
+      "risk_hint": "WATCH",
+      "unhealthy_flags": [
+        "high_leverage",
+        "leverage_rising"
+      ],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约6年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约31.6%，支付比例相对合理",
+        "每股经营现金流覆盖分红约15.05倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位4.92，现金质量较好",
+        "FCF/现金分红中位14.57x，覆盖充足",
+        "支付率中位32.7%，可持续区间",
+        "近三年净利润未恶化",
+        "近5年净利润均为正",
+        "营收波动很高(CV=0.67)",
+        "资产负债率约78.2%",
+        "资产负债率明显上升"
+      ]
+    },
+    {
+      "symbol": "601601",
+      "name": "中国太保",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 93.65,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 96.0,
+      "quality_payout": 84.49,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 11,
+      "cash_years": [
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2015": 1.0,
+        "2016": 0.7,
+        "2017": 0.8,
+        "2018": 1.0,
+        "2019": 1.2,
+        "2020": 1.2,
+        "2021": 1.0,
+        "2022": 1.02,
+        "2023": 1.02,
+        "2024": 1.08,
+        "2025": 1.15
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 89.1,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 70.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约11年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约26.2%，支付比例相对合理",
+        "每股经营现金流覆盖分红约14.86倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位3.65，现金质量较好",
+        "FCF/现金分红中位14.48x，覆盖充足",
+        "支付率中位23.1%，可持续区间",
+        "近三年净利润未恶化",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.13)",
+        "金融行业资产负债率89.4%按行业中性处理"
+      ]
+    },
+    {
+      "symbol": "600015",
+      "name": "华夏银行",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 93.62,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 96.0,
+      "quality_payout": 84.37,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 11,
+      "cash_years": [
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2015": 0.363,
+        "2016": 0.181,
+        "2017": 0.151,
+        "2018": 0.174,
+        "2019": 0.249,
+        "2020": 0.301,
+        "2021": 0.338,
+        "2022": 0.383,
+        "2023": 0.384,
+        "2024": 0.405,
+        "2025": 0.42
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 89.1,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 70.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约11年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约25.9%，支付比例相对合理",
+        "每股经营现金流覆盖分红约12.95倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位2.54，现金质量较好",
+        "FCF/现金分红中位7.40x，覆盖充足",
+        "支付率中位25.9%，可持续区间",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.02)",
+        "金融行业资产负债率91.6%按行业中性处理"
+      ]
+    },
+    {
+      "symbol": "601077",
+      "name": "渝农商行",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 93.6,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 94.0,
+      "quality_payout": 86.23,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 7,
+      "cash_years": [
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2019": 0.23,
+        "2020": 0.222,
+        "2021": 0.2525,
+        "2022": 0.2714,
+        "2023": 0.2885,
+        "2024": 0.3046,
+        "2025": 0.32091
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 79.3,
+      "sustainability_components": {
+        "ocf_over_ni": 55.0,
+        "fcf_over_div": 78.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 70.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约7年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约30.6%，支付比例相对合理",
+        "每股经营现金流覆盖分红约12.04倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位0.40，偏弱",
+        "FCF/现金分红中位1.16x",
+        "支付率中位30.7%，可持续区间",
+        "近三年净利润未恶化",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.04)",
+        "金融行业资产负债率91.6%按行业中性处理"
+      ]
+    },
+    {
+      "symbol": "601939",
+      "name": "建设银行",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 93.59,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 94.0,
+      "quality_payout": 86.21,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 11,
+      "cash_years": [
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2015": 0.274,
+        "2016": 0.278,
+        "2017": 0.291,
+        "2018": 0.306,
+        "2019": 0.32,
+        "2020": 0.326,
+        "2021": 0.364,
+        "2022": 0.389,
+        "2023": 0.4,
+        "2024": 0.403,
+        "2025": 0.3887
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 89.1,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 70.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约11年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约30.5%，支付比例相对合理",
+        "每股经营现金流覆盖分红约6.42倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位1.93，现金质量较好",
+        "FCF/现金分红中位6.08x，覆盖充足",
+        "支付率中位30.5%，可持续区间",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.03)",
+        "金融行业资产负债率91.9%按行业中性处理"
+      ]
+    },
+    {
+      "symbol": "002758",
+      "name": "浙农股份",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 93.59,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 94.0,
+      "quality_payout": 86.22,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 11,
+      "cash_years": [
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2015": 0.3,
+        "2016": 0.11,
+        "2017": 0.08,
+        "2018": 0.08,
+        "2019": 0.08,
+        "2020": 0.18,
+        "2021": 0.3,
+        "2022": 0.3,
+        "2023": 0.3,
+        "2024": 0.3,
+        "2025": 0.33
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 86.1,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 50.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约11年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约30.6%，支付比例相对合理",
+        "每股经营现金流覆盖分红约9.36倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位2.29，现金质量较好",
+        "FCF/现金分红中位2.81x，覆盖充足",
+        "支付率中位40.5%，可持续区间",
+        "近三年净利润未恶化",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.09)",
+        "资产负债率约63.3%"
+      ]
+    },
+    {
+      "symbol": "603043",
+      "name": "广州酒家",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 93.58,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 94.0,
+      "quality_payout": 86.16,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 9,
+      "cash_years": [
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2017": 0.35,
+        "2018": 0.4,
+        "2019": 0.3,
+        "2020": 0.4,
+        "2021": 0.4,
+        "2022": 0.4,
+        "2023": 0.48,
+        "2024": 0.48,
+        "2025": 0.5
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 91.8,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 88.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约9年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约49.6%，支付比例相对合理",
+        "每股经营现金流覆盖分红约3.27倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位1.81，现金质量较好",
+        "FCF/现金分红中位1.93x，覆盖充足",
+        "支付率中位55.3%，可持续区间",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.12)",
+        "资产负债率约39.8%"
+      ]
+    },
+    {
+      "symbol": "603860",
+      "name": "中公高科",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 93.56,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 98.0,
+      "quality_payout": 82.04,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 9,
+      "cash_years": [
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2017": 0.1407,
+        "2018": 0.1435,
+        "2019": 0.16505,
+        "2020": 0.1051,
+        "2021": 0.1134,
+        "2022": 0.1154,
+        "2023": 0.1547,
+        "2024": 0.1673,
+        "2025": 0.2052
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 91.8,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 90.0,
+        "leverage": 88.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约9年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约20.1%，支付比例相对合理",
+        "每股经营现金流覆盖分红约5.12倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位1.20，现金质量较好",
+        "FCF/现金分红中位3.89x，覆盖充足",
+        "支付率中位25.0%，可持续区间",
+        "近5年净利润均为正",
+        "营收波动低(CV=0.11)",
+        "资产负债率约17.3%"
+      ]
+    },
+    {
+      "symbol": "603919",
+      "name": "金徽酒",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 93.56,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 98.0,
+      "quality_payout": 82.06,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 10,
+      "cash_years": [
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2016": 0.24,
+        "2017": 0.24,
+        "2018": 0.242,
+        "2019": 0.242,
+        "2020": 0.24,
+        "2021": 0.22,
+        "2022": 0.3,
+        "2023": 0.389,
+        "2024": 0.5,
+        "2025": 0.5
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 85.7,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 78.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 72.0,
+        "leverage": 78.0
+      },
+      "risk_hint": "WATCH",
+      "unhealthy_flags": [
+        "leverage_rising"
+      ],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约10年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约59.8%，支付比例相对合理",
+        "每股经营现金流覆盖分红约2.20倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位1.37，现金质量较好",
+        "FCF/现金分红中位0.90x",
+        "支付率中位64.9%，可持续区间",
+        "近三年净利润未恶化",
+        "近5年净利润均为正",
+        "营收波动适中(CV=0.20)",
+        "资产负债率约35.5%",
+        "资产负债率明显上升"
+      ]
+    },
+    {
+      "symbol": "601179",
+      "name": "中国西电",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 93.55,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 94.0,
+      "quality_payout": 89.0,
+      "quality_cash_ability": 95.0,
+      "quality_record": 82.0,
+      "continuous_cash_years": 11,
+      "cash_years": [
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2015": 0.14,
+        "2016": 0.1,
+        "2017": 0.053,
+        "2018": 0.034,
+        "2019": 0.05,
+        "2020": 0.03,
+        "2021": 0.032,
+        "2022": 0.045,
+        "2023": 0.066,
+        "2024": 0.083,
+        "2025": 0.101
+      },
+      "special_heuristic_years": [
+        "2015"
+      ],
+      "dividend_sustainability_score": 87.6,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 72.0,
+        "leverage": 72.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约11年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约37.5%，支付比例相对合理",
+        "每股经营现金流覆盖分红约5.29倍(中位)",
+        "启发式异常高派息年份(不确定降权): 2015",
+        "经营现金流/净利润中位2.16，现金质量较好",
+        "FCF/现金分红中位3.44x，覆盖充足",
+        "支付率中位39.5%，可持续区间",
+        "近三年净利润未恶化",
+        "近5年净利润均为正",
+        "营收波动适中(CV=0.16)",
+        "资产负债率约47.0%"
+      ]
+    },
+    {
+      "symbol": "600262",
+      "name": "北方股份",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 93.55,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 94.0,
+      "quality_payout": 86.0,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 9,
+      "cash_years": [
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2017": 0.07,
+        "2018": 0.21,
+        "2019": 0.12,
+        "2020": 0.12,
+        "2021": 0.165,
+        "2022": 0.21,
+        "2023": 0.251,
+        "2024": 0.316,
+        "2025": 0.381
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 86.1,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 72.0,
+        "leverage": 62.0
+      },
+      "risk_hint": "WATCH",
+      "unhealthy_flags": [
+        "leverage_rising"
+      ],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约9年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约30.0%，支付比例相对合理",
+        "每股经营现金流覆盖分红约4.31倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位1.42，现金质量较好",
+        "FCF/现金分红中位4.49x，覆盖充足",
+        "支付率中位30.1%，可持续区间",
+        "近三年净利润未恶化",
+        "近5年净利润均为正",
+        "营收波动适中(CV=0.21)",
+        "资产负债率约59.5%",
+        "资产负债率明显上升"
+      ]
+    },
+    {
+      "symbol": "000682",
+      "name": "东方电子",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 93.54,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 98.0,
+      "quality_payout": 81.93,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 5,
+      "cash_years": [
+        "2019",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2019": 0.038,
+        "2021": 0.06,
+        "2022": 0.075,
+        "2023": 0.08,
+        "2024": 0.082,
+        "2025": 0.087
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 87.6,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 72.0,
+        "leverage": 72.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约5年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约19.8%，支付比例相对合理",
+        "每股经营现金流覆盖分红约6.93倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位1.52，现金质量较好",
+        "FCF/现金分红中位8.45x，覆盖充足",
+        "支付率中位16.1%，可持续区间",
+        "近三年净利润未恶化",
+        "近5年净利润均为正",
+        "营收波动适中(CV=0.22)",
+        "资产负债率约54.3%"
+      ]
+    },
+    {
+      "symbol": "300596",
+      "name": "利安隆",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 93.54,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 98.0,
+      "quality_payout": 81.97,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 10,
+      "cash_years": [
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2016": 0.105,
+        "2017": 0.109,
+        "2018": 0.161,
+        "2019": 0.192,
+        "2020": 0.215,
+        "2021": 0.306,
+        "2022": 0.344,
+        "2023": 0.344,
+        "2024": 0.37,
+        "2025": 0.45
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 84.6,
+      "sustainability_components": {
+        "ocf_over_ni": 75.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 72.0,
+        "leverage": 72.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约10年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约19.9%，支付比例相对合理",
+        "每股经营现金流覆盖分红约4.98倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位0.76",
+        "FCF/现金分红中位1.31x，覆盖充足",
+        "支付率中位20.8%，可持续区间",
+        "近三年净利润未恶化",
+        "近5年净利润均为正",
+        "营收波动适中(CV=0.18)",
+        "资产负债率约52.6%"
+      ]
+    },
+    {
+      "symbol": "002328",
+      "name": "新朋股份",
+      "as_of": "2026-11-06",
+      "dividend_quality_score": 93.39,
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 94.0,
+      "quality_payout": 85.2,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "continuous_cash_years": 11,
+      "cash_years": [
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps": {
+        "2015": 0.045,
+        "2016": 0.045,
+        "2017": 0.045,
+        "2018": 0.112,
+        "2019": 0.13,
+        "2020": 0.13,
+        "2021": 0.13,
+        "2022": 0.13,
+        "2023": 0.13,
+        "2024": 0.142,
+        "2025": 0.142
+      },
+      "special_heuristic_years": [],
+      "dividend_sustainability_score": 90.0,
+      "sustainability_components": {
+        "ocf_over_ni": 90.0,
+        "fcf_over_div": 92.0,
+        "payout": 88.0,
+        "profit_continuity": 100.0,
+        "revenue_stability": 72.0,
+        "leverage": 88.0
+      },
+      "risk_hint": "SAFE",
+      "unhealthy_flags": [],
+      "quality_data_status": "VALID",
+      "sustainability_data_status": "VALID",
+      "missing_quality": [],
+      "missing_sustainability": [],
+      "reasons": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约11年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约52.0%，支付比例相对合理",
+        "每股经营现金流覆盖分红约2.53倍(中位)",
+        "分红记录未见明显偶发/特别依赖",
+        "经营现金流/净利润中位2.87，现金质量较好",
+        "FCF/现金分红中位1.52x，覆盖充足",
+        "支付率中位71.0%，可持续区间",
+        "近5年净利润均为正",
+        "营收波动适中(CV=0.16)",
+        "资产负债率约29.8%"
+      ]
+    }
+  ],
+  "manual_audit": [
+    {
+      "symbol": "601398",
+      "name": "工商银行",
+      "continuous_cash_years": 11,
+      "cash_years_tail": [
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps_tail": {
+        "2021": 0.2933,
+        "2022": 0.3035,
+        "2023": 0.3064,
+        "2024": 0.308,
+        "2025": 0.3103
+      },
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 92.0,
+      "quality_payout": 86.51,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "dividend_quality_score": 93.25,
+      "dividend_sustainability_score": 89.1,
+      "reasons_head": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约11年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红/EPS中位约31.3%，支付比例相对合理",
+        "每股经营现金流覆盖分红约12.98倍(中位)",
+        "分红记录未见明显偶发/特别依赖"
+      ]
+    },
+    {
+      "symbol": "600900",
+      "name": "长江电力",
+      "continuous_cash_years": 11,
+      "cash_years_tail": [
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps_tail": {
+        "2021": 0.8153,
+        "2022": 0.8533,
+        "2023": 0.82,
+        "2024": 0.943,
+        "2025": 1.0
+      },
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 96.0,
+      "quality_payout": 55.0,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "dividend_quality_score": 87.75,
+      "dividend_sustainability_score": 87.6,
+      "reasons_head": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约11年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红金额整体稳定或增长",
+        "分红/EPS中位约71.0%，偏高需看现金流",
+        "每股经营现金流覆盖分红约2.48倍(中位)"
+      ]
+    },
+    {
+      "symbol": "601088",
+      "name": "中国神华",
+      "continuous_cash_years": 11,
+      "cash_years_tail": [
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "annual_dps_tail": {
+        "2021": 2.54,
+        "2022": 2.55,
+        "2023": 2.26,
+        "2024": 2.26,
+        "2025": 2.01
+      },
+      "quality_continuity": 100.0,
+      "quality_stability_growth": 68.0,
+      "quality_payout": 55.0,
+      "quality_cash_ability": 95.0,
+      "quality_record": 88.0,
+      "dividend_quality_score": 82.15,
+      "dividend_sustainability_score": 81.8,
+      "reasons_head": [
+        "近3年(2023-2025)现金分红连续",
+        "连续现金分红约11年(截至报告期年2025)",
+        "每股现金分红波动较低",
+        "分红/EPS中位约75.6%，偏高需看现金流",
+        "每股经营现金流覆盖分红约2.00倍(中位)",
+        "分红记录未见明显偶发/特别依赖"
+      ]
+    }
+  ],
+  "return_batch": {
+    "n_requested": 200,
+    "n_with_bfq_ok": 33,
+    "n_bfq_missing": 167,
+    "sample_codes_head": [
+      "601398",
+      "601288",
+      "601988",
+      "601328",
+      "600036",
+      "601088",
+      "601225",
+      "601666",
+      "000983",
+      "600900",
+      "600886",
+      "600025",
+      "600377",
+      "600350",
+      "601006",
+      "600000",
+      "000001",
+      "601728",
+      "600941",
+      "600050",
+      "000429",
+      "000537",
+      "000651",
+      "002601",
+      "600101",
+      "600188",
+      "600236",
+      "600546",
+      "600971",
+      "601139",
+      "601158",
+      "601166",
+      "601898",
+      "605060",
+      "300980",
+      "688372",
+      "002981",
+      "600630",
+      "600901",
+      "002835"
+    ],
+    "results_with_bfq": [
+      {
+        "code": "601398",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.06180469715698389,
+            "dividend_cash_return": 0.03835599505562423,
+            "total_return": 0.10016069221260815,
+            "total_return_reinvest_appendix": 0.10628257054476808,
+            "cash_sum": 0.3103,
+            "n_dividends": 2,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.8237791932059448,
+            "dividend_cash_return": 0.19632696390658172,
+            "total_return": 1.0201061571125263,
+            "total_return_reinvest_appendix": 1.0847411196199328,
+            "cash_sum": 0.9246999999999999,
+            "n_dividends": 5,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": 0.855291576673866,
+            "dividend_cash_return": 0.32861771058315337,
+            "total_return": 1.1839092872570194,
+            "total_return_reinvest_appendix": 1.4086848960820895,
+            "cash_sum": 1.5215,
+            "n_dividends": 7,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      },
+      {
+        "code": "601288",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": -0.08088235294117652,
+            "dividend_cash_return": 0.03057598039215686,
+            "total_return": -0.050306372549019596,
+            "total_return_reinvest_appendix": -0.04799122067366968,
+            "cash_sum": 0.2495,
+            "n_dividends": 2,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": 1.094972067039106,
+            "dividend_cash_return": 0.20175977653631286,
+            "total_return": 1.2967318435754192,
+            "total_return_reinvest_appendix": 1.3868462363576688,
+            "cash_sum": 0.7223,
+            "n_dividends": 5,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": 1.5684931506849318,
+            "dividend_cash_return": 0.3942808219178082,
+            "total_return": 1.9627739726027396,
+            "total_return_reinvest_appendix": 2.3511765994249663,
+            "cash_sum": 1.1513,
+            "n_dividends": 7,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      },
+      {
+        "code": "601988",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.22261484098939932,
+            "dividend_cash_return": 0.03998233215547703,
+            "total_return": 0.2625971731448764,
+            "total_return_reinvest_appendix": 0.2711968838874892,
+            "cash_sum": 0.2263,
+            "n_dividends": 2,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.8020833333333335,
+            "dividend_cash_return": 0.18361979166666667,
+            "total_return": 0.9857031249999999,
+            "total_return_reinvest_appendix": 1.056532718970029,
+            "cash_sum": 0.7051,
+            "n_dividends": 5,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": 1.283828382838284,
+            "dividend_cash_return": 0.38221122112211225,
+            "total_return": 1.666039603960396,
+            "total_return_reinvest_appendix": 1.9704990887571139,
+            "cash_sum": 1.1581000000000001,
+            "n_dividends": 7,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      },
+      {
+        "code": "601328",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.14305177111716638,
+            "dividend_cash_return": 0.04423705722070845,
+            "total_return": 0.18728882833787486,
+            "total_return_reinvest_appendix": 0.19761870508999535,
+            "cash_sum": 0.3247,
+            "n_dividends": 2,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.4823321554770319,
+            "dividend_cash_return": 0.19058303886925795,
+            "total_return": 0.6729151943462897,
+            "total_return_reinvest_appendix": 0.7169885850030921,
+            "cash_sum": 1.0787,
+            "n_dividends": 5,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": 0.8120950323974083,
+            "dividend_cash_return": 0.39021598272138236,
+            "total_return": 1.2023110151187906,
+            "total_return_reinvest_appendix": 1.4147551502713558,
+            "cash_sum": 1.8067000000000002,
+            "n_dividends": 7,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      },
+      {
+        "code": "600036",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.008266414737836403,
+            "dividend_cash_return": 0.04761454888993859,
+            "total_return": 0.05588096362777506,
+            "total_return_reinvest_appendix": 0.06278339746840467,
+            "cash_sum": 2.016,
+            "n_dividends": 2,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.3709055876685934,
+            "dividend_cash_return": 0.1922928709055877,
+            "total_return": 0.5631984585741809,
+            "total_return_reinvest_appendix": 0.5987629744334984,
+            "cash_sum": 5.988,
+            "n_dividends": 4,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": -0.16783625730994156,
+            "dividend_cash_return": 0.1802729044834308,
+            "total_return": 0.012436647173489135,
+            "total_return_reinvest_appendix": 0.06810515064477518,
+            "cash_sum": 9.248,
+            "n_dividends": 6,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      },
+      {
+        "code": "601088",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.18208683791770852,
+            "dividend_cash_return": 0.04569220277335759,
+            "total_return": 0.22777904069106603,
+            "total_return_reinvest_appendix": 0.23812959097737485,
+            "cash_sum": 2.0100000000000002,
+            "n_dividends": 2,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.7639077340569878,
+            "dividend_cash_return": 0.2215061058344641,
+            "total_return": 0.9854138398914518,
+            "total_return_reinvest_appendix": 1.0603111053900314,
+            "cash_sum": 6.530000000000001,
+            "n_dividends": 4,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": 1.627589691763517,
+            "dividend_cash_return": 0.5871652349671551,
+            "total_return": 2.214754926730672,
+            "total_return_reinvest_appendix": 2.6329716605631392,
+            "cash_sum": 11.62,
+            "n_dividends": 6,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      },
+      {
+        "code": "601225",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.13995016611295696,
+            "dividend_cash_return": 0.03774916943521595,
+            "total_return": 0.17769933554817285,
+            "total_return_reinvest_appendix": 0.1900088473205257,
+            "cash_sum": 0.909,
+            "n_dividends": 1,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.5712650257584431,
+            "dividend_cash_return": 0.2066971951917573,
+            "total_return": 0.7779622209502004,
+            "total_return_reinvest_appendix": 0.8455124725349457,
+            "cash_sum": 3.6109999999999998,
+            "n_dividends": 6,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": 1.2932330827067666,
+            "dividend_cash_return": 0.5965747702589808,
+            "total_return": 1.8898078529657476,
+            "total_return_reinvest_appendix": 2.24787825884417,
+            "cash_sum": 7.141,
+            "n_dividends": 8,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      },
+      {
+        "code": "601666",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": -0.08715596330275233,
+            "dividend_cash_return": 0.006880733944954128,
+            "total_return": -0.0802752293577983,
+            "total_return_reinvest_appendix": -0.07949573362417406,
+            "cash_sum": 0.06,
+            "n_dividends": 1,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": -0.1894093686354379,
+            "dividend_cash_return": 0.16802443991853358,
+            "total_return": -0.02138492871690434,
+            "total_return_reinvest_appendix": -0.050731120688024434,
+            "cash_sum": 1.65,
+            "n_dividends": 3,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": -0.053507728894173656,
+            "dividend_cash_return": 0.39001189060642094,
+            "total_return": 0.3365041617122473,
+            "total_return_reinvest_appendix": 0.2852484202570871,
+            "cash_sum": 3.2800000000000002,
+            "n_dividends": 5,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      },
+      {
+        "code": "000983",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": -0.13484646194926564,
+            "dividend_cash_return": 0.012016021361815753,
+            "total_return": -0.12283044058744996,
+            "total_return_reinvest_appendix": -0.12244776474790153,
+            "cash_sum": 0.09,
+            "n_dividends": 1,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": -0.24651162790697667,
+            "dividend_cash_return": 0.1332558139534884,
+            "total_return": -0.11325581395348827,
+            "total_return_reinvest_appendix": -0.13533908141286033,
+            "cash_sum": 1.1460000000000001,
+            "n_dividends": 4,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": -0.2831858407079645,
+            "dividend_cash_return": 0.34800884955752215,
+            "total_return": 0.06482300884955783,
+            "total_return_reinvest_appendix": -0.004735869324331454,
+            "cash_sum": 3.146,
+            "n_dividends": 6,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      },
+      {
+        "code": "600900",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.04771929824561405,
+            "dividend_cash_return": 0.03508771929824561,
+            "total_return": 0.08280701754385955,
+            "total_return_reinvest_appendix": 0.08595172876003332,
+            "cash_sum": 1.0,
+            "n_dividends": 2,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.3426258992805755,
+            "dividend_cash_return": 0.12423561151079138,
+            "total_return": 0.46686151079136695,
+            "total_return_reinvest_appendix": 0.4753467985012525,
+            "cash_sum": 2.763,
+            "n_dividends": 5,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": 0.4673218673218671,
+            "dividend_cash_return": 0.21776904176904174,
+            "total_return": 0.6850909090909092,
+            "total_return_reinvest_appendix": 0.7329788450092602,
+            "cash_sum": 4.4315999999999995,
+            "n_dividends": 7,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      },
+      {
+        "code": "600886",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.07692307692307687,
+            "dividend_cash_return": 0.03458815520762423,
+            "total_return": 0.11151123213070124,
+            "total_return_reinvest_appendix": 0.11537596626844704,
+            "cash_sum": 0.5081,
+            "n_dividends": 1,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.32274247491638786,
+            "dividend_cash_return": 0.12202341137123746,
+            "total_return": 0.44476588628762515,
+            "total_return_reinvest_appendix": 0.4539373345137083,
+            "cash_sum": 1.4594,
+            "n_dividends": 3,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": 0.5883534136546185,
+            "dividend_cash_return": 0.19055220883534135,
+            "total_return": 0.7789056224899598,
+            "total_return_reinvest_appendix": 0.8112460686156218,
+            "cash_sum": 1.8979000000000001,
+            "n_dividends": 5,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      },
+      {
+        "code": "600025",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.08527918781725896,
+            "dividend_cash_return": 0.02081218274111675,
+            "total_return": 0.1060913705583757,
+            "total_return_reinvest_appendix": 0.11010979423495271,
+            "cash_sum": 0.205,
+            "n_dividends": 1,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.38831168831168816,
+            "dividend_cash_return": 0.07597402597402597,
+            "total_return": 0.46428571428571397,
+            "total_return_reinvest_appendix": 0.4736235388486574,
+            "cash_sum": 0.585,
+            "n_dividends": 3,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": 0.7131410256410255,
+            "dividend_cash_return": 0.1490384615384615,
+            "total_return": 0.862179487179487,
+            "total_return_reinvest_appendix": 0.9100633007202681,
+            "cash_sum": 0.9299999999999998,
+            "n_dividends": 5,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      },
+      {
+        "code": "600377",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.0014430014430015792,
+            "dividend_cash_return": 0.03535353535353536,
+            "total_return": 0.03679653679653683,
+            "total_return_reinvest_appendix": 0.04250635464024599,
+            "cash_sum": 0.49000000000000005,
+            "n_dividends": 1,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.42505133470225887,
+            "dividend_cash_return": 0.14887063655030802,
+            "total_return": 0.5739219712525669,
+            "total_return_reinvest_appendix": 0.5907860400929013,
+            "cash_sum": 1.4500000000000002,
+            "n_dividends": 3,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": 0.6885644768856447,
+            "dividend_cash_return": 0.28832116788321166,
+            "total_return": 0.9768856447688563,
+            "total_return_reinvest_appendix": 1.0999891842953873,
+            "cash_sum": 2.37,
+            "n_dividends": 5,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      },
+      {
+        "code": "600350",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.1854583772391991,
+            "dividend_cash_return": 0.044257112750263436,
+            "total_return": 0.22971548998946245,
+            "total_return_reinvest_appendix": 0.23292191569872833,
+            "cash_sum": 0.42000000000000004,
+            "n_dividends": 1,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.7361111111111109,
+            "dividend_cash_return": 0.19444444444444448,
+            "total_return": 0.9305555555555554,
+            "total_return_reinvest_appendix": 0.9758960909262515,
+            "cash_sum": 1.2600000000000002,
+            "n_dividends": 3,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": 1.223320158102767,
+            "dividend_cash_return": 0.4071146245059289,
+            "total_return": 1.6304347826086958,
+            "total_return_reinvest_appendix": 1.8906281922048338,
+            "cash_sum": 2.06,
+            "n_dividends": 5,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      },
+      {
+        "code": "601006",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": -0.1376306620209059,
+            "dividend_cash_return": 0.024684668989547038,
+            "total_return": -0.112945993031359,
+            "total_return_reinvest_appendix": -0.11152187751273102,
+            "cash_sum": 0.14169,
+            "n_dividends": 1,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": -0.30379746835443033,
+            "dividend_cash_return": 0.12276511954992966,
+            "total_return": -0.1810323488045007,
+            "total_return_reinvest_appendix": -0.1998509193358008,
+            "cash_sum": 0.87286,
+            "n_dividends": 5,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": -0.20673076923076927,
+            "dividend_cash_return": 0.2937275641025641,
+            "total_return": 0.0869967948717949,
+            "total_return_reinvest_appendix": 0.050723833946109353,
+            "cash_sum": 1.8328600000000002,
+            "n_dividends": 7,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      },
+      {
+        "code": "600000",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": -0.13464837049742717,
+            "dividend_cash_return": 0.036020583190394515,
+            "total_return": -0.09862778730703259,
+            "total_return_reinvest_appendix": -0.09358083553798302,
+            "cash_sum": 0.42000000000000004,
+            "n_dividends": 1,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.4538904899135445,
+            "dividend_cash_return": 0.16585014409221902,
+            "total_return": 0.6197406340057636,
+            "total_return_reinvest_appendix": 0.6266442306074158,
+            "cash_sum": 1.151,
+            "n_dividends": 3,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": 0.18845700824499412,
+            "dividend_cash_return": 0.22155477031802118,
+            "total_return": 0.4100117785630153,
+            "total_return_reinvest_appendix": 0.46714921410609156,
+            "cash_sum": 1.8809999999999998,
+            "n_dividends": 5,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      },
+      {
+        "code": "000001",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.022589052997393555,
+            "dividend_cash_return": 0.03127715030408341,
+            "total_return": 0.053866203301476956,
+            "total_return_reinvest_appendix": 0.055341015548911576,
+            "cash_sum": 0.36,
+            "n_dividends": 1,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.10102899906454632,
+            "dividend_cash_return": 0.17988774555659495,
+            "total_return": 0.28091674462114136,
+            "total_return_reinvest_appendix": 0.3065063502354062,
+            "cash_sum": 1.923,
+            "n_dividends": 5,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": -0.3243398392652125,
+            "dividend_cash_return": 0.13983926521239956,
+            "total_return": -0.18450057405281295,
+            "total_return_reinvest_appendix": -0.16369991293077324,
+            "cash_sum": 2.4360000000000004,
+            "n_dividends": 7,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      },
+      {
+        "code": "601728",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.0754437869822484,
+            "dividend_cash_return": 0.013431952662721895,
+            "total_return": 0.08887573964497042,
+            "total_return_reinvest_appendix": 0.09099319715071785,
+            "cash_sum": 0.0908,
+            "n_dividends": 1,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.3768939393939392,
+            "dividend_cash_return": 0.11776515151515152,
+            "total_return": 0.4946590909090909,
+            "total_return_reinvest_appendix": 0.5113067298760083,
+            "cash_sum": 0.6218,
+            "n_dividends": 5,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": 0.7268408551068883,
+            "dividend_cash_return": 0.268646080760095,
+            "total_return": 0.9954869358669833,
+            "total_return_reinvest_appendix": 1.1203643363635956,
+            "cash_sum": 1.131,
+            "n_dividends": 9,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      },
+      {
+        "code": "600941",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": -0.03237544317969787,
+            "dividend_cash_return": 0.020537413696585183,
+            "total_return": -0.011838029483112633,
+            "total_return_reinvest_appendix": -0.010491798111652462,
+            "cash_sum": 2.2012,
+            "n_dividends": 1,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.1377948436642895,
+            "dividend_cash_return": 0.12681404278661548,
+            "total_return": 0.26460888645090486,
+            "total_return_reinvest_appendix": 0.2692121295359753,
+            "cash_sum": 11.5591,
+            "n_dividends": 5,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2022-01-05",
+            "end": "2026-11-03",
+            "price_return": 0.791810642709053,
+            "dividend_cash_return": 0.34124913614374575,
+            "total_return": 1.133059778852799,
+            "total_return_reinvest_appendix": 1.2202338428160293,
+            "cash_sum": 19.751500000000004,
+            "n_dividends": 9,
+            "notes": [
+              "start_aligned_to_trade=2022-01-05",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      },
+      {
+        "code": "600050",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": -0.1681901279707495,
+            "dividend_cash_return": 0.009561243144424131,
+            "total_return": -0.15862888482632542,
+            "total_return_reinvest_appendix": -0.15744848443812487,
+            "cash_sum": 0.0523,
+            "n_dividends": 1,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.015624999999999778,
+            "dividend_cash_return": 0.10122767857142856,
+            "total_return": 0.11685267857142834,
+            "total_return_reinvest_appendix": 0.11430097543986117,
+            "cash_sum": 0.4535,
+            "n_dividends": 6,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": 0.12903225806451601,
+            "dividend_cash_return": 0.1613895781637717,
+            "total_return": 0.29042183622828777,
+            "total_return_reinvest_appendix": 0.30426366458820997,
+            "cash_sum": 0.6504,
+            "n_dividends": 10,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      },
+      {
+        "code": "000429",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.1120196238757154,
+            "dividend_cash_return": 0.04938675388389206,
+            "total_return": 0.1614063777596073,
+            "total_return_reinvest_appendix": 0.16271093352257826,
+            "cash_sum": 0.604,
+            "n_dividends": 1,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.7237008871989861,
+            "dividend_cash_return": 0.21216730038022813,
+            "total_return": 0.9358681875792141,
+            "total_return_reinvest_appendix": 0.9730111145437765,
+            "cash_sum": 1.674,
+            "n_dividends": 3,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": 0.9400855920114122,
+            "dividend_cash_return": 0.38116975748930104,
+            "total_return": 1.321255349500713,
+            "total_return_reinvest_appendix": 1.5313795924376286,
+            "cash_sum": 2.672,
+            "n_dividends": 5,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      },
+      {
+        "code": "000537",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": -0.21160409556313986,
+            "dividend_cash_return": 0.013651877133105802,
+            "total_return": -0.19795221843003408,
+            "total_return_reinvest_appendix": -0.19888803258835186,
+            "cash_sum": 0.12,
+            "n_dividends": 1,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": -0.37341772151898744,
+            "dividend_cash_return": 0.0492766726943942,
+            "total_return": -0.32414104882459316,
+            "total_return_reinvest_appendix": -0.3313227548999935,
+            "cash_sum": 0.5449999999999999,
+            "n_dividends": 4,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": -0.5376917945296864,
+            "dividend_cash_return": 0.04969979986657772,
+            "total_return": -0.4879919946631087,
+            "total_return_reinvest_appendix": -0.4984959384164728,
+            "cash_sum": 0.7450000000000001,
+            "n_dividends": 6,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      },
+      {
+        "code": "000651",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": -0.02000500125031268,
+            "dividend_cash_return": 0.07501875468867217,
+            "total_return": 0.05501375343835946,
+            "total_return_reinvest_appendix": 0.056025465753873016,
+            "cash_sum": 3.0,
+            "n_dividends": 2,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.1499413145539905,
+            "dividend_cash_return": 0.24589201877934272,
+            "total_return": 0.39583333333333326,
+            "total_return_reinvest_appendix": 0.40671496825604225,
+            "cash_sum": 8.379999999999999,
+            "n_dividends": 5,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": 0.08830880311024725,
+            "dividend_cash_return": 0.3715634545959456,
+            "total_return": 0.45987225770619267,
+            "total_return_reinvest_appendix": 0.544190620273393,
+            "cash_sum": 13.379999999999999,
+            "n_dividends": 9,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      },
+      {
+        "code": "002601",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": -0.16145251396648042,
+            "dividend_cash_return": 0.005586592178770951,
+            "total_return": -0.15586592178770942,
+            "total_return_reinvest_appendix": -0.15679650349433427,
+            "cash_sum": 0.1,
+            "n_dividends": 1,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": -0.18022938285090107,
+            "dividend_cash_return": 0.09830693610049154,
+            "total_return": -0.0819224467504096,
+            "total_return_reinvest_appendix": -0.0968182565101432,
+            "cash_sum": 1.8,
+            "n_dividends": 5,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": -0.44159226190476186,
+            "dividend_cash_return": 0.14322916666666666,
+            "total_return": -0.29836309523809523,
+            "total_return_reinvest_appendix": -0.31219596196379706,
+            "cash_sum": 3.8499999999999996,
+            "n_dividends": 9,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      },
+      {
+        "code": "600101",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": -0.2898272552783109,
+            "dividend_cash_return": 0.010556621880998079,
+            "total_return": -0.27927063339731284,
+            "total_return_reinvest_appendix": -0.2807894640359546,
+            "cash_sum": 0.10999999999999999,
+            "n_dividends": 2,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": -0.10085054678007288,
+            "dividend_cash_return": 0.040097205346294046,
+            "total_return": -0.06075334143377886,
+            "total_return_reinvest_appendix": -0.07005946407672758,
+            "cash_sum": 0.33,
+            "n_dividends": 4,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": 0.19354838709677424,
+            "dividend_cash_return": 0.07903225806451612,
+            "total_return": 0.27258064516129044,
+            "total_return_reinvest_appendix": 0.2551441059117854,
+            "cash_sum": 0.49,
+            "n_dividends": 6,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      },
+      {
+        "code": "600188",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.1776061776061777,
+            "dividend_cash_return": 0.020592020592020595,
+            "total_return": 0.1981981981981984,
+            "total_return_reinvest_appendix": 0.19670572027389066,
+            "cash_sum": 0.32,
+            "n_dividends": 1,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": -0.024520255863539453,
+            "dividend_cash_return": 0.14712153518123666,
+            "total_return": 0.12260127931769715,
+            "total_return_reinvest_appendix": 0.16134162205083324,
+            "cash_sum": 2.76,
+            "n_dividends": 5,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": -0.22784810126582278,
+            "dividend_cash_return": 0.3135021097046414,
+            "total_return": 0.08565400843881865,
+            "total_return_reinvest_appendix": 0.11983715823443042,
+            "cash_sum": 7.430000000000001,
+            "n_dividends": 7,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      },
+      {
+        "code": "600236",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.18766756032171572,
+            "dividend_cash_return": 0.032573726541554965,
+            "total_return": 0.22024128686327082,
+            "total_return_reinvest_appendix": 0.21779315710231884,
+            "cash_sum": 0.24300000000000002,
+            "n_dividends": 1,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.5935251798561152,
+            "dividend_cash_return": 0.12553956834532376,
+            "total_return": 0.719064748201439,
+            "total_return_reinvest_appendix": 0.7479325832132475,
+            "cash_sum": 0.6980000000000001,
+            "n_dividends": 6,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": 0.6499068901303537,
+            "dividend_cash_return": 0.19515828677839853,
+            "total_return": 0.8450651769087523,
+            "total_return_reinvest_appendix": 0.9244750140579452,
+            "cash_sum": 1.048,
+            "n_dividends": 8,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      },
+      {
+        "code": "600546",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": -0.015424164524421524,
+            "dividend_cash_return": 0.03041988003427592,
+            "total_return": 0.014995715509854346,
+            "total_return_reinvest_appendix": 0.013630234610560121,
+            "cash_sum": 0.355,
+            "n_dividends": 1,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": -0.27186311787072237,
+            "dividend_cash_return": 0.10741444866920152,
+            "total_return": -0.1644486692015208,
+            "total_return_reinvest_appendix": -0.15677624891143838,
+            "cash_sum": 1.695,
+            "n_dividends": 3,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": 0.3454332552693209,
+            "dividend_cash_return": 0.6454332552693209,
+            "total_return": 0.9908665105386423,
+            "total_return_reinvest_appendix": 0.9629188142605001,
+            "cash_sum": 5.5120000000000005,
+            "n_dividends": 6,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      },
+      {
+        "code": "600971",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.032608695652173836,
+            "dividend_cash_return": 0.033967391304347824,
+            "total_return": 0.06657608695652173,
+            "total_return_reinvest_appendix": 0.0663100238392551,
+            "cash_sum": 0.25,
+            "n_dividends": 1,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": -0.16114790286975722,
+            "dividend_cash_return": 0.15121412803532008,
+            "total_return": -0.009933774834437248,
+            "total_return_reinvest_appendix": -0.03586338137957146,
+            "cash_sum": 1.37,
+            "n_dividends": 3,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": 0.16743471582181257,
+            "dividend_cash_return": 0.4408602150537635,
+            "total_return": 0.6082949308755758,
+            "total_return_reinvest_appendix": 0.6087914793127476,
+            "cash_sum": 2.87,
+            "n_dividends": 5,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      },
+      {
+        "code": "601139",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": -0.06715328467153281,
+            "dividend_cash_return": 0.023357664233576644,
+            "total_return": -0.04379562043795615,
+            "total_return_reinvest_appendix": -0.042110419830500234,
+            "cash_sum": 0.16,
+            "n_dividends": 1,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": -0.06167400881057272,
+            "dividend_cash_return": 0.07048458149779736,
+            "total_return": 0.008810572687224516,
+            "total_return_reinvest_appendix": 0.011125754411185795,
+            "cash_sum": 0.48,
+            "n_dividends": 3,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": -0.3046789989118607,
+            "dividend_cash_return": 0.08378672470076172,
+            "total_return": -0.22089227421109892,
+            "total_return_reinvest_appendix": -0.21887617291457095,
+            "cash_sum": 0.7700000000000001,
+            "n_dividends": 5,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      },
+      {
+        "code": "601158",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": -0.12943632567849694,
+            "dividend_cash_return": 0.021085594989561588,
+            "total_return": -0.1083507306889353,
+            "total_return_reinvest_appendix": -0.10804291178397818,
+            "cash_sum": 0.101,
+            "n_dividends": 1,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": -0.23765996343692863,
+            "dividend_cash_return": 0.07806215722120659,
+            "total_return": -0.15959780621572217,
+            "total_return_reinvest_appendix": -0.1651021603290197,
+            "cash_sum": 0.42700000000000005,
+            "n_dividends": 4,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": -0.3152709359605911,
+            "dividend_cash_return": 0.1566502463054187,
+            "total_return": -0.1586206896551724,
+            "total_return_reinvest_appendix": -0.17486966577370666,
+            "cash_sum": 0.954,
+            "n_dividends": 6,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      },
+      {
+        "code": "601166",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": -0.05812854442344051,
+            "dividend_cash_return": 0.0503780718336484,
+            "total_return": -0.007750472589792112,
+            "total_return_reinvest_appendix": -0.003781241656474532,
+            "cash_sum": 1.066,
+            "n_dividends": 2,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.30517354289456455,
+            "dividend_cash_return": 0.20733464309102817,
+            "total_return": 0.5125081859855927,
+            "total_return_reinvest_appendix": 0.535049083352586,
+            "cash_sum": 3.166,
+            "n_dividends": 4,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": 0.10293303818483679,
+            "dividend_cash_return": 0.298229109020476,
+            "total_return": 0.40116214720531285,
+            "total_return_reinvest_appendix": 0.4691601161694634,
+            "cash_sum": 5.389000000000001,
+            "n_dividends": 6,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      },
+      {
+        "code": "601898",
+        "as_of": "2026-11-06",
+        "data_status": "VALID",
+        "horizons": {
+          "1y": {
+            "start": "2025-11-06",
+            "end": "2026-11-03",
+            "price_return": -0.07609427609427599,
+            "dividend_cash_return": 0.014612794612794614,
+            "total_return": -0.06148148148148136,
+            "total_return_reinvest_appendix": -0.06235284072158631,
+            "cash_sum": 0.217,
+            "n_dividends": 1,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "3y": {
+            "start": "2023-11-06",
+            "end": "2026-11-03",
+            "price_return": 0.6391875746714459,
+            "dividend_cash_return": 0.15579450418160098,
+            "total_return": 0.7949820788530468,
+            "total_return_reinvest_appendix": 0.8120447684600536,
+            "cash_sum": 1.304,
+            "n_dividends": 5,
+            "notes": [
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          },
+          "5y": {
+            "start": "2021-11-08",
+            "end": "2026-11-03",
+            "price_return": 1.0946564885496186,
+            "dividend_cash_return": 0.3080916030534351,
+            "total_return": 1.4027480916030535,
+            "total_return_reinvest_appendix": 1.5126394152264124,
+            "cash_sum": 2.018,
+            "n_dividends": 7,
+            "notes": [
+              "start_aligned_to_trade=2021-11-08",
+              "end_aligned_to_trade=2026-11-03",
+              "prices=bfq_unadjusted; never_add_cash_on_qfq_hfq"
+            ]
+          }
+        },
+        "notes": []
+      }
+    ],
+    "spec": "PHASE2_TR_SPEC.md — primary total_return = no reinvest"
+  },
+  "known_gaps": [
+    "全市场 bfq 仅样本级（当前 data/bfq_daily ≈33）；Return 全池需 Phase6 扩覆盖",
+    "红利指数历史成分仍为 proxy_no_hist_index_cons",
+    "特别分红强标签弱（is_special_flag 多为 null/False），依赖 DPS 启发式降权",
+    "FCF≈经营现金流-购建固定资产，未扣全部维持性资本开支",
+    "支付率用 DPS/EPS 代理，未用公司章程口径的合并报表分红总额",
+    "Quality/Sustainability 权重待回测校准",
+    "未实现 Valuation/Technical/Risk/Opportunity 综合分（Phase6+）"
+  ],
+  "publish_close_v318_untouched": true
+}

@@ -922,6 +922,10 @@ def load_local_ohlcv(path: Path, t_date: str) -> Optional[pd.DataFrame]:
 def load_local_stock_hist(symbol: str, t_date: str) -> Optional[pd.DataFrame]:
     raw = str(symbol)
     code6 = raw[2:] if raw.startswith(("sh", "sz", "bj")) else raw.zfill(6)
+    import rank_db
+
+    if rank_db.db_path():
+        return rank_db.load_stock(code6, t_date)
     return load_local_ohlcv(LOCAL_DAILY / f"{code6}.parquet", t_date)
 
 
@@ -929,11 +933,19 @@ def load_local_index_hist(symbol: str, t_date: str) -> Optional[pd.DataFrame]:
     name = str(symbol).lower()
     if name.isdigit():
         name = _code_full_local(name)
+    import rank_db
+
+    if rank_db.db_path():
+        return rank_db.load_index(name, t_date)
     return load_local_ohlcv(INDEX_DAILY / f"{name}.parquet", t_date)
 
 
 def spot_from_local_daily(t_date: str) -> pd.DataFrame:
     """Rebuild the T-day spot table from local daily bars. Bars after T are ignored."""
+    import rank_db
+
+    if rank_db.db_path():
+        return rank_db.spot(t_date)
     names: Dict[str, str] = {}
     name_file = LOCAL_DAILY.parent.parent / "meta" / "names.csv"
     if name_file.is_file():

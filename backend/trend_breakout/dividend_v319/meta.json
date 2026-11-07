@@ -1,0 +1,75 @@
+{
+  "phase": "6-11",
+  "version": "V3.1.9-phase6",
+  "generated_at": "2026-11-04T11:12:10.178174+08:00",
+  "timezone": "Asia/Shanghai",
+  "publish_close_v318_untouched": true,
+  "publish_launcher_md5": "256fb1fe7575d3562bc8e7186ed8ea8a",
+  "publish_v3_md5": "a43b1003bd4f88f805fa8ecc24d04694",
+  "as_of_primary": "2025-12-31",
+  "n_scored": 2713,
+  "grade_counts": {
+    "B": 904,
+    "C": 1265,
+    "A": 336,
+    "FILTER": 207,
+    "A+": 1
+  },
+  "risk_counts": {
+    "SAFE": 1103,
+    "WARNING": 979,
+    "HIGH": 453,
+    "WATCH": 178
+  },
+  "entry_counts": {
+    "TREND_CONFIRM": 37,
+    "AVOID": 1262,
+    "TREND_BROKEN": 173,
+    "HOLD_WATCH": 585,
+    "ACCUMULATE_WATCH": 291,
+    "PULLBACK_WATCH": 237,
+    "EXTENDED": 128
+  },
+  "return_proxy_counts": {
+    "bfq_plus_cash": 33,
+    "price_qfq_only": 2680
+  },
+  "n_trap": 31,
+  "a_plus_count": 1,
+  "a_plus_gate_violations": [],
+  "board_tag_note": "优质红利/当前机会/风险观察 may overlap; 当前机会 requires y_ttm>=1%",
+  "key_files": [
+    "engines/dividendValuationEngine.py",
+    "engines/dividendTechnicalEngine.py",
+    "engines/dividendRiskEngine.py",
+    "engines/dividendEntryEngine.py",
+    "engines/dividendTrendEngine.py",
+    "run_phase6_board.py",
+    "PHASE6_NOTES.md",
+    "out/boards/dividend_board_20251231.json",
+    "out/boards/dividend_board_20251231.md",
+    "out/boards/dividend_board_20251231_summary.json"
+  ],
+  "known_gaps": [
+    "全市场 bfq 仅~33只；多数 historical_total_return_score 为 price_qfq_only 弱代理（已向50压缩），A+稀少部分源于此",
+    "PE/PB 自身历史分位受 qfq 扭曲，已降权并用行业绝对带；非券商一致预期TTM",
+    "行业分组粗分（银行/煤炭/公用/交运/其他）",
+    "红利指数历史成分仍缺失（proxy_no_hist_index_cons）",
+    "特别分红强标签弱",
+    "权重与等级阈值待回测校准",
+    "当前机会要求 TTM股息率≥1%（过低仅留优质红利）",
+    "Phase3→Phase6 叠加 Trend/Val/Risk 后等级重排；与 Phase3 Top Quality 不完全同序"
+  ],
+  "phase12_blockers": [
+    "Expand full-market bfq (or approved unadjusted) for true TotalReturn path",
+    "Historical dividend index constituents for survivorship-safe universe",
+    "Calibrate score weights / grade thresholds via walk-forward",
+    "Transaction-cost backtest engine + benchmark (中证红利等) comparison",
+    "Special-dividend labeling improvement",
+    "Optional: peer cross-section PE/PB percentiles inside industry"
+  ],
+  "phase3_carryforward": {
+    "scores": "out/phase3/scores_20251231.json",
+    "Q_S_reused": true
+  }
+}

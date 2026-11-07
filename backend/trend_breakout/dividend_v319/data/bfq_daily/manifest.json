@@ -1,0 +1,280 @@
+{
+  "generated_at": "2026-11-04T10:51:27.300214+08:00",
+  "adjust": "",
+  "source": "akshare.stock_zh_a_daily",
+  "note": "bfq/unadjusted closes for TotalReturn split; DO NOT add cash on top of qfq/hfq",
+  "ok": [
+    {
+      "code": "601398",
+      "tag": "银行",
+      "rows": 4842,
+      "date_min": "2006-10-27",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/601398.parquet"
+    },
+    {
+      "code": "600036",
+      "tag": "银行",
+      "rows": 5891,
+      "date_min": "2002-04-09",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/600036.parquet"
+    },
+    {
+      "code": "601288",
+      "tag": "银行",
+      "rows": 3954,
+      "date_min": "2010-07-15",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/601288.parquet"
+    },
+    {
+      "code": "600000",
+      "tag": "银行",
+      "rows": 6383,
+      "date_min": "2000-01-04",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/600000.parquet"
+    },
+    {
+      "code": "601166",
+      "tag": "银行",
+      "rows": 4771,
+      "date_min": "2007-02-05",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/601166.parquet"
+    },
+    {
+      "code": "601988",
+      "tag": "银行",
+      "rows": 4925,
+      "date_min": "2006-07-05",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/601988.parquet"
+    },
+    {
+      "code": "601328",
+      "tag": "银行",
+      "rows": 4718,
+      "date_min": "2007-05-15",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/601328.parquet"
+    },
+    {
+      "code": "601088",
+      "tag": "煤炭",
+      "rows": 4556,
+      "date_min": "2007-10-09",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/601088.parquet"
+    },
+    {
+      "code": "601225",
+      "tag": "煤炭",
+      "rows": 3101,
+      "date_min": "2014-01-28",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/601225.parquet"
+    },
+    {
+      "code": "601898",
+      "tag": "煤炭",
+      "rows": 4543,
+      "date_min": "2008-02-01",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/601898.parquet"
+    },
+    {
+      "code": "000983",
+      "tag": "煤炭",
+      "rows": 6310,
+      "date_min": "2000-07-26",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/000983.parquet"
+    },
+    {
+      "code": "601666",
+      "tag": "煤炭",
+      "rows": 4833,
+      "date_min": "2006-11-23",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/601666.parquet"
+    },
+    {
+      "code": "600188",
+      "tag": "煤炭",
+      "rows": 6427,
+      "date_min": "2000-01-04",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/600188.parquet"
+    },
+    {
+      "code": "600900",
+      "tag": "电力",
+      "rows": 5151,
+      "date_min": "2003-11-18",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/600900.parquet"
+    },
+    {
+      "code": "600886",
+      "tag": "电力",
+      "rows": 6228,
+      "date_min": "2000-01-04",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/600886.parquet"
+    },
+    {
+      "code": "600025",
+      "tag": "水电",
+      "rows": 2153,
+      "date_min": "2017-12-15",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/600025.parquet"
+    },
+    {
+      "code": "600236",
+      "tag": "电力",
+      "rows": 6257,
+      "date_min": "2000-03-23",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/600236.parquet"
+    },
+    {
+      "code": "601158",
+      "tag": "水务",
+      "rows": 4015,
+      "date_min": "2010-03-29",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/601158.parquet"
+    },
+    {
+      "code": "601139",
+      "tag": "燃气",
+      "rows": 4074,
+      "date_min": "2009-12-25",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/601139.parquet"
+    },
+    {
+      "code": "600377",
+      "tag": "高速",
+      "rows": 6177,
+      "date_min": "2001-01-16",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/600377.parquet"
+    },
+    {
+      "code": "600350",
+      "tag": "高速",
+      "rows": 5888,
+      "date_min": "2002-03-18",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/600350.parquet"
+    },
+    {
+      "code": "000429",
+      "tag": "高速",
+      "rows": 6227,
+      "date_min": "2000-01-04",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/000429.parquet"
+    },
+    {
+      "code": "601006",
+      "tag": "铁路",
+      "rows": 4899,
+      "date_min": "2006-08-01",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/601006.parquet"
+    },
+    {
+      "code": "601728",
+      "tag": "电信",
+      "rows": 1258,
+      "date_min": "2021-08-20",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/601728.parquet"
+    },
+    {
+      "code": "600050",
+      "tag": "联通",
+      "rows": 5704,
+      "date_min": "2002-10-09",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/600050.parquet"
+    },
+    {
+      "code": "600941",
+      "tag": "移动",
+      "rows": 1168,
+      "date_min": "2022-01-05",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/600941.parquet"
+    },
+    {
+      "code": "600546",
+      "tag": "煤炭_watch",
+      "rows": 5508,
+      "date_min": "2003-07-31",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/600546.parquet"
+    },
+    {
+      "code": "600971",
+      "tag": "煤炭_watch",
+      "rows": 5325,
+      "date_min": "2004-08-17",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/600971.parquet"
+    },
+    {
+      "code": "000537",
+      "tag": "电力_watch",
+      "rows": 6263,
+      "date_min": "2000-01-04",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/000537.parquet"
+    },
+    {
+      "code": "600101",
+      "tag": "电力_watch",
+      "rows": 6446,
+      "date_min": "2000-01-04",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/600101.parquet"
+    },
+    {
+      "code": "002601",
+      "tag": "化工_watch",
+      "rows": 3609,
+      "date_min": "2011-07-15",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/002601.parquet"
+    },
+    {
+      "code": "000651",
+      "tag": "家电_watch",
+      "rows": 6287,
+      "date_min": "2000-01-04",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/000651.parquet"
+    },
+    {
+      "code": "000001",
+      "tag": "银行",
+      "rows": 6340,
+      "date_min": "2000-01-04",
+      "date_max": "2026-11-03",
+      "path": "/workspace/trend-breakout/dividend_v319/data/bfq_daily/000001.parquet",
+      "retried": true
+    }
+  ],
+  "fail": [],
+  "bulk_plan": {
+    "full_market_path_suggestion": "/workspace/trend-breakout/dividend_v319/data/bfq_daily",
+    "estimated_names": "~5000+",
+    "method": "Reuse ashare-kline/scripts/download_all_daily.py pattern with adjust=''; sleep+retry; store under dividend_v319/data/bfq_daily or ashare-kline/raw/daily_bfq/",
+    "priority": "Phase6 before full DividendBacktest; Phase2 only needs sample>=30"
+  }
+}

@@ -59,6 +59,13 @@ def _full(code6: str) -> str:
 
 
 def _read_local(code6: str) -> Optional[pd.DataFrame]:
+    import os
+
+    if os.environ.get("TREND_RANK_DB"):
+        import rank_db
+
+        if rank_db.db_path():
+            return rank_db.load_stock(str(code6).zfill(6), None)
     p = LOCAL_DAILY / f"{code6}.parquet"
     if not p.exists():
         return None

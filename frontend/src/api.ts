@@ -1,5 +1,6 @@
 import type {
   BoardsPayload,
+  DividendBoardsPayload,
   FlowPayload,
   IntradayPayload,
   KlinePayload,
@@ -32,17 +33,12 @@ export async function fetchBoardsByDate(date: string): Promise<BoardsPayload> {
 }
 
 export async function fetchLatestBoards(): Promise<BoardsPayload> {
-  try {
-    const res = await fetch(`${API_BASE}/api/boards/latest`, {
-      signal: AbortSignal.timeout(4000),
-    });
-    if (res.ok) return (await res.json()) as BoardsPayload;
-  } catch {
-    /* fall through to bundled sample */
+  const res = await fetch(`${API_BASE}/api/boards/latest`, { cache: "no-store" });
+  if (!res.ok) {
+    const body = (await res.json().catch(() => null)) as { detail?: string } | null;
+    throw new Error(body?.detail || "无法加载榜单数据");
   }
-  const local = await fetch("/sample/boards_v318_20261008.json");
-  if (!local.ok) throw new Error("无法加载榜单数据");
-  return (await local.json()) as BoardsPayload;
+  return (await res.json()) as BoardsPayload;
 }
 
 export async function fetchTrends(code: string, date: string, signal?: AbortSignal) {
@@ -53,7 +49,7 @@ export async function fetchTrends(code: string, date: string, signal?: AbortSign
     `/api/quotes/${code}/trends?date=${encodeURIComponent(date)}`,
     signal,
   );
-  trendCache.set(key, data);
+  if (data.available && data.points?.length) trendCache.set(key, data);
   return data;
 }
 
@@ -70,7 +66,7 @@ export async function fetchKlines(
     `/api/quotes/${code}/klines?period=${period}&as_of=${encodeURIComponent(asOf)}`,
     signal,
   );
-  klineCache.set(key, data);
+  if (data.available && data.bars?.length) klineCache.set(key, data);
   return data;
 }
 
@@ -101,4 +97,17 @@ export async function fetchRiseReason(
   );
   reasonCache.set(key, data);
   return data;
+}
+
+export async function fetchLatestDividendBoards(): Promise<DividendBoardsPayload> {
+  const res = await fetch(`${API_BASE}/api/boards/dividend/latest`, { cache: "no-store" });
+  if (!res.ok) {
+    const body = (await res.json().catch(() => null)) as { detail?: string } | null;
+    throw new Error(body?.detail || "无法加载红利榜单");
+  }
+  return (await res.json()) as DividendBoardsPayload;
+}
+
+export async function fetchDividendBoardsByDate(date: string): Promise<DividendBoardsPayload> {
+  return getJson<DividendBoardsPayload>(`/api/boards/dividend/${encodeURIComponent(date)}`);
 }

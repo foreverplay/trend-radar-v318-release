@@ -381,11 +381,21 @@ def run_day(
     *,
     asof_note: str = "",
     asof_mode: str = "",
+    rank_db: str = "",
+    breakout_root: Path | None = None,
+    skip_exit_persist: bool = False,
+    skip_sample_export: bool = False,
+    archive_by_date_dir: Path | None = None,
 ) -> None:
+    work_root = Path(breakout_root).expanduser().resolve() if breakout_root else TB
     env = os.environ.copy()
     env["ASHARE_KLINE_ROOT"] = str(kline_root)
-    env["TREND_BREAKOUT_ROOT"] = str(TB)
+    env["TREND_BREAKOUT_ROOT"] = str(work_root)
     env["PYTHONPATH"] = str(TB)
+    if rank_db:
+        env["TREND_RANK_DB"] = rank_db
+    else:
+        env.pop("TREND_RANK_DB", None)
     print(f"=== scan {day} ===", flush=True)
     subprocess.run(
         [sys.executable, "v2_3_scan.py", "--t-date", day, "--strict-asof", "--max-prefilter", str(max_prefilter), "--workers", str(workers)],
@@ -404,13 +414,48 @@ def run_day(
         check=True,
     )
     print(f"=== publish {day} ===", flush=True)
-    subprocess.run(
-        [sys.executable, "-m", "v3.publish_close_v318", "--t-date", day],
-        cwd=TB,
-        env=env,
-        check=True,
-    )
-    export_board(day, kline_root, asof_note=asof_note, asof_mode=asof_mode)
+    pub_cmd = [sys.executable, "-m", "v3.publish_close_v318", "--t-date", day]
+    if skip_exit_persist:
+        pub_cmd.append("--skip-exit-persist")
+    if archive_by_date_dir is not None:
+        pub_cmd.extend(["--no-archive"])
+    if archive_by_date_dir is None:
+        subprocess.run(pub_cmd, cwd=TB, env=env, check=True)
+    else:
+        archive_dir = Path(archive_by_date_dir).expanduser().resolve()
+        archive_dir.mkdir(parents=True, exist_ok=True)
+        subprocess.run(
+            [
+                sys.executable,
+                "-c",
+                (
+                    "from pathlib import Path; import sys; "
+                    "from v3.publish_close_v318 import run_publish; "
+                    "day=sys.argv[1]; root=Path(sys.argv[2]); adir=Path(sys.argv[3]); "
+                    "meta = root / 'market_meta.json'; "
+                    "cand = root / 'candidates_v2_3.json'; "
+                    "cand = cand if cand.is_file() else root / 'candidates_v2.json'; "
+                    "run_publish("
+                    "t_date=day,"
+                    "candidates_path=cand,"
+                    "market_meta_path=meta if meta.is_file() else None,"
+                    "skip_exit_persist=True,"
+                    "no_archive=False,"
+                    "archive_by_date_dir=adir,"
+                    "update_a318_parquet=False,"
+                    "verbose=False,"
+                    ")"
+                ),
+                day,
+                str(work_root),
+                str(archive_dir),
+            ],
+            cwd=TB,
+            env=env,
+            check=True,
+        )
+    if not skip_sample_export:
+        export_board(day, kline_root, asof_note=asof_note, asof_mode=asof_mode)
 
 
 def main() -> int:

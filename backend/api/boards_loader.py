@@ -127,14 +127,26 @@ def list_board_dates(sample_root: Optional[Path] = None) -> List[str]:
     return sorted(dates, reverse=True)
 
 
+def attach_refresh(payload: Dict[str, Any], sample_root: Path) -> Dict[str, Any]:
+    # 刷榜进程写入；页面据此知道当前文件是否还是上一轮导出。
+    path = sample_root.parent / "cache" / "board_refresh.json"
+    if not path.is_file():
+        return payload
+    try:
+        payload["refresh"] = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return payload
+    return payload
+
+
 def load_latest(sample_root: Optional[Path] = None) -> Dict[str, Any]:
     root = sample_root or find_sample_root()
     jsons = sorted(root.glob("boards_v318_*.json"), reverse=True)
     if jsons:
-        return load_boards_json(jsons[0])
+        return attach_refresh(load_boards_json(jsons[0]), root)
     mds = sorted(root.glob("push_close_v318_*.md"), reverse=True)
     if mds:
-        return parse_push_markdown(mds[0].read_text(encoding="utf-8"))
+        return attach_refresh(parse_push_markdown(mds[0].read_text(encoding="utf-8")), root)
     raise FileNotFoundError(f"No boards sample under {root}")
 
 
@@ -148,3 +160,120 @@ def load_by_date(date: str, sample_root: Optional[Path] = None) -> Dict[str, Any
     if mp.is_file():
         return parse_push_markdown(mp.read_text(encoding="utf-8"), t_date=date)
     raise FileNotFoundError(f"No boards for date {date}")
+
+# ---- Dividend Trend V3.1.9 (additive; Growth boards unchanged) ----
+
+DIVIDEND_SECTION_MAP = {
+    "优质红利": "quality",
+    "当前机会": "opportunity",
+    "风险观察": "risk_watch",
+}
+
+DIVIDEND_SECTION_TITLES = {
+    "quality": "优质红利",
+    "opportunity": "当前机会",
+    "risk_watch": "风险观察",
+}
+
+
+def _empty_dividend_boards() -> Dict[str, Dict[str, Any]]:
+    return {
+        key: {"id": key, "title": title, "rows": []}
+        for key, title in DIVIDEND_SECTION_TITLES.items()
+    }
+
+
+def normalize_dividend_payload(raw: Dict[str, Any], source: str = "json") -> Dict[str, Any]:
+    """Map Chinese board keys → stable API ids; keep Chinese title on each section."""
+    boards = _empty_dividend_boards()
+    src_boards = raw.get("boards") or {}
+    if isinstance(src_boards, dict):
+        for cn_title, rows in src_boards.items():
+            api_id = DIVIDEND_SECTION_MAP.get(cn_title)
+            if not api_id:
+                # already-normalized id
+                if cn_title in DIVIDEND_SECTION_TITLES and isinstance(rows, dict):
+                    boards[cn_title] = {
+                        "id": cn_title,
+                        "title": rows.get("title") or DIVIDEND_SECTION_TITLES[cn_title],
+                        "rows": list(rows.get("rows") or []),
+                    }
+                elif cn_title in DIVIDEND_SECTION_TITLES and isinstance(rows, list):
+                    boards[cn_title]["rows"] = list(rows)
+                continue
+            if isinstance(rows, dict):
+                boards[api_id] = {
+                    "id": api_id,
+                    "title": rows.get("title") or cn_title,
+                    "rows": list(rows.get("rows") or []),
+                }
+            else:
+                boards[api_id]["rows"] = list(rows or [])
+
+    as_of = raw.get("as_of") or raw.get("t_date")
+    t_date = None
+    if isinstance(as_of, str) and as_of:
+        t_date = as_of[:10] if len(as_of) >= 10 else as_of
+
+    counts = {k: len(v.get("rows") or []) for k, v in boards.items()}
+    return {
+        "strategy": raw.get("strategy") or "DIVIDEND_TREND",
+        "version": raw.get("version") or "V3.1.9",
+        "phase": raw.get("phase"),
+        "t_date": t_date,
+        "as_of": as_of,
+        "generated_at": raw.get("generated_at"),
+        "timezone": raw.get("timezone") or "Asia/Shanghai",
+        "title": f"红利趋势榜 V3.1.9 {t_date or ''}".strip(),
+        "disclaimer": raw.get("disclaimer")
+        or "观察池；红利三区须当日趋势观察评级 A+/A，当前机会红利等级也须 A+/A；禁止荐买 / 预测必涨。",
+        "counts": counts,
+        "boards": boards,
+        "grade_counts": raw.get("grade_counts") or {},
+        "risk_counts": raw.get("risk_counts") or {},
+        "entry_counts": raw.get("entry_counts") or {},
+        "n_scored": raw.get("n_scored"),
+        "n_trap": raw.get("n_trap"),
+        "known_gaps": raw.get("known_gaps") or [],
+        "publish_close_v318_untouched": raw.get("publish_close_v318_untouched", True),
+        "source": source,
+    }
+
+
+def list_dividend_dates(sample_root: Optional[Path] = None) -> List[str]:
+    root = sample_root or find_sample_root()
+    dates = set()
+    for p in root.glob("dividend_board_*.json"):
+        if p.name.endswith("_summary.json"):
+            continue
+        m = re.search(r"dividend_board_(\d{8})\.json", p.name)
+        if m:
+            ymd = m.group(1)
+            dates.add(f"{ymd[:4]}-{ymd[4:6]}-{ymd[6:8]}")
+    return sorted(dates, reverse=True)
+
+
+def load_dividend_latest(sample_root: Optional[Path] = None) -> Dict[str, Any]:
+    root = sample_root or find_sample_root()
+    dated = sorted(
+        (p for p in root.glob("dividend_board_*.json") if not p.name.endswith("_summary.json")),
+        reverse=True,
+    )
+    if dated:
+        return normalize_dividend_payload(load_boards_json(dated[0]), source="json")
+    latest = root / "dividend_board_latest_summary.json"
+    if latest.is_file():
+        return normalize_dividend_payload(load_boards_json(latest), source="json-summary")
+    raise FileNotFoundError(f"No dividend boards sample under {root}")
+
+
+def load_dividend_by_date(date: str, sample_root: Optional[Path] = None) -> Dict[str, Any]:
+    root = sample_root or find_sample_root()
+    ymd = date.replace("-", "")
+    jp = root / f"dividend_board_{ymd}.json"
+    if jp.is_file():
+        return normalize_dividend_payload(load_boards_json(jp), source="json")
+    sp = root / f"dividend_board_{ymd}_summary.json"
+    if sp.is_file():
+        return normalize_dividend_payload(load_boards_json(sp), source="json-summary")
+    raise FileNotFoundError(f"No dividend boards for date {date}")

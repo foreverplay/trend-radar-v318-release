@@ -1,0 +1,68 @@
+{
+  "generated_at": "2026-11-04T10:56:22.797531+08:00",
+  "rows": 37699,
+  "raw_rows_before_dedupe": 37699,
+  "codes": 5262,
+  "report_period_year_counts": {
+    "2015": 2190,
+    "2016": 2538,
+    "2017": 2928,
+    "2018": 2816,
+    "2019": 2929,
+    "2020": 3325,
+    "2021": 3589,
+    "2022": 3655,
+    "2023": 4119,
+    "2024": 4765,
+    "2025": 4845
+  },
+  "disclose_year_counts": {
+    "2015": 249,
+    "2016": 2106,
+    "2017": 2517,
+    "2018": 2938,
+    "2019": 2814,
+    "2020": 2971,
+    "2021": 3343,
+    "2022": 3550,
+    "2023": 3746,
+    "2024": 4946,
+    "2025": 4867,
+    "2026": 3652
+  },
+  "assign_progress_top": {
+    "实施分配": 37630,
+    "取消分配": 27,
+    "预披露": 21,
+    "股东大会否决": 9,
+    "股东大会决议通过": 6,
+    "董事会决议通过": 5
+  },
+  "is_special_flag_counts": {
+    "None": 18966,
+    "False": 18733
+  },
+  "pit_rule": "disclose_date = min(plan_notice_date, notice_date, publish_date) among non-null; as-of filter uses disclose_date <= T",
+  "cash_per_share_rule": "pretax_bonus_rmb / 10  (东财 10派X)",
+  "is_special_flag_rule": "True if IMPL_PLAN_PROFILE/progress matches 特别|专项|一次性|额外分红|特别分红; False if looks like standard 10派 scheme without those words; else null (ak backfill often null because no profile text)",
+  "sources": [
+    {
+      "source": "local",
+      "path": "/workspace/ashare-financials/raw/fhps/fhps_2021_2025_all.parquet",
+      "rows": 20973
+    },
+    {
+      "source": "ak_merged",
+      "path": "/workspace/trend-breakout/dividend_v319/cache/fhps_em_2015_2020_all.parquet",
+      "rows": 16726
+    }
+  ],
+  "paths": {
+    "parquet": "/workspace/trend-breakout/dividend_v319/data/dividend_events.parquet",
+    "csv_sample": "/workspace/trend-breakout/dividend_v319/data/dividend_events_sample.csv"
+  },
+  "date_min_disclose": "2015-05-27 00:00:00",
+  "date_max_disclose": "2026-06-09 00:00:00",
+  "date_min_ex": "2015-07-21 00:00:00",
+  "date_max_ex": "2026-08-31 00:00:00"
+}

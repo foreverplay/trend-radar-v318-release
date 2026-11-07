@@ -14,7 +14,7 @@ import sys
 import time
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from datetime import datetime, time as dtime
+from datetime import datetime, time as dtime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -23,6 +23,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[2]
 SCRIPTS = Path(__file__).resolve().parent
 SHANGHAI = ZoneInfo("Asia/Shanghai")
+REFRESH_PATH = ROOT / "data" / "cache" / "board_refresh.json"
 SESSION_OPEN = dtime(9, 15)
 SESSION_CLOSE = dtime(15, 5)
 INTRADAY_NOTE = (
@@ -31,6 +32,16 @@ INTRADAY_NOTE = (
 )
 CLOSE_NOTE = (
     "收盘快照：当日K线已用收盘后的全市场行情覆盖盘中临时值。历史K线仍是前复权。"
+    "基本面、异动原因和无法按日还原的资金字段不参与评分。"
+)
+DB_INTRADAY_NOTE = (
+    "盘中实时排名：共享行情库当日K线已经写齐，直接用库内缓存计算。"
+    "当日K线来自腾讯全市场快照，会随刷新改写，不是收盘定稿。历史K线仍是前复权。"
+    "成交量按手换算成股。基本面、异动原因和无法按日还原的资金字段不参与评分。"
+)
+DB_CLOSE_NOTE = (
+    "收盘排名：共享行情库当日K线已经写齐，直接用库内缓存计算。"
+    "历史K线仍是前复权。成交量按手换算成股。"
     "基本面、异动原因和无法按日还原的资金字段不参与评分。"
 )
 
@@ -52,6 +63,34 @@ def _env_file(key: str) -> str:
 
 def shanghai_now() -> datetime:
     return datetime.now(SHANGHAI)
+
+
+def write_refresh(state: str, day: str, message: str) -> None:
+    REFRESH_PATH.parent.mkdir(parents=True, exist_ok=True)
+    REFRESH_PATH.write_text(
+        json.dumps(
+            {
+                "state": state,
+                "day": day,
+                "message": message,
+                "at": shanghai_now().isoformat(timespec="seconds"),
+            },
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
+
+
+def latest_rank_day(now: datetime) -> str:
+    """交易时段用当天；开盘前或周末用最近一个已过开盘的交易日。"""
+    if now.weekday() < 5 and now.time() > SESSION_CLOSE:
+        return now.strftime("%Y-%m-%d")
+    day = now
+    if now.weekday() >= 5 or now.time() < SESSION_OPEN:
+        day = now - timedelta(days=1)
+        while day.weekday() >= 5:
+            day = day - timedelta(days=1)
+    return day.strftime("%Y-%m-%d")
 
 
 def in_session(now: datetime | None = None) -> bool:
@@ -215,15 +254,42 @@ def wait_close_pass(day: str, timeout: float) -> bool:
 
 
 def run_cycle(day: str, db_path: Path, kline_root: Path, args: argparse.Namespace, note: str, mode: str) -> bool:
-    count = wait_bars(db_path, day, args.min_bars, args.wait)
-    if count < args.min_bars:
-        print(f"skip rank, today bars {count} < {args.min_bars}", flush=True)
-        return False
-    stats = patch_day(db_path, kline_root, day, args.patch_workers)
-    ready = stats["replace"] + stats["append"]
-    if ready < args.min_bars:
-        print(f"skip rank, patched {ready} < {args.min_bars}", flush=True)
-        return False
+    sys.path.insert(0, str(ROOT / "backend" / "trend_breakout"))
+    import rank_db
+
+    cov = rank_db.coverage(db_path, day)
+    use_db = bool(cov.get("complete"))
+    rank_db_path = ""
+    if use_db:
+        # 库内这一天已经齐，排名直接读缓存，不再先改写几千个 parquet。
+        note = DB_CLOSE_NOTE if mode == "close_snapshot" else DB_INTRADAY_NOTE
+        mode = "db_cache"
+        rank_db_path = str(db_path)
+        write_refresh(
+            "running",
+            day,
+            f"行情库 {day} 已齐（{cov['today']}/{cov['prev_n']}），正在从数据库计算实时排名。",
+        )
+        print(
+            f"rank from db {day}: today={cov['today']} prev={cov['prev']} n={cov['prev_n']}",
+            flush=True,
+        )
+    else:
+        write_refresh("running", day, f"正在重算 {day}。完成前页面仍是上次导出的榜单。")
+        print(f"refresh {day}: db not complete {cov}; patch parquet then rank", flush=True)
+        count = wait_bars(db_path, day, args.min_bars, args.wait)
+        if count < args.min_bars:
+            message = f"skip rank, today bars {count} < {args.min_bars}"
+            print(message, flush=True)
+            write_refresh("skipped", day, message)
+            return False
+        stats = patch_day(db_path, kline_root, day, args.patch_workers)
+        ready = stats["replace"] + stats["append"]
+        if ready < args.min_bars:
+            message = f"skip rank, patched {ready} < {args.min_bars}"
+            print(message, flush=True)
+            write_refresh("skipped", day, message)
+            return False
     sys.path.insert(0, str(SCRIPTS))
     import backfill_boards_v318 as backfill
 
@@ -234,7 +300,9 @@ def run_cycle(day: str, db_path: Path, kline_root: Path, args: argparse.Namespac
         args.workers,
         asof_note=note,
         asof_mode=mode,
+        rank_db=rank_db_path,
     )
+    write_refresh("done", day, f"{day} 已从行情库导出" if use_db else f"{day} 已导出")
     return True
 
 
@@ -257,10 +325,20 @@ def main() -> int:
         raise SystemExit(f"找不到共享行情库 {db_path}")
     need_settle = False
     settled_day = ""
+    booted = False
     while True:
         now = shanghai_now()
         day = now.strftime("%Y-%m-%d")
         trading = in_session(now)
+        if not trading and not args.force and not booted:
+            booted = True
+            rank_day = latest_rank_day(now)
+            print(f"startup refresh {rank_day}", flush=True)
+            try:
+                run_cycle(rank_day, db_path, kline_root, args, CLOSE_NOTE, "close_snapshot")
+            except Exception as exc:  # noqa: BLE001
+                print(f"startup rank failed: {exc}", flush=True)
+                write_refresh("failed", rank_day, str(exc))
         if not trading and not args.force:
             if need_settle and settled_day != day and now.time() > SESSION_CLOSE:
                 wait_close_pass(day, args.wait)
@@ -268,6 +346,7 @@ def main() -> int:
                     run_cycle(day, db_path, kline_root, args, CLOSE_NOTE, "close_snapshot")
                 except Exception as exc:  # noqa: BLE001
                     print(f"close rank failed: {exc}", flush=True)
+                    write_refresh("failed", day, str(exc))
                 settled_day = day
                 need_settle = False
             if args.once:
@@ -276,10 +355,12 @@ def main() -> int:
             continue
         started = time.time()
         need_settle = trading
+        booted = True
         try:
             run_cycle(day, db_path, kline_root, args, INTRADAY_NOTE, "intraday_temp")
         except Exception as exc:  # noqa: BLE001
             print(f"live rank failed: {exc}", flush=True)
+            write_refresh("failed", day, str(exc))
         if args.once:
             return 0
         delay = args.interval - (time.time() - started)

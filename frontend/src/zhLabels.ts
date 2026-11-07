@@ -127,3 +127,55 @@ export function zhColumnLabel(key: string): string {
 
 export const BANNER_TEXT =
   "观察池；A+ 表示图形质量高，不等于今天必买；「主窗口 / 已确认」才是成熟入场窗口。禁止荐买、预测必涨。趋势等级与入场状态为双轨独立维度。";
+
+
+const DIVIDEND_FIELD: Record<string, string> = {
+  stock: "股票",
+  dividend_grade: "红利等级",
+  dividend_quality_score: "质量分",
+  dividend_sustainability_score: "可持续分",
+  dividend_trend_score: "趋势分",
+  dividend_opportunity_score: "机会分",
+  historical_total_return_score: "总回报分",
+  valuation_score: "估值分",
+  dividend_risk_score: "风险分",
+  dividend_risk: "风险",
+  dividend_entry_status: "入场状态",
+  dividend_yield_ttm: "股息率TTM",
+  industry_group: "行业",
+  action_hint: "观察提示",
+  quality_rank: "质量排名",
+  entry_opportunity_rank: "机会排名",
+};
+
+const DIVIDEND_RISK: Record<string, string> = {
+  SAFE: "安全",
+  WATCH: "留意",
+  WARNING: "警告",
+  HIGH: "高风险",
+};
+
+const DIVIDEND_ENTRY: Record<string, string> = {
+  TREND_CONFIRM: "趋势确认",
+  ACCUMULATE_WATCH: "逢低观察",
+  PULLBACK_WATCH: "回撤观察",
+  HOLD_WATCH: "持有观察",
+  EXTENDED: "过热延伸",
+  TREND_BROKEN: "趋势破坏",
+  AVOID: "回避",
+  NO_ENTRY: "无入场",
+};
+
+export function zhDividendColumnLabel(key: string): string {
+  return DIVIDEND_FIELD[key] || key;
+}
+
+export function zhDividendCell(key: string, value?: string | null): string {
+  if (value == null || value === "" || value === "—") return "—";
+  if (key === "dividend_risk") return lookup(DIVIDEND_RISK, value);
+  if (key === "dividend_entry_status") return lookup(DIVIDEND_ENTRY, value);
+  return value;
+}
+
+export const DIVIDEND_BANNER_TEXT =
+  "红利三区均须当日趋势观察评级为 A+ 或 A；当前机会的红利等级也须为 A 及以上。不以股息率最高为目标。禁止荐买、预测必涨。";

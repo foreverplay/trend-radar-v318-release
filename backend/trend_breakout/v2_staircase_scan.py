@@ -341,6 +341,74 @@ def prefilter_spot(spot: pd.DataFrame, max_n: int = 120) -> pd.DataFrame:
     return cand
 
 
+def _local_prefilter_boost_db(cand: pd.DataFrame, t_date: str, extra: int) -> pd.DataFrame:
+    """Same MA / liquidity gates as the parquet scan, fed by the market DB window."""
+    import rank_db
+
+    codes = set(cand["代码"].astype(str))
+    frame = rank_db.recent_bars(t_date)
+    extras: List[Dict[str, Any]] = []
+    checked = 0
+    if frame is None or frame.empty:
+        print("  local_prefilter db empty", flush=True)
+        return cand
+    for code6, part in frame.groupby("symbol", sort=False):
+        code6 = str(code6)
+        if not code6.isdigit() or len(code6) != 6:
+            continue
+        full = _code_full(code6)
+        if full in codes:
+            continue
+        checked += 1
+        try:
+            df = part.sort_values("date").tail(80)
+            if len(df) < 70:
+                continue
+            amt20 = float(df["amount"].tail(20).mean())
+            if amt20 < 3e7:
+                continue
+            c = df["close"].astype(float)
+            ma20 = c.rolling(20).mean()
+            ma60 = c.rolling(60).mean()
+            if len(c) < 60:
+                continue
+            if not np.isfinite(ma20.iloc[-1]) or not np.isfinite(ma60.iloc[-1]):
+                continue
+            s20 = float(ma20.iloc[-1] / ma20.iloc[-11] - 1) * 100
+            if s20 <= 1.0:
+                continue
+            if float(ma20.iloc[-1]) < float(ma60.iloc[-1]) * 0.98:
+                continue
+            if float(c.iloc[-1]) < float(ma20.iloc[-1]):
+                continue
+            extras.append(
+                {
+                    "代码": full,
+                    "名称": code6,
+                    "最新价": float(c.iloc[-1]),
+                    "涨跌幅": float(c.iloc[-1] / c.iloc[-2] - 1) * 100,
+                    "成交额": float(df["amount"].iloc[-1]),
+                    "最高": float(c.iloc[-1]),
+                    "最低": float(c.iloc[-1]),
+                    "今开": float(c.iloc[-1]),
+                    "昨收": float(c.iloc[-2]),
+                    "成交量": np.nan,
+                    "pre_score": 50 + s20,
+                    "limit_up": False,
+                    "from_local_boost": True,
+                }
+            )
+        except Exception:
+            continue
+        if checked % 1000 == 0:
+            print(f"  local_prefilter db checked={checked} hits={len(extras)}", flush=True)
+    print(f"  local_prefilter db done checked={checked} hits={len(extras)}", flush=True)
+    if not extras:
+        return cand
+    ex = pd.DataFrame(extras).nlargest(extra, "pre_score")
+    return pd.concat([cand, ex], ignore_index=True).drop_duplicates("代码")
+
+
 def local_prefilter_boost(
     cand: pd.DataFrame, t_date: str, extra: int = 120, batch_size: int = 200
 ) -> pd.DataFrame:
@@ -349,6 +417,13 @@ def local_prefilter_boost(
     Keep liquidity (avg20 amt≥3000万) and MA gates (MA20Slope>1%, MA20≥MA60*0.98, close≥MA20).
     Rank by pre_score and merge top `extra` into cand.
     """
+    import os
+
+    if os.environ.get("TREND_RANK_DB"):
+        import rank_db
+
+        if rank_db.db_path():
+            return _local_prefilter_boost_db(cand, t_date, extra)
     codes = set(cand["代码"].astype(str))
     files = sorted(LOCAL_DAILY.glob("*.parquet"))
     extras: List[Dict[str, Any]] = []
@@ -1351,7 +1426,10 @@ def run(
         spot = ds.spot_from_local_daily(t_date)
         if spot is None or not len(spot):
             raise SystemExit(f"strict-asof: no local daily bars on {t_date}")
-        print(f"spot source=local_parquet rows={len(spot)}")
+        import os
+
+        spot_src = "market_db" if os.environ.get("TREND_RANK_DB") else "local_parquet"
+        print(f"spot source={spot_src} rows={len(spot)}")
         gaps.append("strict_asof local parquet universe")
         sp = {"ok": True}
     else:

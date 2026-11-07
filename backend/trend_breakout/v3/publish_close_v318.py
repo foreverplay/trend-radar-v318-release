@@ -9,16 +9,23 @@ Does NOT change live V3.1.7 routines. Observation only. 禁止荐买 / 预测必
 """
 from __future__ import annotations
 
+import os
 import sys
 from pathlib import Path
 
 _SCRIPT_DIR = Path(__file__).resolve().parent
-_ROOT = _SCRIPT_DIR.parent
+_DEFAULT_ROOT = _SCRIPT_DIR.parent
 if sys.path and sys.path[0] in ("", str(_SCRIPT_DIR)):
     sys.path.pop(0)
-if str(_ROOT) not in sys.path:
-    sys.path.insert(0, str(_ROOT))
-ROOT = _ROOT
+try:
+    from paths import ROOT as _PKG_ROOT
+except ImportError:  # noqa: E402
+    _PKG_ROOT = Path(
+        os.environ.get("TREND_BREAKOUT_ROOT", str(_DEFAULT_ROOT))
+    ).expanduser().resolve()
+ROOT = _PKG_ROOT
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 import argparse
 import json
@@ -46,7 +53,16 @@ from v3.v31.types import EntryWindow, ExhaustionLevel
 CST = pc3.CST
 VERSION = "V3.1.8"
 EXIT_STORE_V318 = ROOT / "v3" / "exit_state" / "store_v318.json"
-HIST_DIR = ROOT / "history"
+
+
+def _resolve_hist_dir() -> Path:
+    raw = (os.environ.get("TREND_HIST_DIR") or "").strip()
+    if raw:
+        return Path(raw).expanduser().resolve()
+    return ROOT / "history"
+
+
+HIST_DIR = _resolve_hist_dir()
 A318_PARQUET = HIST_DIR / "a_plus_v318_daily.parquet"
 A318_CSV = HIST_DIR / "a_plus_v318_daily.csv"
 A318_BY_DATE = HIST_DIR / "a_plus_v318_by_date"
@@ -616,9 +632,17 @@ def to_payload(rows, *, t_date, meta, cnt, src, warmup) -> Dict[str, Any]:
     }
 
 
-def append_v318_archive(rows: Sequence[Dict[str, Any]], t_date: str) -> int:
-    HIST_DIR.mkdir(parents=True, exist_ok=True)
-    A318_BY_DATE.mkdir(parents=True, exist_ok=True)
+def append_v318_archive(
+    rows: Sequence[Dict[str, Any]],
+    t_date: str,
+    *,
+    by_date_dir: Optional[Path] = None,
+    update_parquet: bool = True,
+) -> int:
+    hist = by_date_dir.parent if by_date_dir is not None else HIST_DIR
+    hist.mkdir(parents=True, exist_ok=True)
+    day_dir = by_date_dir if by_date_dir is not None else A318_BY_DATE
+    day_dir.mkdir(parents=True, exist_ok=True)
     out = []
     for d in sorted(rows, key=_sort_trend):
         if d["grade_v318"] not in ("A+", "A") and not d.get("rapid_main_rise"):
@@ -639,17 +663,18 @@ def append_v318_archive(rows: Sequence[Dict[str, Any]], t_date: str) -> int:
             "exit_signal": E(r.exit_signal),
         })
     day = pd.DataFrame(out)
-    day.to_csv(A318_BY_DATE / f"{t_date}.csv", index=False, encoding="utf-8")
-    if A318_PARQUET.exists():
-        old = pd.read_parquet(A318_PARQUET)
-        old = old[old["t_date"].astype(str) != t_date]
-        all_df = pd.concat([old, day], ignore_index=True) if len(day) else old
-    else:
-        all_df = day
-    if len(all_df):
-        all_df = all_df.sort_values(["t_date", "code6"])
-        all_df.to_parquet(A318_PARQUET, index=False)
-        all_df.to_csv(A318_CSV, index=False, encoding="utf-8")
+    day.to_csv(day_dir / f"{t_date}.csv", index=False, encoding="utf-8")
+    if update_parquet and by_date_dir is None:
+        if A318_PARQUET.exists():
+            old = pd.read_parquet(A318_PARQUET)
+            old = old[old["t_date"].astype(str) != t_date]
+            all_df = pd.concat([old, day], ignore_index=True) if len(day) else old
+        else:
+            all_df = day
+        if len(all_df):
+            all_df = all_df.sort_values(["t_date", "code6"])
+            all_df.to_parquet(A318_PARQUET, index=False)
+            all_df.to_csv(A318_CSV, index=False, encoding="utf-8")
     return len(out)
 
 
@@ -662,6 +687,8 @@ def run_publish(
     warmup: int = DEFAULT_WARMUP,
     workers: Optional[int] = None,
     no_archive: bool = False,
+    archive_by_date_dir: Optional[Path] = None,
+    update_a318_parquet: bool = True,
     verbose: bool = True,
 ) -> Dict[str, Any]:
     t0 = time.time()
@@ -749,7 +776,19 @@ def run_publish(
 
     a318 = 0
     if not no_archive:
-        a318 = append_v318_archive(rows, t_date)
+        a318 = append_v318_archive(
+            rows,
+            t_date,
+            by_date_dir=archive_by_date_dir,
+            update_parquet=update_a318_parquet if archive_by_date_dir is None else False,
+        )
+    elif archive_by_date_dir is not None:
+        a318 = append_v318_archive(
+            rows,
+            t_date,
+            by_date_dir=archive_by_date_dir,
+            update_parquet=False,
+        )
 
     return {
         "t_date": t_date, "plan_counts": plan_counts, "counts": cnt, "n": len(rows),
@@ -771,6 +810,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument("--workers", type=int, default=None)
     ap.add_argument("--skip-exit-persist", action="store_true")
     ap.add_argument("--no-archive", action="store_true")
+    ap.add_argument("--archive-by-date-dir", default=None, help="仅写入该目录下的逐日 A+ CSV，不更新主 parquet")
+    ap.add_argument("--no-update-parquet", action="store_true")
     args = ap.parse_args(argv)
 
     t_date = args.t_date
@@ -780,12 +821,17 @@ def main(argv: Optional[List[str]] = None) -> int:
     if not t_date:
         print("ERROR: --t-date required", file=sys.stderr)
         return 2
+    archive_dir = Path(args.archive_by_date_dir).expanduser().resolve() if args.archive_by_date_dir else None
     info = run_publish(
         t_date=t_date,
         candidates_path=Path(args.candidates) if args.candidates else None,
         market_meta_path=Path(args.market_meta) if args.market_meta else None,
         skip_exit_persist=bool(args.skip_exit_persist),
-        warmup=int(args.warmup), workers=args.workers, no_archive=bool(args.no_archive),
+        warmup=int(args.warmup),
+        workers=args.workers,
+        no_archive=bool(args.no_archive),
+        archive_by_date_dir=archive_dir,
+        update_a318_parquet=not bool(args.no_update_parquet),
     )
     c = info["counts"]
     print(f"publish_close_v318 t_date={info['t_date']} regime={info['regime_v3']} "

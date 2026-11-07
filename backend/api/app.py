@@ -9,13 +9,21 @@ from typing import Any, Dict, Optional
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
-from boards_loader import find_sample_root, list_board_dates, load_by_date, load_latest
+from boards_loader import (
+    find_sample_root,
+    list_board_dates,
+    list_dividend_dates,
+    load_by_date,
+    load_dividend_by_date,
+    load_dividend_latest,
+    load_latest,
+)
 import quote_service
 
 app = FastAPI(
-    title="趋势分析雷达 V3.1.8 API",
-    description="观察池 API；禁止荐买 / 预测必涨。A+ = 图形质量，不等于今天必买。",
-    version="3.1.8",
+    title="趋势分析雷达 V3.1.8 + 红利模块 V3.1.9 API",
+    description="观察池 API；Growth 四榜 + 红利三区独立；禁止荐买 / 预测必涨。A+ = 图形质量，不等于今天必买。",
+    version="3.1.9",
 )
 
 app.add_middleware(
@@ -29,11 +37,20 @@ app.add_middleware(
 SAMPLE = find_sample_root()
 
 
+@app.middleware("http")
+async def no_store_boards(request, call_next):  # type: ignore[no-untyped-def]
+    response = await call_next(request)
+    if request.url.path.startswith("/api/boards") or request.url.path == "/api/meta":
+        response.headers["Cache-Control"] = "no-store"
+    return response
+
+
 @app.get("/api/health")
 def health() -> Dict[str, Any]:
     return {
         "ok": True,
         "version": "V3.1.8",
+        "modules": {"growth": "V3.1.8", "dividend": "V3.1.9"},
         "sample_root": str(SAMPLE),
         "disclaimer": "观察池；禁止荐买 / 预测必涨",
     }
@@ -47,7 +64,9 @@ def meta() -> Dict[str, Any]:
         market = json.loads(meta_path.read_text(encoding="utf-8"))
     return {
         "version": "V3.1.8",
+        "modules": {"growth": "V3.1.8", "dividend": "V3.1.9"},
         "dates": list_board_dates(SAMPLE),
+        "dividend_dates": list_dividend_dates(SAMPLE),
         "market_meta": market,
         "boards_rules": {
             "mature_entry": "A+/A + PRIME/CONFIRMED",
@@ -55,7 +74,12 @@ def meta() -> Dict[str, Any]:
             "watch_pool": "B/C + EARLY/BUILDING",
             "extended": "A+/A + EXTENDED",
         },
-        "disclaimer": "观察池；A+≠今天必买；禁止荐买 / 预测必涨。",
+        "dividend_boards_rules": {
+            "quality": "优质红利（趋势观察评级 A+/A，且可持续分红）",
+            "opportunity": "当前机会（趋势观察评级至少 A，且红利等级 A+/A）",
+            "risk_watch": "风险观察（趋势观察评级 A+/A 中的陷阱/高风险/趋势破坏）",
+        },
+        "disclaimer": "观察池；A+≠今天必买；禁止荐买 / 预测必涨。红利三区独立于 Growth 四榜。",
     }
 
 
@@ -63,6 +87,22 @@ def meta() -> Dict[str, Any]:
 def boards_latest() -> Dict[str, Any]:
     try:
         return load_latest(SAMPLE)
+    except FileNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e)) from e
+
+
+@app.get("/api/boards/dividend/latest")
+def dividend_boards_latest() -> Dict[str, Any]:
+    try:
+        return load_dividend_latest(SAMPLE)
+    except FileNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e)) from e
+
+
+@app.get("/api/boards/dividend/{date}")
+def dividend_boards_date(date: str) -> Dict[str, Any]:
+    try:
+        return load_dividend_by_date(date, SAMPLE)
     except FileNotFoundError as e:
         raise HTTPException(status_code=404, detail=str(e)) from e
 

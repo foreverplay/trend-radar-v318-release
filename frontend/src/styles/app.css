@@ -20,7 +20,7 @@ body {
   background: var(--bg);
   color: var(--text);
 }
-.app { max-width: 1280px; margin: 0 auto; padding: 1.25rem; }
+.app { width: 100%; max-width: none; margin: 0; padding: 1.25rem clamp(0.75rem, 2vw, 1.5rem); }
 .hdr {
   display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem;
   align-items: flex-end; margin-bottom: 1rem;
@@ -43,7 +43,7 @@ body {
   padding: 0.45rem 0.85rem; border-radius: 8px; cursor: pointer;
 }
 .tabs button.active { background: var(--accent); border-color: var(--accent); color: #fff; }
-.table-wrap { overflow: auto; border: 1px solid var(--border); border-radius: 10px; }
+.table-wrap { overflow: auto; border: 1px solid var(--border); border-radius: 10px; background: var(--panel); }
 table { width: 100%; border-collapse: collapse; font-size: 0.85rem; background: var(--panel); }
 th, td { padding: 0.45rem 0.55rem; border-bottom: 1px solid var(--border); white-space: nowrap; }
 th { text-align: left; color: var(--muted); font-weight: 600; position: sticky; top: 0; background: #152033; }
@@ -171,4 +171,41 @@ tr.board-charts td { white-space: normal; padding-top: 0; }
 }
 @container (max-width: 640px) {
   .hover-charts { grid-template-columns: 1fr; }
+}
+
+.mode-nav { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.75rem; }
+.mode-nav button {
+  background: transparent; color: var(--muted); border: 1px solid var(--border);
+  padding: 0.4rem 0.95rem; border-radius: 999px; cursor: pointer; font-size: 0.9rem;
+}
+.mode-nav button.active {
+  background: #14532d; border-color: #22c55e; color: #bbf7d0; font-weight: 600;
+}
+.risk-safe { color: #4ade80; }
+.risk-watch { color: #60a5fa; }
+.risk-warn { color: #fbbf24; }
+.risk-high { color: #f87171; font-weight: 600; }
+
+.stock-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  max-width: 100%;
+}
+button.code-copy {
+  flex: 0 0 auto;
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.05rem 0.45rem;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  cursor: pointer;
+}
+button.code-copy:hover { color: var(--text); border-color: var(--accent); }
+button.code-copy.on {
+  color: #bbf7d0;
+  border-color: #22c55e;
+  background: #14532d;
 }

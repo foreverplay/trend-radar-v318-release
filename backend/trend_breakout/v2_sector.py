@@ -62,6 +62,16 @@ def _ma(close: pd.Series, n: int) -> Optional[float]:
 
 
 def _load_local_close(code6: str, t_date: Optional[str] = None) -> Optional[pd.Series]:
+    import os
+
+    if os.environ.get("TREND_RANK_DB"):
+        import rank_db
+
+        if rank_db.db_path():
+            df = rank_db.load_stock(code6, t_date)
+            if df is None or len(df) < 25:
+                return None
+            return df["close"].astype(float).reset_index(drop=True)
     p = LOCAL_DAILY / f"{code6}.parquet"
     if not p.exists():
         return None

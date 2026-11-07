@@ -18,3 +18,7 @@ backend/trend_breakout/report*.md
 backend/trend_breakout/push_close_v318_*.md
 data/cache/quotes.sqlite3
 data/kline_market/
+
+data/ashare-financials/
+data/_div_deps_pack/
+data/cache/dividend_kline/

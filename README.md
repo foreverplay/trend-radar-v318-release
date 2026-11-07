@@ -1,6 +1,6 @@
 # 趋势分析雷达 V3.1.8（Trend Confirmation Radar）
 
-A 股趋势确认/突破 **观察系统** 的可运行工程包：Python 核心算法 + FastAPI + React（Vite）四榜前端。
+A 股趋势确认/突破 **观察系统** 的可运行工程包：Python 核心算法 + FastAPI + React（Vite）四榜前端；另含独立 **红利趋势三区（V3.1.9）**。
 
 > **这是观察池，不是荐股软件。**  
 > **禁止荐买 / 预测必涨。**  
@@ -35,7 +35,7 @@ A 股趋势确认/突破 **观察系统** 的可运行工程包：Python 核心�
 ```
 trend-radar-v318-release/
   README.md
-  run_dev.sh           # 一键启动 API + 前端
+  run_dev.sh           # 一键启动 API + 前端 + 盘中刷榜
   LICENSE_NOTICE.md
   requirements.txt
   pyproject.toml
@@ -84,7 +84,7 @@ cp .env.example .env
 
 ## 5. 快速体验（只用 sample，不跑全市场）
 
-**一键启动前后端**（推荐）：
+**一键启动前后端 + 盘中刷榜**（推荐）：
 
 ```bash
 # 首次请先完成「4. 安装」中的 venv 与 npm install
@@ -92,6 +92,14 @@ chmod +x run_dev.sh
 ./run_dev.sh
 # 后端 http://127.0.0.1:8765/api/health
 # 前端 http://127.0.0.1:5173
+# 盘中刷榜 live_board_v318.py（默认约每 25 分钟写 data/sample/boards_v318_*.json）
+```
+
+关闭盘中刷榜或改间隔：
+
+```bash
+./run_dev.sh --no-live-board          # 或 SKIP_LIVE_BOARD=1 ./run_dev.sh
+LIVE_BOARD_INTERVAL=900 ./run_dev.sh  # 间隔改为 15 分钟（秒）
 ```
 
 也可分两个终端分别启动：
@@ -116,18 +124,46 @@ python backend/scripts/backfill_boards_v318.py --days 10 --source market-db
 盘中出当天趋势榜（行情后台需在跑，它负责 30 分钟内写完全市场当日临时 K）：
 
 ```bash
+# 推荐：已包含在 ./run_dev.sh（默认开启）
+./run_dev.sh
+
+# 或单独跑（不启前后端）：
 python backend/scripts/live_board_v318.py
+# 单次 / 非交易时段强制一轮：
+python backend/scripts/live_board_v318.py --once --force
 ```
 
-脚本等当天临时日 K 落库后，补进 `data/kline_market` 的当日最后一根，再按严格口径重算一遍。默认每 25 分钟一轮，收盘后再用收盘快照重算一次。页面上的说明会标明这是盘中临时行情。
+脚本等当天临时日 K 落库后，补进 `data/kline_market` 的当日最后一根，再按严格口径重算一遍。默认每 25 分钟一轮（`LIVE_BOARD_INTERVAL` / `--interval`），非交易时段空转等待，收盘后再用收盘快照重算一次。页面约每 90 秒自动拉最新榜（切到历史日期时暂停跟随）。页面上的说明会标明这是盘中临时行情。不想刷榜时用 `./run_dev.sh --no-live-board` 或 `SKIP_LIVE_BOARD=1`。
 
-悬停行情在设置 `MARKET_HUB_URL`（默认 `http://127.0.0.1:8790`）后优先走共享行情后台，后台不可用时回退直连。`./run_dev.sh` 会在 8790 未监听且配置了 `MARKET_HUB_DIR` 时一并启动后台。
+悬停行情在设置 `MARKET_HUB_URL`（默认 `http://127.0.0.1:8790`）后优先走共享行情后台，后台不可用时回退直连。`./run_dev.sh` 会在 8790 未监听且配置了 `MARKET_HUB_DIR` 时一并启动后台，并默认拉起盘中刷榜。
 
 离线 smoke（不启服务）：
 
 ```bash
 python backend/scripts/smoke_test.py
 ```
+
+### A+ 历史回补（供 longtou 组合寻优）
+
+在配置 `MARKET_DB_PATH` 指向共享 SQLite（如前复权 `daily_bars_qfq`）时，`./run_dev.sh` 默认另起后台 `backfill_a_plus_history.py`：
+
+- 按交易日**从新到旧** strict-asof 重算，结果写入 `backend/trend_breakout/history/a_plus_v318_backfill_by_date/{日期}.csv`。
+- **不写**现网 `store_v318.json`、不写 `data/sample/boards_v318_*.json`；可用 `SKIP_A_PLUS_BACKFILL=1` 或 `--no-a-plus-backfill` 关闭。
+- **交易时段**（09:15–15:30）暂停，避免与盘中刷榜抢资源。
+- 进度见 `history/a_plus_v318_backfill_status.json`。
+
+口径说明：**股票清单为回补任务运行时可从库读到的当前 A 股列表**；已退市代码不会出现在历史档案中；**基本面、异动、资金等无法按日还原的字段不参与历史评分**。
+
+手动：
+
+```bash
+export MARKET_DB_PATH=../longtou-web/backend/data/longtou.sqlite3
+python backend/scripts/backfill_a_plus_history.py --once --only 2026-11-02,2026-11-03,2026-11-04,2026-11-05,2026-11-06 --compare-live
+```
+
+验收时请确认隔离目录 `run_day` 已把 `TREND_RANK_DB` / `ASHARE_KLINE_ROOT` 传给 publish，否则 v317 重放可能 `no_hist`、回补 A+ 数量为 0。2026-11-06 样例：现网约 31 只 A+，回补需与现网集合一致后再批量跑 750 日。
+
+输出目录可用环境变量 `TREND_BREAKOUT_ROOT`（扫描隔离目录）、`TREND_HIST_DIR`（档案根目录，默认 `history`）。
 
 ---
 
@@ -236,3 +272,33 @@ python -m v3.v31.regression_v318
 - **不要**把现网 `/workspace/trend-breakout` 的巨型 `candidates_*.json` / `all_results*.json` 提交进仓库。  
 - 路径已通过 `backend/trend_breakout/paths.py` 与环境变量解耦。  
 - 前端：`cd frontend && npm run build` 产出静态资源。
+
+---
+
+## 红利模块 V3.1.9（细分三区）
+
+与 Growth **V3.1.8 四榜独立**：不改 `grading_v318` / 成熟入场规则；仅附加红利观察。
+
+| 区（中文） | API id | 说明 |
+|---|---|---|
+| **优质红利** | `quality` | 可持续分红 + 质量优先 |
+| **当前机会** | `opportunity` | 质量门槛内的介入条件综合（非最高股息率） |
+| **风险观察** | `risk_watch` | 陷阱 / 高风险 / 趋势破坏 |
+
+**目录**
+
+- 引擎包：`backend/trend_breakout/dividend_v319/`
+- 样例榜：`data/sample/dividend_board_YYYYMMDD.json`（及 `.md` / `_summary.json`）
+
+**API**
+
+- `GET /api/boards/dividend/latest`
+- `GET /api/boards/dividend/{date}`（`YYYY-MM-DD`）
+- `GET /api/meta` → `dividend_dates`、`dividend_boards_rules`、`modules.dividend`
+
+**前端**
+
+顶部切换「趋势观察」/「红利趋势」；红利模式下三 Tab 对应上述三区。禁止荐买 / 预测必涨。
+
+> 当前 release 以 **sample 样例** 展示；全市场 Live 红利重算流水线尚未接入 `run_dev.sh`（Growth 收盘发布路径不变）。
+

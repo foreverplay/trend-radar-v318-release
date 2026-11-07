@@ -7,6 +7,12 @@ import { BarDetailPanel, IntradayChart, KlineChart } from "./QuoteCharts";
 import { MA_DEFAULT, MA_LINES, parseMaPeriods, toggleMaPeriod } from "../../../../market-data-hub/web/quoteCharts.ts";
 import { klineBarDetail, type BarDetailItem } from "../../../../market-data-hub/web/barDetail.ts";
 
+export type HoverCardMeta = {
+  subtitle?: string;
+  scores?: Array<[string, string | undefined]>;
+  evidenceLines?: string[];
+};
+
 type Box = { left: number; top: number; width: number; arrow: number; span: number };
 
 function place(anchor: HTMLElement, cardHeight: number): Box {
@@ -50,6 +56,7 @@ export default function StockHoverCard({
   onClose,
   onPointerEnter,
   onPointerLeave,
+  meta,
 }: {
   row: BoardRow;
   asOf: string;
@@ -57,6 +64,7 @@ export default function StockHoverCard({
   onClose: () => void;
   onPointerEnter: () => void;
   onPointerLeave: () => void;
+  meta?: HoverCardMeta;
 }) {
   const code = row.code || "";
   const [box, setBox] = useState<Box>(() => place(anchor, 0));
@@ -177,7 +185,11 @@ export default function StockHoverCard({
       <header className="hover-head">
         <div>
           <strong>{row.name || row.stock} {code}</strong>
-          <p>观察日 {asOf} · 趋势等级 {row.trend_grade || "—"} · {zhCell("entry_status", row.entry_status)}</p>
+          <p>
+            {meta?.subtitle
+              ? meta.subtitle
+              : <>观察日 {asOf} · 趋势等级 {row.trend_grade || "—"} · {zhCell("entry_status", row.entry_status)}</>}
+          </p>
         </div>
         <button type="button" onClick={onClose}>关闭</button>
       </header>
@@ -230,11 +242,11 @@ export default function StockHoverCard({
         />
       ) : null}
       <div className="score-list">
-        {[
+        {(meta?.scores || [
           ["技术分", row.tech],
           ["延续分", row.cont],
           ["板块分", row.sector],
-        ].map(([label, value]) => (
+        ]).map(([label, value]) => (
           <div key={label}>
             <span>{label} {value || "—"}</span>
             <i><b style={{ width: scoreWidth(value) }} /></i>
@@ -242,7 +254,7 @@ export default function StockHoverCard({
         ))}
       </div>
       <ul className="evidence">
-        {evidence(row).map((line) => <li key={line}>{line}</li>)}
+        {(meta?.evidenceLines || evidence(row)).map((line) => <li key={line}>{line}</li>)}
       </ul>
       {reason?.available && reason.reason ? <p className="extra">异动说明：{reason.reason}</p> : null}
       {flow?.available ? (
