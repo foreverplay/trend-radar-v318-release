@@ -36,8 +36,8 @@ class HistoricalGradingConfig:
     # Warmup
     warmup_days: int = 250  # 约1年交易日
     
-    # 评分选项
-    use_fallback_scoring: bool = False  # 是否使用简化评分（当生产评分不可用）
+    # 评分选项（已移除fallback）
+    # 仅使用真实V3.1.8评分链，失败的跳过为不可计算
     
     # 输出
     output_dir: Path = Path("results/historical_grading")
@@ -242,14 +242,13 @@ class HistoricalGradingEngine:
         return summary
     
     def _score_one_date(self, trade_date: str) -> List[DailyGradeRecord]:
-        """评分单日所有股票"""
+        """评分单日所有股票（仅真实V3.1.8评分）"""
         daily_records = []
         
-        # 批量评分
+        # 批量评分（失败的跳过）
         scores = self.scorer.batch_score_universe(
             codes=self.universe,
-            as_of_date=trade_date,
-            use_fallback=self.config.use_fallback_scoring
+            as_of_date=trade_date
         )
         
         print(f"  成功评分: {len(scores)}/{len(self.universe)} 只股票")
@@ -269,10 +268,8 @@ class HistoricalGradingEngine:
                 maturity_level=result.get("maturity_level"),
                 rapid_main_rise=result.get("rapid_main_rise", False),
                 data_source=result.get("structure_source", "unknown"),
-                scoring_mode="fallback" if result.get("_fallback_mode") else "production",
-                warnings=result.get("_warning", []) if isinstance(result.get("_warning"), list) else (
-                    [result.get("_warning")] if result.get("_warning") else []
-                ),
+                scoring_mode="production",  # 仅生产评分
+                warnings=[],  # 无fallback警告
             )
             
             daily_records.append(record)
@@ -379,7 +376,7 @@ class HistoricalGradingEngine:
 def run_historical_grading_for_year(year: int, 
                                      data_provider: ReadOnlyDataProvider,
                                      output_dir: Optional[Path] = None) -> Dict[str, Any]:
-    """便捷函数：回放指定年份的历史评级
+    """便捷函数：回放指定年份的历史评级（仅真实V3.1.8评分）
     
     Args:
         year: 年份（如2024）
@@ -395,7 +392,6 @@ def run_historical_grading_for_year(year: int,
         start_date=f"{year}-01-01",
         end_date=f"{year}-12-31",
         universe_mode="auto",
-        use_fallback_scoring=True,  # 先用fallback确保能跑通
         output_dir=output_dir or Path(f"results/historical_grading/{year}"),
     )
     

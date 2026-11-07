@@ -125,107 +125,44 @@ class V318ScoringEngine:
             print(f"❌ 评分失败 {code6} @ {as_of_date}: {e}")
             return None
     
-    def score_stock_asof_fallback(self,
-                                  code: str,
-                                  as_of_date: str) -> Optional[Dict[str, Any]]:
-        """回退评分方法：直接使用数据提供者构建评分输入
-        
-        当 evaluate_v318_asof() 依赖外部模块（如 rank_db）无法正常工作时使用
-        
-        ⚠️ 这是简化版本，仅用于诊断
-        """
-        code6 = str(code).zfill(6)
-        
-        # 1. 获取历史K线数据
-        df = self.provider.get_stock_daily_bars(code6, end_date=as_of_date)
-        
-        if df is None or len(df) < 60:
-            return None
-        
-        try:
-            # 2. 计算基础技术指标
-            close = df['close'].values
-            volume = df['volume'].values
-            
-            # MA
-            ma5 = pd.Series(close).rolling(5).mean().iloc[-1]
-            ma10 = pd.Series(close).rolling(10).mean().iloc[-1]
-            ma20 = pd.Series(close).rolling(20).mean().iloc[-1]
-            ma60 = pd.Series(close).rolling(60).mean().iloc[-1]
-            
-            current_close = close[-1]
-            
-            # 3. 简化的趋势结构评分（⚠️ 不是完整V3.1.8算法）
-            # TODO: 这里应该调用 v2_structure.py 的完整算法
-            struct_score = 50.0
-            if ma5 > ma10 > ma20 > ma60:
-                struct_score += 30
-            if current_close > ma20:
-                struct_score += 10
-            
-            # 4. 简化的连续性评分
-            # TODO: 应该调用 v2_continuity.py
-            cont_score = 50.0
-            if ma5 > ma10:
-                cont_score += 20
-            
-            # 5. 调用 grade_trend_v318()
-            grade_result = grade_trend_v318(
-                trend_structure_score=struct_score,
-                continuity_score=cont_score,
-                sector_score=None,  # 无板块数据
-                tech_score=None,
-                fund_risk_level=None,
-                trend_state="UNKNOWN",
-                broken=False,
-                rapid_main_rise=False,
-                htf_ok=None,
-            )
-            
-            return {
-                "grade_v318": grade_result.grade.value,
-                "grade_path": grade_result.path,
-                "entry_window_v318": "NO_ENTRY",  # 无法判断EntryStatus
-                "trend_structure_score": struct_score,
-                "continuity_score": cont_score,
-                "sector_score": None,
-                "tech_score": None,
-                "trend_state": "UNKNOWN",
-                "maturity_level": "UNKNOWN",
-                "grade_reasons": grade_result.reasons,
-                "_fallback_mode": True,
-                "_warning": "使用简化评分，非完整V3.1.8算法"
-            }
-            
-        except Exception as e:
-            print(f"❌ 回退评分失败 {code6} @ {as_of_date}: {e}")
-            return None
+    # REMOVED: score_stock_asof_fallback()
+    # 禁止使用简化fallback评分，必须使用真实V3.1.8评分链
+    # 如果evaluate_v318_asof()失败，应该明确失败/跳过为不可计算
     
     def batch_score_universe(self,
                             codes: list[str],
-                            as_of_date: str,
-                            use_fallback: bool = False) -> Dict[str, Dict[str, Any]]:
-        """批量评分股票池
+                            as_of_date: str) -> Dict[str, Dict[str, Any]]:
+        """批量评分股票池（仅真实V3.1.8评分）
         
         Args:
             codes: 股票代码列表
             as_of_date: 截止日期
-            use_fallback: 是否使用回退评分（简化版本）
             
         Returns:
             {code: score_result, ...}
+            仅返回成功评分的股票，失败的跳过（不伪造A评级）
         """
         results = {}
-        
-        score_func = self.score_stock_asof_fallback if use_fallback else self.score_stock_asof
+        failed = []
         
         for i, code in enumerate(codes):
             if (i + 1) % 100 == 0:
                 print(f"  评分进度: {i + 1}/{len(codes)}")
             
-            result = score_func(code, as_of_date)
-            if result:
-                results[code] = result
+            try:
+                result = self.score_stock_asof(code, as_of_date)
+                if result:
+                    results[code] = result
+                else:
+                    failed.append((code, "no_result"))
+            except Exception as e:
+                failed.append((code, str(e)))
+        
+        if failed:
+            print(f"  ⚠️  评分失败/跳过: {len(failed)} 只股票")
+            # 记录前10个失败
+            for code, reason in failed[:10]:
+                print(f"     {code}: {reason}")
         
         return results
     
@@ -311,24 +248,29 @@ if __name__ == "__main__":
     # 创建评分引擎
     engine = V318ScoringEngine(provider)
     
-    # 测试评分
-    print("\n测试评分引擎:")
+    # 测试评分（仅真实V3.1.8）
+    print("\n测试评分引擎（真实V3.1.8评分链）:")
     print("=" * 80)
     
     test_date = "2024-12-31"
     test_code = "600519"  # 贵州茅台
     
     print(f"\n评分 {test_code} @ {test_date}:")
-    result = engine.score_stock_asof_fallback(test_code, test_date)  # 先用fallback测试
-    
-    if result:
-        print(f"  TrendGrade: {result['grade_v318']}")
-        print(f"  Grade Path: {result['grade_path']}")
-        print(f"  Structure Score: {result.get('trend_structure_score')}")
-        print(f"  Continuity Score: {result.get('continuity_score')}")
-        if result.get('_fallback_mode'):
-            print(f"  ⚠️  {result['_warning']}")
-    else:
-        print("  评分失败")
+    try:
+        result = engine.score_stock_asof(test_code, test_date)
+        
+        if result:
+            print(f"  ✅ TrendGrade: {result['grade_v318']}")
+            print(f"  Grade Path: {result['grade_path']}")
+            print(f"  EntryStatus: {result['entry_window_v318']}")
+            print(f"  Structure Score: {result.get('trend_structure_score')}")
+            print(f"  Continuity Score: {result.get('continuity_score')}")
+            print(f"  RAPID: {result.get('rapid_main_rise')}")
+        else:
+            print("  ❌ 评分返回None（数据不足或不可计算）")
+    except Exception as e:
+        print(f"  ❌ 评分失败: {e}")
+        import traceback
+        traceback.print_exc()
     
     provider.close()
