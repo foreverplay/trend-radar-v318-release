@@ -1,0 +1,14 @@
+{
+  "completion_time": "2026-11-07 15:07:43",
+  "status": {
+    "st_status": true,
+    "delist_history": true,
+    "suspend_calendar": true,
+    "financial_calendar": false,
+    "industry_history": false,
+    "corporate_actions": false,
+    "full_market_kline": false
+  },
+  "completed_count": 3,
+  "total_count": 7
+}
