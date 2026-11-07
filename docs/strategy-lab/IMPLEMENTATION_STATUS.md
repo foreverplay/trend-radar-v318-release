@@ -920,4 +920,132 @@ python3 run_backtest.py --config configs/baseline_2024.json
 
 ---
 
-**当前状态**: 🚧 **核心模块已完成 (2098行)，待本地验证与集成测试**
+---
+
+## 当前实际完成状态（2026-11-07）
+
+### ✅ 已完成模块（VM合成测试通过）
+
+| 模块 | 文件 | 行数 | 测试状态 |
+|------|------|------|----------|
+| 数据配置 | `research_config.py` | 294 | ✅ Import成功 |
+| 数据提供者 | `data_provider.py` | 389 | ✅ Import成功 |
+| V3.1.8评分引擎 | `scoring_engine.py` | 217 | ✅ **删除fallback** |
+| 历史评级回放 | `historical_grading.py` | 383 | ✅ 逻辑完整 |
+| 交易规则提供者 | `trading_rules_provider.py` | 459 | ✅ **6测试通过** |
+| 退出规则引擎 | `exit_rules.py` | 238 | ✅ **6测试通过** |
+| 仓位管理器 | `position_manager.py` | 267 | ✅ Import成功 |
+| 回测引擎V2 | `backtest_engine_v2.py` | 622 | ✅ Import成功 |
+| CLI Runner | `run_research_backtest.py` | 128 | ✅ 逻辑完整 |
+| **总计** | **9个模块** | **2997行** | **12测试通过** |
+
+### ✅ 自动化测试（合成fixture，非收益证据）
+
+```bash
+cd backend/trend_breakout/research_lab
+
+# 交易规则测试（6个测试）
+python3 tests/test_trading_rules.py
+# 结果: 6/6 通过（主板10%、科创20%、ST 5%、历史费率、佣金最低5元）
+
+# 退出规则测试（6个测试）
+python3 tests/test_exit_rules.py
+# 结果: 6/6 通过（exit_signal、Grade降级、持仓期、止损、停牌、正常持有）
+```
+
+### ✅ 核心修正（相比上次未完成版本）
+
+1. **删除fallback简化评分** ✅
+   - 移除 `score_stock_asof_fallback()`
+   - 移除 `use_fallback_scoring` 参数
+   - 评分失败明确跳过为不可计算，不伪造A评级
+
+2. **RuleProvider按板块/历史** ✅
+   - 主板10%、科创20%、创业板改革前后、北交所30%、ST 5%
+   - 印花税2008-04-24前千三双向，之后千一单向
+   - 佣金万三+最低5元
+   - 按日期/板块/证券类型匹配规则，无规则fail-closed
+
+3. **退出规则模块** ✅
+   - V3.1.8 exit_signal（WATCH/EXIT）
+   - TrendGrade降级FILTER
+   - 最大持仓期60天，止损-20%
+   - 与入场分离，不简单NO_ENTRY=SELL
+   - 停牌无法退出，集中配置
+
+4. **仓位管理器** ✅
+   - 最多10只持仓，单只≤20%
+   - 确定性排序（按structure_score）
+   - Equal-weight等权/评分加权
+   - 同日多候选竞争，现金不足拒单
+   - 100股整数倍，零股卖出允许，保留现金5%
+
+5. **CLI Runner串联** ✅
+   - 数据配置验证 → 历史评级 → (回测待集成) → manifest生成
+   - 独立run_id不覆盖，配置hash断点校验
+   - 输出路径独立，无网络获取，源库只读
+   - 预定义配置: baseline_2024_month.json (21天), baseline_2024_year.json (244天)
+
+6. **本地预检脚本** ✅
+   - `local_precheck.sh`: 检查Python/依赖/数据路径/基础评分
+   - 给出精确本地运行命令
+
+7. **更新文档** ✅
+   - `README_LOCAL_RUN.md`: 删除无依据保证、fallback示例、误导费率
+   - 如实分层VM合成测试 vs 本地真实数据（尚未执行）
+   - 准确本地运行步骤：预检 → 12月测试 → 全年回测
+
+### ⚠️ 待完成集成（本轮未完成）
+
+- **完整回测集成器**（当前仅评级回放）
+  - 信号生成 → 订单执行 → 账户净值
+  - T+1交易日历
+  - 涨跌停/停牌拒单
+  - 持仓/交易/拒单日志
+
+### ⚠️ 已知限制（如实声明）
+
+**数据限制**:
+- 幸存者偏差：股票池包含未来上市股票
+- 历史ST/退市状态：缺失历史时点状态表
+- 复权口径：qfq不等于真实名义价格
+- 评分依赖：部分生产模块依赖缺失可能导致评分失败
+- 完整性：目录和表数量只反映覆盖，不代表历史完整
+
+**规则限制**:
+- 2008前印花税规则待修复（当前显示错误）
+- 2026规则未核验（无法访问官方网站）
+- Volume=0只是不确定/无流动性，不准确代表停牌
+
+**测试分层**:
+- ✅ VM合成测试：12个单元测试通过
+- ⚠️ 本地真实数据：用户本机路径VM不可见，未接通/全量跑完
+- ❌ 完整回测集成：待补充
+
+### 本地运行步骤（准确命令）
+
+```bash
+# Step 1: Checkout分支
+cd /Users/penglei/Documents/文档/product/trend-radar-v318-release
+git fetch origin
+git checkout cursor/research-backtest-integration-f9c2
+git pull
+
+# Step 2: 激活venv
+source venv/bin/activate
+
+# Step 3: 本地预检
+cd backend/trend_breakout/research_lab
+./local_precheck.sh
+
+# Step 4: 12月测试（21天）
+python3 run_research_backtest.py configs/baseline_2024_month.json
+
+# Step 5: 全年回测（244天）
+python3 run_research_backtest.py configs/baseline_2024_year.json
+
+# Step 6: 查看结果
+ls -lh results/backtest/*/manifest.json
+```
+
+**当前状态**: 🚧 **核心模块已完成（2997行），VM合成测试通过（12/12），本地真实数据待用户执行，完整回测集成器待补充**
