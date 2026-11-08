@@ -1,8 +1,8 @@
-# A-Share Strategy Research Lab V1.0 — 实施状态（Phase 0）
+# A-Share Strategy Research Lab V1.0 — 实施状态
 
-**更新时间**: 2026-11-07  
-**当前阶段**: Phase 0 — 仓库分析与规划  
-**执行约束**: 严格仅执行 Phase 0，不实现 Phase 1-6，不修改任何生产代码
+**更新时间**: 2026-11-07 16:45 UTC  
+**当前阶段**: 数据接入与回测引擎重构（基于本地缓存）  
+**执行模式**: 研究端独立开发，对接本地SQLite+Parquet，不修改生产代码
 
 ---
 
@@ -485,4 +485,564 @@ python backend/scripts/live_board_v318.py --once
 
 ---
 
-**Phase 0 状态**: ✅ **已完成，达到验收标准，等待阶段验收**
+## 数据接入重构与回测引擎 (2026-11-07) 🚧 进行中
+
+### 背景与动机
+
+**调查发现** (`DATA_INTEGRATION_INVESTIGATION.md`):
+- 原 Phase 1-3 原型（E01）硬编码12只样例池，直接读 Parquet，**完全绕过**生产数据provider (`data_sources.py`)
+- 未使用 `rank_db.py` (SQLite优先) 或 `TREND_RANK_DB` 环境变量
+- 使用简化评分 `calculate_trend_score_simple()`，非完整 V3.1.8 评分链 (`v3.grading_v318.grade_trend_v318()`)
+- Volume=0 不能代表历史停牌，当前ST接口无历史时间线
+
+**用户本地数据核实** (VM不可见):
+- SQLite: `/Users/penglei/Documents/文档/product/longtou-web/backend/data/longtou.sqlite3` (4.02GB)
+  - `daily_bars_qfq`: 15,181,781条 / 5924代码 / 1994-07-25 to 2026-11-06
+  - `index_bars`: 21,909条 / 5指数 / 2008-05-30 to 2026-11-06
+- Parquet: `data/kline_market/raw/daily/` 5429文件 (107.69MB)
+- 本地 `.env` 已配置 `MARKET_DB_PATH=../longtou-web/backend/data/longtou.sqlite3`
+
+**用户明确授权**:
+重新开发回测功能，数据直接对接本地股票缓存，使用真实V3.1.8评分，执行完整回测交易策略。
+
+### 撤回声明
+
+**❌ 撤回以下不准确表述** (原Phase 1-3):
+
+1. **"E01回测引擎有效"** → ⚠️ 仅12只样例测试，未验证全市场数据集成和数据库优先级
+2. **"策略评分有效"** → ❌ 使用简化评分，非完整V3.1.8多维度评分体系 (结构+连续性+板块+RAPID+HTF)
+3. **"Volume=0可代表历史停牌"** → ❌ 需专门停牌日历 `is_trading` 标记
+4. **"当前ST接口可用于历史回测"** → ❌ `stock_zh_a_st_em()` 仅返回当前状态，无历史时间线
+5. **"Phase 1-3 完成"** → ⚠️ **仅完成原型**，未集成生产provider，未验证数据库，历史状态不完备
+
+### 新实施内容 (2026-11-07)
+
+#### 1. 研究配置模块 (`research_config.py`) ✅ 已完成
+
+**核心功能**:
+- 独立显式配置，与生产 `.env` 隔离
+- SQLite只读模式 (`mode=ro`)，Parquet回退
+- 验证数据源可用性（表结构、数量、日期范围）
+- 明确数据来源、覆盖、幸存者偏差警告
+
+**关键类**:
+- `ResearchDataConfig`: 数据源配置容器
+  - `sqlite_path`: SQLite数据库路径（优先）
+  - `parquet_root`: Parquet缓存根目录（回退）
+  - `validate()`: 验证数据质量
+- `from_env()`: 从环境变量构建（`RESEARCH_*` 优先，回退 `MARKET_DB_PATH` / `ASHARE_KLINE_ROOT`）
+
+**输出示例**:
+```
+研究实验室数据配置:
+  来源: env:MARKET_DB_PATH
+  SQLite: ../longtou-web/backend/data/longtou.sqlite3 (4020.5MB)
+    SQLite: 5924只股票, 15181781条记录
+            1994-07-25 to 2026-11-06
+  Parquet: ./data/kline_market (5429文件)
+  验证状态: ✅ 有效
+  ⚠️  使用全量股票池（包含幸存者偏差）
+```
+
+#### 2. 只读数据提供者 (`data_provider.py`) ✅ 已完成
+
+**核心功能**:
+- SQLite优先（快），Parquet回退（完整但慢）
+- 严格 as-of 日期截断
+- 线程安全，简单内存缓存
+- Volume单位转换（SQLite手→股，×100）
+
+**关键方法**:
+- `get_stock_daily_bars(code, end_date, start_date)`: 前复权日线（as-of）
+- `get_index_daily_bars(symbol, end_date, start_date)`: 指数日线
+- `get_universe_at_date(trade_date)`: 指定日股票池（⚠️ 幸存者偏差来源）
+- `get_all_universe()`: 全量股票（用于历史扫描）
+- `get_trading_dates(start, end)`: 交易日历（从上证指数推断）
+- `get_data_coverage_summary()`: 数据覆盖诊断
+
+**数据优先级**:
+```
+1. SQLite (daily_bars_qfq) → 最快
+   - Volume单位: 手 (需×100转为股)
+   - 覆盖: 1994-07-25 to 2026-11-06 (5924代码)
+
+2. Parquet回退 → 完整但慢
+   - Volume单位: 股 (已转换)
+   - 覆盖: 5429文件
+```
+
+#### 3. V3.1.8评分引擎包装器 (`scoring_engine.py`) ✅ 已完成
+
+**核心功能**:
+- 调用真正的生产评分链:
+  - `v3.v31.live_v318.evaluate_v318_asof()` (完整评分入口)
+  - `v3.grading_v318.grade_trend_v318()` (评级函数)
+  - `v3.v31.entry_window.apply_v318_entry_overlay()` (EntryStatus)
+  - `v3.v31.rapid_detection.detect_rapid_main_rise()` (RAPID检测)
+- 配置生产模块数据路径 (`setup_production_data_paths()`)
+- Fallback简化评分（仅用于诊断，标记 `_fallback_mode=True`）
+
+**关键方法**:
+- `score_stock_asof(code, as_of_date)`: 调用生产评分链
+- `batch_score_universe(codes, as_of_date)`: 批量评分
+- `get_a_grade_stocks(scores)`: 筛选A/A+评级
+- `get_entry_candidates(scores, ['PRIME', 'CONFIRMED'])`: 入场候选
+
+**输出字段**:
+```python
+{
+  "grade_v318": "A+",          # TrendGrade
+  "entry_window_v318": "CONFIRMED",  # EntryStatus
+  "trend_structure_score": 92.5,
+  "continuity_score": 85.3,
+  "sector_score": 72.0,
+  "rapid_main_rise": True,
+  "trend_state": "MAIN_RISE",
+  "maturity_level": "MATURE",
+  "htf_ok": True,
+  "grade_reasons": [...],
+  "_full_result": {...}  # 完整生产评分结果
+}
+```
+
+#### 4. 历史评级回放器 (`historical_grading.py`) ✅ 已完成
+
+**核心功能**:
+- 按日迭代重算历史A评级池
+- 每日只用截至该日数据（严格as-of）
+- TrendGrade (A+/A) 与 EntryStatus 独立存储
+- 支持断点恢复、进度检查点
+- 记录数据缺口和不可算股票
+
+**关键类**:
+- `HistoricalGradingConfig`: 配置（日期范围、股票池、warmup、输出）
+- `DailyGradeRecord`: 单日评级记录
+- `HistoricalGradingEngine`: 回放引擎
+
+**工作流程**:
+```
+1. setup() → 获取交易日历、股票池、加载检查点
+2. run() → 逐日评分
+   - _score_one_date(trade_date) → 批量评分当日所有股票
+   - 每N天保存检查点 (checkpoint_interval=10)
+3. _save_final_results() → 输出:
+   - grades_{run_id}.parquet (完整记录)
+   - summary_{run_id}.json (汇总统计)
+   - a_grades_{run_id}.csv (每日A评级列表)
+```
+
+**输出示例** (汇总):
+```json
+{
+  "run_id": "20241231_143025",
+  "date_range": {
+    "start": "2024-01-01",
+    "end": "2024-12-31",
+    "n_dates": 244,
+    "completed": 244
+  },
+  "universe": {
+    "n_stocks": 5924,
+    "survivorship_bias_warning": true
+  },
+  "a_grade_summary": {
+    "total_a_plus": 1523,
+    "total_a": 3847,
+    "avg_a_plus_per_day": 6.2,
+    "avg_a_per_day": 15.8
+  }
+}
+```
+
+#### 5. 统一回测引擎 V2 (`backtest_engine_v2.py`) ✅ 已完成
+
+**核心功能**:
+- T+1交易：T日收盘信号 → T+1日开盘成交
+- 涨跌停保守处理：接近涨停拒绝买入，接近跌停拒绝卖出
+- 停牌拒绝：Volume=0 保守视为停牌
+- 历史费率：佣金万三+印花税千一（⚠️ 固定基准，非2026真实规则）
+- 账户引擎：现金、持仓、净值、最小100股整数倍
+- 滑点：买入+0.1%，卖出-0.1%
+
+**关键类**:
+- `TradingRules`: 交易规则配置
+  - `settlement_days=1` (T+1)
+  - `limit_up_pct=10.0` (主板涨跌停10%)
+  - `commission_rate=0.0003` (万三)
+  - `stamp_tax_rate=0.001` (千一，仅卖出)
+  - `conservative_limit=True` (涨跌停拒绝)
+  - `conservative_suspend=True` (停牌拒绝)
+
+- `Order`: 订单状态机
+  - `PENDING` → `FILLED` / `REJECTED` / `CANCELLED`
+  - 拒绝原因: `limit_up`, `limit_down`, `suspended_volume_zero`, `no_data_suspend_or_delisted`, `insufficient_cash`
+
+- `BacktestEngineV2`: 回测引擎
+  - `submit_buy_signal(code, signal_date, target_price, quantity)` → T+1成交
+  - `submit_sell_signal(code, signal_date, target_price, quantity)` → T+1成交
+  - `execute_pending_orders(trade_date)` → 执行当日订单
+  - `update_nav(trade_date)` → 更新每日净值
+  - `get_performance_metrics()` → 收益率、最大回撤、年化
+
+**流程**:
+```
+Day T (信号日):
+  1. 获取候选信号 (A/A+ + PRIME/CONFIRMED)
+  2. 生成订单 (submit_buy_signal)
+  3. 订单进入 pending_orders 队列
+
+Day T+1 (执行日):
+  1. execute_pending_orders(T+1)
+  2. 检查涨跌停/停牌
+  3. 计算实际成交价 (开盘价 + 滑点)
+  4. 计算费用 (佣金+印花税)
+  5. 更新账户 (扣除现金/增加持仓)
+  6. update_nav(T+1) (收盘更新净值)
+```
+
+### 当前状态与阻塞项
+
+#### ✅ 已完成模块
+
+| 模块 | 文件 | 行数 | 状态 | 测试 |
+|------|------|------|------|------|
+| 研究配置 | `research_config.py` | 285 | ✅ 完成 | ⚠️ 需本地验证 |
+| 只读数据提供者 | `data_provider.py` | 395 | ✅ 完成 | ⚠️ 需本地验证 |
+| V3.1.8评分引擎 | `scoring_engine.py` | 324 | ✅ 完成 | ⚠️ 需本地验证 |
+| 历史评级回放器 | `historical_grading.py` | 491 | ✅ 完成 | ⚠️ 需本地验证 |
+| 回测引擎V2 | `backtest_engine_v2.py` | 603 | ✅ 完成 | ⚠️ 需本地验证 |
+| **总计** | **5个模块** | **2098行** | - | - |
+
+#### ⚠️ 需补充模块（下一步）
+
+1. **完整回测集成器** (`run_backtest.py`): 
+   - 连接 历史评级 → 信号生成 → 回测执行
+   - 配置管理（交易规则、候选筛选、仓位sizing）
+   - 结果输出与可视化
+
+2. **自动化测试** (`tests/test_*.py`):
+   - 合成fixture测试（不是收益证据）
+   - 未来函数防御测试
+   - T+1、涨跌停、费用计算验证
+   - 数据截断、只读、复权口径测试
+
+3. **退出规则模块** (`exit_rules.py`):
+   - 不能简单 `NO_ENTRY=SELL`
+   - 选择现有明确退出模型（如V3.1.8的 `exit_signal`）
+   - 文档化退出逻辑
+
+4. **仓位管理器** (`position_sizer.py`):
+   - Equal-weight vs 排序加权
+   - 最大持仓数限制
+   - 单只仓位限制
+   - 保留现金比例
+
+5. **历史费率配置** (`fee_schedule.py`):
+   - 2013前: 印花税千三双向
+   - 2013-08-01: 千一单向
+   - 佣金历史变化
+   - ⚠️ 2026规则需官方核验
+
+#### 🚫 正式回测阻塞项 (Fail-Closed)
+
+| 阻塞 | 说明 | 影响 | 解决方案 |
+|------|------|------|---------|
+| **历史ST时间线** | 当前ST接口仅返回当前状态 | 无法过滤历史ST | 需外部数据源或放宽为诊断模式 |
+| **停牌日历** | Volume=0 不等于停牌 | 成交模拟不准确 | 需 `is_trading` 标记或保守拒绝 |
+| **历史费率** | 仅固定基准（万三+千一） | 费用计算不准确 | 需按日期/板块加载历史规则 |
+| **除权公司行为** | 前复权价≠实际成交价 | 涨跌停判断错误 | 需不复权价格或除权因子 |
+| **2026交易规则** | 无法访问官网核验 | 规则可能过时 | 需用户提供官方文档或标注不确定 |
+| **幸存者偏差** | 全量股票池包含未来上市 | 收益高估 | 需按日股票池或标注偏差 |
+
+**处理策略**:
+- ⚠️ **诊断模式**: 明确标注限制和假设，不输出"正式通过"
+- ✅ **保守回测**: fail-closed，拒绝不确定的成交
+- 📋 **文档化假设**: manifest记录所有配置和限制
+
+#### 📝 待完成任务
+
+**高优先级 (P0)**:
+1. [ ] 创建集成测试（合成fixture）
+2. [ ] 实现完整回测集成器 (`run_backtest.py`)
+3. [ ] 编写本地运行指南（用户环境）
+4. [ ] 生成结果可视化（净值曲线、交易记录）
+5. [ ] 撤回原E01不准确结论（文档更新）
+
+**中优先级 (P1)**:
+6. [ ] 实现退出规则模块
+7. [ ] 实现仓位管理器
+8. [ ] 历史费率配置（简化版）
+9. [ ] 数据质量报告（覆盖/缺口）
+10. [ ] 进度条与断点恢复测试
+
+**低优先级 (P2)**:
+11. [ ] 除权公司行为处理
+12. [ ] 按日股票池（减少幸存者偏差）
+13. [ ] 多策略对比框架
+14. [ ] 结果前端展示（复用现有页面）
+
+### 测试计划
+
+#### 云端测试（VM）
+
+**限制**: VM无用户本地数据，仅能测试代码逻辑
+
+```bash
+# 1. 配置模块（无数据，验证失败但不报错）
+cd /workspace/backend/trend_breakout/research_lab
+python3 research_config.py
+# 预期: "验证状态: ❌ 无效" + 警告信息
+
+# 2. 导入测试（无pandas会失败）
+python3 -c "from research_config import ResearchDataConfig"
+# 预期: 可能 ModuleNotFoundError
+
+# 3. 代码静态分析
+cd /workspace
+find backend/trend_breakout/research_lab -name "*.py" -exec python3 -m py_compile {} \;
+# 预期: 无语法错误
+```
+
+#### 本地测试（用户环境）
+
+**前提**: 
+- 已配置 `.env` (MARKET_DB_PATH, ASHARE_KLINE_ROOT)
+- 项目venv已安装依赖
+
+**Step 1: 验证数据配置**
+```bash
+cd backend/trend_breakout/research_lab
+
+# 测试配置
+python3 research_config.py
+# 预期输出: SQLite路径、Parquet路径、验证✅有效
+
+# 测试数据提供者
+python3 data_provider.py
+# 预期输出: 数据覆盖摘要、茅台测试数据
+```
+
+**Step 2: 测试评分引擎**
+```bash
+python3 scoring_engine.py
+# 预期: 评分茅台 @ 2024-12-31 (fallback模式)
+```
+
+**Step 3: 运行历史评级（小范围诊断）**
+```python
+# test_grading.py
+from research_config import create_default_config
+from data_provider import ReadOnlyDataProvider
+from historical_grading import run_historical_grading_for_year
+
+config = create_default_config()
+provider = ReadOnlyDataProvider(config)
+
+# 仅运行2024年（诊断）
+summary = run_historical_grading_for_year(2024, provider)
+print(summary)
+
+provider.close()
+```
+
+**Step 4: 运行完整回测（待集成器完成）**
+```bash
+# 待实现
+python3 run_backtest.py --config configs/baseline_2024.json
+```
+
+### 资源预估
+
+**时间预估** (基于2024年244个交易日，5924只股票):
+- 历史评级回放: ~2-4小时（取决于SQLite vs Parquet）
+- 完整回测（含信号生成）: ~3-6小时
+- 结果生成与可视化: ~10分钟
+
+**存储预估**:
+- 历史评级Parquet: ~50-100MB/年
+- 回测记录Parquet: ~20-50MB/年
+- 汇总JSON: <1MB
+
+**内存预估**:
+- 数据提供者缓存: ~500MB
+- 评分引擎: ~1GB
+- 回测引擎: ~500MB
+- **总计**: ~2-3GB峰值
+
+### 已知限制与假设
+
+#### 数据限制
+1. ⚠️ **幸存者偏差**: 股票池包含未来上市股票
+2. ⚠️ **ST历史缺失**: 无法准确过滤历史ST
+3. ⚠️ **停牌判断**: Volume=0保守视为停牌（不完全准确）
+4. ⚠️ **退市时点**: 数据突然消失才判定退市
+
+#### 规则限制
+1. ⚠️ **固定费率**: 佣金万三+印花税千一（历史可能不同）
+2. ⚠️ **主板涨跌停**: 固定10%（科创板/北交所不同）
+3. ⚠️ **T+1固定**: 未考虑T+0或融资融券
+4. ⚠️ **2026规则**: 无官方核验，可能过时
+
+#### 评分限制
+1. ⚠️ **板块评分缺失**: 当前无历史板块分类
+2. ⚠️ **基本面缺失**: 无财务数据时间点
+3. ⚠️ **HTF周期**: 需验证月线/周线不看未来
+4. ⚠️ **Fallback模式**: 简化评分仅用于诊断
+
+#### 回测限制
+1. ⚠️ **滑点模型**: 固定百分比（实际市场冲击更复杂）
+2. ⚠️ **市场容量**: 未考虑大单无法成交
+3. ⚠️ **跳空缺口**: 开盘价可能跳空导致滑点失效
+4. ⚠️ **极端行情**: 连续涨跌停、停牌无法成交
+
+### 下一步行动
+
+**立即执行** (本回合):
+1. ✅ 提交代码到Git分支 `cursor/research-backtest-integration-f9c2`
+2. ✅ 更新 `IMPLEMENTATION_STATUS.md` (撤回原结论)
+3. ✅ 创建PR (不自动merge)
+4. 📝 生成本地运行指南 (README)
+5. 📝 生成测试命令清单
+
+**用户本地验证** (下一回合):
+1. 用户审批PR
+2. 用户本地checkout分支
+3. 用户执行Step 1-3测试
+4. 用户反馈测试结果
+5. 根据反馈迭代修复
+
+**后续开发** (分阶段):
+1. 补充集成器与测试
+2. 实现退出规则与仓位管理
+3. 完整回测流程端到端测试
+4. 结果可视化与报告生成
+5. 文档化所有假设与限制
+
+---
+
+---
+
+## 当前实际完成状态（2026-11-07）
+
+### ✅ 已完成模块（VM合成测试通过）
+
+| 模块 | 文件 | 行数 | 测试状态 |
+|------|------|------|----------|
+| 数据配置 | `research_config.py` | 294 | ✅ Import成功 |
+| 数据提供者 | `data_provider.py` | 389 | ✅ Import成功 |
+| V3.1.8评分引擎 | `scoring_engine.py` | 217 | ✅ **删除fallback** |
+| 历史评级回放 | `historical_grading.py` | 383 | ✅ 逻辑完整 |
+| 交易规则提供者 | `trading_rules_provider.py` | 459 | ✅ **6测试通过** |
+| 退出规则引擎 | `exit_rules.py` | 238 | ✅ **6测试通过** |
+| 仓位管理器 | `position_manager.py` | 267 | ✅ Import成功 |
+| 回测引擎V2 | `backtest_engine_v2.py` | 622 | ✅ Import成功 |
+| CLI Runner | `run_research_backtest.py` | 128 | ✅ 逻辑完整 |
+| **总计** | **9个模块** | **2997行** | **12测试通过** |
+
+### ✅ 自动化测试（合成fixture，非收益证据）
+
+```bash
+cd backend/trend_breakout/research_lab
+
+# 交易规则测试（6个测试）
+python3 tests/test_trading_rules.py
+# 结果: 6/6 通过（主板10%、科创20%、ST 5%、历史费率、佣金最低5元）
+
+# 退出规则测试（6个测试）
+python3 tests/test_exit_rules.py
+# 结果: 6/6 通过（exit_signal、Grade降级、持仓期、止损、停牌、正常持有）
+```
+
+### ✅ 核心修正（相比上次未完成版本）
+
+1. **删除fallback简化评分** ✅
+   - 移除 `score_stock_asof_fallback()`
+   - 移除 `use_fallback_scoring` 参数
+   - 评分失败明确跳过为不可计算，不伪造A评级
+
+2. **RuleProvider按板块/历史** ✅
+   - 主板10%、科创20%、创业板改革前后、北交所30%、ST 5%
+   - 印花税2008-04-24前千三双向，之后千一单向
+   - 佣金万三+最低5元
+   - 按日期/板块/证券类型匹配规则，无规则fail-closed
+
+3. **退出规则模块** ✅
+   - V3.1.8 exit_signal（WATCH/EXIT）
+   - TrendGrade降级FILTER
+   - 最大持仓期60天，止损-20%
+   - 与入场分离，不简单NO_ENTRY=SELL
+   - 停牌无法退出，集中配置
+
+4. **仓位管理器** ✅
+   - 最多10只持仓，单只≤20%
+   - 确定性排序（按structure_score）
+   - Equal-weight等权/评分加权
+   - 同日多候选竞争，现金不足拒单
+   - 100股整数倍，零股卖出允许，保留现金5%
+
+5. **CLI Runner串联** ✅
+   - 数据配置验证 → 历史评级 → (回测待集成) → manifest生成
+   - 独立run_id不覆盖，配置hash断点校验
+   - 输出路径独立，无网络获取，源库只读
+   - 预定义配置: baseline_2024_month.json (21天), baseline_2024_year.json (244天)
+
+6. **本地预检脚本** ✅
+   - `local_precheck.sh`: 检查Python/依赖/数据路径/基础评分
+   - 给出精确本地运行命令
+
+7. **更新文档** ✅
+   - `README_LOCAL_RUN.md`: 删除无依据保证、fallback示例、误导费率
+   - 如实分层VM合成测试 vs 本地真实数据（尚未执行）
+   - 准确本地运行步骤：预检 → 12月测试 → 全年回测
+
+### 成交闭环
+
+`execution_loop.py` 已由 `run_research_backtest.py` 调用。VM 上的合成 fixture 会写出非空订单、成交、持仓和每日净值。
+这不是本机行情结果，也不是策略收益。正式模式在原始价格、佣金或历史状态缺失时阻断。
+
+### ⚠️ 已知限制（如实声明）
+
+**数据限制**:
+- 幸存者偏差：股票池包含未来上市股票
+- 历史ST/退市状态：缺失历史时点状态表
+- 复权口径：qfq不等于真实名义价格
+- 评分依赖：部分生产模块依赖缺失可能导致评分失败
+- 完整性：目录和表数量只反映覆盖，不代表历史完整
+
+**规则限制**:
+- 2008前印花税规则待修复（当前显示错误）
+- 2026规则未核验（无法访问官方网站）
+- Volume=0只是不确定/无流动性，不准确代表停牌
+
+**测试分层**:
+- ✅ VM合成测试：12个单元测试通过
+- ⚠️ 本地真实数据：用户本机路径VM不可见，未接通/全量跑完
+- ❌ 完整回测集成：待补充
+
+### 本地运行步骤（准确命令）
+
+```bash
+# Step 1: Checkout分支
+cd /Users/penglei/Documents/文档/product/trend-radar-v318-release
+git fetch origin
+git checkout cursor/research-backtest-integration-f9c2
+git pull
+
+# Step 2: 激活venv
+source venv/bin/activate
+
+# Step 3: 本地预检
+cd backend/trend_breakout/research_lab
+./local_precheck.sh
+
+# Step 4: 12月测试（21天）
+python3 run_research_backtest.py configs/baseline_2024_month.json
+
+# Step 5: 全年回测（244天）
+python3 run_research_backtest.py configs/baseline_2024_year.json
+
+# Step 6: 查看结果
+ls -lh results/backtest/*/manifest.json
+```
+
+**当前状态**: 合成 fixture 的评级→订单→持仓→每日净值已在 VM 跑通。本机 `longtou.sqlite3` 与 parquet 未在本环境执行。只有前复权、没有原始行情时，成交会被阻断。

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>研究实验室</title>
+  <style>
+    :root { color-scheme: light dark; --bg:#0f1419; --panel:#1a2332; --text:#e7ecf3; --muted:#9aa7b8; --accent:#3b82f6; --border:#2a3648; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
+    main { padding: 1.25rem; }
+    h1 { margin: 0 0 .35rem; font-size: 1.5rem; }
+    p { line-height: 1.5; }
+    .muted { color: var(--muted); }
+    .banner, .error { background: #3b2f14; color: #fde68a; border: 1px solid #785c1c; padding: .75rem 1rem; border-radius: 8px; }
+    .error { background: #3b1515; color: #fecaca; border-color: #7f1d1d; }
+    button { background: var(--panel); color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: .4rem .75rem; cursor: pointer; }
+    button.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .row { display: flex; flex-wrap: wrap; gap: .4rem; margin: .75rem 0; }
+    .table-wrap { overflow: auto; border: 1px solid var(--border); border-radius: 10px; background: var(--panel); }
+    table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+    th, td { padding: .45rem .55rem; border-bottom: 1px solid var(--border); white-space: nowrap; text-align: left; }
+    th { color: var(--muted); position: sticky; top: 0; background: #152033; }
+    input { background: var(--panel); color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: .35rem .5rem; }
+    pre { white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>研究实验室</h1>
+  <p class="muted">这个地址由研究进程直接提供。原来的 5173 榜单页面不会因为刷新出现这里。本页只读结果，没有运行回测按钮。</p>
+  <p class="banner" id="banner">正在读取本进程的 /api/research/status。</p>
+  <div id="precheck"></div>
+  <h2>运行历史</h2>
+  <div id="runs"></div>
+  <div id="detail"></div>
+</main>
+<script>
+const text = (value) => {
+  const raw = value === null || value === undefined || value === "" ? "—" : String(value);
+  return raw.replace(/[&<>"']/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" }[ch]));
+};
+async function readJson(path) {
+  const res = await fetch(path, { cache: "no-store" });
+  const body = await res.json().catch(() => null);
+  if (!res.ok) throw new Error((body && body.detail) || ("接口返回 " + res.status));
+  return body;
+}
+function table(columns, rows) {
+  if (!rows.length) return "<p class='muted'>没有行。</p>";
+  const head = columns.map((column) => "<th>" + column[0] + "</th>").join("");
+  const body = rows.map((row) => "<tr>" + columns.map((column) => "<td>" + text(column[1](row)) + "</td>").join("") + "</tr>").join("");
+  return "<div class='table-wrap'><table><thead><tr>" + head + "</tr></thead><tbody>" + body + "</tbody></table></div>";
+}
+function evidence(run) {
+  if (run.status === "blocked") return run.reason || "这次运行被阻断，没有可展示的收益。";
+  if (run.not_strategy_evidence) return "诊断或合成产物，不是真实策略验证。";
+  if (run.status === "completed") return "正式运行完成。数字只来自该 run 的文件。";
+  return run.reason || "先看状态和缺项，缺文件不显示成 0。";
+}
+let selected = "";
+let section = "orders";
+let gradeDate = "";
+function renderPrecheck(status) {
+  const root = document.getElementById("precheck");
+  const precheck = status.precheck || {};
+  const tables = precheck.tables || {};
+  const rows = Object.entries(tables).map(([name, row]) => ({ name, ...row }));
+  let html = "<h2>数据覆盖预检</h2><p class='muted'>" + text(status.precheck_message) + "</p>";
+  if (status.precheck_state !== "present") html += "<pre>" + (status.commands || []).map(text).join("\n") + "</pre>";
+  if (precheck.execution_block) html += "<p class='error'>成交阻断：" + text(precheck.execution_block) + "</p>";
+  if (rows.length) {
+    html += table(
+      [["表", (row) => row.name], ["存在", (row) => row.present ? "是" : "否"], ["口径", (row) => row.price_basis], ["行数", (row) => row.rows], ["代码数", (row) => row.symbols], ["最大日期", (row) => row.max_date], ["说明", (row) => row.detail]],
+      rows,
+    );
+  }
+  const bfq = precheck.bfq_daily;
+  if (bfq && bfq.present) html += "<p class='muted'>bfq_daily " + text(bfq.file_count) + " 个文件，source=" + text(bfq.source) + "，adjust=" + JSON.stringify(bfq.adjust ?? "") + "，时间 " + text(bfq.generated_at) + "。" + text(bfq.detail) + " 不作为成交价。</p>";
+  const sample = precheck.kline_sample;
+  if (sample && sample.present) html += "<p class='muted'>kline 抽样 " + text(sample.rows) + " 行。" + text(sample.detail) + " parquet 文件数 " + text(precheck.parquet_daily_files) + "。</p>";
+  root.innerHTML = html;
+}
+async function renderRuns() {
+  const payload = await readJson("/api/research/runs");
+  const runs = payload.runs || [];
+  const root = document.getElementById("runs");
+  if (!runs.length) {
+    root.innerHTML = "<p class='muted'>" + text(payload.message || "没有运行记录。") + "</p>";
+    return;
+  }
+  root.innerHTML = table(
+    [["run_id", (row) => row.run_id], ["状态", (row) => row.status], ["模式", (row) => row.mode || row.result_class], ["代码版本", (row) => row.code_hash], ["说明", evidence]],
+    runs,
+  );
+  root.querySelectorAll("tbody tr").forEach((tr, index) => {
+    tr.style.cursor = "pointer";
+    tr.onclick = () => { selected = runs[index].run_id; renderDetail(); };
+  });
+}
+async function renderDetail() {
+  const root = document.getElementById("detail");
+  if (!selected) { root.innerHTML = ""; return; }
+  const detail = await readJson("/api/research/runs/" + encodeURIComponent(selected));
+  const metrics = await readJson("/api/research/runs/" + encodeURIComponent(selected) + "/metrics");
+  const query = section === "grades" && gradeDate ? "?date=" + encodeURIComponent(gradeDate) : "";
+  const tablePayload = await readJson("/api/research/runs/" + encodeURIComponent(selected) + "/" + section + query);
+  const metricText = metrics.present
+    ? "期末净值 " + text(metrics.metrics.final_equity) + "，总收益 " + text(metrics.metrics.total_return) + "。" + text(metrics.message)
+    : (metrics.message || "没有完成的指标文件，不显示收益。");
+  const buttons = [["grades", "A/A+ 评级"], ["orders", "订单"], ["trades", "成交"], ["positions", "持仓"], ["equity", "净值"]];
+  root.innerHTML = "<h2>" + text(detail.run_id) + "</h2><p class='" + (detail.status === "completed" && !detail.not_strategy_evidence ? "muted" : "error") + "'>" + text(evidence(detail)) + "</p><p class='muted'>" + metricText + "</p><div class='row'>" + buttons.map(([key, label]) => "<button data-section='" + key + "' class='" + (section === key ? "active" : "") + "'>" + label + "</button>").join("") + (section === "grades" ? "<input id='grade-date' placeholder='YYYY-MM-DD' value='" + text(gradeDate).replace("—", "") + "'>" : "") + "</div><p class='muted'>" + text(tablePayload.message) + "</p>" + (tablePayload.present && tablePayload.rows && tablePayload.rows.length ? table(Object.keys(tablePayload.rows[0]).map((key) => [key, (row) => row[key]]), tablePayload.rows) : "<p class='muted'>" + text(tablePayload.message || "没有数据行。") + "</p>");
+  root.querySelectorAll("button[data-section]").forEach((button) => {
+    button.onclick = () => { section = button.dataset.section; renderDetail(); };
+  });
+  const input = document.getElementById("grade-date");
+  if (input) input.onchange = () => { gradeDate = input.value.trim(); renderDetail(); };
+}
+readJson("/api/research/status").then(async (status) => {
+  document.getElementById("banner").textContent = "页面和接口在同一个进程。健康检查是 /api/health。/health 没有这条路由。";
+  renderPrecheck(status);
+  await renderRuns();
+}).catch((error) => {
+  document.getElementById("banner").className = "error";
+  document.getElementById("banner").textContent = error.message;
+});
+</script>
+</body>
+</html>

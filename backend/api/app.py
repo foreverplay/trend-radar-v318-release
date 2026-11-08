@@ -8,6 +8,7 @@ from typing import Any, Dict, Optional
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import HTMLResponse, RedirectResponse
 
 from boards_loader import (
     find_sample_root,
@@ -19,6 +20,7 @@ from boards_loader import (
     load_latest,
 )
 import quote_service
+import research_reader
 
 app = FastAPI(
     title="趋势分析雷达 V3.1.8 + 红利模块 V3.1.9 API",
@@ -40,7 +42,7 @@ SAMPLE = find_sample_root()
 @app.middleware("http")
 async def no_store_boards(request, call_next):  # type: ignore[no-untyped-def]
     response = await call_next(request)
-    if request.url.path.startswith("/api/boards") or request.url.path == "/api/meta":
+    if request.url.path.startswith("/api/boards") or request.url.path.startswith("/api/research") or request.url.path == "/api/meta" or request.url.path == "/research":
         response.headers["Cache-Control"] = "no-store"
     return response
 
@@ -144,6 +146,68 @@ def quote_flow(code: str, date: Optional[str] = None) -> Dict[str, Any]:
 @app.get("/api/quotes/{code}/rise-reason")
 def quote_rise_reason(code: str, name: str = "", date: Optional[str] = None) -> Dict[str, Any]:
     return _quote_call(quote_service.get_rise_reason, code, name=name, trade_date=date)
+
+
+@app.get("/")
+def root() -> RedirectResponse:
+    return RedirectResponse(url="/research", status_code=302)
+
+
+@app.get("/research", response_class=HTMLResponse)
+def research_page() -> str:
+    return Path(__file__).with_name("research_page.html").read_text(encoding="utf-8")
+
+
+def _research_call(fn, *args, **kwargs):
+    try:
+        return fn(*args, **kwargs)
+    except research_reader.ResearchReadError as exc:
+        raise HTTPException(status_code=exc.status, detail=exc.detail) from exc
+
+
+@app.get("/api/research/status")
+def research_status() -> Dict[str, Any]:
+    return _research_call(research_reader.status_payload)
+
+
+@app.get("/api/research/runs")
+def research_runs() -> Dict[str, Any]:
+    return _research_call(research_reader.list_runs)
+
+
+@app.get("/api/research/runs/{run_id}")
+def research_run(run_id: str) -> Dict[str, Any]:
+    return _research_call(research_reader.run_detail, run_id)
+
+
+@app.get("/api/research/runs/{run_id}/grades")
+def research_grades(run_id: str, date: Optional[str] = None, page: int = 1, page_size: int = 50) -> Dict[str, Any]:
+    return _research_call(research_reader.grades, run_id, date, page, page_size)
+
+
+@app.get("/api/research/runs/{run_id}/orders")
+def research_orders(run_id: str, date: Optional[str] = None, page: int = 1, page_size: int = 50) -> Dict[str, Any]:
+    return _research_call(research_reader.table_section, run_id, "orders", date, page, page_size)
+
+
+@app.get("/api/research/runs/{run_id}/trades")
+def research_trades(run_id: str, date: Optional[str] = None, page: int = 1, page_size: int = 50) -> Dict[str, Any]:
+    return _research_call(research_reader.table_section, run_id, "trades", date, page, page_size)
+
+
+@app.get("/api/research/runs/{run_id}/positions")
+def research_positions(run_id: str, date: Optional[str] = None, page: int = 1, page_size: int = 50) -> Dict[str, Any]:
+    return _research_call(research_reader.table_section, run_id, "daily_positions", date, page, page_size)
+
+
+@app.get("/api/research/runs/{run_id}/equity")
+def research_equity(run_id: str, page: int = 1, page_size: int = 200) -> Dict[str, Any]:
+    return _research_call(research_reader.table_section, run_id, "equity", None, page, page_size)
+
+
+@app.get("/api/research/runs/{run_id}/metrics")
+def research_metrics(run_id: str) -> Dict[str, Any]:
+    return _research_call(research_reader.metrics, run_id)
 
 
 @app.post("/api/run/publish")

@@ -1,0 +1,18 @@
+{
+  "mode": "formal",
+  "score_mode": "v318_asof",
+  "sqlite_path": "../longtou-web/backend/data/longtou.sqlite3",
+  "start_date": "2024-12-02",
+  "end_date": "2024-12-06",
+  "volume_unit": "share",
+  "codes": ["600519"],
+  "output_dir": "backend/trend_breakout/research_lab/results",
+  "entry": {"grades": ["A+", "A"], "entry_statuses": ["PRIME", "CONFIRMED"]},
+  "exit": {"exit_signals": ["EXIT"], "exit_on_filter": true, "max_holding_trading_days": 20},
+  "portfolio": {
+    "initial_capital": 1000000,
+    "max_positions": 2,
+    "single_position_limit": 0.2,
+    "reserve_cash_rate": 0.05
+  }
+}

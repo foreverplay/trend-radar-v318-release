@@ -1,0 +1,36 @@
+{
+  "name": "baseline_2024_year",
+  "description": "2024全年回测（244天，足够warmup）",
+  
+  "start_date": "2024-01-01",
+  "end_date": "2024-12-31",
+  
+  "sqlite_path": "../longtou-web/backend/data/longtou.sqlite3",
+  "parquet_root": "./data/kline_market",
+  
+  "output_dir": "results/backtest",
+  
+  "exit_config": {
+    "use_v318_exit_signal": true,
+    "exit_signals": ["WATCH", "EXIT"],
+    "exit_on_filter": true,
+    "exit_on_no_entry": false,
+    "max_holding_days": 60,
+    "stop_loss_pct": -20.0
+  },
+  
+  "position_config": {
+    "initial_capital": 1000000,
+    "max_positions": 10,
+    "single_position_limit": 0.2,
+    "reserve_cash_rate": 0.05,
+    "sizing_mode": "equal_weight",
+    "candidate_sort_key": "trend_structure_score",
+    "candidate_sort_desc": true
+  },
+  
+  "signal_config": {
+    "entry_grades": ["A+", "A"],
+    "entry_statuses": ["PRIME", "CONFIRMED"]
+  }
+}
