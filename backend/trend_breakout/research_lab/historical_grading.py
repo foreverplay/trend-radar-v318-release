@@ -255,6 +255,8 @@ class HistoricalGradingEngine:
         
         # 转换为记录
         for code, result in scores.items():
+            if not result.get("ok") or not result.get("grade_v318"):
+                continue
             record = DailyGradeRecord(
                 trade_date=trade_date,
                 code=code,

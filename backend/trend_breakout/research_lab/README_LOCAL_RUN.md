@@ -127,8 +127,8 @@ Output: results/backtest/20241107_143052
    A+: 123
    A:  567
 
-[3/5] 执行回测...
-⚠️  完整回测集成器开发中，当前仅评级回放
+[2/5] 执行回测...
+成交、拒单、持仓和每日净值写在同一个 run_id 目录。只有前复权表时这一步会阻断。
 
 [4/5] 生成报告...
 ✅ Manifest: results/backtest/20241107_143052/manifest.json
@@ -237,13 +237,11 @@ EOF
    - 确定性排序（按structure_score）
    - 现金保留5%
 
-### ⚠️ 待完成集成
+### 成交闭环
 
-- **完整回测集成器**（当前仅评级回放）
-  - 信号生成 → 订单执行 → 账户净值
-  - T+1交易日历
-  - 涨跌停/停牌拒单
-  - 持仓/交易/拒单日志
+`run_research_backtest.py` 会写 signals、orders、trades、daily_positions、equity、metrics、manifest、data_quality。
+正式模式在佣金、板块最小交易单位、上市特殊期或原始价格缺失时直接阻断。
+诊断模式必须在配置里写 assumptions，产物标记为 `diagnostic_not_official_fills`，不是策略收益。
 
 ### ⚠️ 已知限制
 
@@ -371,7 +369,7 @@ python3 tests/test_exit_rules.py
 **⚠️ 本地真实数据尚未执行**:
 - 用户本机路径 `/Users/penglei/...` VM不可见
 - 未接通/全量跑完真实评分
-- 未验证完整回测集成器
+- 本机原始行情成交尚未执行。库中若只有 `daily_bars_qfq`，回测命令会阻断。
 
 **❌ 不要夸大**:
 - 不声称"完整评分/统一引擎已验证"（需本地测试证据）

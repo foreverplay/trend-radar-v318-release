@@ -18,11 +18,11 @@ import pandas as pd
 _ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(_ROOT))
 
-# 导入生产评分模块
-from v3.grading_v318 import grade_trend_v318, GradeResultV318
-from v3.v31.entry_window import classify_entry_window, apply_v318_entry_overlay, EntryWindow
-from v3.v31.rapid_detection import detect_rapid_main_rise
-from v3.v31.live_v318 import evaluate_v318_asof, load_hist_to_t, make_builder, DEFAULT_WARMUP
+# 生产评分入口。不导入不存在的 v3.v31.rapid_detection。
+from v3.grading_v318 import grade_trend_v318
+from v3.v31.entry_window import classify_entry_window
+from v3.v31.live_v318 import evaluate_v318_asof, DEFAULT_WARMUP
+from v3.v31.types import StructuralConfirmation
 
 # 导入研究数据提供者
 from data_provider import ReadOnlyDataProvider
@@ -67,63 +67,65 @@ class V318ScoringEngine:
         """
         code6 = str(code).zfill(6)
         
+        hist = self.provider.get_stock_daily_bars(code6, end_date=as_of_date)
+        if hist is None or hist.empty:
+            return {
+                "ok": False,
+                "code": code6,
+                "as_of_date": as_of_date,
+                "grade_v318": None,
+                "error": "no_hist",
+                "scoring_mode": "v318_asof",
+            }
+        hist = hist.copy()
+        hist["date"] = pd.to_datetime(hist["date"])
         try:
-            # 使用生产评分入口
             result = evaluate_v318_asof(
-                symbol=code6,
-                t_date=as_of_date,
+                code6,
+                code6,
+                as_of_date,
+                hist=hist,
+                allow_remote=False,
                 sector_score=sector_score,
                 tech_score=tech_score,
                 fund_risk_level=fund_risk_level,
-                # 注意: 内部会调用 load_hist_to_t() 和 rank_db
-                # 我们需要确保 rank_db.db_path() 指向正确的只读数据库
             )
-            
-            if result is None:
-                return None
-            
-            # 提取关键字段
-            return {
-                # 核心评分
-                "grade_v318": result.get("grade_v318"),
-                "grade_path": result.get("grade_v318_path"),
-                "entry_window_v318": result.get("entry_window_v318"),
-                "entry_window_v317": result.get("entry_window_v317"),
-                
-                # 各维度分数
-                "trend_structure_score": result.get("trend_structure_score"),
-                "structure_score": result.get("structure_score"),
-                "structure_source": result.get("structure_source"),
-                "continuity_score": result.get("continuity_score"),
-                "sector_score": result.get("sector") or sector_score,
-                "tech_score": result.get("tech") or tech_score,
-                
-                # 趋势状态
-                "trend_state": result.get("state"),
-                "maturity_level": result.get("maturity_level"),
-                "exhaustion": result.get("exhaustion"),
-                "broken": result.get("broken"),
-                
-                # RAPID检测
-                "rapid_main_rise": result.get("rapid_main_rise"),
-                "rapid": result.get("rapid"),
-                
-                # HTF
-                "htf_ok": result.get("htf_ok"),
-                "monthly_state": result.get("monthly_state"),
-                
-                # 诊断信息
-                "grade_reasons": result.get("grade_v318_reasons"),
-                "grade_tags": result.get("grade_v318_tags"),
-                "entry_notes": result.get("entry_window_notes_v318"),
-                
-                # 原始完整结果（供诊断）
-                "_full_result": result,
-            }
-            
         except Exception as e:
-            print(f"❌ 评分失败 {code6} @ {as_of_date}: {e}")
-            return None
+            return {
+                "ok": False,
+                "code": code6,
+                "as_of_date": as_of_date,
+                "grade_v318": None,
+                "error": f"{type(e).__name__}:{e}",
+                "scoring_mode": "v318_asof",
+            }
+        if not result.get("ok") or not result.get("grade_v318"):
+            return {
+                "ok": False,
+                "code": code6,
+                "as_of_date": as_of_date,
+                "grade_v318": None,
+                "error": result.get("error") or "uncomputable",
+                "scoring_mode": "v318_asof",
+                "hist_source": result.get("hist_source"),
+            }
+        return {
+            "ok": True,
+            "code": code6,
+            "as_of_date": as_of_date,
+            "grade_v318": result.get("grade_v318"),
+            "grade_path": result.get("grade_v318_path"),
+            "entry_window_v318": result.get("entry_window_v318"),
+            "trend_structure_score": result.get("trend_structure_score") or result.get("structure_score"),
+            "continuity_score": result.get("cont") or result.get("continuity_score"),
+            "trend_state": result.get("state"),
+            "maturity_level": result.get("maturity_level"),
+            "rapid_main_rise": result.get("rapid_main_rise"),
+            "htf_ok": result.get("htf_ok"),
+            "exit_signal": result.get("exit_signal") or "HOLD",
+            "scoring_mode": "v318_asof",
+            "_full_result": result,
+        }
     
     # REMOVED: score_stock_asof_fallback()
     # 禁止使用简化fallback评分，必须使用真实V3.1.8评分链
@@ -149,14 +151,11 @@ class V318ScoringEngine:
             if (i + 1) % 100 == 0:
                 print(f"  评分进度: {i + 1}/{len(codes)}")
             
-            try:
-                result = self.score_stock_asof(code, as_of_date)
-                if result:
-                    results[code] = result
-                else:
-                    failed.append((code, "no_result"))
-            except Exception as e:
-                failed.append((code, str(e)))
+            result = self.score_stock_asof(code, as_of_date)
+            if result and result.get("ok") and result.get("grade_v318"):
+                results[code] = result
+            else:
+                failed.append((code, (result or {}).get("error", "uncomputable")))
         
         if failed:
             print(f"  ⚠️  评分失败/跳过: {len(failed)} 只股票")
@@ -212,6 +211,69 @@ class V318ScoringEngine:
             for code, result in scores.items()
             if result.get("entry_window_v318") in entry_statuses
         }
+
+
+def score_feature_row(row: Dict[str, Any]) -> Dict[str, Any]:
+    """用生产 grade_trend_v318 与 classify_entry_window 解释一行已给定的特征。
+
+    特征本身必须由调用方提供。这里不根据均线临时造分，也不把缺失字段补成 A。
+    """
+    required = (
+        "trend_structure_score",
+        "continuity_score",
+        "trend_state",
+        "maturity_level",
+        "follow_through",
+        "exhaustion",
+    )
+    missing = [k for k in required if row.get(k) is None or row.get(k) == ""]
+    if missing:
+        return {
+            "ok": False,
+            "grade_v318": None,
+            "error": "feature_inputs_missing:" + ",".join(missing),
+            "scoring_mode": "v318_feature_row",
+        }
+    broken = bool(int(row.get("broken") or 0))
+    rapid = bool(int(row.get("rapid_main_rise") or 0))
+    grade = grade_trend_v318(
+        trend_structure_score=float(row["trend_structure_score"]),
+        continuity_score=float(row["continuity_score"]),
+        sector_score=None if row.get("sector_score") in (None, "") else float(row["sector_score"]),
+        tech_score=None if row.get("tech_score") in (None, "") else float(row["tech_score"]),
+        fund_risk_level=row.get("fund_risk_level") or None,
+        trend_state=str(row["trend_state"]),
+        broken=broken,
+        rapid_main_rise=rapid,
+        htf_ok=None if row.get("htf_ok") in (None, "") else bool(int(row["htf_ok"])),
+    )
+    structural = StructuralConfirmation(completed=bool(int(row.get("structural_completed") or 0)))
+    wave_ret = row.get("current_wave_return")
+    entry, notes = classify_entry_window(
+        trend_state=str(row["trend_state"]),
+        maturity_level=str(row["maturity_level"]),
+        structural=structural,
+        just_completed_structure=bool(int(row.get("just_completed_structure") or 0)),
+        exhaustion=str(row["exhaustion"]),
+        follow_through=str(row["follow_through"]),
+        current_wave_return=None if wave_ret in (None, "") else float(wave_ret),
+        version="3.1.8",
+        rapid_main_rise=rapid,
+        broken=broken,
+    )
+    return {
+        "ok": True,
+        "grade_v318": grade.grade.value,
+        "grade_path": grade.path,
+        "entry_window_v318": entry.value,
+        "entry_notes": notes,
+        "trend_structure_score": float(row["trend_structure_score"]),
+        "continuity_score": float(row["continuity_score"]),
+        "trend_state": str(row["trend_state"]),
+        "exit_signal": str(row.get("exit_signal") or "HOLD"),
+        "scoring_mode": "v318_feature_row",
+        "evidence_class": "synthetic_feature_inputs_not_strategy_evidence",
+    }
 
 
 def setup_production_data_paths(config):

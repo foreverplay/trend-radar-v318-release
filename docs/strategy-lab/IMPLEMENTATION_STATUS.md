@@ -995,13 +995,10 @@ python3 tests/test_exit_rules.py
    - 如实分层VM合成测试 vs 本地真实数据（尚未执行）
    - 准确本地运行步骤：预检 → 12月测试 → 全年回测
 
-### ⚠️ 待完成集成（本轮未完成）
+### 成交闭环
 
-- **完整回测集成器**（当前仅评级回放）
-  - 信号生成 → 订单执行 → 账户净值
-  - T+1交易日历
-  - 涨跌停/停牌拒单
-  - 持仓/交易/拒单日志
+`execution_loop.py` 已由 `run_research_backtest.py` 调用。VM 上的合成 fixture 会写出非空订单、成交、持仓和每日净值。
+这不是本机行情结果，也不是策略收益。正式模式在原始价格、佣金或历史状态缺失时阻断。
 
 ### ⚠️ 已知限制（如实声明）
 
@@ -1048,4 +1045,4 @@ python3 run_research_backtest.py configs/baseline_2024_year.json
 ls -lh results/backtest/*/manifest.json
 ```
 
-**当前状态**: 🚧 **核心模块已完成（2997行），VM合成测试通过（12/12），本地真实数据待用户执行，完整回测集成器待补充**
+**当前状态**: 合成 fixture 的评级→订单→持仓→每日净值已在 VM 跑通。本机 `longtou.sqlite3` 与 parquet 未在本环境执行。只有前复权、没有原始行情时，成交会被阻断。
