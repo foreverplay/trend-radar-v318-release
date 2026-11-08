@@ -10,6 +10,7 @@ LOG_FILE="$STATE_DIR/research-api.log"
 HOST="${API_HOST:-127.0.0.1}"
 FIRST_PORT="${RESEARCH_API_PORT:-8791}"
 OPEN_BROWSER="${OPEN_BROWSER:-1}"
+RESEARCH_LAUNCHED_BY_RUN_DEV="${RESEARCH_LAUNCHED_BY_RUN_DEV:-0}"
 
 usage() {
   cat <<'HELP'
@@ -260,7 +261,7 @@ cmd_down() {
   if pid="$(running_pid)"; then
     kill "$pid" 2>/dev/null || true
     wait "$pid" 2>/dev/null || true
-    rm -f "$PID_FILE" "$PORT_FILE"
+    rm -f "$PID_FILE" "$PORT_FILE" "$STATE_DIR/launched-by-run-dev"
     echo "[research] 已停止 pid=$pid"
     return 0
   fi
@@ -299,10 +300,17 @@ cmd_up() {
     echo "[research] 找不到可用 Python。设置 RESEARCH_PYTHON=主工作目录/.venv/bin/python" >&2
     exit 1
   fi
+  mark_run_dev_launch() {
+    if [[ "$RESEARCH_LAUNCHED_BY_RUN_DEV" == "1" ]]; then
+      mkdir -p "$STATE_DIR"
+      touch "$STATE_DIR/launched-by-run-dev"
+    fi
+  }
   if board_api_has_research; then
     local url
     url="$(board_research_url)"
     open_browser "$url"
+    mark_run_dev_launch
     echo "[research] 已在 8765 提供研究页，无需再开 8791: $url"
     return 0
   fi
@@ -310,11 +318,13 @@ cmd_up() {
   if port="$(read_stored_port)"; then
     if running_pid >/dev/null && is_research_api "$port"; then
       open_browser "$(research_url "$port")"
+      mark_run_dev_launch
       echo "[research] 已在运行: $(research_url "$port")"
       return 0
     fi
     if is_research_api "$port"; then
       open_browser "$(research_url "$port")"
+      mark_run_dev_launch
       echo "[research] 端口 $port 上已有研究 API: $(research_url "$port")"
       return 0
     fi
@@ -323,6 +333,7 @@ cmd_up() {
     if is_research_api "$port" && ! running_pid >/dev/null; then
       echo "$port" >"$PORT_FILE"
       open_browser "$(research_url "$port")"
+      mark_run_dev_launch
       echo "[research] 复用已在监听的研究 API: $(research_url "$port")"
       return 0
     fi
@@ -335,6 +346,9 @@ cmd_up() {
   echo "[research] 页面: $(research_url "$port")"
   echo "[research] 健康: http://${HOST}:${port}/api/health"
   echo "[research] 停止: ./research down  日志: $LOG_FILE"
+  if [[ "$RESEARCH_LAUNCHED_BY_RUN_DEV" == "1" ]]; then
+    touch "$STATE_DIR/launched-by-run-dev"
+  fi
 }
 
 ACTION="${1:-up}"

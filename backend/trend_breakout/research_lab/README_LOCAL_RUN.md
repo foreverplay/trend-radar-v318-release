@@ -65,13 +65,15 @@ cd <独立研究工作目录>
 
 不修改生产 `.env`，不重启已经占用 8765、5173、8790 的进程。研究 API 用另一个端口，健康检查是 `GET /api/health`。`/health` 在代码里不存在，404 不是故障。
 
-在检出本分支的目录执行一条命令即可（后台启动、必要时自动预检、自动打开浏览器）。不重启 8765、5173、8790：
+在检出本分支的目录执行：
 
 ```bash
-./research
+./run_dev.sh
 ```
 
-`run_dev.sh` 默认也会自动后台拉起研究页（`WITH_RESEARCH=0` 可关闭）。
+会自动：检测 8765/5173/8790 是否已在监听（在听则跳过、不重启）、后台起研究页（8791）、必要时只读预检、打开浏览器。仅要研究页时也可 `./research`。
+
+`WITH_RESEARCH=0` 或 `--no-research` 可关闭研究页。
 
 可选环境变量：`RESEARCH_PYTHON`（主工作目录 `.venv`）、`RESEARCH_SQLITE_PATH`、`RESEARCH_PARQUET_DIR`、`RESEARCH_RESULTS_ROOT`。会从已有 `.env` 读取 `MARKET_DB_PATH`，不改写 `.env`。
 

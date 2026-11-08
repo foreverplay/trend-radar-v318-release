@@ -151,8 +151,8 @@ def status_payload() -> Dict[str, Any]:
         "commands": [
             ".venv/bin/python backend/trend_breakout/research_lab/precheck_local.py",
             ".venv/bin/python backend/trend_breakout/research_lab/run_research_backtest.py backend/trend_breakout/research_lab/configs/local_formal.json",
-            "./research",
-            "自动后台启动并打开浏览器。停止: ./research down",
+            "./run_dev.sh",
+            "或仅研究: ./research   停止研究侧车: ./research down",
             "健康检查是 GET /api/health；代码里没有 /health",
         ],
         "run_button": None,
