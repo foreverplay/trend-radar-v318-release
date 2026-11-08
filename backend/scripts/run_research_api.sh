@@ -2,6 +2,7 @@
 # 单独打开研究页。不重启已经占用 8765、5173、8790 的进程。
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
+export PYTHONPATH="$ROOT/backend/api:$ROOT/backend/trend_breakout:${PYTHONPATH:-}"
 if [[ -n "${RESEARCH_PYTHON:-}" ]]; then
   PY="$RESEARCH_PYTHON"
 elif [[ -x "$ROOT/.venv/bin/python" ]]; then

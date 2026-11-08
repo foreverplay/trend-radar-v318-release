@@ -11,6 +11,7 @@ HUB_PID=""
 LIVE_PID=""
 LIVE_DIV_PID=""
 RESEARCH_STARTED=0
+RESEARCH_ONLY="${RESEARCH_ONLY:-0}"
 
 SKIP_LIVE_BOARD="${SKIP_LIVE_BOARD:-0}"
 SKIP_LIVE_DIVIDEND="${SKIP_LIVE_DIVIDEND:-0}"
@@ -25,13 +26,22 @@ for arg in "$@"; do
     --no-live-dividend) SKIP_LIVE_DIVIDEND=1 ;;
     --no-a-plus-backfill) SKIP_A_PLUS_BACKFILL=1 ;;
     --no-research) WITH_RESEARCH=0 ;;
+    --research-only)
+      WITH_RESEARCH=1
+      SKIP_LIVE_BOARD=1
+      SKIP_LIVE_DIVIDEND=1
+      SKIP_A_PLUS_BACKFILL=1
+      RESEARCH_ONLY=1
+      ;;
     --help|-h)
       cat <<'HELP'
-用法: ./run_dev.sh [--no-live-board] [--no-live-dividend] [--no-research]
+用法: ./run_dev.sh [--no-live-board] [--no-live-dividend] [--no-research] [--research-only]
 
 一键启动 API(8765) + Vite(5173) + 研究页(8791 侧车) + 可选行情 hub(8790) + Growth/红利盘中刷榜。
 
-已在监听的 8765 / 5173 / 8790 不会被重复拉起；研究页仍会按配置自动后台启动并打开浏览器。
+已在监听的 8765 / 5173 / 8790 不会被重复拉起；研究页后台启动后独立常驻（退出 run_dev 不会停 8791）。
+
+  --research-only   只拉起研究页并打开浏览器，然后退出（榜单已在跑时用这条）
 
 环境变量:
   SKIP_LIVE_BOARD=1          不启动 Growth 盘中刷榜（同 --no-live-board）
@@ -53,9 +63,6 @@ cleanup() {
       kill "$p" 2>/dev/null || true
     fi
   done
-  if [[ "$RESEARCH_STARTED" == "1" ]] && [[ -f "$ROOT/backend/trend_breakout/research_lab/.run/launched-by-run-dev" ]]; then
-    bash "$ROOT/backend/scripts/research_lab_up.sh" down >/dev/null 2>&1 || true
-  fi
   wait 2>/dev/null || true
 }
 trap cleanup EXIT INT TERM
@@ -98,6 +105,23 @@ finally:
     s.close()
 PY
 }
+
+if [[ "$RESEARCH_ONLY" == "1" ]]; then
+  if [[ "$WITH_RESEARCH" == "1" && -x "$ROOT/backend/scripts/research_lab_up.sh" ]]; then
+    export RESEARCH_PYTHON="${RESEARCH_PYTHON:-${PYTHON:-$(command -v python || command -v python3)}}"
+    export OPEN_BROWSER="$OPEN_RESEARCH_BROWSER"
+    echo "[run_dev] 仅启动研究页（不碰 8765/5173/8790）"
+    if bash "$ROOT/backend/scripts/research_lab_up.sh" up; then
+      bash "$ROOT/backend/scripts/research_lab_up.sh" status || true
+      exit 0
+    fi
+    echo "[run_dev] 研究页启动失败。查看: backend/trend_breakout/research_lab/.run/research-api.log" >&2
+    bash "$ROOT/backend/scripts/research_lab_up.sh" doctor >&2 || true
+    exit 1
+  fi
+  echo "[run_dev] 缺少 research_lab_up.sh 或当前分支无研究代码" >&2
+  exit 1
+fi
 
 API_PORT_EFFECTIVE="${API_PORT:-8765}"
 FRONT_PORT="${VITE_DEV_PORT:-5173}"
@@ -194,7 +218,6 @@ fi
 
 if [[ "$WITH_RESEARCH" == "1" && -x "$ROOT/backend/scripts/research_lab_up.sh" ]]; then
   export RESEARCH_PYTHON="${RESEARCH_PYTHON:-${PYTHON:-$(command -v python || command -v python3)}}"
-  export RESEARCH_LAUNCHED_BY_RUN_DEV=1
   export OPEN_BROWSER="$OPEN_RESEARCH_BROWSER"
   if bash "$ROOT/backend/scripts/research_lab_up.sh" up; then
     RESEARCH_STARTED=1
@@ -210,14 +233,19 @@ WAIT_PIDS=()
 if ((${#WAIT_PIDS[@]} > 0)); then
   wait "${WAIT_PIDS[@]}"
 else
-  echo "[run_dev] 榜单前后端已在运行；研究页见上。Ctrl+C 停止本次拉起的刷榜与研究侧车。"
+  if [[ "$RESEARCH_STARTED" == "1" ]]; then
+    bash "$ROOT/backend/scripts/research_lab_up.sh" status || true
+    echo "[run_dev] 榜单已在运行；研究页已在后台常驻。关闭终端不影响 8791。停止研究: ./research down"
+    exit 0
+  fi
   BACK_WAIT=()
   [[ -n "$LIVE_PID" ]] && BACK_WAIT+=("$LIVE_PID")
   [[ -n "$LIVE_DIV_PID" ]] && BACK_WAIT+=("$LIVE_DIV_PID")
   if ((${#BACK_WAIT[@]} > 0)); then
+    echo "[run_dev] 榜单前后端已在运行；本脚本只等待刷榜子进程。"
     wait "${BACK_WAIT[@]}"
   else
-    # 保持进程驻留，直到用户 Ctrl+C（仅停研究侧车）
-    while true; do sleep 86400; done
+    echo "[run_dev] 研究页未启动。执行: ./run_dev.sh --research-only" >&2
+    exit 1
   fi
 fi
