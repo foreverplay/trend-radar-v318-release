@@ -54,7 +54,8 @@ pip install pandas numpy pyarrow
 cd backend/trend_breakout/research_lab
 
 # 运行预检脚本
-./local_precheck.sh
+# 在仓库根目录
+./venv/bin/python backend/trend_breakout/research_lab/precheck_local.py
 ```
 
 **预期输出**:
@@ -95,67 +96,18 @@ cd backend/trend_breakout/research_lab
 
 ---
 
-## 运行历史评级和回测（本地实际命令）
+## 本机命令
 
-### Step 4: 小范围诊断测试（12月21天，推荐首次）
-
-```bash
-cd backend/trend_breakout/research_lab
-
-# 使用预定义配置运行12月测试（21天）
-python3 run_research_backtest.py configs/baseline_2024_month.json
-```
-
-**预期耗时**: 5-10分钟（取决于机器性能）
-
-**输出** (在 `results/backtest/YYYYMMDD_HHMMSS/`):
-```
-研究回测Runner
-Run ID: 20241107_143052
-Config Hash: a3f5e9c1d8b4a2f7
-Output: results/backtest/20241107_143052
-
-[1/5] 配置数据源...
-✅ SQLite: ../longtou-web/backend/data/longtou.sqlite3 (4.0GB)
-✅ Parquet: ./data/kline_market/raw/daily (5429 文件)
-
-[2/5] 历史评级回放...
-  评分进度: 100/5924
-  评分进度: 200/5924
-  ...
-✅ 评级完成: 124,404 条记录
-   A+: 123
-   A:  567
-
-[2/5] 执行回测...
-成交、拒单、持仓和每日净值写在同一个 run_id 目录。只有前复权表时这一步会阻断。
-
-[4/5] 生成报告...
-✅ Manifest: results/backtest/20241107_143052/manifest.json
-
-[5/5] 清理...
-✅ 完成
-
-✅ 研究回测完成
-   Run ID: 20241107_143052
-   输出: results/backtest/20241107_143052
-```
-
-### Step 5: 全年回测（244天，足够warmup）
+在仓库根目录执行，使用项目 venv，不修改 `.env`：
 
 ```bash
-# 2024全年（244个交易日）
-python3 run_research_backtest.py configs/baseline_2024_year.json
+./venv/bin/python backend/trend_breakout/research_lab/precheck_local.py
+./venv/bin/python backend/trend_breakout/research_lab/run_research_backtest.py backend/trend_breakout/research_lab/configs/local_formal.json
 ```
 
-**预期耗时**: 30-60分钟（取决于机器性能和评分复杂度）
+`local_formal.json` 只点名 `600519` 和 2024-12-02 到 2024-12-06。当前库如果只有 `daily_bars_qfq`，命令会阻断并写出 `manifest.status=blocked`，不会把前复权价格当成名义成交价。评分失败时记录不可计算，不生成 A 评级。
 
-**输出文件** (在 `results/backtest/{run_id}/grading/`):
-- `grades_{run_id}.parquet`: 完整评级记录（所有股票×所有日期）
-- `summary_{run_id}.json`: 汇总统计
-- `a_grades_{run_id}.csv`: 每日A评级列表（仅A/A+）
-- `checkpoint_{run_id}.json`: 进度检查点（用于断点恢复）
-- `manifest.json`: 数据源/配置/代码hash
+不要用 `configs/baseline_2024_month.json` 或 `baseline_2024_year.json` 当成交入口，它们不是这条闭环的配置。全市场完整年度要等原始行情和证券状态表可用后再扩大 `codes` 与日期；这里不估计耗时。
 
 ### Step 6: 查看结果
 
