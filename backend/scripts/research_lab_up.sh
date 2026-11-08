@@ -7,6 +7,7 @@ STATE_DIR="${RESEARCH_STATE_DIR:-$ROOT/backend/trend_breakout/research_lab/.run}
 PID_FILE="$STATE_DIR/research-api.pid"
 PORT_FILE="$STATE_DIR/research-api.port"
 LOG_FILE="$STATE_DIR/research-api.log"
+URL_FILE="$STATE_DIR/research-url.txt"
 HOST="${API_HOST:-127.0.0.1}"
 FIRST_PORT="${RESEARCH_API_PORT:-8791}"
 OPEN_BROWSER="${OPEN_BROWSER:-1}"
@@ -20,6 +21,7 @@ usage() {
   open    只打开浏览器（要求已在运行）
   down    停止本脚本启动的研究 API
   doctor  启动失败时看解释器、依赖、端口和日志
+  verify  用本机 HTTP 检查 /research 是否可打开（给自动化/浏览器预检）
 
 环境变量（可选，不写 .env）:
   RESEARCH_PYTHON          默认 <仓库>/.venv/bin/python
@@ -272,7 +274,7 @@ cmd_down() {
   if pid="$(running_pid)"; then
     kill "$pid" 2>/dev/null || true
     wait "$pid" 2>/dev/null || true
-    rm -f "$PID_FILE" "$PORT_FILE"
+    rm -f "$PID_FILE" "$PORT_FILE" "$URL_FILE"
     echo "[research] 已停止 pid=$pid"
     return 0
   fi
@@ -302,14 +304,50 @@ cmd_open() {
   echo "[research] $url"
 }
 
+remember_url() {
+  local port="$1"
+  mkdir -p "$STATE_DIR"
+  echo "http://${HOST}:${port}/research" >"$URL_FILE"
+  echo "http://${HOST}:${port}/" >>"$URL_FILE"
+}
+
 open_when_ready() {
   local port="$1"
   if ! is_research_page "$port"; then
     echo "[research] 端口 $port 没有返回 /research 页面。" >&2
     return 1
   fi
+  remember_url "$port"
   open_browser "$(research_url "$port")"
-  echo "[research] 页面: $(research_url "$port")"
+  echo "[research] 页面: $(research_url "$port")（也支持 http://${HOST}:${port}/ ）"
+  echo "[research] 若 8791 打不开，先执行: ./research status  或  ./research verify"
+}
+
+cmd_verify() {
+  local port ok=0
+  if board_api_has_research; then
+    for path in "$(board_research_url)" "$(api_base_8765)/"; do
+      if curl -sf --max-time 3 "$path" | grep -q 研究实验室; then
+        echo "ok $path"
+        return 0
+      fi
+    done
+    echo "fail embedded research page"
+    return 1
+  fi
+  for port in $(seq "$FIRST_PORT" $((FIRST_PORT + 10))); do
+    if is_research_api "$port" && is_research_page "$port"; then
+      if curl -sf --max-time 3 "http://${HOST}:${port}/" | grep -q 研究实验室; then
+        echo "ok http://${HOST}:${port}/"
+      else
+        echo "ok http://${HOST}:${port}/research"
+      fi
+      return 0
+    fi
+  done
+  echo "fail no research listener on ${FIRST_PORT}-$((FIRST_PORT + 10))"
+  cmd_doctor
+  return 1
 }
 
 cmd_doctor() {
@@ -396,6 +434,10 @@ case "$ACTION" in
   open) cmd_open ;;
   down|stop) cmd_down ;;
   doctor) cmd_doctor ;;
+  verify) cmd_verify ;;
+  url)
+    if [[ -f "$URL_FILE" ]]; then head -1 "$URL_FILE"; elif cmd_status >/dev/null; then cmd_status | awk '{print $NF}'; else exit 1; fi
+    ;;
   -h|--help|help) usage ;;
   *) echo "[research] 未知子命令: $ACTION" >&2; usage >&2; exit 1 ;;
 esac

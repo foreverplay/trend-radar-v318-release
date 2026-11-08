@@ -30,6 +30,9 @@ def client(tmp_path, monkeypatch):
 
 
 def test_research_page_is_served_by_the_api(client):
+    root = client.get("/", follow_redirects=False)
+    assert root.status_code == 302
+    assert root.headers["location"] == "/research"
     page = client.get("/research")
     assert page.status_code == 200
     assert "研究实验室" in page.text

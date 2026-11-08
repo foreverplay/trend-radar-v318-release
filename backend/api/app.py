@@ -8,7 +8,7 @@ from typing import Any, Dict, Optional
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, RedirectResponse
 
 from boards_loader import (
     find_sample_root,
@@ -146,6 +146,11 @@ def quote_flow(code: str, date: Optional[str] = None) -> Dict[str, Any]:
 @app.get("/api/quotes/{code}/rise-reason")
 def quote_rise_reason(code: str, name: str = "", date: Optional[str] = None) -> Dict[str, Any]:
     return _quote_call(quote_service.get_rise_reason, code, name=name, trade_date=date)
+
+
+@app.get("/")
+def root() -> RedirectResponse:
+    return RedirectResponse(url="/research", status_code=302)
 
 
 @app.get("/research", response_class=HTMLResponse)
