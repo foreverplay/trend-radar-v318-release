@@ -65,14 +65,16 @@ cd <独立研究工作目录>
 
 不修改生产 `.env`，不重启已经占用 8765、5173、8790 的进程。研究 API 用另一个端口，健康检查是 `GET /api/health`。`/health` 在代码里不存在，404 不是故障。
 
+研究页由研究进程自己提供，不经过正在运行的 5173，也不需要重新构建带同级 `market-data-hub` 的前端。浏览器打开脚本打印的地址，默认是 `http://127.0.0.1:8791/research`。`RESEARCH_PYTHON` 指向主工作目录已有的 `.venv/bin/python`。
+
 ```bash
+export RESEARCH_PYTHON=<主工作目录>/.venv/bin/python
 export RESEARCH_SQLITE_PATH=<已有 sqlite，只读>
 export RESEARCH_PARQUET_DIR=<已有 parquet 目录，只读>
 export RESEARCH_RESULTS_ROOT=<独立结果目录>
-.venv/bin/python backend/trend_breakout/research_lab/precheck_local.py
-.venv/bin/python backend/trend_breakout/research_lab/run_research_backtest.py backend/trend_breakout/research_lab/configs/local_formal.json
+"$RESEARCH_PYTHON" backend/trend_breakout/research_lab/precheck_local.py
+"$RESEARCH_PYTHON" backend/trend_breakout/research_lab/run_research_backtest.py backend/trend_breakout/research_lab/configs/local_formal.json
 RESEARCH_API_PORT=8791 backend/scripts/run_research_api.sh
-cd frontend && npm run dev -- --host 127.0.0.1 --port 5174 --strictPort
 curl -sS http://127.0.0.1:8791/api/health
 ```
 

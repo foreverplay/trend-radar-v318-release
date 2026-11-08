@@ -25,7 +25,7 @@ async function readJson(path: string): Promise<unknown> {
     res = await fetch(`${RESEARCH_API_BASE}${path}`, { cache: "no-store" });
   } catch {
     throw new Error(
-      `没有连上 ${RESEARCH_API_BASE}。已经在听的 8765/5173 不会因为刷新多出研究功能。健康检查是 /api/health，不是 /health。`,
+      `没有连上 ${RESEARCH_API_BASE}。已经打开的 5173 不会出现研究页。研究页是 ${RESEARCH_API_BASE}/research ，健康检查是 /api/health。`,
     );
   }
   const body = (await res.json().catch(() => null)) as { detail?: string } | null;

@@ -8,6 +8,7 @@ from typing import Any, Dict, Optional
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import HTMLResponse
 
 from boards_loader import (
     find_sample_root,
@@ -41,7 +42,7 @@ SAMPLE = find_sample_root()
 @app.middleware("http")
 async def no_store_boards(request, call_next):  # type: ignore[no-untyped-def]
     response = await call_next(request)
-    if request.url.path.startswith("/api/boards") or request.url.path.startswith("/api/research") or request.url.path == "/api/meta":
+    if request.url.path.startswith("/api/boards") or request.url.path.startswith("/api/research") or request.url.path == "/api/meta" or request.url.path == "/research":
         response.headers["Cache-Control"] = "no-store"
     return response
 
@@ -145,6 +146,11 @@ def quote_flow(code: str, date: Optional[str] = None) -> Dict[str, Any]:
 @app.get("/api/quotes/{code}/rise-reason")
 def quote_rise_reason(code: str, name: str = "", date: Optional[str] = None) -> Dict[str, Any]:
     return _quote_call(quote_service.get_rise_reason, code, name=name, trade_date=date)
+
+
+@app.get("/research", response_class=HTMLResponse)
+def research_page() -> str:
+    return Path(__file__).with_name("research_page.html").read_text(encoding="utf-8")
 
 
 def _research_call(fn, *args, **kwargs):

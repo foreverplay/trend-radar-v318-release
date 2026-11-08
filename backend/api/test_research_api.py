@@ -29,6 +29,15 @@ def client(tmp_path, monkeypatch):
     return TestClient(app.app)
 
 
+def test_research_page_is_served_by_the_api(client):
+    page = client.get("/research")
+    assert page.status_code == 200
+    assert "研究实验室" in page.text
+    assert "/api/research/status" in page.text
+    assert "15.31" not in page.text
+    assert "运行回测" not in page.text or "没有运行回测按钮" in page.text
+
+
 def test_empty_root_and_malicious_run_id(client, tmp_path):
     status = client.get("/api/research/status")
     assert status.status_code == 200
