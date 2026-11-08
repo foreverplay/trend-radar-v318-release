@@ -105,10 +105,12 @@ class ReadOnlyDataProvider:
                 # SQLite中volume单位是"手"，需要×100转为"股"
                 df['volume'] = df['volume'] * 100.0
                 
-                # 计算涨跌幅
+                # 计算涨跌幅。这是前复权读数，只给评分，不作为名义成交价。
                 df['pct_chg'] = df['close'].pct_change() * 100.0
+                df["price_basis"] = "qfq"
+                df["tradable_nominal"] = False
                 
-                return df[['date', 'open', 'close', 'high', 'low', 'volume', 'amount', 'pct_chg']]
+                return df[['date', 'open', 'close', 'high', 'low', 'volume', 'amount', 'pct_chg', 'price_basis', 'tradable_nominal']]
                 
             except Exception as e:
                 print(f"⚠️ SQLite查询失败 {code6}: {e}，回退到Parquet")
@@ -143,7 +145,10 @@ class ReadOnlyDataProvider:
                 if 'pct_chg' not in df.columns:
                     df['pct_chg'] = df['close'].pct_change() * 100.0
                 
-                return df[['date', 'open', 'close', 'high', 'low', 'volume', 'amount', 'pct_chg']].reset_index(drop=True)
+                basis = str(df["price_basis"].iloc[-1]) if "price_basis" in df.columns else "unproven"
+                df["price_basis"] = basis
+                df["tradable_nominal"] = basis == "raw"
+                return df[['date', 'open', 'close', 'high', 'low', 'volume', 'amount', 'pct_chg', 'price_basis', 'tradable_nominal']].reset_index(drop=True)
                 
             except Exception as e:
                 print(f"❌ Parquet读取失败 {code6}: {e}")

@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -33,15 +34,17 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     config = _load(args.config)
-    db_path = Path(config["sqlite_path"]).expanduser()
+    sqlite_env = os.environ.get("RESEARCH_SQLITE_PATH")
+    db_path = Path(sqlite_env).expanduser() if sqlite_env else Path(config["sqlite_path"]).expanduser()
     if not db_path.is_absolute():
         db_path = (Path.cwd() / db_path).resolve()
     if not db_path.is_file():
-        print(f"数据库不存在: {db_path}")
+        print("数据库不存在")
         return 2
 
     run_id = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
-    output_root = Path(config.get("output_dir", "results/research_backtest"))
+    results_env = os.environ.get("RESEARCH_RESULTS_ROOT")
+    output_root = Path(results_env).expanduser() if results_env else Path(config.get("output_dir", "results/research_backtest"))
     if not output_root.is_absolute():
         output_root = (Path.cwd() / output_root).resolve()
     resume_state = None

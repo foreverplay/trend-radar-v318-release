@@ -14,6 +14,7 @@ from typing import Any, Dict, List, Optional
 
 import pandas as pd
 
+from price_basis import inspect_connection
 from scoring_engine import V318ScoringEngine, score_feature_row
 from trading_rules_provider import (
     RuleError,
@@ -107,17 +108,9 @@ def _held_sessions(dates: List[str], open_date: str, current: str) -> int:
 def inspect_database(path: Path) -> Dict[str, Any]:
     conn = _connect(path)
     try:
-        tables = _tables(conn)
-        info = {"tables": sorted(tables), "price_basis": None}
-        if "daily_bars_raw" in tables and "daily_bars_qfq" in tables:
-            info["price_basis"] = "raw_and_qfq"
-        elif "daily_bars_raw" in tables:
-            info["price_basis"] = "raw"
-        elif "daily_bars_qfq" in tables:
-            info["price_basis"] = "qfq_only"
-        else:
-            info["price_basis"] = "missing"
-        return info
+        report = inspect_connection(conn)
+        report["tables_present"] = sorted(_tables(conn))
+        return report
     finally:
         conn.close()
 
@@ -129,11 +122,10 @@ def _load_frame(conn: sqlite3.Connection, sql: str, params: tuple = ()) -> pd.Da
 def _prepare(conn: sqlite3.Connection, config: Dict[str, Any]) -> Dict[str, Any]:
     tables = _tables(conn)
     quality: List[Dict[str, Any]] = []
-    basis = inspect_database(Path(conn.execute("PRAGMA database_list").fetchone()[2]))
-    if basis["price_basis"] != "raw" and basis["price_basis"] != "raw_and_qfq":
-        raise DataError("只有前复权行情，不能把它当作可交易名义价格计算涨跌停和费用")
-    if "daily_bars_raw" not in tables:
-        raise DataError("缺少 daily_bars_raw，拒绝用 daily_bars_qfq 成交")
+    basis = inspect_connection(conn)
+    if not basis["execution_table"]:
+        raise DataError(basis["execution_block"] or "没有证明为原始名义价的行情表")
+    bar_table = basis["execution_table"]
     for required in ("index_bars", "security_status_asof"):
         if required not in tables:
             raise DataError(f"缺少 {required}")
@@ -155,12 +147,12 @@ def _prepare(conn: sqlite3.Connection, config: Dict[str, Any]) -> Dict[str, Any]
         codes = [row[0] for row in conn.execute("SELECT DISTINCT symbol FROM security_status_asof ORDER BY symbol")]
     bars = _load_frame(
         conn,
-        "SELECT symbol, trade_date, open, high, low, close, volume, amount FROM daily_bars_raw ORDER BY symbol, trade_date",
+        f'SELECT symbol, trade_date, open, high, low, close, volume, amount FROM "{bar_table}" ORDER BY symbol, trade_date',
     )
     if bars.duplicated(["symbol", "trade_date"]).any():
         raise DataError("原始行情存在重复日期，拒绝静默去重")
-    if "adj_factor" in [row[1] for row in conn.execute("PRAGMA table_info(daily_bars_raw)")]:
-        factors = _load_frame(conn, "SELECT symbol, trade_date, adj_factor FROM daily_bars_raw")
+    if "adj_factor" in [row[1] for row in conn.execute(f'PRAGMA table_info("{bar_table}")')]:
+        factors = _load_frame(conn, f'SELECT symbol, trade_date, adj_factor FROM "{bar_table}"')
         for symbol, part in factors.groupby("symbol"):
             if part["adj_factor"].nunique(dropna=False) > 1:
                 raise DataError(f"{symbol} 复权因子在窗口内变化，公司行为口径未核验，拒绝成交")
@@ -653,6 +645,14 @@ def _require_checkpoint(state: Dict[str, Any], config: Dict[str, Any]) -> None:
         raise DataError("断点配置哈希与当前配置不一致，拒绝恢复")
 
 
+def _basis_label(basis: Dict[str, Any]) -> str:
+    chosen = basis.get("execution_table")
+    for item in basis.get("tables") or []:
+        if item.get("table") == chosen:
+            return str(item.get("price_basis") or "unproven")
+    return "unproven"
+
+
 def _manifest(config, db_path, run_id, bundle, metrics) -> Dict[str, Any]:
     files = [
         Path(__file__).resolve(),
@@ -672,7 +672,7 @@ def _manifest(config, db_path, run_id, bundle, metrics) -> Dict[str, Any]:
         "config_hash": _config_hash(config),
         "code_hash": code_hash.hexdigest(),
         "sqlite_path": str(db_path),
-        "price_basis": bundle["basis"]["price_basis"],
+        "price_basis": _basis_label(bundle["basis"]),
         "start_date": config["start_date"],
         "end_date": config["end_date"],
         "score_mode": config.get("score_mode"),

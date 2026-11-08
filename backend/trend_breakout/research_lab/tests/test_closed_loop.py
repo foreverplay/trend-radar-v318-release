@@ -277,6 +277,19 @@ def test_cash_competition_tie_breaks_by_code(tmp_path: Path):
     assert rejected and rejected[0]["reason"] == "below_min_lot_or_cash"
 
 
+def test_unproven_daily_bars_is_not_called_missing_raw(tmp_path: Path):
+    db = tmp_path / "named.sqlite"
+    build_db(db)
+    conn = sqlite3.connect(db)
+    conn.execute("ALTER TABLE daily_bars_raw RENAME TO daily_bars")
+    conn.commit()
+    conn.close()
+    blocked = run_execution(_config(db, tmp_path / "named"), db, tmp_path / "named", run_id="unproven")
+    assert blocked.status == "blocked"
+    assert "daily_bars" in blocked.manifest["reason"]
+    assert "不是因为缺少名为 daily_bars_raw" in blocked.manifest["reason"]
+
+
 def test_blocks(tmp_path: Path):
     qfq = tmp_path / "qfq.sqlite"
     build_db(qfq, qfq_only=True)

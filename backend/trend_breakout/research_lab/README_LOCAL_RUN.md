@@ -50,59 +50,30 @@ pip install pandas numpy pyarrow
 
 ### Step 3: 本地预检（验证数据路径和基础评分）
 
+本机解释器是仓库里的 `.venv/bin/python`，不是 `venv`。当前 `main` 没有研究脚本时，刷新旧页面不会出现研究功能。不要在有未提交榜单和缓存的主工作目录里 reset。把本分支放到独立工作目录，只读打开已有缓存。
+
 ```bash
-cd backend/trend_breakout/research_lab
-
-# 运行预检脚本
-# 在仓库根目录
-./venv/bin/python backend/trend_breakout/research_lab/precheck_local.py
+cd <独立研究工作目录>
+.venv/bin/python backend/trend_breakout/research_lab/precheck_local.py
 ```
 
-**预期输出**:
-```
-===================================================================
-研究实验室本地预检
-===================================================================
-
-[1/5] 检查Python环境...
-✅ Python: 3.11.x
-
-[2/5] 检查Python依赖...
-✅ 核心依赖已安装
-
-[3/5] 检查数据路径...
-✅ SQLite: ../longtou-web/backend/data/longtou.sqlite3 (4.0G)
-✅ Parquet: ./data/kline_market/raw/daily (5429 文件)
-
-[4/5] 测试SQLite只读访问...
-✅ daily_bars_qfq: 15,181,781 条记录, 5924 只股票
-   最新日期: 2026-11-06
-
-[5/5] 测试基础评分（600519 @ 2024-12-31）...
-✅ 评分成功:
-   Grade: A (或B/FILTER，取决于实际评分)
-   Entry: CONFIRMED (或其他状态)
-   Structure: 87.5 (或实际分数)
-
-===================================================================
-✅ 预检通过！可以运行完整评级和回测
-===================================================================
-```
-
-**如果失败**:
-- 检查数据路径是否正确（SQLite和Parquet）
-- 确认文件权限可读
-- 检查生产模块路径配置
+预检把读到的表口径写进 `research_lab/results/precheck.json`。没有 `daily_bars_raw` 这个表名，不等于没有原始价；`daily_bars` 没有口径列时状态是阻断。`bfq_daily` 的 `adjust=""` 只记录来源声明。kline 抽样行数不代表长期完整。
 
 ---
 
 ## 本机命令
 
-在仓库根目录执行，使用项目 venv，不修改 `.env`：
+不修改生产 `.env`，不重启已经占用 8765、5173、8790 的进程。研究 API 用另一个端口，健康检查是 `GET /api/health`。`/health` 在代码里不存在，404 不是故障。
 
 ```bash
-./venv/bin/python backend/trend_breakout/research_lab/precheck_local.py
-./venv/bin/python backend/trend_breakout/research_lab/run_research_backtest.py backend/trend_breakout/research_lab/configs/local_formal.json
+export RESEARCH_SQLITE_PATH=<已有 sqlite，只读>
+export RESEARCH_PARQUET_DIR=<已有 parquet 目录，只读>
+export RESEARCH_RESULTS_ROOT=<独立结果目录>
+.venv/bin/python backend/trend_breakout/research_lab/precheck_local.py
+.venv/bin/python backend/trend_breakout/research_lab/run_research_backtest.py backend/trend_breakout/research_lab/configs/local_formal.json
+RESEARCH_API_PORT=8791 backend/scripts/run_research_api.sh
+cd frontend && npm run dev -- --host 127.0.0.1 --port 5174 --strictPort
+curl -sS http://127.0.0.1:8791/api/health
 ```
 
 `local_formal.json` 只点名 `600519` 和 2024-12-02 到 2024-12-06。当前库如果只有 `daily_bars_qfq`，命令会阻断并写出 `manifest.status=blocked`，不会把前复权价格当成名义成交价。评分失败时记录不可计算，不生成 A 评级。

@@ -8,6 +8,7 @@ import {
 } from "./api";
 import BoardTable from "./components/BoardTable";
 import DividendBoardTable from "./components/DividendBoardTable";
+import ResearchPanel from "./research/ResearchPanel";
 import type { BoardsPayload, DividendBoardsPayload } from "./types";
 import {
   BANNER_TEXT,
@@ -16,7 +17,7 @@ import {
   zhSource,
 } from "./zhLabels";
 
-type ModeKey = "growth" | "dividend";
+type ModeKey = "growth" | "dividend" | "research";
 type TabKey = "mature_entry" | "trend_all" | "watch_pool" | "extended";
 type DividendTabKey = "quality" | "opportunity" | "risk_watch";
 
@@ -279,13 +280,17 @@ export default function App() {
       ? ` · 走势 ${divChartAsOf}（榜单仍是 ${divData.t_date}，本轮排行导出后替换）`
       : "";
   const growthActive = mode === "growth";
-  const headerTitle = growthActive ? "趋势分析雷达 V3.1.8" : "红利趋势榜 V3.1.9";
+  const dividendActive = mode === "dividend";
+  const researchActive = mode === "research";
+  const headerTitle = researchActive ? "研究实验室" : growthActive ? "趋势分析雷达 V3.1.8" : "红利趋势榜 V3.1.9";
   const headerSub = growthActive ? (
     <>
       交易日 {data?.t_date || "—"} · 市场状态 {zhRegime(data?.regime)}
       {legacyNote} · 市场评分 {data?.market_score ?? "—"}
       {quoteNote}
     </>
+  ) : researchActive ? (
+    <>只读显示独立研究目录里的运行产物。当前这个已经打开的页面如果是旧进程，刷新不会出现研究功能。</>
   ) : (
     <>
       交易日 {divData?.t_date || divData?.as_of || "—"} · 评分样本 {divData?.n_scored ?? "—"} ·
@@ -302,7 +307,7 @@ export default function App() {
           <p className="sub">{headerSub}</p>
         </div>
         <div className="hdr-tools">
-          {growthActive ? (
+          {researchActive ? null : growthActive ? (
             <label className="date-pick">
               历史日期
               <select
@@ -342,7 +347,7 @@ export default function App() {
             </label>
           )}
           <div className="counts">
-            {growthActive ? (
+            {researchActive ? null : growthActive ? (
               <>
                 <span>成熟入场 {boardCounts.mature_entry}</span>
                 <span>趋势全榜 {boardCounts.trend_all}</span>
@@ -370,25 +375,37 @@ export default function App() {
         </button>
         <button
           type="button"
-          className={!growthActive ? "active" : ""}
+          className={dividendActive ? "active" : ""}
           onClick={() => setMode("dividend")}
         >
           红利趋势
         </button>
+        <button
+          type="button"
+          className={researchActive ? "active" : ""}
+          onClick={() => setMode("research")}
+        >
+          研究实验室
+        </button>
       </nav>
 
       <div className="banner">
-        {growthActive ? BANNER_TEXT : DIVIDEND_BANNER_TEXT} 数据来源：{zhSource(source || "…")}
+        {researchActive
+          ? "研究页不改榜单计算。没有结果文件就不显示收益。旧静态样例页里的数字不是这次验证。"
+          : growthActive
+            ? BANNER_TEXT
+            : DIVIDEND_BANNER_TEXT}{" "}
+        {researchActive ? "" : `数据来源：${zhSource(source || "…")}`}
         {growthActive && data?.asof_note ? ` ${data.asof_note}` : ""}
         {growthActive && refreshNote ? ` ${refreshNote}` : ""}
-        {!growthActive && divData?.disclaimer ? ` ${divData.disclaimer}` : ""}
+        {dividendActive && divData?.disclaimer ? ` ${divData.disclaimer}` : ""}
       </div>
 
       {err && <p className="error">{err}</p>}
-      {loading && ((growthActive && !data) || (!growthActive && !divData)) && !err && (
+      {loading && ((growthActive && !data) || (dividendActive && !divData)) && !err && (
         <p className="loading">加载中…</p>
       )}
-      {loading && ((growthActive && data) || (!growthActive && divData)) ? (
+      {loading && ((growthActive && data) || (dividendActive && divData)) ? (
         <p className="loading">正在切换日期…</p>
       ) : null}
 
@@ -417,7 +434,9 @@ export default function App() {
         </>
       )}
 
-      {!growthActive && divData && (
+      {researchActive && <ResearchPanel />}
+
+      {dividendActive && divData && (
         <>
           <nav className="tabs">
             {DIVIDEND_TABS.map((t) => (
