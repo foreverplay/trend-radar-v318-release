@@ -15,12 +15,14 @@ SKIP_LIVE_BOARD="${SKIP_LIVE_BOARD:-0}"
 SKIP_LIVE_DIVIDEND="${SKIP_LIVE_DIVIDEND:-0}"
 SKIP_A_PLUS_BACKFILL="${SKIP_A_PLUS_BACKFILL:-0}"
 LIVE_BOARD_INTERVAL="${LIVE_BOARD_INTERVAL:-}"
+WITH_RESEARCH="${WITH_RESEARCH:-1}"
 
 for arg in "$@"; do
   case "$arg" in
     --no-live-board) SKIP_LIVE_BOARD=1 ;;
     --no-live-dividend) SKIP_LIVE_DIVIDEND=1 ;;
     --no-a-plus-backfill) SKIP_A_PLUS_BACKFILL=1 ;;
+    --no-research) WITH_RESEARCH=0 ;;
     --help|-h)
       cat <<'HELP'
 用法: ./run_dev.sh [--no-live-board] [--no-live-dividend]
@@ -32,6 +34,7 @@ for arg in "$@"; do
   SKIP_LIVE_DIVIDEND=1       不启动红利盘中刷榜（同 --no-live-dividend）
   SKIP_A_PLUS_BACKFILL=1     不启动 A+ 历史回补后台（同 --no-a-plus-backfill）
   LIVE_BOARD_INTERVAL=1500   Growth 刷榜间隔秒数，默认 1500（约 25 分钟）
+  WITH_RESEARCH=0            不自动后台启动研究页（默认 1，不占用 8765，走 8791）
 HELP
       exit 0
       ;;
@@ -152,6 +155,14 @@ elif [[ -n "${MARKET_DB_PATH:-$(env_get MARKET_DB_PATH)}" ]]; then
   python -u backend/scripts/backfill_a_plus_history.py --parallel-days 1 --workers 3 &
 else
   echo "[run_dev] 未配置 MARKET_DB_PATH，不启动 A+ 历史回补"
+fi
+
+if [[ "$WITH_RESEARCH" == "1" && -x "$ROOT/backend/scripts/research_lab_up.sh" ]]; then
+  OPEN_BROWSER=0 bash "$ROOT/backend/scripts/research_lab_up.sh" up || true
+  if bash "$ROOT/backend/scripts/research_lab_up.sh" status 2>/dev/null | grep -q '^running'; then
+    bash "$ROOT/backend/scripts/research_lab_up.sh" status
+    echo "[run_dev] 研究页已自动后台启动。浏览器打开: ./research open"
+  fi
 fi
 
 wait "$API_PID" "$FRONT_PID"

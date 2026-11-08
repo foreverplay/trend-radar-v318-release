@@ -65,18 +65,15 @@ cd <独立研究工作目录>
 
 不修改生产 `.env`，不重启已经占用 8765、5173、8790 的进程。研究 API 用另一个端口，健康检查是 `GET /api/health`。`/health` 在代码里不存在，404 不是故障。
 
-研究页由研究进程自己提供，不经过正在运行的 5173，也不需要重新构建带同级 `market-data-hub` 的前端。浏览器打开脚本打印的地址，默认是 `http://127.0.0.1:8791/research`。`RESEARCH_PYTHON` 指向主工作目录已有的 `.venv/bin/python`。
+在检出本分支的目录执行一条命令即可（后台启动、必要时自动预检、自动打开浏览器）。不重启 8765、5173、8790：
 
 ```bash
-export RESEARCH_PYTHON=<主工作目录>/.venv/bin/python
-export RESEARCH_SQLITE_PATH=<已有 sqlite，只读>
-export RESEARCH_PARQUET_DIR=<已有 parquet 目录，只读>
-export RESEARCH_RESULTS_ROOT=<独立结果目录>
-"$RESEARCH_PYTHON" backend/trend_breakout/research_lab/precheck_local.py
-"$RESEARCH_PYTHON" backend/trend_breakout/research_lab/run_research_backtest.py backend/trend_breakout/research_lab/configs/local_formal.json
-RESEARCH_API_PORT=8791 backend/scripts/run_research_api.sh
-curl -sS http://127.0.0.1:8791/api/health
+./research
 ```
+
+`run_dev.sh` 默认也会自动后台拉起研究页（`WITH_RESEARCH=0` 可关闭）。
+
+可选环境变量：`RESEARCH_PYTHON`（主工作目录 `.venv`）、`RESEARCH_SQLITE_PATH`、`RESEARCH_PARQUET_DIR`、`RESEARCH_RESULTS_ROOT`。会从已有 `.env` 读取 `MARKET_DB_PATH`，不改写 `.env`。
 
 `local_formal.json` 只点名 `600519` 和 2024-12-02 到 2024-12-06。当前库如果只有 `daily_bars_qfq`，命令会阻断并写出 `manifest.status=blocked`，不会把前复权价格当成名义成交价。评分失败时记录不可计算，不生成 A 评级。
 

@@ -22,3 +22,5 @@ data/kline_market/
 data/ashare-financials/
 data/_div_deps_pack/
 data/cache/dividend_kline/
+backend/trend_breakout/research_lab/.run/
+backend/trend_breakout/research_lab/results/
